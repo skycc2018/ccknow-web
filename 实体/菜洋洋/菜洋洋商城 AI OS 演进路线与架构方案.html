@@ -138,6 +138,56 @@ body {
 .search-results a:hover { background: var(--bg); }
 .search-results a .path { font-size: 11px; color: var(--text-secondary); }
 .search-results .empty { padding: 20px; text-align: center; color: var(--text-secondary); font-size: 13px; }
+.mobile-search-btn { display: none; }
+.mobile-search-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--surface);
+    z-index: 300;
+    flex-direction: column;
+}
+.mobile-search-overlay.open { display: flex; }
+.mobile-search-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+.mobile-search-header input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+}
+.mobile-search-header button {
+    padding: 8px 14px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+}
+.mobile-search-results {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 16px;
+}
+.mobile-search-results a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+}
+.mobile-search-results a .path { display: block; font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+.mobile-search-results .empty { padding: 40px 0; text-align: center; color: var(--text-secondary); }
 .icon-btn {
     width: 36px;
     height: 36px;
@@ -397,15 +447,43 @@ body {
     :root { --sidebar-width: 0; }
     .sidebar {
         transform: translateX(-100%);
-        transition: transform 0.3s;
+        transition: transform 0.3s ease;
         width: 280px;
+        z-index: 200;
     }
     .sidebar.open { transform: translateX(0); }
-    .topbar { left: 0; padding: 0 16px; }
-    .content { margin-left: 0; padding: 28px 20px 80px; }
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 150;
+        backdrop-filter: blur(2px);
+    }
+    .sidebar-overlay.open { display: block; }
+    .topbar { left: 0; padding: 0 16px; gap: 10px; }
+    .content { margin-left: 0; padding: 24px 18px 80px; max-width: 100%; }
+    .content h1 { font-size: 26px; }
+    .content h2 { font-size: 20px; }
+    .content h3 { font-size: 17px; }
+    .content pre { padding: 16px; font-size: 13px; }
     .search-box { display: none; }
+    .mobile-search-btn { display: flex; }
     .mobile-menu-btn { display: flex; }
     .breadcrumbs { display: none; }
+    .home-hero h1 { font-size: 28px; }
+    .home-grid { grid-template-columns: 1fr; }
+    .filters { flex-direction: column; align-items: stretch; }
+    .filters select, .filters button { width: 100%; }
+    .todo-table { display: block; overflow-x: auto; white-space: nowrap; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .home-stats { gap: 24px; }
+}
+@media (max-width: 480px) {
+    .home-hero { padding: 24px 0 32px; }
+    .stats { grid-template-columns: 1fr; }
+    .content { padding: 20px 14px 70px; }
+    .topbar-actions { gap: 8px; }
 }
 
         
@@ -421,7 +499,7 @@ body {
             <button onclick="expandAll()">展开全部</button>
             <button onclick="collapseAll()">折叠全部</button>
         </div>
-        <nav class="nav">
+        <nav class="nav" onclick="handleNavClick(event)">
             <ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>06 课程</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AINative实战</span><ul><li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-1.html">&quot;AI Native 实战课程 - Day 1: AI Enhanced vs AI Native&quot;</a></li>
 <li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-2.html">&quot;AI Native 实战课程 - Day 2: 第二章 - 行业拐点&quot;</a></li>
 <li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-3.html">&quot;AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口&quot;</a></li>
@@ -517,10 +595,12 @@ body {
 <li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E6%95%B0%E5%AD%97%E5%8C%96%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86-%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90.html">C00004825-朱宇尧-数字化产品经理 — 面试分析</a></li></ul></li></ul></li></ul>
         </nav>
     </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
     <header class="topbar">
         <button class="icon-btn mobile-menu-btn" onclick="toggleSidebar()" title="菜单">☰</button>
         <div class="breadcrumbs"><a href="../../%E9%A6%96%E9%A1%B5.html">首页</a> <span class="sep">/</span> <span>实体</span> <span class="sep">/</span> <span>菜洋洋</span> <span class="sep">/</span> <span>菜洋洋商城 AI OS 演进路线与架构方案</span></div>
         <div class="topbar-actions">
+            <button class="icon-btn mobile-search-btn" onclick="openMobileSearch()" title="搜索">🔍</button>
             <div class="search-box">
                 <input type="text" id="search" placeholder="搜索页面..." oninput="searchPages(this.value)" onfocus="showSearch()" onblur="hideSearchDelayed()">
                 <div class="search-results" id="search-results"></div>
@@ -528,6 +608,13 @@ body {
             <button class="icon-btn" onclick="toggleTheme()" title="切换主题">🌙</button>
         </div>
     </header>
+    <div class="mobile-search-overlay" id="mobile-search-overlay">
+        <div class="mobile-search-header">
+            <input type="text" id="mobile-search" placeholder="搜索页面..." oninput="searchMobilePages(this.value)">
+            <button onclick="closeMobileSearch()">取消</button>
+        </div>
+        <div class="mobile-search-results" id="mobile-search-results"></div>
+    </div>
     <main class="content">
 <h1 id="ai-os">菜洋洋商城 → AI OS 演进路线与架构方案</h1>
 <blockquote>
@@ -1287,7 +1374,49 @@ body {
         }
         function showSearch() { if (document.getElementById('search').value) document.getElementById('search-results').classList.add('active'); }
         function hideSearchDelayed() { setTimeout(() => document.getElementById('search-results').classList.remove('active'), 200); }
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebar-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebar-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('open')) closeSidebar();
+            else openSidebar();
+        }
+        function handleNavClick(e) {
+            const link = e.target.closest('a');
+            if (link) {
+                closeSidebar();
+            }
+        }
+        function openMobileSearch() {
+            document.getElementById('mobile-search-overlay').classList.add('open');
+            document.getElementById('mobile-search').value = '';
+            document.getElementById('mobile-search-results').innerHTML = '';
+            setTimeout(() => document.getElementById('mobile-search').focus(), 100);
+        }
+        function closeMobileSearch() {
+            document.getElementById('mobile-search-overlay').classList.remove('open');
+        }
+        function searchMobilePages(query) {
+            const results = document.getElementById('mobile-search-results');
+            if (!query) { results.innerHTML = ''; return; }
+            const q = query.toLowerCase();
+            const matched = searchIndex.filter(p => p.title.toLowerCase().includes(q) || p.path.toLowerCase().includes(q)).slice(0, 20);
+            if (matched.length === 0) { results.innerHTML = '<div class="empty">未找到结果</div>'; }
+            else {
+                results.innerHTML = matched.map(p => {
+                    const url = searchUrlMap[p.title] || p.path;
+                    return `<a href="${url}" onclick="closeMobileSearch()"><span>${p.title}</span><span class="path">${p.path}</span></a>`;
+                }).join('');
+            }
+        }
         document.addEventListener('DOMContentLoaded', () => {
             const saved = localStorage.getItem('theme');
             if (saved) {
@@ -1298,6 +1427,13 @@ body {
             }
             window.addEventListener('scroll', () => {
                 document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
+            });
+            // ESC 关闭侧边栏和移动端搜索
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeSidebar();
+                    closeMobileSearch();
+                }
             });
         });
         
