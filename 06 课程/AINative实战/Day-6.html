@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} - ccknow</title>
+    <title>&quot;AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent&quot; - ccknow</title>
     <style>
         
 :root {
@@ -408,26 +408,118 @@ body {
     .breadcrumbs { display: none; }
 }
 
-        {extra_css}
+        
     </style>
 </head>
 <body>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a class="brand" href="{home_url}"><span class="brand-icon">C</span> ccknow</a>
-            <a class="home" href="{home_url}">🏠 返回首页</a>
+            <a class="brand" href="../../%E9%A6%96%E9%A1%B5.html"><span class="brand-icon">C</span> ccknow</a>
+            <a class="home" href="../../%E9%A6%96%E9%A1%B5.html">🏠 返回首页</a>
         </div>
         <div class="nav-tools">
             <button onclick="expandAll()">展开全部</button>
             <button onclick="collapseAll()">折叠全部</button>
         </div>
         <nav class="nav">
-            <ul>{nav}</ul>
+            <ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>06 课程</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AINative实战</span><ul><li class=""><a href="Day-1.html">&quot;AI Native 实战课程 - Day 1: AI Enhanced vs AI Native&quot;</a></li>
+<li class=""><a href="Day-2.html">&quot;AI Native 实战课程 - Day 2: 第二章 - 行业拐点&quot;</a></li>
+<li class=""><a href="Day-3.html">&quot;AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口&quot;</a></li>
+<li class=""><a href="Day-4.html">&quot;AI Native 实战课程 - Day 4: 第四章 - 上下文即状态&quot;</a></li>
+<li class=""><a href="Day-5.html">&quot;AI Native 实战课程 - Day 5: 第五章 - 生成即服务&quot;</a></li>
+<li class="active"><a href="Day-6.html">&quot;AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent&quot;</a></li></ul></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>99 附件</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>模板</span><ul><li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/PRD-%E6%A8%A1%E6%9D%BF.html">PRD 文档模板</a></li>
+<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%A4%8D%E7%9B%98%E6%A8%A1%E6%9D%BF.html">&#x27;{{title}} 复盘&#x27;</a></li>
+<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AD%A6%E4%B9%A0%E6%A8%A1%E6%9D%BF.html">&#x27;{{title}}&#x27;</a></li>
+<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D%E6%97%A5%E5%BF%97%E6%A8%A1%E6%9D%BF.html">对话反思日志模板</a></li></ul></li></ul></li>
+<li class=""><a href="../../SCHEMA.html">Wiki Schema</a></li>
+<li class=""><a href="../../index.html">Wiki Index</a></li>
+<li class=""><a href="../../log.html">Wiki Log</a></li>
+<li class=""><a href="../../%E9%A6%96%E9%A1%B5.html">程峰的 Obsidian 知识库</a></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>原始资料</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>articles</span><ul><li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/articles/%E8%80%81openclaw20260621%E7%9A%84%E8%AE%B0%E5%BF%86%E6%96%87%E4%BB%B6.html">老OpenClaw 2026-06-21 的记忆文件</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>会议</span><ul><li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/AI%E5%90%88%E8%A7%84%E4%B8%8E%E8%A1%8C%E4%B8%9A%E7%BB%8F%E9%AA%8C-%E5%9C%86%E6%A1%8C%E5%8F%91%E8%A8%80%E7%B4%A0%E6%9D%90-2026-06-27.html">AI合规与行业经验-圆桌发言素材</a></li>
+<li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/%E4%BA%A7%E5%93%81%E5%91%A8%E4%BC%9A_%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9_%E5%BE%85%E5%8A%9E_%E6%9C%BA%E4%BC%9A%E7%82%B9_20260526.html">产品周会核心要点 / 待办 / 机会点</a></li></ul></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>团队</span><ul><li class=""><a href="../../%E5%9B%A2%E9%98%9F/ccknow.html">ccknow</a></li>
+<li class=""><a href="../../%E5%9B%A2%E9%98%9F/%E5%9B%9B%E6%B4%8B.html">四洋</a></li>
+<li class=""><a href="../../%E5%9B%A2%E9%98%9F/%E6%83%A0%E5%BC%80%E5%8F%91.html">惠开发</a></li>
+<li class=""><a href="../../%E5%9B%A2%E9%98%9F/%E6%BB%A1%E6%BB%A1.html">满满</a></li>
+<li class=""><a href="../../%E5%9B%A2%E9%98%9F/%E9%BE%99%E9%BE%99.html">龙龙</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>实体</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI商机雷达</span><ul><li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-%E7%A7%BB%E5%8A%A8%E7%AB%AFFigma%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.html">AI商机雷达-移动端Figma设计规范</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CAI%20Coding%E5%BC%80%E5%8F%91%E6%8F%90%E7%A4%BA%E8%AF%8D.html">AI商机雷达｜AI Coding开发提示词</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CFigma%20AI%E8%AE%BE%E8%AE%A1%E6%8F%90%E7%A4%BA%E8%AF%8D.html">AI商机雷达｜Figma AI设计提示词</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>OpenClaw</span><ul><li class=""><a href="../../%E5%AE%9E%E4%BD%93/OpenClaw/OpenClaw%20%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3.html">OpenClaw 架构设计文档</a></li></ul></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/1%E5%8F%B7%E6%A5%BC%E6%94%B9%E9%80%A0%E5%B7%A5%E7%A8%8B-%E5%B7%A5%E7%A8%8B%E9%87%8F%E6%B8%85%E5%8D%95.html">1#楼改造工程（安装）- 工程量清单</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-PRD.html">AI商机雷达-PRD</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%BA%94%E7%94%A8%E5%8F%8A%E5%9B%A2%E9%98%9F%E7%AE%A1%E7%90%86%E6%8E%A2%E8%AE%A8%E4%BC%9A_%E7%BA%AA%E8%A6%81.html">AI应用及团队管理探讨会</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE.html">AI能力体系建设</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/CIO%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87%E4%B8%93%E9%A1%B9%E8%AE%A1%E5%88%92-2026-06-21.html">CIO 技能提升专项计划</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/ShareLLM%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92-2026-06-21.html">ShareLLM 项目开发计划</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/_%E5%AE%A1%E6%9F%A5%E6%8A%A5%E5%91%8A%E7%B4%A2%E5%BC%95.html">mall-saas 代码审查报告索引</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E5%A4%9A%E7%A7%9F%E6%88%B7SaaS%E5%95%86%E5%9F%8E%E5%B9%B3%E5%8F%B0-%E4%BA%A7%E5%93%81%E5%8A%9F%E8%83%BD%E6%96%87%E6%A1%A3.html">多租户SaaS商城平台 - 产品功能文档</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E5%B2%97%E4%BD%8DJD%E8%AF%84%E5%AE%A1%E4%B8%8ESlogan%E8%AE%BE%E8%AE%A1-2026-05-29.html">岗位JD评审与Slogan设计</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E6%8A%80%E6%9C%AF%E6%B2%9F%E9%80%9A.html">技术沟通</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%A8%8B%E5%B7%9D%20AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88%20-%20%E5%BE%85%E5%8A%9E%E6%80%BB%E8%A1%A8%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5.html">程川 AI能力体系建设方案 - 待办总表与执行策略</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%AE%A1%E7%90%86%E5%B1%82%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E6%8F%90%E5%8D%87%E6%96%B9%E6%A1%88.html">管理层数字化素养提升方案（数据驱动决策专项）</a></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>研发体系</span><ul><li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB/%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88.html">研发体系建设方案</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>网店运营实训平台</span><ul><li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-PRD.html">网店运营与推广综合实训平台 PRD</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-%E4%BA%BA%E5%91%98%E6%8A%95%E5%85%A5%E6%8E%92%E6%9C%9F.html">网店运营与推广综合实训平台人员投入排期</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>菜洋洋</span><ul><li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%20OS%20%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE.html">菜洋洋 AI OS 系统架构图</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%E9%80%89%E5%93%81%E5%BC%95%E6%93%8E%20PRD.html">菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E5%BE%85%E5%8A%9E-2026-06-29.html">菜洋洋-待办-2026-06-29</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-PRD.html">菜洋洋-数据驱动的餐饮供应链操作系统-PRD</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BAIOS-%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%BB%BA%E8%AE%BE%E9%9C%80%E6%B1%82%E6%A2%B3%E7%90%86.html">菜洋洋AIOS-数据基础建设需求梳理</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BAI%E5%8E%9F%E7%94%9F%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%92.html">菜洋洋AI原生组织架构调整规划</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BSaaS%E5%95%86%E5%9F%8E-%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88-v1.0.html">菜洋洋 SaaS 商城 — 管理后台设计方案</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%B8%8A%E6%96%B0%E6%96%B9%E6%A1%88%E5%8C%85_PRD_V1.0.html">菜洋洋《上新方案包》产品PRD（V1.0）</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E5%88%9D%E7%89%88%E5%BE%85%E5%AE%8C%E5%96%84-2026-06-10.html">菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E8%80%81%E4%BF%A1%E8%AF%84%E5%AE%A1-2026-06-22.html">菜洋洋云星空旗舰版项目业务蓝图——老信评审</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8-%E6%80%9D%E8%B7%AF%E5%87%86%E5%A4%87-2026-06-25.html">菜洋洋企业定位研讨思路准备（Q1-Q6 重点）</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A811%E9%97%AE-%E6%B4%9E%E5%AF%9F%E5%BB%BA%E8%AE%AE%E5%8F%82%E8%80%83-2026-06-27.html">菜洋洋企业定位研讨11问（洞察+建议+参考）</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8%E4%BC%9A%E5%8F%91%E8%A8%80%E7%A8%BF-2026-06-27.html">菜洋洋企业定位研讨会发言稿</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%20AI%20OS%20%E6%BC%94%E8%BF%9B%E8%B7%AF%E7%BA%BF%E4%B8%8E%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html">菜洋洋商城 → AI OS 演进路线与架构方案</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5PRD.html">菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5%E8%AF%84%E5%AE%A1-2026-05-29.html">菜洋洋商城战略评审与建议方案</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%B2%97%E4%BD%8D%E8%AF%B4%E6%98%8E%E4%B9%A6%E8%AF%84%E5%AE%A1%E6%8A%A5%E5%91%8A.html">菜洋洋产研团队岗位说明书评审报告</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E6%95%B0%E6%99%BA%E4%B8%AD%E5%BF%83%E7%BB%84%E7%BB%87%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90.html">菜洋洋产研团队组织架构与数智中心定位分析</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%9A%E5%8A%A1%E5%AF%B9%E6%8E%A5%E4%BA%A4%E6%B5%81%E4%BC%9A-20260526.html">餐饮供应链业务对接交流会议记录</a></li></ul></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>对比</span><ul><li class=""><a href="../../%E5%AF%B9%E6%AF%94/AI%20Coding%20vs%20Vibe%20Coding%20%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90.html">AI Coding vs Vibe Coding 对比分析</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>日志</span><ul><li class=""><a href="../../%E6%97%A5%E5%BF%97/2026-05-28%20%E6%AF%8F%E6%97%A5%E5%8F%8D%E6%80%9D.html">2026-05-28 每日反思</a></li>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/2026-05-28-%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D.html">对话反思日志 - 2026-05-28</a></li>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/20260601%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A1%B9.html">20260601重要事项</a></li>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E-2026-06-29.html">待办-2026-06-29</a></li>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E%E7%B4%A2%E5%BC%95.html">待办索引</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>查询</span><ul><li class=""><a href="../../%E6%9F%A5%E8%AF%A2/AI%E9%80%89%E5%93%81%E6%8E%A8%E5%93%81%E4%BA%A7%E5%93%81%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A-2026-05-29.html">AI 选品推品产品分析报告 &amp; PRD</a></li>
+<li class=""><a href="../../%E6%9F%A5%E8%AF%A2/%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84%E5%93%81%E7%B1%BB%E5%93%81%E7%89%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.html">大众点评品类品牌数据分析报告</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>概念</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI Native</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E6%8A%A5%E5%91%8A.html">AI Native 深度报告</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0.html">AI Native 深度解析：从概念到落地</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E4%B9%A6%E7%B1%8D%E8%A7%84%E5%88%92.html">《AI Native：从概念到落地》</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%B8%80%E7%AB%A0.html">第一章：AI Enhanced vs AI Native</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0.html">第二章：行业拐点</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI培训</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20HR%EF%BC%9A%E6%8B%9B%E8%81%98JD%E7%AE%80%E5%8E%86%E5%88%86%E6%9E%90%E7%BB%A9%E6%95%88%E8%BE%85%E5%8A%A9.html">AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E4%BA%A7%E5%93%81%EF%BC%9APRD%E5%8E%9F%E5%9E%8BDemo.html">AI岗位培训课件 - 产品：PRD→原型→Demo</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E6%95%B0%E6%8D%AE%E7%A0%94%E5%8F%91%EF%BC%9AAI%20Coding%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.html">AI岗位培训课件 - 数据/研发：AI Coding/数据处理</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E7%AE%A1%E7%90%86%E5%B1%82%EF%BC%9A%E7%94%A8AI%E5%81%9A%E7%BB%8F%E8%90%A5%E5%86%B3%E7%AD%96.html">AI岗位培训课件 - 管理层：用AI做经营决策</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E8%BF%90%E8%90%A5%EF%BC%9A%E6%B4%BB%E5%8A%A8%E6%96%B9%E6%A1%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">AI岗位培训课件 - 运营：活动方案/数据分析</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E9%94%80%E5%94%AE%EF%BC%9A%E5%AE%A2%E6%88%B7%E6%B4%9E%E5%AF%9F%E8%B7%9F%E8%BF%9B%E8%AF%9D%E6%9C%AF.html">AI岗位培训课件 - 销售：客户洞察/跟进话术</a></li></ul></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/hermes-skills.html">Hermes Skill 索引与触发机制</a></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>协作规范</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83/AI%E5%8D%8F%E4%BD%9C%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99.html">AI协作优化规则</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>学习资源</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E5%B7%A5%E5%85%B7%E5%88%86%E5%B1%82%E8%87%AA%E5%AD%A6%E8%A7%86%E9%A2%91%E8%B5%84%E6%BA%90%E8%A1%A8.html">AI工具分层自学视频资源表</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E5%9B%BE.html">AI数字化素养学习路径图</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/CIO%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92.html">CIO 持续学习计划</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/Prompt%E6%A8%A1%E6%9D%BF%E5%BA%93.html">Prompt 模板库</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html">代码规范</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E5%B7%A5%E5%85%B7.html">工具</a></li></ul></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>简历库</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/README.html">README</a></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>模板</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/interview-evaluation.html">面试评估表</a></li>
+<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/jd-match-matrix.html">JD 匹配矩阵</a></li>
+<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/star-answer.html">STAR 回答记录表</a></li></ul></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>面试分析</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E4%BA%A7%E5%93%81%E5%89%AF%E6%80%BB%E7%9B%91-%E9%9D%A2%E8%AF%95%E9%A2%98.html">C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）</a></li>
+<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E6%95%B0%E5%AD%97%E5%8C%96%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86-%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90.html">C00004825-朱宇尧-数字化产品经理 — 面试分析</a></li></ul></li></ul></li></ul>
         </nav>
     </aside>
     <header class="topbar">
         <button class="icon-btn mobile-menu-btn" onclick="toggleSidebar()" title="菜单">☰</button>
-        <div class="breadcrumbs">{breadcrumbs}</div>
+        <div class="breadcrumbs"><a href="../../%E9%A6%96%E9%A1%B5.html">首页</a> <span class="sep">/</span> <span>06 课程</span> <span class="sep">/</span> <span>AINative实战</span> <span class="sep">/</span> <span>Day-6</span></div>
         <div class="topbar-actions">
             <div class="search-box">
                 <input type="text" id="search" placeholder="搜索页面..." oninput="searchPages(this.value)" onfocus="showSearch()" onblur="hideSearchDelayed()">
@@ -437,13 +529,514 @@ body {
         </div>
     </header>
     <main class="content">
-{body}
+<h1 id="ai-native-day-6-agent">🎓 AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent</h1>
+<h2 id="_1">📖 今日导读</h2>
+<p>在 <a class="wikilink" href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0.html">AI Native 深度解析：从概念到落地</a> 中，<a class="wikilink" href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E4%B9%A6%E7%B1%8D%E8%A7%84%E5%88%92.html">《AI Native：从概念到落地》- 书籍规划</a> 把第六章命名为「工具调用与 Agent」。如果说前几章解决的是 AI <strong>“怎么想、怎么说”</strong>，那么今天解决的是 AI <strong>“怎么做事”</strong>。</p>
+<p>大模型本身只有“截止到训练数据的知识”，无法访问实时股价、无法操作你的日历、无法读取企业私有数据库。而 工具调用（Function Calling）让模型获得了“伸出双手”的能力：它可以调用搜索引擎、查询天气、发送邮件、执行代码、甚至操作浏览器。当工具调用与推理能力结合，就诞生了 Agent——一个能够<strong>自主感知、决策、执行</strong>的智能体。</p>
+<p>今天的核心认知是：<strong>AI Native 产品的最终形态不是“更好的聊天机器人”，而是“能独立完成任务的数字员工”</strong>。2025–2026 年，从 Anthropic 的企业调研到 Manus、Cursor、Claude Code 的现象级产品，再到 MCP 协议的快速普及，整个行业都在验证同一件事：Agent 正在从实验走向生产。</p>
+<hr />
+<h2 id="_2">🔍 核心概念</h2>
+<h3 id="1-ai">1. 工具调用：让 AI 从“说话”到“办事”</h3>
+<p>工具调用 是指大语言模型根据用户意图，主动选择并调用外部函数/API 的能力。它不是简单的字符串拼接，而是一个结构化的“决策-执行-反馈”过程：</p>
+<ol>
+<li>模型判断需要外部信息或操作；</li>
+<li>模型输出 JSON 格式的函数调用请求（函数名 + 参数）；</li>
+<li>应用层执行函数，获得结果；</li>
+<li>结果返回给模型，模型继续推理或生成最终回答。</li>
+</ol>
+<blockquote>
+<p>例如：用户问“北京今天需要带伞吗？”AI 不会凭训练数据瞎猜，而是调用 <code>get_weather(city="北京")</code>，拿到实时天气后再回答。</p>
+</blockquote>
+<h3 id="2-agent-ai">2. Agent：具备自主权的 AI 系统</h3>
+<p>Agent（智能体）是一个能够<strong>在环境中感知、推理并采取行动</strong>以实现目标的系统。与传统 AI 功能相比，Agent 的核心特征是：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>传统 AI 功能</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交互方式</td>
+<td>单次输入 → 单次输出</td>
+<td>多轮思考 → 行动 → 观察</td>
+</tr>
+<tr>
+<td>与外部世界</td>
+<td>无连接</td>
+<td>通过工具调用连接系统</td>
+</tr>
+<tr>
+<td>自主性</td>
+<td>被动响应</td>
+<td>主动规划、执行、纠错</td>
+</tr>
+<tr>
+<td>任务复杂度</td>
+<td>单一、明确</td>
+<td>多步骤、可分解</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-react-">3. ReAct：思考-行动-观察循环</h3>
+<p>ReAct（Reasoning + Acting）是构建 Agent 最经典的心智模型：</p>
+<pre><code>用户问题
+  ↓
+Thought（思考）：我需要什么信息/操作？
+  ↓
+Action（行动）：调用某个工具
+  ↓
+Observation（观察）：工具返回了什么？
+  ↓
+（循环，直到可以给出 Final Answer）
+  ↓
+Final Answer（最终答案）
+</code></pre>
+<p>ReAct 把“推理链”和“工具执行”结合起来，让 Agent 既能像人一样思考，又能像软件一样操作外部系统。它是 LangChain、LangGraph、AutoGen 等框架设计 Agent 的底层范式。</p>
+<h3 id="4-mcpai-usb-c">4. MCP：AI 工具的“USB-C”接口</h3>
+<p>2024 年底由 Anthropic 推出的 MCP（Model Context Protocol，模型上下文协议）正在快速成为行业事实标准。它的核心思想是：</p>
+<blockquote>
+<p>与其为每个大模型/每个数据源单独写适配器，不如定义一个统一协议，让任何 AI 应用都能“即插即用”地访问任何工具或数据源。</p>
+</blockquote>
+<p>MCP 把外部能力抽象为 Server（提供资源/工具）和 Client（消费这些能力的 AI 应用）。截至 2025–2026 年，GitHub、Slack、数据库、浏览器、文件系统等都已经出现大量 MCP Server，形成了一个蓬勃的插件生态。</p>
+<h3 id="5-multi-agent">5. Multi-Agent：模拟人类团队协作</h3>
+<p>复杂任务往往无法由单一 Agent 完成。Multi-Agent 系统把任务拆分给多个专业 Agent：</p>
+<ul>
+<li><strong>规划 Agent</strong>：拆解任务、分配子目标；</li>
+<li><strong>执行 Agent</strong>：调用工具完成具体动作；</li>
+<li><strong>审核 Agent</strong>：检查事实、安全、合规；</li>
+<li><strong>总结 Agent</strong>：整合多源输出，生成最终交付物。</li>
+</ul>
+<p>微软 AutoGen 和 CrewAI 是这一方向的代表性框架。Multi-Agent 不是“多开几个 ChatGPT”，而是让不同角色的 Agent 通过定义好的协作协议完成复杂工作流。</p>
+<hr />
+<h2 id="_3">💼 最新案例</h2>
+<h3 id="anthropic2026-state-of-ai-agents-report-agent">案例一：Anthropic《2026 State of AI Agents Report》—— Agent 已经进入企业核心基础设施</h3>
+<p>2025 年 12 月，Anthropic 联合研究机构 Material 发布了一份针对 <strong>500+ 企业技术负责人</strong>的调研报告，揭示了 Agent 在 2026 年的真实落地情况。</p>
+<ul>
+<li><strong>关键数据</strong>：</li>
+<li>57% 的企业已经将 Agent 部署到<strong>多阶段工作流</strong>中；</li>
+<li>81% 计划在 2026 年处理更复杂的用例；</li>
+<li>80% 的受访者表示 Agent 投资已经带来<strong>可衡量的经济回报</strong>；</li>
+<li>
+<p>90% 的领导者认为 Agent 正在改变团队的工作方式。</p>
+</li>
+<li>
+<p><strong>标杆案例</strong>：</p>
+</li>
+<li><strong>Thomson Reuters（汤森路透）</strong>：基于 Claude 构建法律 AI 平台 CoCounsel，律师可在数分钟内检索 150 年案例法和 3,000 名领域专家知识；</li>
+<li><strong>eSentire</strong>：将专家级威胁分析时间从 <strong>5 小时压缩到 7 分钟</strong>，AI 分析与高级安全专家结论一致性达 95%；</li>
+<li><strong>Doctolib</strong>：全工程团队部署 Claude Code，数小时内替代遗留测试基础设施，功能交付速度提升 40%；</li>
+<li><strong>L'Oréal（欧莱雅）</strong>：对话式分析准确率达 99.9%，每月 44,000 名用户可直接查询数据，无需等待定制仪表盘。</li>
+</ul>
+<blockquote>
+<p>来源：Anthropic Blog <em>How enterprises are building AI agents in 2026</em>（2025-12-09）</p>
+</blockquote>
+<h3 id="cursor-claude-code-agent">案例二：Cursor / Claude Code —— 编程 Agent 成为“软件生产流水线”</h3>
+<p>2025–2026 年，AI 编程工具从“代码补全”进化为“自主编码 Agent”。</p>
+<ul>
+<li><strong>Cursor Agent Mode</strong>：Cursor 在 2025 年推出 Agent 模式后，用户可以用自然语言描述需求，Agent 自动分析代码库、修改多文件、运行终端命令、调用测试工具。Cursor 的官网标语已直接改为“AI coding agent”。</li>
+<li><strong>Claude Code</strong>：Anthropic 推出的终端侧编程 Agent，可以直接进入项目目录、理解文件结构、执行命令、读写代码。Doctolib 的案例显示，它正在成为企业工程团队的“基础设施”。</li>
+</ul>
+<p>这两款产品的共同点是：它们不是“聊天窗口”，而是<strong>深度集成开发环境、具备工具调用能力的 Agent</strong>，正在把“写代码”从手工劳动变成“描述意图 + 审查结果”。</p>
+<blockquote>
+<p>来源：Cursor 官网（cursor.com/cn，2026-06）、Anthropic Claude Code 产品页</p>
+</blockquote>
+<h3 id="manus-ai-agent">案例三：Manus —— 通用型 AI Agent 的现象级爆发</h3>
+<p>2025 年 3 月，中国创业公司 Monica 发布 <strong>Manus</strong>，定位为“全球首款通用 AI 智能体”。与传统对话模型不同，Manus 能够接收任务后自主分解步骤、调用浏览器、代码执行器、文档处理工具，最终交付完整结果。</p>
+<ul>
+<li><strong>关键能力</strong>：简历批量整理、数据分析报告生成、网站搭建、复杂调研等端到端任务；</li>
+<li><strong>产品意义</strong>：把 Agent 从“单轮工具调用”推进到“长周期自主执行”，引发了行业对通用 Agent 形态的热议；</li>
+<li><strong>启示</strong>：当 Agent 能调用足够多的工具并具备长程记忆时，它开始从“助手”向“数字员工”进化。</li>
+</ul>
+<blockquote>
+<p>来源：Manus 官网（manus.im，2026-06）、百度百科「Manus（全球首款通用 AI 助手）」</p>
+</blockquote>
+<h3 id="mcp">行业趋势：MCP 生态快速扩张</h3>
+<p>2025 年被称为“MCP 元年”。Anthropic 开源的 MCP 协议解决了 AI 应用与外部工具“各自为政”的痛点：每个 SaaS、每个数据库、每个浏览器扩展都写一遍适配器的时代正在结束。</p>
+<ul>
+<li>阿里云、腾讯云、GitHub、Slack、Notion、各类数据库纷纷推出 MCP Server；</li>
+<li>出现了 <code>mcpworld.com</code> 等 MCP 工具导航站；</li>
+<li>ModelScope、Hugging Face 等社区也开始托管 MCP 服务。</li>
+</ul>
+<p>MCP 的普及意味着：<strong>未来构建 Agent，可能不再是“写工具”，而是“连工具”</strong>。</p>
+<hr />
+<h2 id="_4">💻 实战代码</h2>
+<p>下面的脚本演示了一个<strong>最小可运行的 ReAct Agent</strong>。它的核心思想是：</p>
+<ol>
+<li>定义若干工具（计算器、搜索、天气、当前时间）；</li>
+<li>用规则驱动的 Mock LLM 模拟“思考 → 行动 → 观察”的 ReAct 循环；</li>
+<li>展示 Agent 如何根据用户问题自动选择合适的工具；</li>
+<li>代码中预留了 <code>call_llm()</code> 替换点，接入 OpenAI/Anthropic 等真实模型即可用于生产。</li>
+</ol>
+<pre><code class="language-python">&quot;&quot;&quot;
+Day 6 实战代码：工具调用与 ReAct Agent
+一个最小可运行的 ReAct Agent。无需 API Key，内置 Mock LLM。
+如需接入真实模型，替换 mock_llm() 函数即可。
+
+运行方式：
+  python3 day6_code.py
+&quot;&quot;&quot;
+import json
+import re
+from datetime import datetime
+from typing import Dict, List, Any, Callable
+
+
+# ------------------- 工具定义 -------------------
+class Tool:
+    &quot;&quot;&quot;Agent 可调用的外部工具。&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        parameters: Dict[str, Any],
+        func: Callable,
+    ):
+        self.name = name
+        self.description = description
+        self.parameters = parameters
+        self.func = func
+
+    def schema(self) -&gt; Dict[str, Any]:
+        return {
+            &quot;type&quot;: &quot;function&quot;,
+            &quot;function&quot;: {
+                &quot;name&quot;: self.name,
+                &quot;description&quot;: self.description,
+                &quot;parameters&quot;: self.parameters,
+            },
+        }
+
+    def call(self, args: Dict[str, Any]) -&gt; str:
+        try:
+            return str(self.func(**args))
+        except Exception as e:
+            return f&quot;Error: {e}&quot;
+
+
+# ------------------- 具体工具实现 -------------------
+def calculator(expression: str) -&gt; str:
+    &quot;&quot;&quot;安全计算数学表达式（仅允许数字和四则运算符）。&quot;&quot;&quot;
+    allowed = set(&quot;0123456789+-*/(). &quot;)
+    if not all(c in allowed for c in expression):
+        return &quot;Error: 仅支持基础四则运算&quot;
+    try:
+        return f&quot;{eval(expression)}&quot;
+    except Exception as e:
+        return f&quot;Error: {e}&quot;
+
+
+def search(query: str) -&gt; str:
+    &quot;&quot;&quot;Mock 搜索引擎：在本地知识库中匹配关键词。&quot;&quot;&quot;
+    knowledge = {
+        &quot;李白&quot;: &quot;李白（701-762），字太白，号青莲居士，唐代伟大浪漫主义诗人，被后人誉为“诗仙”。&quot;,
+        &quot;北京奥运会&quot;: &quot;2008 年夏季奥林匹克运动会在北京举办，是第 29 届夏季奥运会。&quot;,
+        &quot;MCP&quot;: &quot;MCP（Model Context Protocol）是 Anthropic 提出的模型上下文协议，让 AI 应用能统一接入外部工具和数据源。&quot;,
+    }
+    for k, v in knowledge.items():
+        if k in query:
+            return v
+    return f&quot;Mock 搜索结果：找到关于「{query}」的若干相关信息（示例）。&quot;
+
+
+def get_weather(city: str) -&gt; str:
+    &quot;&quot;&quot;Mock 天气查询。&quot;&quot;&quot;
+    mock = {
+        &quot;北京&quot;: &quot;晴，25°C，空气质量良&quot;,
+        &quot;上海&quot;: &quot;小雨，22°C，湿度 78%&quot;,
+        &quot;深圳&quot;: &quot;多云，28°C，适宜出行&quot;,
+    }
+    return f&quot;{city}天气：{mock.get(city, '未知，请查询其他城市')}。&quot;
+
+
+def get_date() -&gt; str:
+    &quot;&quot;&quot;获取当前日期时间。&quot;&quot;&quot;
+    return datetime.now().strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
+
+
+# 工具注册表
+TOOLS: List[Tool] = [
+    Tool(
+        name=&quot;calculator&quot;,
+        description=&quot;计算数学表达式，例如 '2 + 3 * 4' 或 '(100 - 25) / 3'&quot;,
+        parameters={
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;expression&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;description&quot;: &quot;要计算的数学表达式&quot;,
+                }
+            },
+            &quot;required&quot;: [&quot;expression&quot;],
+        },
+        func=calculator,
+    ),
+    Tool(
+        name=&quot;search&quot;,
+        description=&quot;搜索事实性知识，例如历史人物、事件、概念等&quot;,
+        parameters={
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;query&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;description&quot;: &quot;搜索关键词或问题&quot;,
+                }
+            },
+            &quot;required&quot;: [&quot;query&quot;],
+        },
+        func=search,
+    ),
+    Tool(
+        name=&quot;get_weather&quot;,
+        description=&quot;查询指定城市的天气&quot;,
+        parameters={
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+                &quot;city&quot;: {
+                    &quot;type&quot;: &quot;string&quot;,
+                    &quot;description&quot;: &quot;城市名，例如 北京、上海、深圳&quot;,
+                }
+            },
+            &quot;required&quot;: [&quot;city&quot;],
+        },
+        func=get_weather,
+    ),
+    Tool(
+        name=&quot;get_date&quot;,
+        description=&quot;获取当前日期时间&quot;,
+        parameters={&quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {}},
+        func=get_date,
+    ),
+]
+
+TOOLS_MAP = {t.name: t for t in TOOLS}
+
+
+# ------------------- Mock LLM -------------------
+def build_prompt(query: str, history: List[Dict[str, str]]) -&gt; str:
+    &quot;&quot;&quot;构造 ReAct 格式的 Prompt。&quot;&quot;&quot;
+    tools_desc = json.dumps([t.schema() for t in TOOLS], ensure_ascii=False, indent=2)
+    prompt = f&quot;&quot;&quot;你是一个乐于助人的 AI Agent。你可以使用以下工具：
+{tools_desc}
+
+请严格按以下格式回复，每轮只输出一个 Thought + Action 或 Thought + Final Answer：
+Thought: &lt;你的思考过程&gt;
+Action: &lt;工具名&gt;
+Action Input: &lt;JSON 格式的参数&gt;
+
+当可以回答用户时，使用：
+Thought: &lt;你的思考过程&gt;
+Final Answer: &lt;最终答案&gt;
+
+当前问题：{query}
+
+历史记录：
+&quot;&quot;&quot;
+    for h in history:
+        prompt += f&quot;{h['role']}: {h['content']}\n&quot;
+    prompt += &quot;Assistant: &quot;
+    return prompt
+
+
+def mock_llm(prompt: str) -&gt; str:
+    &quot;&quot;&quot;
+    基于规则的 Mock LLM，仅用于演示 ReAct 循环。
+    生产环境请替换为 OpenAI/Anthropic/Claude 等真实 API 调用。
+    &quot;&quot;&quot;
+    if &quot;李白&quot; in prompt:
+        if &quot;search&quot; not in prompt.lower():
+            return (
+                'Thought: 用户询问李白是谁，我需要搜索相关知识。\n'
+                'Action: search\n'
+                'Action Input: {&quot;query&quot;: &quot;李白&quot;}'
+            )
+        return (
+            'Thought: 我已经获得李白的相关信息，现在可以给出最终答案。\n'
+            'Final Answer: 李白（701-762），字太白，号青莲居士，唐代伟大浪漫主义诗人，被后人誉为“诗仙”。'
+        )
+
+    if &quot;北京&quot; in prompt and &quot;天气&quot; in prompt:
+        if &quot;get_weather&quot; not in prompt.lower():
+            return (
+                'Thought: 用户询问北京天气，我应该调用天气工具获取实时信息。\n'
+                'Action: get_weather\n'
+                'Action Input: {&quot;city&quot;: &quot;北京&quot;}'
+            )
+        return (
+            'Thought: 已经获取北京天气信息，现在给出最终答案。\n'
+            'Final Answer: 北京今天天气晴，25°C，空气质量良，适合出行。'
+        )
+
+    if &quot;25&quot; in prompt and &quot;37&quot; in prompt:
+        if &quot;calculator&quot; not in prompt.lower():
+            return (
+                'Thought: 这是一个数学计算问题，我需要使用计算器。\n'
+                'Action: calculator\n'
+                'Action Input: {&quot;expression&quot;: &quot;25 + 37&quot;}'
+            )
+        return (
+            'Thought: 计算已完成，现在给出最终答案。\n'
+            'Final Answer: 25 + 37 = 62。'
+        )
+
+    return (
+        'Thought: 这是一个通用问题，我直接回答。\n'
+        'Final Answer: 我是 ReAct Agent 演示，请尝试问我“李白是谁”、“北京今天天气怎么样”或“25+37等于多少”。'
+    )
+
+
+def parse_action(response: str) -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;解析 LLM 输出：判断是工具调用还是最终答案。&quot;&quot;&quot;
+    action_match = re.search(
+        r&quot;Action:\s*(\w+)\s*Action Input:\s*(\{.*?\})&quot;,
+        response,
+        re.S,
+    )
+    if action_match:
+        return {
+            &quot;type&quot;: &quot;action&quot;,
+            &quot;name&quot;: action_match.group(1),
+            &quot;args&quot;: json.loads(action_match.group(2)),
+        }
+
+    final_match = re.search(r&quot;Final Answer:\s*(.*)&quot;, response, re.S)
+    if final_match:
+        return {&quot;type&quot;: &quot;final&quot;, &quot;answer&quot;: final_match.group(1).strip()}
+
+    return {&quot;type&quot;: &quot;unknown&quot;, &quot;raw&quot;: response}
+
+
+def run_react(query: str, max_steps: int = 5) -&gt; str:
+    &quot;&quot;&quot;执行 ReAct 循环，直到获得最终答案或达到最大步数。&quot;&quot;&quot;
+    history = []
+    print(f&quot;用户问题：{query}&quot;)
+
+    for i in range(max_steps):
+        prompt = build_prompt(query, history)
+        response = mock_llm(prompt)
+        print(f&quot;\nStep {i + 1}:\n{response}&quot;)
+
+        parsed = parse_action(response)
+        if parsed[&quot;type&quot;] == &quot;final&quot;:
+            return parsed[&quot;answer&quot;]
+
+        if parsed[&quot;type&quot;] == &quot;action&quot;:
+            tool = TOOLS_MAP.get(parsed[&quot;name&quot;])
+            if not tool:
+                observation = f&quot;Error: 未知工具 {parsed['name']}&quot;
+            else:
+                observation = tool.call(parsed[&quot;args&quot;])
+            print(f&quot;Observation: {observation}&quot;)
+            history.append({&quot;role&quot;: &quot;Assistant&quot;, &quot;content&quot;: response})
+            history.append({&quot;role&quot;: &quot;Observation&quot;, &quot;content&quot;: observation})
+            continue
+
+        return &quot;无法解析 Agent 响应。&quot;
+
+    return &quot;达到最大步数，未获得最终答案。&quot;
+
+
+if __name__ == &quot;__main__&quot;:
+    queries = [
+        &quot;李白是谁？&quot;,
+        &quot;北京今天天气怎么样？&quot;,
+        &quot;25 + 37 等于多少？&quot;,
+    ]
+    for q in queries:
+        print(&quot;=&quot; * 60)
+        answer = run_react(q)
+        print(f&quot;\n最终答案：{answer}\n&quot;)
+</code></pre>
+<p><strong>本地运行预览（无 API Key）：</strong></p>
+<pre><code class="language-text">============================================================
+用户问题：李白是谁？
+
+Step 1:
+Thought: 用户询问李白是谁，我需要搜索相关知识。
+Action: search
+Action Input: {&quot;query&quot;: &quot;李白&quot;}
+Observation: 李白（701-762），字太白，号青莲居士，唐代伟大浪漫主义诗人，被后人誉为“诗仙”。
+
+Step 2:
+Thought: 我已经获得李白的相关信息，现在可以给出最终答案。
+Final Answer: 李白（701-762），字太白，号青莲居士，唐代伟大浪漫主义诗人，被后人誉为“诗仙”。
+
+最终答案：李白（701-762），字太白，号青莲居士，唐代伟大浪漫主义诗人，被后人誉为“诗仙”。
+</code></pre>
+<blockquote>
+<p>代码启示：Agent 的核心不是“更多 Prompt”，而是 <strong>“思考-行动-观察”的闭环</strong>。只要工具定义清晰、边界可控，Agent 就能在复杂任务中自主推理。</p>
+</blockquote>
+<hr />
+<h2 id="_5">✅ 最佳实践</h2>
+<p>结合 Anthropic 2026 企业调研、MCP 社区实践以及主流 Agent 框架的工程经验，总结出 8 条可落地的设计指南：</p>
+<ol>
+<li>
+<p><strong>工具定义要“自解释”</strong>
+   函数名、参数名、description 都要让模型能看懂。避免模糊命名，参数类型和必填项必须明确。模型只能看到你给的 schema，看不到实现细节。</p>
+</li>
+<li>
+<p><strong>Prompt 里保留 ReAct 骨架</strong>
+   不要让模型自由发挥。显式要求模型输出 <code>Thought / Action / Action Input / Final Answer</code>，并给出格式示例，能显著提升调用准确率。</p>
+</li>
+<li>
+<p><strong>每个工具都要有“输入校验”和“错误回退”</strong>
+   Agent 可能会传错参数。工具内部要做参数校验、异常捕获，并返回清晰的错误信息给模型，让它能自我修复。</p>
+</li>
+<li>
+<p><strong>限制循环深度和工具调用次数</strong>
+   再聪明的 Agent 也可能陷入死循环。设置 <code>max_steps</code>、单次调用超时、总 Token 上限，是生产部署的底线。</p>
+</li>
+<li>
+<p><strong>把 Agent 当作核心基础设施，而不是实验项目</strong>
+   Anthropic 的调研显示，把 Agent 纳入日常工程/业务流程的团队更容易获得回报。这意味着要有 CI/CD、监控、版本管理和成本核算。</p>
+</li>
+<li>
+<p><strong>优先解决“集成”和“数据”问题</strong>
+   企业部署 Agent 的最大挑战是：与现有系统集成（46%）、数据访问与质量（42%）。产品设计上要为 Agent 预留标准 API、统一权限和高质量数据接口。</p>
+</li>
+<li>
+<p><strong>人机协作不可省略</strong>
+   关键操作（发送邮件、转账、发布内容、修改生产配置）必须设置人工确认节点。Agent 负责“ draft + 推荐”，人类负责“最终决策”。</p>
+</li>
+<li>
+<p><strong>从编码 Agent 开始，逐步扩展到其他场景</strong>
+   代码生成是 Agent 最成熟的落地场景（90% 企业用于开发辅助）。先在一个高 ROI、可量化、容错性好的场景跑通，再向客服、研究、运营等场景复制。</p>
+</li>
+</ol>
+<hr />
+<h2 id="_6">🤔 思考题</h2>
+<ol>
+<li>
+<p>你当前负责的产品或业务中，有哪些重复性任务适合交给 Agent 自动完成？请列出 3 个具体任务，并说明每个任务需要调用哪些外部工具或 API。</p>
+</li>
+<li>
+<p>ReAct 循环中，如果模型调用了错误的工具或传错了参数，你会如何设计“自我修复”机制？请从 Prompt 设计、工具返回值、循环控制三个角度思考。</p>
+</li>
+<li>
+<p>MCP 协议试图把“工具接入”标准化。如果你的团队要接入 MCP，哪些现有的内部系统（数据库、CRM、IM、文件存储）应该优先被封装成 MCP Server？为什么？</p>
+</li>
+</ol>
+<hr />
+<h2 id="_7">📚 扩展阅读</h2>
+<ul>
+<li><strong>Anthropic Blog</strong>: <em>How enterprises are building AI agents in 2026</em>（2025-12-09）—— 500+ 企业技术负责人的 Agent 调研报告</li>
+<li><strong>Anthropic</strong>: <em>Model Context Protocol (MCP) 文档</em> —— AI 工具统一协议官方说明</li>
+<li><strong>GitHub</strong>: <code>microsoft/autogen</code>（59.3k ⭐）—— 微软开源的多 Agent 编程框架</li>
+<li><strong>GitHub</strong>: <code>langchain-ai/langgraph</code>（35.9k ⭐）—— 构建有状态、长周期 Agent 工作流的编排框架</li>
+<li><strong>GitHub</strong>: <code>huggingface/smolagents</code>（28.1k ⭐）—— Hugging Face 推出的极简 Agent 库，强调“用代码思考”</li>
+<li><strong>Manus 官网</strong>: manus.im —— 通用型 AI Agent 产品参考</li>
+<li><strong>Cursor 官网</strong>: cursor.com/cn —— AI 编程 Agent 与工具调用深度集成案例</li>
+</ul>
+<hr />
+<p>💡 今日课程已保存至知识库：<a class="wikilink" href="Day-6.html">Day-6</a></p>
     </main>
     <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" id="back-to-top">↑</button>
     <script>
-        const searchIndex = {search_index};
-        const pathMatrix = {path_matrix};
-        const currentTitle = {current_title_json};
+        const searchIndex = [{"title": "Wiki Schema", "path": "SCHEMA.html"}, {"title": "程峰的 Obsidian 知识库", "path": "首页.html"}, {"title": "Wiki Log", "path": "log.html"}, {"title": "Wiki Index", "path": "index.html"}, {"title": "README", "path": "简历库/README.html"}, {"title": "面试评估表", "path": "简历库/模板/interview-evaluation.html"}, {"title": "STAR 回答记录表", "path": "简历库/模板/star-answer.html"}, {"title": "JD 匹配矩阵", "path": "简历库/模板/jd-match-matrix.html"}, {"title": "C00004825-朱宇尧-数字化产品经理 — 面试分析", "path": "简历库/面试分析/C00004825-朱宇尧-数字化产品经理-面试分析.html"}, {"title": "C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）", "path": "简历库/面试分析/C00004825-朱宇尧-产品副总监-面试题.html"}, {"title": "产品周会核心要点 / 待办 / 机会点", "path": "原始资料/会议/产品周会_核心要点_待办_机会点_20260526.html"}, {"title": "AI合规与行业经验-圆桌发言素材", "path": "原始资料/会议/AI合规与行业经验-圆桌发言素材-2026-06-27.html"}, {"title": "老OpenClaw 2026-06-21 的记忆文件", "path": "原始资料/articles/老openclaw20260621的记忆文件.html"}, {"title": "'{{title}}'", "path": "99 附件/模板/学习模板.html"}, {"title": "PRD 文档模板", "path": "99 附件/模板/PRD-模板.html"}, {"title": "'{{title}} 复盘'", "path": "99 附件/模板/复盘模板.html"}, {"title": "对话反思日志模板", "path": "99 附件/模板/对话反思日志模板.html"}, {"title": "\"AI Native 实战课程 - Day 4: 第四章 - 上下文即状态\"", "path": "06 课程/AINative实战/Day-4.html"}, {"title": "\"AI Native 实战课程 - Day 5: 第五章 - 生成即服务\"", "path": "06 课程/AINative实战/Day-5.html"}, {"title": "\"AI Native 实战课程 - Day 1: AI Enhanced vs AI Native\"", "path": "06 课程/AINative实战/Day-1.html"}, {"title": "\"AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent\"", "path": "06 课程/AINative实战/Day-6.html"}, {"title": "\"AI Native 实战课程 - Day 2: 第二章 - 行业拐点\"", "path": "06 课程/AINative实战/Day-2.html"}, {"title": "\"AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口\"", "path": "06 课程/AINative实战/Day-3.html"}, {"title": "AI能力体系建设", "path": "实体/AI能力体系建设.html"}, {"title": "1#楼改造工程（安装）- 工程量清单", "path": "实体/1号楼改造工程-工程量清单.html"}, {"title": "AI商机雷达-PRD", "path": "实体/AI商机雷达-PRD.html"}, {"title": "CIO 技能提升专项计划", "path": "实体/CIO技能提升专项计划-2026-06-21.html"}, {"title": "ShareLLM 项目开发计划", "path": "实体/ShareLLM项目开发计划-2026-06-21.html"}, {"title": "岗位JD评审与Slogan设计", "path": "实体/岗位JD评审与Slogan设计-2026-05-29.html"}, {"title": "技术沟通", "path": "实体/技术沟通.html"}, {"title": "程川 AI能力体系建设方案 - 待办总表与执行策略", "path": "实体/程川 AI能力体系建设方案 - 待办总表与执行策略.html"}, {"title": "管理层数字化素养提升方案（数据驱动决策专项）", "path": "实体/管理层数字化素养提升方案.html"}, {"title": "多租户SaaS商城平台 - 产品功能文档", "path": "实体/多租户SaaS商城平台-产品功能文档.html"}, {"title": "mall-saas 代码审查报告索引", "path": "实体/_审查报告索引.html"}, {"title": "AI应用及团队管理探讨会", "path": "实体/AI应用及团队管理探讨会_纪要.html"}, {"title": "研发体系建设方案", "path": "实体/研发体系/研发体系建设方案.html"}, {"title": "OpenClaw 架构设计文档", "path": "实体/OpenClaw/OpenClaw 架构设计文档.html"}, {"title": "菜洋洋AI原生组织架构调整规划", "path": "实体/菜洋洋/菜洋洋AI原生组织架构调整规划.html"}, {"title": "餐饮供应链业务对接交流会议记录", "path": "实体/菜洋洋/餐饮供应链业务对接交流会-20260526.html"}, {"title": "菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10", "path": "实体/菜洋洋/菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10.html"}, {"title": "菜洋洋产研团队组织架构与数智中心定位分析", "path": "实体/菜洋洋/菜洋洋数智中心组织定位分析.html"}, {"title": "菜洋洋云星空旗舰版项目业务蓝图——老信评审", "path": "实体/菜洋洋/菜洋洋云星空旗舰版项目业务蓝图-老信评审-2026-06-22.html"}, {"title": "菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS", "path": "实体/菜洋洋/菜洋洋商城战略PRD.html"}, {"title": "菜洋洋企业定位研讨会发言稿", "path": "实体/菜洋洋/菜洋洋企业定位研讨会发言稿-2026-06-27.html"}, {"title": "菜洋洋企业定位研讨11问（洞察+建议+参考）", "path": "实体/菜洋洋/菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27.html"}, {"title": "菜洋洋AIOS-数据基础建设需求梳理", "path": "实体/菜洋洋/菜洋洋AIOS-数据基础建设需求梳理.html"}, {"title": "菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD", "path": "实体/菜洋洋/菜洋洋 AI选品引擎 PRD.html"}, {"title": "菜洋洋-待办-2026-06-29", "path": "实体/菜洋洋/菜洋洋-待办-2026-06-29.html"}, {"title": "菜洋洋商城战略评审与建议方案", "path": "实体/菜洋洋/菜洋洋商城战略评审-2026-05-29.html"}, {"title": "菜洋洋《上新方案包》产品PRD（V1.0）", "path": "实体/菜洋洋/菜洋洋上新方案包_PRD_V1.0.html"}, {"title": "菜洋洋 AI OS 系统架构图", "path": "实体/菜洋洋/菜洋洋 AI OS 系统架构图.html"}, {"title": "菜洋洋产研团队岗位说明书评审报告", "path": "实体/菜洋洋/菜洋洋岗位说明书评审报告.html"}, {"title": "菜洋洋 SaaS 商城 — 管理后台设计方案", "path": "实体/菜洋洋/菜洋洋SaaS商城-管理后台设计方案-v1.0.html"}, {"title": "菜洋洋商城 → AI OS 演进路线与架构方案", "path": "实体/菜洋洋/菜洋洋商城 AI OS 演进路线与架构方案.html"}, {"title": "菜洋洋-数据驱动的餐饮供应链操作系统-PRD", "path": "实体/菜洋洋/菜洋洋-数据驱动的餐饮供应链操作系统-PRD.html"}, {"title": "菜洋洋企业定位研讨思路准备（Q1-Q6 重点）", "path": "实体/菜洋洋/菜洋洋企业定位研讨-思路准备-2026-06-25.html"}, {"title": "网店运营与推广综合实训平台人员投入排期", "path": "实体/网店运营实训平台/网店运营与推广综合实训平台-人员投入排期.html"}, {"title": "网店运营与推广综合实训平台 PRD", "path": "实体/网店运营实训平台/网店运营与推广综合实训平台-PRD.html"}, {"title": "AI商机雷达-移动端Figma设计规范", "path": "实体/AI商机雷达/AI商机雷达-移动端Figma设计规范.html"}, {"title": "AI商机雷达｜AI Coding开发提示词", "path": "实体/AI商机雷达/AI商机雷达｜AI Coding开发提示词.html"}, {"title": "AI商机雷达｜Figma AI设计提示词", "path": "实体/AI商机雷达/AI商机雷达｜Figma AI设计提示词.html"}, {"title": "AI 选品推品产品分析报告 & PRD", "path": "查询/AI选品推品产品分析报告-2026-05-29.html"}, {"title": "大众点评品类品牌数据分析报告", "path": "查询/大众点评品类品牌数据分析报告.html"}, {"title": "Hermes Skill 索引与触发机制", "path": "概念/hermes-skills.html"}, {"title": "AI协作优化规则", "path": "概念/协作规范/AI协作优化规则.html"}, {"title": "AI数字化素养学习路径图", "path": "概念/学习资源/AI数字化素养学习路径图.html"}, {"title": "Prompt 模板库", "path": "概念/学习资源/Prompt模板库.html"}, {"title": "CIO 持续学习计划", "path": "概念/学习资源/CIO持续学习计划.html"}, {"title": "代码规范", "path": "概念/学习资源/代码规范.html"}, {"title": "AI工具分层自学视频资源表", "path": "概念/学习资源/AI工具分层自学视频资源表.html"}, {"title": "工具", "path": "概念/学习资源/工具.html"}, {"title": "《AI Native：从概念到落地》", "path": "概念/AI Native/《AI Native：从概念到落地》- 书籍规划.html"}, {"title": "第二章：行业拐点", "path": "概念/AI Native/《AI Native：从概念到落地》- 第二章.html"}, {"title": "AI Native 深度报告", "path": "概念/AI Native/AI Native 深度报告.html"}, {"title": "第一章：AI Enhanced vs AI Native", "path": "概念/AI Native/《AI Native：从概念到落地》- 第一章.html"}, {"title": "AI Native 深度解析：从概念到落地", "path": "概念/AI Native/AI Native 深度解析：从概念到落地.html"}, {"title": "AI岗位培训课件 - 管理层：用AI做经营决策", "path": "概念/AI培训/AI岗位培训课件 - 管理层：用AI做经营决策.html"}, {"title": "AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助", "path": "概念/AI培训/AI岗位培训课件 - HR：招聘JD简历分析绩效辅助.html"}, {"title": "AI岗位培训课件 - 数据/研发：AI Coding/数据处理", "path": "概念/AI培训/AI岗位培训课件 - 数据研发：AI Coding数据处理.html"}, {"title": "AI岗位培训课件 - 销售：客户洞察/跟进话术", "path": "概念/AI培训/AI岗位培训课件 - 销售：客户洞察跟进话术.html"}, {"title": "AI岗位培训课件 - 产品：PRD→原型→Demo", "path": "概念/AI培训/AI岗位培训课件 - 产品：PRD原型Demo.html"}, {"title": "AI岗位培训课件 - 运营：活动方案/数据分析", "path": "概念/AI培训/AI岗位培训课件 - 运营：活动方案数据分析.html"}, {"title": "待办索引", "path": "日志/待办索引.html"}, {"title": "对话反思日志 - 2026-05-28", "path": "日志/2026-05-28-对话反思.html"}, {"title": "20260601重要事项", "path": "日志/20260601重要事项.html"}, {"title": "2026-05-28 每日反思", "path": "日志/2026-05-28 每日反思.html"}, {"title": "待办-2026-06-29", "path": "日志/待办-2026-06-29.html"}, {"title": "AI Coding vs Vibe Coding 对比分析", "path": "对比/AI Coding vs Vibe Coding 对比分析.html"}, {"title": "四洋", "path": "团队/四洋.html"}, {"title": "满满", "path": "团队/满满.html"}, {"title": "惠开发", "path": "团队/惠开发.html"}, {"title": "龙龙", "path": "团队/龙龙.html"}, {"title": "ccknow", "path": "团队/ccknow.html"}];
+        const searchUrlMap = {"Wiki Schema": "../../SCHEMA.html", "程峰的 Obsidian 知识库": "../../%E9%A6%96%E9%A1%B5.html", "Wiki Log": "../../log.html", "Wiki Index": "../../index.html", "README": "../../%E7%AE%80%E5%8E%86%E5%BA%93/README.html", "面试评估表": "../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/interview-evaluation.html", "STAR 回答记录表": "../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/star-answer.html", "JD 匹配矩阵": "../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/jd-match-matrix.html", "C00004825-朱宇尧-数字化产品经理 — 面试分析": "../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E6%95%B0%E5%AD%97%E5%8C%96%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86-%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90.html", "C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）": "../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E4%BA%A7%E5%93%81%E5%89%AF%E6%80%BB%E7%9B%91-%E9%9D%A2%E8%AF%95%E9%A2%98.html", "产品周会核心要点 / 待办 / 机会点": "../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/%E4%BA%A7%E5%93%81%E5%91%A8%E4%BC%9A_%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9_%E5%BE%85%E5%8A%9E_%E6%9C%BA%E4%BC%9A%E7%82%B9_20260526.html", "AI合规与行业经验-圆桌发言素材": "../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/AI%E5%90%88%E8%A7%84%E4%B8%8E%E8%A1%8C%E4%B8%9A%E7%BB%8F%E9%AA%8C-%E5%9C%86%E6%A1%8C%E5%8F%91%E8%A8%80%E7%B4%A0%E6%9D%90-2026-06-27.html", "老OpenClaw 2026-06-21 的记忆文件": "../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/articles/%E8%80%81openclaw20260621%E7%9A%84%E8%AE%B0%E5%BF%86%E6%96%87%E4%BB%B6.html", "'{{title}}'": "../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AD%A6%E4%B9%A0%E6%A8%A1%E6%9D%BF.html", "PRD 文档模板": "../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/PRD-%E6%A8%A1%E6%9D%BF.html", "'{{title}} 复盘'": "../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%A4%8D%E7%9B%98%E6%A8%A1%E6%9D%BF.html", "对话反思日志模板": "../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D%E6%97%A5%E5%BF%97%E6%A8%A1%E6%9D%BF.html", "\"AI Native 实战课程 - Day 4: 第四章 - 上下文即状态\"": "Day-4.html", "\"AI Native 实战课程 - Day 5: 第五章 - 生成即服务\"": "Day-5.html", "\"AI Native 实战课程 - Day 1: AI Enhanced vs AI Native\"": "Day-1.html", "\"AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent\"": "Day-6.html", "\"AI Native 实战课程 - Day 2: 第二章 - 行业拐点\"": "Day-2.html", "\"AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口\"": "Day-3.html", "AI能力体系建设": "../../%E5%AE%9E%E4%BD%93/AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE.html", "1#楼改造工程（安装）- 工程量清单": "../../%E5%AE%9E%E4%BD%93/1%E5%8F%B7%E6%A5%BC%E6%94%B9%E9%80%A0%E5%B7%A5%E7%A8%8B-%E5%B7%A5%E7%A8%8B%E9%87%8F%E6%B8%85%E5%8D%95.html", "AI商机雷达-PRD": "../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-PRD.html", "CIO 技能提升专项计划": "../../%E5%AE%9E%E4%BD%93/CIO%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87%E4%B8%93%E9%A1%B9%E8%AE%A1%E5%88%92-2026-06-21.html", "ShareLLM 项目开发计划": "../../%E5%AE%9E%E4%BD%93/ShareLLM%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92-2026-06-21.html", "岗位JD评审与Slogan设计": "../../%E5%AE%9E%E4%BD%93/%E5%B2%97%E4%BD%8DJD%E8%AF%84%E5%AE%A1%E4%B8%8ESlogan%E8%AE%BE%E8%AE%A1-2026-05-29.html", "技术沟通": "../../%E5%AE%9E%E4%BD%93/%E6%8A%80%E6%9C%AF%E6%B2%9F%E9%80%9A.html", "程川 AI能力体系建设方案 - 待办总表与执行策略": "../../%E5%AE%9E%E4%BD%93/%E7%A8%8B%E5%B7%9D%20AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88%20-%20%E5%BE%85%E5%8A%9E%E6%80%BB%E8%A1%A8%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5.html", "管理层数字化素养提升方案（数据驱动决策专项）": "../../%E5%AE%9E%E4%BD%93/%E7%AE%A1%E7%90%86%E5%B1%82%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E6%8F%90%E5%8D%87%E6%96%B9%E6%A1%88.html", "多租户SaaS商城平台 - 产品功能文档": "../../%E5%AE%9E%E4%BD%93/%E5%A4%9A%E7%A7%9F%E6%88%B7SaaS%E5%95%86%E5%9F%8E%E5%B9%B3%E5%8F%B0-%E4%BA%A7%E5%93%81%E5%8A%9F%E8%83%BD%E6%96%87%E6%A1%A3.html", "mall-saas 代码审查报告索引": "../../%E5%AE%9E%E4%BD%93/_%E5%AE%A1%E6%9F%A5%E6%8A%A5%E5%91%8A%E7%B4%A2%E5%BC%95.html", "AI应用及团队管理探讨会": "../../%E5%AE%9E%E4%BD%93/AI%E5%BA%94%E7%94%A8%E5%8F%8A%E5%9B%A2%E9%98%9F%E7%AE%A1%E7%90%86%E6%8E%A2%E8%AE%A8%E4%BC%9A_%E7%BA%AA%E8%A6%81.html", "研发体系建设方案": "../../%E5%AE%9E%E4%BD%93/%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB/%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88.html", "OpenClaw 架构设计文档": "../../%E5%AE%9E%E4%BD%93/OpenClaw/OpenClaw%20%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3.html", "菜洋洋AI原生组织架构调整规划": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BAI%E5%8E%9F%E7%94%9F%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%92.html", "餐饮供应链业务对接交流会议记录": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%9A%E5%8A%A1%E5%AF%B9%E6%8E%A5%E4%BA%A4%E6%B5%81%E4%BC%9A-20260526.html", "菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E5%88%9D%E7%89%88%E5%BE%85%E5%AE%8C%E5%96%84-2026-06-10.html", "菜洋洋产研团队组织架构与数智中心定位分析": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E6%95%B0%E6%99%BA%E4%B8%AD%E5%BF%83%E7%BB%84%E7%BB%87%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90.html", "菜洋洋云星空旗舰版项目业务蓝图——老信评审": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E8%80%81%E4%BF%A1%E8%AF%84%E5%AE%A1-2026-06-22.html", "菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5PRD.html", "菜洋洋企业定位研讨会发言稿": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8%E4%BC%9A%E5%8F%91%E8%A8%80%E7%A8%BF-2026-06-27.html", "菜洋洋企业定位研讨11问（洞察+建议+参考）": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A811%E9%97%AE-%E6%B4%9E%E5%AF%9F%E5%BB%BA%E8%AE%AE%E5%8F%82%E8%80%83-2026-06-27.html", "菜洋洋AIOS-数据基础建设需求梳理": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BAIOS-%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%BB%BA%E8%AE%BE%E9%9C%80%E6%B1%82%E6%A2%B3%E7%90%86.html", "菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%E9%80%89%E5%93%81%E5%BC%95%E6%93%8E%20PRD.html", "菜洋洋-待办-2026-06-29": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E5%BE%85%E5%8A%9E-2026-06-29.html", "菜洋洋商城战略评审与建议方案": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5%E8%AF%84%E5%AE%A1-2026-05-29.html", "菜洋洋《上新方案包》产品PRD（V1.0）": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%B8%8A%E6%96%B0%E6%96%B9%E6%A1%88%E5%8C%85_PRD_V1.0.html", "菜洋洋 AI OS 系统架构图": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%20OS%20%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE.html", "菜洋洋产研团队岗位说明书评审报告": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%B2%97%E4%BD%8D%E8%AF%B4%E6%98%8E%E4%B9%A6%E8%AF%84%E5%AE%A1%E6%8A%A5%E5%91%8A.html", "菜洋洋 SaaS 商城 — 管理后台设计方案": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BSaaS%E5%95%86%E5%9F%8E-%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88-v1.0.html", "菜洋洋商城 → AI OS 演进路线与架构方案": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%20AI%20OS%20%E6%BC%94%E8%BF%9B%E8%B7%AF%E7%BA%BF%E4%B8%8E%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html", "菜洋洋-数据驱动的餐饮供应链操作系统-PRD": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-PRD.html", "菜洋洋企业定位研讨思路准备（Q1-Q6 重点）": "../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8-%E6%80%9D%E8%B7%AF%E5%87%86%E5%A4%87-2026-06-25.html", "网店运营与推广综合实训平台人员投入排期": "../../%E5%AE%9E%E4%BD%93/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-%E4%BA%BA%E5%91%98%E6%8A%95%E5%85%A5%E6%8E%92%E6%9C%9F.html", "网店运营与推广综合实训平台 PRD": "../../%E5%AE%9E%E4%BD%93/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-PRD.html", "AI商机雷达-移动端Figma设计规范": "../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-%E7%A7%BB%E5%8A%A8%E7%AB%AFFigma%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.html", "AI商机雷达｜AI Coding开发提示词": "../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CAI%20Coding%E5%BC%80%E5%8F%91%E6%8F%90%E7%A4%BA%E8%AF%8D.html", "AI商机雷达｜Figma AI设计提示词": "../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CFigma%20AI%E8%AE%BE%E8%AE%A1%E6%8F%90%E7%A4%BA%E8%AF%8D.html", "AI 选品推品产品分析报告 & PRD": "../../%E6%9F%A5%E8%AF%A2/AI%E9%80%89%E5%93%81%E6%8E%A8%E5%93%81%E4%BA%A7%E5%93%81%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A-2026-05-29.html", "大众点评品类品牌数据分析报告": "../../%E6%9F%A5%E8%AF%A2/%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84%E5%93%81%E7%B1%BB%E5%93%81%E7%89%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.html", "Hermes Skill 索引与触发机制": "../../%E6%A6%82%E5%BF%B5/hermes-skills.html", "AI协作优化规则": "../../%E6%A6%82%E5%BF%B5/%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83/AI%E5%8D%8F%E4%BD%9C%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99.html", "AI数字化素养学习路径图": "../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E5%9B%BE.html", "Prompt 模板库": "../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/Prompt%E6%A8%A1%E6%9D%BF%E5%BA%93.html", "CIO 持续学习计划": "../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/CIO%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92.html", "代码规范": "../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html", "AI工具分层自学视频资源表": "../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E5%B7%A5%E5%85%B7%E5%88%86%E5%B1%82%E8%87%AA%E5%AD%A6%E8%A7%86%E9%A2%91%E8%B5%84%E6%BA%90%E8%A1%A8.html", "工具": "../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E5%B7%A5%E5%85%B7.html", "《AI Native：从概念到落地》": "../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E4%B9%A6%E7%B1%8D%E8%A7%84%E5%88%92.html", "第二章：行业拐点": "../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0.html", "AI Native 深度报告": "../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E6%8A%A5%E5%91%8A.html", "第一章：AI Enhanced vs AI Native": "../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%B8%80%E7%AB%A0.html", "AI Native 深度解析：从概念到落地": "../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0.html", "AI岗位培训课件 - 管理层：用AI做经营决策": "../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E7%AE%A1%E7%90%86%E5%B1%82%EF%BC%9A%E7%94%A8AI%E5%81%9A%E7%BB%8F%E8%90%A5%E5%86%B3%E7%AD%96.html", "AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助": "../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20HR%EF%BC%9A%E6%8B%9B%E8%81%98JD%E7%AE%80%E5%8E%86%E5%88%86%E6%9E%90%E7%BB%A9%E6%95%88%E8%BE%85%E5%8A%A9.html", "AI岗位培训课件 - 数据/研发：AI Coding/数据处理": "../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E6%95%B0%E6%8D%AE%E7%A0%94%E5%8F%91%EF%BC%9AAI%20Coding%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.html", "AI岗位培训课件 - 销售：客户洞察/跟进话术": "../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E9%94%80%E5%94%AE%EF%BC%9A%E5%AE%A2%E6%88%B7%E6%B4%9E%E5%AF%9F%E8%B7%9F%E8%BF%9B%E8%AF%9D%E6%9C%AF.html", "AI岗位培训课件 - 产品：PRD→原型→Demo": "../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E4%BA%A7%E5%93%81%EF%BC%9APRD%E5%8E%9F%E5%9E%8BDemo.html", "AI岗位培训课件 - 运营：活动方案/数据分析": "../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E8%BF%90%E8%90%A5%EF%BC%9A%E6%B4%BB%E5%8A%A8%E6%96%B9%E6%A1%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html", "待办索引": "../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E%E7%B4%A2%E5%BC%95.html", "对话反思日志 - 2026-05-28": "../../%E6%97%A5%E5%BF%97/2026-05-28-%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D.html", "20260601重要事项": "../../%E6%97%A5%E5%BF%97/20260601%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A1%B9.html", "2026-05-28 每日反思": "../../%E6%97%A5%E5%BF%97/2026-05-28%20%E6%AF%8F%E6%97%A5%E5%8F%8D%E6%80%9D.html", "待办-2026-06-29": "../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E-2026-06-29.html", "AI Coding vs Vibe Coding 对比分析": "../../%E5%AF%B9%E6%AF%94/AI%20Coding%20vs%20Vibe%20Coding%20%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90.html", "四洋": "../../%E5%9B%A2%E9%98%9F/%E5%9B%9B%E6%B4%8B.html", "满满": "../../%E5%9B%A2%E9%98%9F/%E6%BB%A1%E6%BB%A1.html", "惠开发": "../../%E5%9B%A2%E9%98%9F/%E6%83%A0%E5%BC%80%E5%8F%91.html", "龙龙": "../../%E5%9B%A2%E9%98%9F/%E9%BE%99%E9%BE%99.html", "ccknow": "../../%E5%9B%A2%E9%98%9F/ccknow.html"};
         function toggleFolder(el) {
             const li = el.parentElement;
             li.classList.toggle('collapsed');
@@ -474,9 +1067,8 @@ body {
             const matched = searchIndex.filter(p => p.title.toLowerCase().includes(q) || p.path.toLowerCase().includes(q)).slice(0, 10);
             if (matched.length === 0) { results.innerHTML = '<div class="empty">未找到结果</div>'; }
             else {
-                const matrix = pathMatrix[currentTitle] || {};
                 results.innerHTML = matched.map(p => {
-                    const url = matrix[p.title] || p.path;
+                    const url = searchUrlMap[p.title] || p.path;
                     return `<a href="${url}"><span>${p.title}</span><span class="path">${p.path}</span></a>`;
                 }).join('');
             }
@@ -497,7 +1089,7 @@ body {
                 document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
             });
         });
-        {extra_script}
+        
     </script>
 </body>
 </html>
