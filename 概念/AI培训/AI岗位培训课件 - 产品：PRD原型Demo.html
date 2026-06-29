@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI岗位培训课件 - 产品：PRD原型Demo - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>date: 2026-05-26
+type: concept
+tags:
+- AI培训
+- 产品
+- PRD
+- 原型
+- Demo
+source: 飞书文档
+title: AI岗位培训课件 - 产品：PRD→原型→Demo
+created: '2026-06-21'
+updated: 2026-06-29
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="ai-prddemo">AI岗位培训课件 - 产品：PRD→原型→Demo</h1>
+<h2 id="_1">课程目标</h2>
+<p>让产品经理掌握用AI加速PRD撰写、原型设计、Demo制作的全流程方法</p>
+<h2 id="ai">一、产品AI应用场景概览</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>AI能力</th>
+<th>预期效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PRD智能生成</td>
+<td>基于需求描述自动生成PRD框架</td>
+<td>撰写时间节省60%</td>
+</tr>
+<tr>
+<td>用户调研分析</td>
+<td>自动分析用户反馈，提取需求</td>
+<td>分析效率提升5倍</td>
+</tr>
+<tr>
+<td>原型快速生成</td>
+<td>文本描述转原型图/流程图</td>
+<td>原型时间从2天→2小时</td>
+</tr>
+<tr>
+<td>竞品分析</td>
+<td>自动抓取竞品功能，生成对比</td>
+<td>实时掌握竞品动态</td>
+</tr>
+<tr>
+<td>Demo视频制作</td>
+<td>AI生成产品演示脚本/配音</td>
+<td>演示材料制作提速</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prompt-engineering">二、核心技能：Prompt Engineering</h2>
+<h3 id="21-prompt">2.1 标准Prompt模板（产品专用）</h3>
+<pre><code>【背景】
+我是[公司名]的[高级产品经理]，负责[产品名称/领域]。
+当前处于[需求分析/方案设计/评审准备]阶段。
+
+【角色】
+请你扮演一位资深产品专家，曾主导过[行业]头部产品设计。
+
+【输入材料】
+- 产品定位：[一句话描述]
+- 目标用户：[用户画像]
+- 核心场景：[使用场景]
+- 竞品参考：[列出3个]
+
+【任务】
+请帮我[具体需求]。
+
+【输出格式】
+1. 核心结论
+2. 详细方案
+3. 风险与边界
+4. 待确认问题
+5. 下一步行动
+
+【校验标准】
+- 符合用户真实需求（非臆想）
+- 技术可行性评估
+- 商业价值量化
+</code></pre>
+<h3 id="22">2.2 高频场景模板</h3>
+<p><strong>场景1：PRD框架生成</strong>
+- 背景：需撰写[功能模块]的PRD
+- 角色：资深产品专家（腾讯/阿里P8级别）
+- 输入：
+  - 功能目标：[解决什么问题]
+  - 用户故事：[作为...我想要...以便...]
+  - 业务流程：[简述]
+  - 涉及系统：[列出]
+- 任务：生成完整PRD框架
+- 输出要求：
+  1. 版本记录
+  2. 背景与目标
+  3. 用户故事地图
+  4. 功能详述（含交互逻辑）
+  5. 数据需求
+  6. 埋点方案
+  7. 发布计划
+  8. 风险清单
+  - 格式：可直接填入细节的标准模板</p>
+<p><strong>场景2：用户反馈分析</strong>
+- 背景：收集到[100条]用户反馈，需提炼需求
+- 角色：用户研究专家
+- 输入：[粘贴用户反馈]
+- 任务：结构化分析
+- 输出：
+  1. 反馈分类（功能/体验/Bug/建议）
+  2. 高频问题Top 10
+  3. 需求优先级矩阵（用户价值×实现成本）
+  4. 可直接排期的需求（附方案简述）
+  5. 需进一步调研的开放问题</p>
+<p><strong>场景3：竞品功能对比</strong>
+- 背景：评估竞品[新功能]，判断是否跟进
+- 角色：竞品分析专家
+- 输入：
+  - 竞品功能描述：[粘贴]
+  - 我司现状：[当前方案]
+  - 用户反馈：[相关反馈]
+- 任务：生成分析报告
+- 输出：
+  1. 功能拆解（用户价值/技术实现/商业模式）
+  2. 与我司战略匹配度
+  3. 跟进成本评估
+  4. 差异化机会
+  5. 建议动作（跟进/放弃/差异化）</p>
+<h2 id="_2">三、实操案例</h2>
+<h3 id="1prd">案例1：PRD撰写提效</h3>
+<p><strong>背景：</strong>
+产品经理小王每次写PRD需3-4天，且经常遗漏边界情况。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>PRD框架生成Prompt</strong></p>
+<pre><code>请为以下功能生成PRD框架：
+功能：智能客服机器人
+目标：降低人工客服压力，提升响应速度
+用户：电商平台消费者
+场景：咨询订单/退换货/产品问题
+
+要求：
+1. 包含完整PRD章节
+2. 每个章节给出示例内容
+3. 标注需业务方确认的关键点
+4. 列出常见边界情况（10条以上）
+5. 附交互流程图描述（供设计同事参考）
+</code></pre>
+<p><strong>边界情况补充Prompt</strong></p>
+<pre><code>基于以上PRD，请补充：
+1. 异常流程（网络中断/系统超时/数据异常）
+2. 权限边界（未登录/无权限/已过期）
+3. 数据边界（空数据/超长文本/特殊字符）
+4. 并发场景（多人同时操作/重复提交）
+5. 兼容性（老版本/不同设备）
+
+格式：表格（场景/触发条件/系统响应/用户提示）
+</code></pre>
+<p><strong>效果：</strong>
+- PRD撰写时间：4天 → 1.5天
+- 评审通过率：50% → 85%
+- 开发返工率：30% → 10%</p>
+<h3 id="2">案例2：用户调研自动化</h3>
+<p><strong>背景：</strong>
+产品改版前需做用户调研，但时间和预算有限。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>调研方案设计Prompt</strong></p>
+<pre><code>背景：计划改版[首页信息流]
+角色：用户研究专家
+目标：了解当前痛点，验证改版方向
+
+请设计调研方案：
+1. 调研方法（定性/定量/组合）
+2. 样本要求（数量/筛选条件）
+3. 访谈提纲（8-10个问题）
+4. 问卷设计（15-20题，含逻辑跳转）
+5. 数据分析框架
+6. 时间安排
+7. 预算估算
+</code></pre>
+<p><strong>访谈分析Prompt</strong></p>
+<pre><code>以下是[10位]用户的访谈记录：
+[粘贴]
+
+请分析：
+1. 用户画像聚类（3-4类）
+2. 核心痛点（Top 5）
+3. 需求频次与强度
+4. 改版接受度预测
+5. 风险用户群体
+6. 功能优先级建议
+</code></pre>
+<p><strong>效果：</strong>
+- 调研周期：2周 → 1周
+- 洞察深度：表面需求 → 深层动机
+- 方案命中率：60% → 90%</p>
+<h3 id="3demo">案例3：原型到Demo快速产出</h3>
+<p><strong>背景：</strong>
+评审会需要演示Demo，但设计资源紧张，只有文字描述。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>原型描述生成Prompt</strong></p>
+<pre><code>请根据以下PRD描述，生成详细的原型说明：
+[粘贴PRD功能描述]
+
+要求：
+1. 页面结构（模块/布局/层级）
+2. 交互流程（点击→反馈→跳转）
+3. 状态变化（默认/悬停/选中/禁用）
+4. 异常状态（空/加载/错误）
+5. 动效建议（过渡/反馈）
+6. 标注设计注意点
+
+格式：可直接给设计师的Brief
+</code></pre>
+<p><strong>Demo脚本生成Prompt</strong></p>
+<pre><code>请为以下功能生成演示脚本：
+功能：[智能推荐]
+时长：3分钟
+受众：管理层评审
+
+要求：
+1. 开场（30秒，吸引注意）
+2. 痛点共鸣（30秒）
+3. 方案展示（90秒，核心流程）
+4. 数据支撑（30秒）
+5. 结尾号召（30秒）
+
+附：
+- 每页的旁白文案
+- 关键数据标注
+- 可能的问题及回答要点
+</code></pre>
+<p><strong>效果：</strong>
+- Demo准备时间：3天 → 半天
+- 评审通过率：40% → 80%
+- 资源依赖度：高 → 低</p>
+<h2 id="_3">四、工具推荐</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT/Claude</td>
+<td>PRD生成、需求分析</td>
+<td>文档撰写</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>产品代码原型</td>
+<td>快速Demo</td>
+</tr>
+<tr>
+<td>Figma AI</td>
+<td>原型设计</td>
+<td>界面设计</td>
+</tr>
+<tr>
+<td>Mermaid</td>
+<td>流程图/架构图</td>
+<td>技术方案</td>
+</tr>
+<tr>
+<td>豆包/DeepSeek</td>
+<td>用户调研辅助</td>
+<td>问卷/访谈</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">五、常见误区与避坑指南</h2>
+<p><strong>误区1：AI生成的PRD直接给开发</strong>
+→ AI是框架，细节需产品经理补充，尤其是业务逻辑。</p>
+<p><strong>误区2：用AI代替用户调研</strong>
+→ AI可辅助分析，但真实用户声音不可替代，需结合使用。</p>
+<p><strong>误区3：过度追求AI生成的完整性</strong>
+→ PRD不是越长越好，精准 &gt; 全面，聚焦核心价值。</p>
+<p><strong>误区4：忽视AI的幻觉风险</strong>
+→ AI可能"编造"功能或数据，关键信息需人工核实。</p>
+<h2 id="_5">六、课后作业</h2>
+<ol>
+<li><strong>实操任务</strong>：用AI辅助完成一个真实功能的PRD撰写，对比传统方式</li>
+<li><strong>Prompt优化</strong>：针对你的常见产品场景，优化3个专属Prompt模板</li>
+<li><strong>案例沉淀</strong>：将本次实操经验整理为团队SOP</li>
+</ol>
+<hr />
+<p>课件版本：V1.0
+适用对象：产品经理（初级到高级）
+建议时长：3小时（理论1.5h + 实操1.5h）</p>
+<h2 id="_6">相关链接</h2>
+<ul>
+<li>[[AI岗位培训课件 - 数据研发：AI Coding数据处理]]</li>
+<li>[[AI岗位培训课件 - HR：招聘JD简历分析绩效辅助]]</li>
+<li>[[AI岗位培训课件 - 运营：活动方案数据分析]]</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI岗位培训课件 - 数据研发：AI Coding数据处理 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>date: 2026-05-26
+type: concept
+tags:
+- AI培训
+- 数据研发
+- AI Coding
+- 数据处理
+source: 飞书文档
+title: AI岗位培训课件 - 数据/研发：AI Coding/数据处理
+created: '2026-06-21'
+updated: 2026-06-29
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="ai-ai-coding">AI岗位培训课件 - 数据/研发：AI Coding/数据处理</h1>
+<h2 id="_1">课程目标</h2>
+<p>让数据/研发人员掌握用AI加速编码、自动化数据处理、提升技术效率的方法</p>
+<h2 id="ai">一、数据/研发AI应用场景概览</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>AI能力</th>
+<th>预期效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码生成</td>
+<td>基于需求描述自动生成代码</td>
+<td>编码效率提升50%</td>
+</tr>
+<tr>
+<td>代码审查</td>
+<td>自动检查代码质量/安全/性能</td>
+<td>Bug率降低30%</td>
+</tr>
+<tr>
+<td>数据处理</td>
+<td>自动清洗/转换/分析数据</td>
+<td>数据处理时间节省70%</td>
+</tr>
+<tr>
+<td>技术方案设计</td>
+<td>生成架构设计/技术选型建议</td>
+<td>设计效率提升</td>
+</tr>
+<tr>
+<td>文档生成</td>
+<td>自动生成技术文档/注释</td>
+<td>文档覆盖率提升</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prompt-engineering">二、核心技能：Prompt Engineering</h2>
+<h3 id="21-prompt">2.1 标准Prompt模板（技术专用）</h3>
+<pre><code>【背景】
+我是[公司名]的[技术岗位]，负责[系统/模块]。
+当前需要[开发/优化/排查问题]。
+
+【角色】
+请你扮演一位资深[技术领域]专家，具备10年[语言/框架]经验。
+
+【输入材料】
+- 技术栈：[列出]
+- 需求描述：[功能/性能/安全要求]
+- 约束条件：[兼容性/性能/安全]
+
+【任务】
+请帮我[具体需求]。
+
+【输出格式】
+1. 核心方案
+2. 代码实现
+3. 关键说明
+4. 测试建议
+5. 风险点
+
+【校验标准】
+- 代码可运行
+- 符合团队规范
+- 考虑边界情况
+- 性能达标
+</code></pre>
+<h3 id="22">2.2 高频场景模板</h3>
+<p><strong>场景1：功能开发</strong>
+- 背景：需开发[用户权限管理]模块
+- 角色：资深后端工程师
+- 输入：
+  - 语言：Python/Java/Go
+  - 框架：Django/Spring/Gin
+  - 数据库：MySQL/PostgreSQL
+  - 需求：
+    - RBAC权限模型
+    - 支持数据级权限
+    - 接口级鉴权
+    - 操作日志
+- 任务：生成完整实现
+- 输出：
+  1. 数据库设计（ER图描述）
+  2. 核心代码（含注释）
+  3. 接口设计（RESTful）
+  4. 单元测试
+  5. 性能考虑
+  6. 安全加固点</p>
+<p><strong>场景2：数据分析</strong>
+- 背景：需分析[用户行为]数据
+- 角色：数据科学家
+- 输入：
+  - 数据源：[日志/数据库/API]
+  - 数据量：[100万条/日]
+  - 分析目标：[留存/转化/路径]
+  - 工具：Python/SQL/Excel
+- 任务：生成分析方案
+- 输出：
+  1. 数据清洗方案
+  2. 分析维度设计
+  3. 核心指标定义
+  4. SQL/Python代码
+  5. 可视化建议
+  6. 洞察结论模板</p>
+<p><strong>场景3：Bug排查</strong>
+- 背景：系统出现[性能下降/异常报错]
+- 角色：技术专家
+- 输入：
+  - 错误日志：[粘贴]
+  - 系统架构：[简述]
+  - 近期变更：[版本/配置]
+- 任务：辅助排查
+- 输出：
+  1. 可能原因分析（Top 5）
+  2. 验证方法
+  3. 排查优先级
+  4. 临时缓解方案
+  5. 根治建议
+  6. 预防措施</p>
+<h2 id="_2">三、实操案例</h2>
+<h3 id="1api">案例1：API接口快速开发</h3>
+<p><strong>背景：</strong>
+需开发一套RESTful API，时间紧，需快速交付。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>接口设计Prompt</strong></p>
+<pre><code>请设计[订单管理]API：
+需求：
+- CRUD操作
+- 分页查询
+- 状态流转
+- 权限控制
+
+要求：
+1. RESTful规范
+2. 请求/响应格式
+3. 错误码设计
+4. 接口文档（OpenAPI描述）
+5. 性能指标（QPS/响应时间）
+</code></pre>
+<p><strong>代码生成Prompt</strong></p>
+<pre><code>基于以上设计，请生成实现代码：
+技术栈：[Spring Boot + MyBatis + MySQL]
+
+要求：
+1. Controller层
+2. Service层（含事务）
+3. Mapper层
+4. 实体类
+5. 统一异常处理
+6. 日志规范
+7. 单元测试
+</code></pre>
+<p><strong>效果：</strong>
+- 开发时间：3天 → 1天
+- 代码规范度：70% → 95%
+- 测试覆盖率：40% → 80%</p>
+<h3 id="2">案例2：数据报表自动化</h3>
+<p><strong>背景：</strong>
+每周需手动导出数据制作报表，耗时且易错。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>报表需求分析Prompt</strong></p>
+<pre><code>请分析以下报表需求：
+[粘贴现有报表]
+
+输出：
+1. 数据源清单
+2. 指标计算逻辑
+3. 维度设计
+4. 更新频率
+5. 权限要求
+6. 可视化建议
+</code></pre>
+<p><strong>自动化脚本生成Prompt</strong></p>
+<pre><code>请生成自动化脚本：
+工具：Python + pandas + openpyxl
+数据源：[数据库连接信息]
+
+要求：
+1. 数据提取SQL
+2. 数据清洗逻辑
+3. 计算指标
+4. Excel生成（含格式）
+5. 邮件自动发送
+6. 异常处理
+7. 日志记录
+</code></pre>
+<p><strong>效果：</strong>
+- 报表时间：4小时/周 → 10分钟
+- 错误率：5% → 0%
+- 实时性：周报 → 日报</p>
+<h3 id="3">案例3：技术方案设计</h3>
+<p><strong>背景：</strong>
+需设计高并发系统架构，但经验不足。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>架构设计Prompt</strong></p>
+<pre><code>请设计[秒杀系统]架构：
+约束：
+- 峰值QPS：10万
+- 库存：1000件
+- 响应时间：&lt; 200ms
+- 可用性：99.99%
+
+输出：
+1. 架构图描述
+2. 技术选型（含理由）
+3. 核心流程
+4. 缓存策略
+5. 降级方案
+6. 监控告警
+7. 压测方案
+8. 风险评估
+</code></pre>
+<p><strong>效果：</strong>
+- 设计时间：1周 → 2天
+- 方案完整度：60% → 90%
+- 评审通过率：50% → 85%</p>
+<h2 id="_3">四、工具推荐</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cursor</td>
+<td>AI编程</td>
+<td>日常开发</td>
+</tr>
+<tr>
+<td>ChatGPT/Claude</td>
+<td>方案设计</td>
+<td>架构/算法</td>
+</tr>
+<tr>
+<td>GitHub Copilot</td>
+<td>代码补全</td>
+<td>编码辅助</td>
+</tr>
+<tr>
+<td>豆包/DeepSeek</td>
+<td>技术查询</td>
+<td>问题排查</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">五、常见误区与避坑指南</h2>
+<p><strong>误区1：AI生成的代码直接上线</strong>
+→ 必须代码审查，AI可能生成有安全漏洞的代码。</p>
+<p><strong>误区2：用AI处理敏感数据</strong>
+→ 生产数据不可输入AI，需用脱敏/测试数据。</p>
+<p><strong>误区3：完全依赖AI做架构设计</strong>
+→ AI可辅助，但架构需结合业务实际，避免过度设计。</p>
+<p><strong>误区4：忽视性能和安全</strong>
+→ AI生成的代码可能不优化，需人工调优。</p>
+<h2 id="_5">六、课后作业</h2>
+<ol>
+<li><strong>实操任务</strong>：用AI辅助完成一个真实功能开发，对比传统方式</li>
+<li><strong>Prompt优化</strong>：针对你的常见技术场景，优化3个专属Prompt模板</li>
+<li><strong>案例沉淀</strong>：将本次实操经验整理为团队SOP</li>
+</ol>
+<hr />
+<p>课件版本：V1.0
+适用对象：数据/研发团队
+建议时长：3小时（理论1.5h + 实操1.5h）</p>
+<h2 id="_6">相关链接</h2>
+<ul>
+<li>[[AI岗位培训课件 - 产品：PRD原型Demo]]</li>
+<li>[[AI岗位培训课件 - HR：招聘JD简历分析绩效辅助]]</li>
+<li>[[AI岗位培训课件 - 运营：活动方案数据分析]]</li>
+</ul>
+</body>
+</html>

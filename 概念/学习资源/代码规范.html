@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代码规范 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: 代码规范
+created: 2026-06-21
+type: resource
+tags:
+- 代码规范
+- 开发标准
+- 质量
+updated: 2026-06-29
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="_1">代码规范</h1>
+<blockquote>
+<p>适用：ShareLLM、菜洋洋商城等所有项目
+版本：v1.0</p>
+</blockquote>
+<hr />
+<h2 id="git">一、Git 规范</h2>
+<h3 id="11">1.1 分支模型</h3>
+<pre><code>main        ← 生产环境，只能由 release 合并
+release/*   ← 预发环境，测试通过后合并到 main
+develop     ← 开发主分支，功能分支合并目标
+feature/*   ← 功能分支，从 develop 检出
+hotfix/*    ← 紧急修复，从 main 检出
+</code></pre>
+<h3 id="12">1.2 提交信息规范</h3>
+<pre><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+
+&lt;body&gt;
+
+&lt;footer&gt;
+</code></pre>
+<p><strong>Type 列表</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feat</code></td>
+<td>新功能</td>
+<td><code>feat(auth): 添加 JWT 登录</code></td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>Bug 修复</td>
+<td><code>fix(api): 修复用户列表分页错误</code></td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>文档更新</td>
+<td><code>docs(readme): 更新部署说明</code></td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>代码格式</td>
+<td><code>style(lint): 修复 ESLint 警告</code></td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>重构</td>
+<td><code>refactor(service): 提取公共逻辑</code></td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>测试相关</td>
+<td><code>test(unit): 添加用户模块单测</code></td>
+</tr>
+<tr>
+<td><code>chore</code></td>
+<td>构建/工具</td>
+<td><code>chore(ci): 添加 Docker 构建</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Subject 规范</strong>：
+- 不超过 50 个字符
+- 使用祈使句（"添加" 而非 "添加了"）
+- 首字母小写
+- 结尾不加句号</p>
+<h3 id="13">1.3 提交频率</h3>
+<ul>
+<li>每个 commit 只做一件事</li>
+<li>每天下班前必须 push</li>
+<li>PR 前 rebase 整理 commit</li>
+</ul>
+<hr />
+<h2 id="_2">二、代码风格</h2>
+<h3 id="21-go">2.1 Go 规范</h3>
+<ul>
+<li>使用 <code>gofmt</code> 自动格式化</li>
+<li>包名全小写，无下划线</li>
+<li>接口名以 <code>er</code> 结尾（<code>Reader</code>, <code>Writer</code>）</li>
+<li>错误处理：不忽略错误，不滥用 panic</li>
+</ul>
+<pre><code class="language-go">// ✅ Good
+func GetUser(ctx context.Context, id int64) (*User, error) {
+    user, err := db.Query(ctx, id)
+    if err != nil {
+        return nil, fmt.Errorf(&quot;query user %d: %w&quot;, id, err)
+    }
+    return user, nil
+}
+
+// ❌ Bad
+func GetUser(id int) *User {
+    return db.Query(id) // 忽略错误
+}
+</code></pre>
+<h3 id="22-typescriptreact">2.2 TypeScript/React 规范</h3>
+<ul>
+<li>使用 ESLint + Prettier</li>
+<li>组件名 PascalCase</li>
+<li>变量/函数名 camelCase</li>
+<li>常量 UPPER_SNAKE_CASE</li>
+<li>必须添加类型定义</li>
+</ul>
+<pre><code class="language-typescript">// ✅ Good
+interface UserProps {
+  name: string;
+  age: number;
+}
+
+const UserCard: React.FC&lt;UserProps&gt; = ({ name, age }) =&gt; {
+  return &lt;div&gt;{name}: {age}&lt;/div&gt;;
+};
+
+// ❌ Bad
+function User(props) {
+  return &lt;div&gt;{props.name}&lt;/div&gt;;
+}
+</code></pre>
+<h3 id="23-python">2.3 Python 规范</h3>
+<ul>
+<li>遵循 PEP8</li>
+<li>使用 Black 格式化</li>
+<li>类型注解必须</li>
+<li>Docstring 格式：Google Style</li>
+</ul>
+<pre><code class="language-python"># ✅ Good
+def calculate_score(user_id: int) -&gt; float:
+    &quot;&quot;&quot;Calculate user score based on activities.
+
+    Args:
+        user_id: The user ID.
+
+    Returns:
+        The calculated score.
+
+    Raises:
+        ValueError: If user not found.
+    &quot;&quot;&quot;
+    user = get_user(user_id)
+    if not user:
+        raise ValueError(f&quot;User {user_id} not found&quot;)
+    return user.score
+</code></pre>
+<hr />
+<h2 id="_3">三、文档规范</h2>
+<h3 id="31">3.1 代码注释</h3>
+<ul>
+<li>公共函数/接口必须有注释</li>
+<li>复杂逻辑必须说明 "为什么"</li>
+<li>TODO 必须标注人和时间</li>
+</ul>
+<pre><code class="language-go">// ✅ Good
+// ProcessPayment handles payment logic including:
+// 1. Validate order status
+// 2. Call payment gateway
+// 3. Update order status
+// 4. Send notification
+// TODO(chengfeng): Add retry logic for step 2 (2026-06-21)
+func ProcessPayment(ctx context.Context, orderID int64) error {
+    // ...
+}
+</code></pre>
+<h3 id="32-api">3.2 API 文档</h3>
+<ul>
+<li>使用 Swagger/OpenAPI</li>
+<li>每个接口必须包含：描述、参数、响应、错误码</li>
+<li>示例请求/响应必须真实可用</li>
+</ul>
+<hr />
+<h2 id="_4">四、测试规范</h2>
+<h3 id="41">4.1 测试层级</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>范围</th>
+<th>覆盖率要求</th>
+<th>运行时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单元测试</td>
+<td>函数/方法</td>
+<td>≥ 70%</td>
+<td>每次提交</td>
+</tr>
+<tr>
+<td>集成测试</td>
+<td>模块间交互</td>
+<td>≥ 50%</td>
+<td>PR 时</td>
+</tr>
+<tr>
+<td>E2E 测试</td>
+<td>完整流程</td>
+<td>核心流程</td>
+<td>发布前</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42">4.2 测试命名</h3>
+<pre><code class="language-go">// 格式：Test&lt;FunctionName&gt;_&lt;Scenario&gt;
+func TestCalculateScore_ValidUser(t *testing.T) { }
+func TestCalculateScore_UserNotFound(t *testing.T) { }
+func TestCalculateScore_NegativeScore(t *testing.T) { }
+</code></pre>
+<hr />
+<h2 id="_5">五、安全规范</h2>
+<ul>
+<li>[ ] 不硬编码密钥（使用环境变量/配置中心）</li>
+<li>[ ] SQL 必须参数化（防注入）</li>
+<li>[ ] 用户输入必须校验</li>
+<li>[ ] 敏感操作必须鉴权</li>
+<li>[ ] 日志不打印敏感信息</li>
+</ul>
+<hr />
+<p><em>违反规范的处理：首次提醒 → 二次警告 → 影响绩效</em></p>
+<h2 id="_6">相关链接</h2>
+<ul>
+<li>[[研发体系建设方案]]</li>
+<li>[[多租户SaaS商城平台-产品功能文档]]</li>
+<li>[[AI Native 深度报告]]</li>
+</ul>
+</body>
+</html>

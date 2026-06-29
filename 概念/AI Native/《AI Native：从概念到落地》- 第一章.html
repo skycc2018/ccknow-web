@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《AI Native：从概念到落地》- 第一章 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>tags:
+- 书籍
+- AI Native
+- 第一章
+date: 2026-05-25
+title: 第一章：AI Enhanced vs AI Native
+created: '2026-06-21'
+updated: 2026-06-29
+type: concept
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="ai-enhanced-vs-ai-native">第一章：AI Enhanced vs AI Native</h1>
+<blockquote>
+<p>一个案例看懂区别，三个特征定义本质，一场范式转移正在发生</p>
+</blockquote>
+<hr />
+<h2 id="11-vs-perplexity">1.1 传统搜索 vs Perplexity：一分钟看懂区别</h2>
+<h3 id="2024">场景：你想知道"2024年新能源汽车销量排名"</h3>
+<p><strong>传统搜索（Google/百度）：</strong></p>
+<p>你输入关键词 → 返回 10 个链接 → 逐个点击 → 阅读网页 → 自己总结答案 → 不确定哪个来源更可信</p>
+<p>耗时：5-15分钟。体验：像去图书馆查资料。</p>
+<p><strong>Perplexity（AI Native 搜索）：</strong></p>
+<p>你直接问："2024年新能源汽车销量排名是什么？各品牌市场份额如何？"</p>
+<p>Perplexity 立即返回：</p>
+<blockquote>
+<p><strong>2024年新能源汽车销量排名（基于中汽协数据）：</strong>
+1. <strong>比亚迪</strong>：302万辆（市场份额35.2%）
+2. <strong>特斯拉</strong>：65万辆（7.6%）
+3. <strong>五菱</strong>：55万辆（6.4%）
+...</p>
+<p><strong>关键趋势</strong>：
+- 自主品牌占比首次突破80%
+- 插混增速（+85%）远超纯电（+25%）
+- 来源：中汽协2024年度报告、各公司财报</p>
+</blockquote>
+<p>耗时：10秒。体验：像问一个懂行的专家。</p>
+<p><strong>关键差异不是速度，是交互范式：</strong></p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>传统搜索</th>
+<th>Perplexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>关键词（2-3个词）</td>
+<td>自然语言问题（完整句子）</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>链接列表</td>
+<td>直接答案</td>
+</tr>
+<tr>
+<td>认知负担</td>
+<td>高（需筛选、阅读、总结）</td>
+<td>低（直接获得结论）</td>
+</tr>
+<tr>
+<td>可信度</td>
+<td>不确定（需自行判断来源）</td>
+<td>明确（标注每个数据的来源）</td>
+</tr>
+<tr>
+<td>追问</td>
+<td>重新搜索</td>
+<td>基于上下文继续对话</td>
+</tr>
+</tbody>
+</table>
+<p>传统搜索是"找信息"，AI Native 搜索是"获取知识"。</p>
+<hr />
+<h2 id="12">1.2 三个关键特征</h2>
+<p>AI Native 产品有三个共同特征，缺一不可：</p>
+<h3 id="intent-driven">特征一：意图驱动（Intent-Driven）</h3>
+<p><strong>传统软件的逻辑：</strong></p>
+<p>用户想完成一件事 → 必须学会软件的操作方式 → 找到对应功能 → 按步骤执行</p>
+<blockquote>
+<p>例：想在 CRM 里找"上周拜访过但还没跟进的客户"
+- 打开客户列表
+- 筛选"拜访日期：上周"
+- 筛选"跟进状态：待跟进"
+- 导出结果</p>
+</blockquote>
+<p><strong>AI Native 的逻辑：</strong></p>
+<p>用户用自然语言表达意图 → 系统理解意图 → 自动执行</p>
+<blockquote>
+<p>例：直接说"帮我列出上周拜访过但还没跟进的客户"
+- AI 理解"上周"、"拜访过"、"未跟进"三个条件
+- 自动查询数据库
+- 直接呈现结果
+- 顺便问："需要我生成跟进邮件模板吗？"</p>
+</blockquote>
+<p><strong>本质变化：</strong>
+- 从"人适应机器"（学操作、记流程、填表单）
+- 到"机器理解人"（说意图、自动执行、智能推荐）</p>
+<hr />
+<h3 id="continuous-learning">特征二：持续学习（Continuous Learning）</h3>
+<p><strong>传统软件的逻辑：</strong></p>
+<p>功能发布时是 1.0 版本 → 用户反馈 → 产品团队规划 2.0 → 开发 3 个月 → 发布更新</p>
+<p>用户用了一年，软件还是一样的软件。</p>
+<p><strong>AI Native 的逻辑：</strong></p>
+<p>每次交互都是学习机会 → 系统从用户行为中优化 → 越用越懂用户</p>
+<blockquote>
+<p>例：你连续 3 次在周报里问"上周销售额"
+- 第 1 次：AI 从数据库查询，给你数字
+- 第 2 次：AI 发现你每次都问这个，开始主动推送
+- 第 3 次：AI 不仅给数字，还附上"环比下降 5%，主要原因是..."
+- 第 4 周：AI 在周一早上自动发你周报草稿，包含销售额及分析</p>
+</blockquote>
+<p><strong>本质变化：</strong>
+- 从"一成不变的功能集合"
+- 到"越用越懂你的智能伙伴"</p>
+<hr />
+<h3 id="autonomous-action">特征三：自主行动（Autonomous Action）</h3>
+<p><strong>传统软件的逻辑：</strong></p>
+<p>用户发出指令 → 软件执行 → 等待用户下一步指令</p>
+<p>软件是被动的工具，不会主动做事。</p>
+<p><strong>AI Native 的逻辑：</strong></p>
+<p>用户表达目标 → AI 自主规划步骤 → 调用工具执行 → 反馈结果</p>
+<blockquote>
+<p>例：你说"帮我准备下周去上海拜访客户的行程"
+- AI 自动执行：
+  1. 查日历：下周哪些天有空
+  2. 查 CRM：上海有哪些待拜访客户
+  3. 查地图：客户地址分布
+  4. 查航班：最优出行方案
+  5. 生成：行程安排表（含路线、时间、客户背景）
+- 最后问："这个安排可以吗？需要调整吗？"</p>
+</blockquote>
+<p>用户只说了目标，AI 自主完成了所有步骤。</p>
+<p><strong>本质变化：</strong>
+- 从"被动等待指令的工具"
+- 到"能主动完成目标的智能代理"</p>
+<hr />
+<h2 id="13">1.3 范式转移：从"人适应机器"到"机器适应人"</h2>
+<h3 id="_1">三个层级的跃迁</h3>
+<pre><code>第一层：AI Enhanced（AI 增强）
+    ↓
+&quot;给现有产品加个 AI 按钮&quot;
+例：Word 里加了&quot;AI 写作助手&quot;按钮
+    本质：工具更聪明了，但交互方式没变
+
+第二层：AI Native（AI 原生）
+    ↓
+&quot;围绕 AI 能力重新设计产品&quot;
+例：Notion 从&quot;文档工具&quot;变成&quot;AI 工作空间&quot;
+    本质：交互方式变了，人只需说意图
+
+第三层：AI First（AI 优先）
+    ↓
+&quot;AI 成为核心，人成为增强&quot;
+例：Devin（AI 软件工程师）自主完成编程任务
+    本质：人审核 AI 的工作，而非人做 AI 辅助
+</code></pre>
+<h3 id="_2">当前大多数产品在哪一层？</h3>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>占比</th>
+<th>特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI Enhanced</td>
+<td>80%</td>
+<td>加个 AI 功能，交互不变</td>
+</tr>
+<tr>
+<td>AI Native</td>
+<td>15%</td>
+<td>重新设计交互，意图驱动</td>
+</tr>
+<tr>
+<td>AI First</td>
+<td>5%</td>
+<td>AI 自主执行，人做审核</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2024-2026 年的机会在第二层。</strong></p>
+<p>第一层是红海（大家都在做），第三层还不成熟（技术/信任/监管都没准备好）。</p>
+<p>第二层是蓝海：重新思考产品形态，让 AI 成为核心引擎。</p>
+<hr />
+<h3 id="_3">思考题</h3>
+<p>回想你最近使用的一个软件：</p>
+<ol>
+<li>它属于哪一层？（Enhanced / Native / First）</li>
+<li>如果把它升级到 AI Native 层，交互方式会变成什么样？</li>
+<li>用户会说什么样的自然语言指令，而不是点击哪个按钮？</li>
+</ol>
+<hr />
+<h2 id="_4">本章小结</h2>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>核心观点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>案例</td>
+<td>Perplexity vs 传统搜索：10秒 vs 5分钟，直接答案 vs 链接列表</td>
+</tr>
+<tr>
+<td>特征1</td>
+<td>意图驱动：从"学操作"到"说意图"</td>
+</tr>
+<tr>
+<td>特征2</td>
+<td>持续学习：从"一成不变"到"越用越懂"</td>
+</tr>
+<tr>
+<td>特征3</td>
+<td>自主行动：从"被动工具"到"主动代理"</td>
+</tr>
+<tr>
+<td>范式</td>
+<td>从"人适应机器"到"机器适应人"</td>
+</tr>
+<tr>
+<td>机会</td>
+<td>2024-2026 在 AI Native 层（15%→50%）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>第一章完。下一章：《行业拐点》——为什么现在必须理解 AI Native？</em></p>
+<h2 id="_5">相关链接</h2>
+<ul>
+<li>[[AI Native 深度解析：从概念到落地]]</li>
+<li>[[AI Native 深度报告]]</li>
+<li>[[《AI Native：从概念到落地》- 第二章]]</li>
+</ul>
+</body>
+</html>

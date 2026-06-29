@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜洋洋-数据驱动的餐饮供应链操作系统-PRD - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: 菜洋洋-数据驱动的餐饮供应链操作系统-PRD
+created: 2026-06-22
+updated: 2026-06-29
+type: project
+tags: [PRD, 菜洋洋, 餐饮供应链, 数据驱动, 窄门餐眼, 交易平台]
+sources: [用户策略分析]
+confidence: medium</p>
+<hr />
+<h1 id="prd">菜洋洋 — 数据驱动的餐饮供应链操作系统 PRD</h1>
+<blockquote>
+<p>版本：V1.0<br />
+日期：2026-06-22<br />
+策略来源：对标窄门餐眼，从"数据工具"升级为"交易操作系统"<br />
+核心定位：<strong>爆品 → 一键补货</strong></p>
+</blockquote>
+<hr />
+<h2 id="1">1. 项目背景与机会</h2>
+<h3 id="11">1.1 行业现状</h3>
+<p><strong>窄门餐眼</strong>是中国餐饮行业的典型数据中台，主要解决<strong>看</strong>的问题：
+- 品牌排名、门店分布、开关店趋势
+- 外卖销量、评价分析、热销菜品
+- 品类爆款、城市机会、竞品动态</p>
+<p>但窄门的瓶颈在于：
+- 数据仅停留在"信息展示"层
+- 用户看完数据后，仍需要离开平台去开展后续行动
+- 未掌握<strong>订单流、资金流、SKU 流</strong></p>
+<h3 id="12">1.2 菜洋洋的机会</h3>
+<p>菜洋洋的优势在于：
+- 已有供应链基础（食材采购、物流、仓储）
+- 服务大量餐饮门店客户
+- 具备"从数据到交易"的产业链位置</p>
+<p>机会点：</p>
+<blockquote>
+<p><strong>从"让你知道该做什么"，升级为"帮你直接做完"</strong></p>
+</blockquote>
+<hr />
+<h2 id="2">2. 产品定位</h2>
+<h3 id="21">2.1 一句话定位</h3>
+<p><strong>菜洋洋数据驱动的餐饮供应链操作系统</strong></p>
+<h3 id="22">2.2 与窄门的差异</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>窄门餐眼</th>
+<th>菜洋洋（本系统）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据源</td>
+<td>公开数据拼接</td>
+<td>门店真实经营数据 + 公开数据</td>
+</tr>
+<tr>
+<td>价值</td>
+<td>降低认知成本</td>
+<td>降低决策和执行成本</td>
+</tr>
+<tr>
+<td>模式</td>
+<td>SaaS 数据工具</td>
+<td>交易操作系统</td>
+</tr>
+<tr>
+<td>核心闭环</td>
+<td>数据 → 报告</td>
+<td>数据 → 决策 → 交易 → 配送 → 复盘</td>
+</tr>
+<tr>
+<td>收入</td>
+<td>会员费</td>
+<td>供应链抽成 / SaaS 订阅 / 金融服务</td>
+</tr>
+<tr>
+<td>天花板</td>
+<td>信息服务</td>
+<td>产业基础设施</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23">2.3 产品特色</h3>
+<ol>
+<li><strong>门店级数据</strong>：POS 、收银系统、进销存、毛利结构</li>
+<li><strong>决策引擎</strong>：AI 告诉门店"该上什么菜、该补什么货、该换什么供应商"</li>
+<li><strong>一键执行</strong>：从数据决策直接下单到供应链</li>
+<li><strong>交易闭环</strong>：选品 → 比价 → 下单 → 配送 → 复购 → 金融</li>
+</ol>
+<hr />
+<h2 id="3">3. 目标用户</h2>
+<h3 id="31">3.1 核心用户</h3>
+<table>
+<thead>
+<tr>
+<th>用户角色</th>
+<th>痛点</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>餐饮门店老板</td>
+<td>不知道该上什么菜、该进多少货</td>
+<td>数据驱动的采购建议</td>
+</tr>
+<tr>
+<td>门店采购员</td>
+<td>每天花大量时间比价、下单</td>
+<td>一键补货、自动比价</td>
+</tr>
+<tr>
+<td>连锁品牌总部</td>
+<td>无法实时掌握各门店营销和库存</td>
+<td>多门店统一视图和调配</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>缺少稳定订单渠道</td>
+<td>获得准确的采购需求</td>
+</tr>
+<tr>
+<td>菜洋洋运营团队</td>
+<td>需要提升客户粘性和增值</td>
+<td>从供应商升级为产业平台</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 用户分层</h3>
+<ul>
+<li><strong>小型单店</strong>：重点需求是"爆品发现 + 一键补货"</li>
+<li><strong>中型连锁（10-50 家）</strong>：重点需求是"多店统一采购 + 品类管理"</li>
+<li><strong>大型连锁（50+ 家）</strong>：重点需求是"数据中台 + AI 决策 + 供应链金融"</li>
+</ul>
+<hr />
+<h2 id="4">4. 核心价值主张</h2>
+<h3 id="41">4.1 主张一：爆品 → 一键补货</h3>
+<blockquote>
+<p>核心逻辑：通过门店销量数据和外部趋势数据，自动识别爆品，并推荐应该补货的 SKU 和数量。</p>
+</blockquote>
+<p><strong>功能路径</strong>：
+1. 接入门店 POS/收银系统
+2. 自动识别门店爆品（日、周、月维度）
+3. 结合外部趋势（同城同类热销菜品）
+4. 推荐补货 SKU 、数量、供应商
+5. 用户一键确认，自动生成采购单
+6. 同步到菜洋洋供应链执行</p>
+<h3 id="42">4.2 主张二：智能采购建议</h3>
+<blockquote>
+<p>基于销量、库存、天气、节假日、供应商价格等因素，预测采购需求。</p>
+</blockquote>
+<p><strong>关键场景</strong>：
+- "这周咨询量下降，是不是该换一个 SKU？"
+- "明天下雨，点单量可能上涨，提前备多少货？"
+- "这个供应商价格涨了 8%，要不要换一家？"</p>
+<h3 id="43">4.3 主张三：供应链比价与优化</h3>
+<blockquote>
+<p>集合多个供应商报价，根据价格、品质、交付周期、历史合规率自动推荐最优采购方案。</p>
+</blockquote>
+<h3 id="44">4.4 主张四：多门店统一视图</h3>
+<blockquote>
+<p>连锁品牌可以统一查看各门店的销量、库存、毛利、缺货情况，并统一调配采购。</p>
+</blockquote>
+<hr />
+<h2 id="5-mvp">5. MVP 范围（第一阶段）</h2>
+<h3 id="51-mvp">5.1 MVP 核心目标</h3>
+<p>验证：<strong>门店愿意为"数据驱动的一键补货"付费</strong></p>
+<h3 id="52-mvp">5.2 MVP 功能清单</h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据接入</strong></td>
+<td>POS 接入</td>
+<td>至少支持 1-2 家主流 POS 厂商（如客如云、美团收银等）</td>
+</tr>
+<tr>
+<td></td>
+<td>进销存手工录入</td>
+<td>作为 POS 数据的补充</td>
+</tr>
+<tr>
+<td></td>
+<td>外部趋势数据</td>
+<td>同城热销菜品、竞品菜单</td>
+</tr>
+<tr>
+<td><strong>爆品识别</strong></td>
+<td>门店爆品排行</td>
+<td>按日/周/月统计 SKU 销量 TOP</td>
+</tr>
+<tr>
+<td></td>
+<td>趋势爆品</td>
+<td>同比/环比增长超过阈值的 SKU</td>
+</tr>
+<tr>
+<td></td>
+<td>外部爆品</td>
+<td>同城同类热销菜品</td>
+</tr>
+<tr>
+<td><strong>补货推荐</strong></td>
+<td>推荐采购单</td>
+<td>根据销量、库存、安全库存推荐数量</td>
+</tr>
+<tr>
+<td></td>
+<td>多供应商比价</td>
+<td>自动对比菜洋洋平台内供应商报价</td>
+</tr>
+<tr>
+<td></td>
+<td>一键下单</td>
+<td>确认后自动生成订单并同步供应链</td>
+</tr>
+<tr>
+<td><strong>数据看板</strong></td>
+<td>门店经营概览</td>
+<td>销量、客单价、毛利率、缺货率</td>
+</tr>
+<tr>
+<td></td>
+<td>采购分析</td>
+<td>采购金额、供应商占比、价格趋势</td>
+</tr>
+<tr>
+<td><strong>基础设施</strong></td>
+<td>用户体系</td>
+<td>门店、采购员、角色权限</td>
+</tr>
+<tr>
+<td></td>
+<td>供应商接入</td>
+<td>供应商入驻、商品上架、报价</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-mvp">5.3 明确不做的（MVP 阶段）</h3>
+<ul>
+<li>外卖平台数据抓取（第一阶段不做，只做 POS 接入）</li>
+<li>AI 智能决策（先做规则化推荐）</li>
+<li>供应链金融</li>
+<li>多城市、多仓复杂配送</li>
+<li>私域社区/评论分析</li>
+</ul>
+<hr />
+<h2 id="6">6. 功能模块详细设计</h2>
+<h3 id="61">6.1 数据接入层</h3>
+<h4 id="611-pos">6.1.1 POS 数据接入</h4>
+<ul>
+<li>支持常见 POS 厂商 API 接入</li>
+<li>定期同步订单明细（商品、数量、金额、时间）</li>
+<li>缺少 API 时支持导入 Excel</li>
+</ul>
+<h4 id="612">6.1.2 进销存数据</h4>
+<ul>
+<li>日常进货录入</li>
+<li>盘点数据录入</li>
+<li>实时库存查询</li>
+</ul>
+<h4 id="613">6.1.3 外部趋势数据（第二阶段）</h4>
+<ul>
+<li>同城热销菜品</li>
+<li>竞品菜单变化</li>
+<li>品类增长趋势</li>
+</ul>
+<h3 id="62">6.2 爆品识别引擎</h3>
+<h4 id="621">6.2.1 算法规则</h4>
+<table>
+<thead>
+<tr>
+<th>爆品类型</th>
+<th>判断规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>稳定爆品</td>
+<td>近7天销量 TOP10 且连续 3 天在前 10</td>
+</tr>
+<tr>
+<td>趋势爆品</td>
+<td>同比增长 &gt; 30% 或 环比增长 &gt; 50%</td>
+</tr>
+<tr>
+<td>潜力爆品</td>
+<td>新上架 SKU 中 7 天内销量进前 20</td>
+</tr>
+<tr>
+<td>外部爆品</td>
+<td>同城同类门店热销 TOP5</td>
+</tr>
+</tbody>
+</table>
+<h4 id="622">6.2.2 输出结果</h4>
+<ul>
+<li>爆品名单</li>
+<li>爆品指数（根据销量、增速、毛利综合计算）</li>
+<li>爆品原因解释</li>
+</ul>
+<h3 id="63">6.3 补货推荐引擎</h3>
+<h4 id="631">6.3.1 推荐逻辑</h4>
+<pre><code>建议采购量 = max(
+    预测未来5天销量 - 当前库存,
+    安全库存 - 当前库存,
+    0
+)
+</code></pre>
+<h4 id="632">6.3.2 供应商推荐</h4>
+<ul>
+<li>优先推荐历史合作过的供应商</li>
+<li>同品类价格最优</li>
+<li>交付周期符合要求</li>
+<li>评分高的供应商</li>
+</ul>
+<h3 id="64">6.4 一键补货流程</h3>
+<ol>
+<li>系统生成<strong>采购建议单</strong></li>
+<li>采购员确认/修改</li>
+<li>系统自动拆分订单给供应商</li>
+<li>供应商确认并发货</li>
+<li>仓库/门店验收</li>
+<li>自动更新库存</li>
+</ol>
+<h3 id="65">6.5 数据看板</h3>
+<h4 id="651">6.5.1 门店经营看板</h4>
+<ul>
+<li>今日销量、客单价、毛利率</li>
+<li>热销 SKU TOP10</li>
+<li>缺货 SKU 预警</li>
+<li>库存周转天数</li>
+</ul>
+<h4 id="652">6.5.2 采购看板</h4>
+<ul>
+<li>本月采购金额</li>
+<li>供应商占比</li>
+<li>价格波动趋势</li>
+<li>采购频次分析</li>
+</ul>
+<h3 id="66">6.6 供应商端</h3>
+<ul>
+<li>商品上架与报价</li>
+<li>订单接收与发货</li>
+<li>账款查询</li>
+<li>销量统计</li>
+</ul>
+<hr />
+<h2 id="7">7. 数据架构与指标体系</h2>
+<h3 id="71">7.1 核心数据模型</h3>
+<table>
+<thead>
+<tr>
+<th>实体</th>
+<th>主要字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>门店</td>
+<td>门店 ID、名称、位置、经营品类、POS 类型</td>
+</tr>
+<tr>
+<td>SKU</td>
+<td>SKU ID、名称、品类、规格、单位、成本价</td>
+</tr>
+<tr>
+<td>订单明细</td>
+<td>时间、门店、SKU、数量、金额</td>
+</tr>
+<tr>
+<td>库存</td>
+<td>SKU、当前库存、安全库存、在途数量</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>供应商 ID、名称、联系人、评分</td>
+</tr>
+<tr>
+<td>供应商报价</td>
+<td>SKU、价格、起订量、交付周期</td>
+</tr>
+<tr>
+<td>采购建议单</td>
+<td>门店、SKU、建议量、推荐供应商、状态</td>
+</tr>
+<tr>
+<td>采购订单</td>
+<td>供应商、SKU、数量、价格、状态</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72">7.2 核心指标体系</h3>
+<h4 id="721">7.2.1 销售类</h4>
+<ul>
+<li>日/周/月销量</li>
+<li>客单价（AOV）</li>
+<li>同比增长率</li>
+<li>环比增长率</li>
+<li>SKU 销量排行</li>
+<li>品类销量占比</li>
+</ul>
+<h4 id="722">7.2.2 库存类</h4>
+<ul>
+<li>库存周转天数</li>
+<li>缺货率</li>
+<li>安全库存符合率</li>
+<li>残次品占比</li>
+</ul>
+<h4 id="723">7.2.3 采购类</h4>
+<ul>
+<li>采购金额</li>
+<li>采购频次</li>
+<li>供应商集中度</li>
+<li>价格波动率</li>
+<li>一键补货占比</li>
+</ul>
+<h4 id="724">7.2.4 爆品类</h4>
+<ul>
+<li>爆品指数</li>
+<li>爆品识别准确率</li>
+<li>爆品与采购转化率</li>
+</ul>
+<hr />
+<h2 id="8">8. 非功能性需求</h2>
+<h3 id="81">8.1 技术架构</h3>
+<ul>
+<li><strong>前端</strong>：Vue 3 / React + TypeScript</li>
+<li><strong>后端</strong>：Spring Boot / Go 微服务</li>
+<li><strong>数据库</strong>：PostgreSQL + Redis</li>
+<li><strong>数据仓库</strong>：ClickHouse / Doris（适合分析型查询）</li>
+<li><strong>消息队列</strong>：RabbitMQ / Kafka</li>
+<li><strong>数据接入</strong>：ETL 工具 + API 网关</li>
+</ul>
+<h3 id="82">8.2 性能</h3>
+<ul>
+<li>数据看板加载 &lt; 3s</li>
+<li>爆品计算定时任务 T+1 出结果</li>
+<li>支持 1000+ 门店数据量</li>
+</ul>
+<h3 id="83">8.3 安全</h3>
+<ul>
+<li>门店数据隔离</li>
+<li>金融级数据加密</li>
+<li>POS 接入 OAuth2 认证</li>
+<li>操作日志审计</li>
+</ul>
+<hr />
+<h2 id="9">9. 商业模式</h2>
+<h3 id="91">9.1 收入来源</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SaaS 订阅</td>
+<td>门店按月/年付费使用数据驱动采购系统</td>
+</tr>
+<tr>
+<td>供应链抽成</td>
+<td>通过平台产生的交易金额抽成</td>
+</tr>
+<tr>
+<td>金融服务</td>
+<td>采购贷、供应链信贷（第三阶段）</td>
+</tr>
+<tr>
+<td>数据服务</td>
+<td>行业报告、品类分析（第三阶段）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92">9.2 客户价值</h3>
+<ul>
+<li>降低缺货率 10%-20%</li>
+<li>减少采购人员日常工作时间 30%+</li>
+<li>提升库存周转效率</li>
+<li>通过数据优化毛利结构</li>
+</ul>
+<hr />
+<h2 id="10">10. 里程碑</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>周期</th>
+<th>主要交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1</td>
+<td>需求与架构</td>
+<td>PRD 确认、技术选型、数据模型、POS 接入方案</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>MVP 开发</td>
+<td>数据接入、爆品识别、补货推荐、一键下单</td>
+</tr>
+<tr>
+<td>M3</td>
+<td>内测与优化</td>
+<td>5-10 家门店试点、收集反馈、算法调优</td>
+</tr>
+<tr>
+<td>M4</td>
+<td>扩展功能</td>
+<td>多门店、外部趋势数据、AI 决策引擎</td>
+</tr>
+<tr>
+<td>M5</td>
+<td>商业化</td>
+<td>定价体系、供应商拓展、运营体系</td>
+</tr>
+<tr>
+<td>M6</td>
+<td>扩大覆盖</td>
+<td>多城市推广、持续迭代</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11_1">11. 成功标准</h2>
+<h3 id="111">11.1 过程指标</h3>
+<ul>
+<li>100+ 门店接入 POS 数据</li>
+<li>80% 以上门店每周至少使用 1 次一键补货</li>
+<li>缺货率下降 10%+</li>
+</ul>
+<h3 id="112">11.2 结果指标</h3>
+<ul>
+<li>平台月交易金额达到 XXX 万</li>
+<li>SaaS 付费门店数达到 XXX 家</li>
+<li>供应商入驻达到 XXX 家</li>
+</ul>
+</body>
+</html>

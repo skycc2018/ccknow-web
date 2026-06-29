@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>log - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <h1 id="wiki-log">Wiki Log</h1>
+<blockquote>
+<p>知识库操作日志。仅追加的编年史。
+格式：<code>## [YYYY-MM-DD] action | subject</code>
+操作类型：ingest, update, query, lint, create, archive, delete
+超过 500 条目时，轮转为 <code>log-YYYY.md</code> 并新建。</p>
+</blockquote>
+<h2 id="2026-06-21-create-llm-wiki">[2026-06-21] create | 初始化 LLM Wiki 管理结构</h2>
+<ul>
+<li>创建 SCHEMA.md — 定义知识库管理规则</li>
+<li>创建 index.md — 基于现有 60 个 Markdown 文件建立内容索引</li>
+<li>创建本日志文件</li>
+<li>规则确立：</li>
+<li>仅用户明确说"写入知识库"时才添加内容</li>
+<li>仅用户明确说"结合知识库"时才先检索再回答</li>
+<li>所有页面使用 Markdown + 双向链接</li>
+<li>严格遵循 LLM Wiki 文件结构</li>
+<li>遗留目录保留：01 项目、02 领域、03 资源、04 归档、05 日常、99 附件</li>
+<li>新增目录（待使用）：raw/, entities/, concepts/, comparisons/, queries/</li>
+</ul>
+<h2 id="2026-06-21-ingest-openclaw">[2026-06-21] ingest | 归档 OpenClaw 记忆文件</h2>
+<ul>
+<li>用户明确说出"写入知识库"，授权将 OpenClaw 记忆归档至知识库</li>
+<li>读取源：<code>/Users/skycc/Documents/openclaw/memory/</code> 下 27 份每日记忆、MEMORY.md、14 份对话语料</li>
+<li>生成汇总文档：<code>老openclaw20260621的记忆文件.md</code>，包含时间线、主题分布、长期记忆精华、对话摘要、梦境事件</li>
+<li>更新 <code>index.md</code>：新增「归档（Archives）」部分，总页面数更新为 61</li>
+<li>文件大小：5122 字符</li>
+<li>内容格式：Markdown + 双向链接，符合 SCHEMA.md 约定</li>
+</ul>
+<h2 id="2026-06-21-lint">[2026-06-21] lint | 知识库归档整理</h2>
+<ul>
+<li>用户明确授权："执行，整理"</li>
+<li>整理范围：根目录散落文件、空文件、重复文件、空目录</li>
+<li>具体操作：</li>
+<li>删除根目录空文件：<code>AI岗位培训课件 - 管理层：用AI做经营决策.md</code>（0B）、<code>AI岗位培训课件 - 产品：PRD→原型→Demo.md</code>（0B）</li>
+<li>删除根目录空目录：<code>AI岗位培训课件 - HR：招聘JD/</code>、<code>AI岗位培训课件 - 数据/</code></li>
+<li>移动文件：<code>AI工具分层自学视频资源表.md</code> -&gt; <code>03 资源/</code></li>
+<li>移动文件：<code>老openclaw20260621的记忆文件.md</code> -&gt; <code>04 归档/</code></li>
+<li>更新 <code>index.md</code>：新增「管理文件」部分，总页面数更新为 55</li>
+<li>清理后状态：根目录剩余 5 个管理文件（SCHEMA.md, index.md, log.md, 首页.md, 欢迎.md），Wiki 页面 55 个，无空文件</li>
+</ul>
+<h2 id="2026-06-21-create-cio-sharellm">[2026-06-21] create | 生成 CIO 技能提升与 ShareLLM 项目计划</h2>
+<ul>
+<li>用户明确说出"写入知识库"，授权将两份计划写入</li>
+<li>创建 <code>05 日常/CIO技能提升专项计划-2026-06-21.md</code>：12 周三阶段（AI 领导力筑基 → 数据与平台能力 → 组织与战略），4170 字符</li>
+<li>创建 <code>01 项目/ShareLLM项目开发计划-2026-06-21.md</code>：12 周三阶段（MVP 网关+Prompt 库 → RAG 知识库 → Agent 与自动化），6037 字符</li>
+<li>更新 <code>index.md</code>：新增两条索引条目，总页面数更新为 57</li>
+<li>用户补充 ShareLLM 代码路径：<code>/Users/skycc/Documents/openclaw/siyang/modelhub/new-api-main</code></li>
+</ul>
+<h2 id="2026-06-21-lint-63-frontmatter">[2026-06-21] lint | 批量修复 63 个页面的 frontmatter</h2>
+<ul>
+<li>操作：备份知识库后，批量补全所有页面的 frontmatter</li>
+<li>备份路径：<code>/Users/skycc/.hermes-siyang/backups/ccknow-2026-06-21</code></li>
+<li>修复页面数：63</li>
+<li>主要问题：</li>
+<li>大量旧页面缺少 frontmatter</li>
+<li>部分页面 frontmatter 缺少必填键（title/created/updated/type/tags/sources/confidence）</li>
+<li>模板页面含有 <code>{{date:YYYY-MM-DD}}</code> 等模板变量，导致 YAML 解析失败</li>
+<li>修复内容：</li>
+<li>title：从第一个 H1 标题或文件名推断</li>
+<li>created：从文件名中的日期推断，否则使用 2026-06-21</li>
+<li>updated：2026-06-21</li>
+<li>type：根据所在目录推断（project/concept/resource/note/summary）</li>
+<li>tags：根据标题和路径推断关键词标签</li>
+<li>sources：默认空列表</li>
+<li>confidence：默认 medium</li>
+<li>死链和孤立页面：未处理，留待下一轮 lint 处理</li>
+<li>Lint 报告：<code>/Users/skycc/.hermes-siyang/kb-lint-report-2026-06-21.md</code></li>
+</ul>
+<h2 id="2026-06-21-create-hermes-obsidian-llm-wiki-skill">[2026-06-21] create | 创建 Hermes + Obsidian + LLM Wiki 整合 Skill</h2>
+<ul>
+<li>创建 Skill <code>obsidian-kb</code>：定义知识库检索、写入、维护流程</li>
+<li>核心规则：只有用户说"写入知识库"才写入，只有用户说"结合知识库"才检索</li>
+<li>创建模板：<code>templates/write-confirmation.md</code>、<code>templates/page-template.md</code></li>
+<li>创建日常同步 Cron <code>kb-daily-sync</code>（job_id: e401c5543a00）：每日 21:00 扫描对话，提议候选条目，等待用户确认后写入</li>
+</ul>
+<h2 id="2026-06-21-create-cron-kb-weekly-heartbeat">[2026-06-21] create | 创建知识库心跳 Cron (kb-weekly-heartbeat)</h2>
+<ul>
+<li>创建 Cron <code>kb-weekly-heartbeat</code>（job_id: c516de9c183d）：每周日 10:00 运行</li>
+<li>脚本：<code>~/.hermes-siyang/scripts/kb_weekly_heartbeat.py</code></li>
+<li>功能：</li>
+<li>扫描全部 Markdown 页面</li>
+<li>重新生成 <code>index.md</code>，按 type 分类（项目/领域/资源/日常/归档/体系/模板）</li>
+<li>检测死链和孤立页面</li>
+<li>发送简洁报告给用户，不自动修复内容页面</li>
+<li>首次运行：2026-06-21，总页面数 63，死链 94，孤立页面 41</li>
+<li>备份路径：<code>/Users/skycc/.hermes-siyang/backups/ccknow-2026-06-21</code></li>
+</ul>
+<h2 id="2026-06-21-lint_1">[2026-06-21] lint | 清理死链与孤立页面</h2>
+<ul>
+<li>操作：自动修复 + 手动补充相关链接</li>
+<li>死链从 94 个降至 9 个：</li>
+<li>修复培训课件链接（文件名不匹配）</li>
+<li>修复项目页面链接（多租户 SaaS 商城平台、产品周会等）</li>
+<li>修复管理层数字化素养提升链接</li>
+<li>将图片附件链接 <code>...</code> 改为 <code>![[...]]</code></li>
+<li>将代码文件链接改为行内代码</li>
+<li>排除管理文件（SCHEMA.md/index.md/log.md）从死链检查</li>
+<li>剩余 9 个死链为 ShareLLM 前向引用（待创建子页面），予以保留</li>
+<li>孤立页面从 41 个降至 0 个：</li>
+<li>在 <code>菜洋洋商城战略评审-2026-05-29.md</code> 添加链接到 <code>菜洋洋商城战略PRD</code></li>
+<li>在 <code>AI Native 深度报告.md</code> 添加链接到 <code>AI Coding vs Vibe Coding 对比分析</code></li>
+<li>在 <code>AI应用及团队管理探讨会_纪要.md</code> 添加链接到 <code>餐饮供应链业务对接交流会-20260526</code></li>
+<li>重新生成 <code>index.md</code>，总页面数 63</li>
+</ul>
+<h2 id="2026-06-21-lint_2">[2026-06-21] lint | 合并重复目录并删除空目录</h2>
+<ul>
+<li>操作：合并重复目录后删除空目录</li>
+<li>合并：<code>05 资源/模板/PRD-模板.md</code> 移至 <code>99 附件/模板/PRD-模板.md</code></li>
+<li>删除空目录：</li>
+<li><code>05 资源/模板</code></li>
+<li><code>05 资源</code>（清空后）</li>
+<li><code>04 复盘</code></li>
+<li><code>04 归档/会议记录</code></li>
+<li>重新生成 <code>index.md</code>，总页面数 63，死链 9，孤立页面 0</li>
+</ul>
+<h2 id="2026-06-21-migrate-p2-llm-wiki">[2026-06-21] migrate | P2 旧结构迁移至 LLM Wiki</h2>
+<ul>
+<li>将原有旧结构目录（00 体系、01 项目、04 归档、05 日常、06 资源、07 领域）中的 55 个 Markdown 页面迁移至 LLM Wiki 结构</li>
+<li>分布：entities/ 21 个、concepts/ 30 个、comparisons/ 1 个、queries/ 2 个、raw/articles/ 1 个</li>
+<li>修正非标准 type（standard、system、prd、training、research、meeting）为 LLM Wiki 标准 type</li>
+<li>将非 Markdown 附件（zip、json、pdf、xlsx）统一归入 99 附件/</li>
+<li>删除空旧目录：01 项目、02 技术、03 产品、04 归档、05 日常、06 资源、07 领域、00 体系</li>
+<li>重命名 <code>1#楼改造工程-工程量清单.md</code> 为 <code>1号楼改造工程-工程量清单.md</code>，修复 Wikilink 中 <code>#</code> 被误解为 heading anchor 的问题</li>
+<li>修复死链：更新【研发体系建设方案】、【老openclaw20260621的记忆文件】、【ShareLLM项目开发计划】中的过时或错误链接</li>
+<li>保留 ShareLLM PRD 中 8 个前向引用作为待创建子页面的待办提示</li>
+<li>为页面补充"相关链接"部分，将孤立页面从 23 个降至 1 个（首页作为入口页面保留）</li>
+<li>更新 <code>index.md</code>、<code>首页.md</code>、<code>SCHEMA.md</code> 以反映新结构</li>
+<li>备份路径：<code>/Users/skycc/.hermes-siyang/backups/ccknow-before-llmwiki-migration-2026-06-21</code></li>
+</ul>
+<h2 id="2026-06-22-create">[2026-06-22] create | 菜洋洋云星空旗舰版项目业务蓝图老信评审</h2>
+<ul>
+<li>用户明确说出"放到知识库中"，授权将评审记录写入知识库</li>
+<li>读取源：<code>/Users/skycc/.hermes-fde/cache/documents/doc_6831e33cd84b_菜洋洋云星空旗舰版项目业务蓝图——初版待完善.docx</code></li>
+<li>创建评审页面：<code>entities/菜洋洋云星空旗舰版项目业务蓝图-老信评审-2026-06-22.md</code></li>
+<li>主要评审结论：原则上通过，但需在集成方案、财务核算、多组织交易、基础资料、库存成本、文档完整性等 7 个维度补充完善</li>
+<li>同时生成 Word 批注版文档：<code>/tmp/菜洋洋云星空旗舰版项目业务蓝图_老信批注版.docx</code>，共 51 条批注</li>
+<li>更新 <code>index.md</code>：在实体类别中新增索引</li>
+<li>内容格式：Markdown + 双向链接，符合 SCHEMA.md 约定</li>
+</ul>
+<h2 id="2026-06-22-ingest">[2026-06-22] ingest | 导入菜洋洋云星空旗舰版项目业务蓝图初版</h2>
+<ul>
+<li>用户明确说出"写入知识库"，授权将 Word 文档转换为 Markdown 并导入</li>
+<li>读取源：<code>/Users/skycc/Documents/个人/ccknow/comparisons/菜洋洋云星空旗舰版项目业务蓝图——初版待完善.docx</code></li>
+<li>创建页面：<code>comparisons/菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10.md</code></li>
+<li>转换工具：obsidian-word skill（python-docx）</li>
+<li>内容覆盖：实施范围、15个模块、核心基础资料、销售/采购/仓库/财务/成本/资产流程</li>
+<li>未覆盖图片，表格已转为 Markdown 表格，基础排版已保留</li>
+<li>内容格式：Markdown + YAML frontmatter，符合 SCHEMA.md 约定</li>
+</ul>
+<h2 id="2026-06-22-ingest-prd">[2026-06-22] ingest | 导入菜洋洋数据驱动的餐饮供应链操作系统 PRD</h2>
+<ul>
+<li>用户明确说出"写入知识库"，授权将策略分析 PRD 写入 concepts/ 目录</li>
+<li>创建页面：<code>concepts/菜洋洋-数据驱动的餐饮供应链操作系统-PRD.md</code></li>
+<li>策略来源：对标窄门餐眼，从"数据工具"升级为"交易操作系统"</li>
+<li>MVP 核心："爆品 → 一键补货"，覆盖 POS 接入、爆品识别、补货推荐、多供应商比价、一键下单</li>
+<li>更新 <code>index.md</code>：在概念类别中新增索引，总页面数更新为 65</li>
+<li>内容格式：Markdown + YAML frontmatter，符合 SCHEMA.md 约定</li>
+</ul>
+<h2 id="2026-06-22-ingest-ai-prd">[2026-06-22] ingest | 导入 AI 商机雷达 PRD</h2>
+<ul>
+<li>用户明确说出"记录到知识库中"，授权将完善后的 AI 商机雷达 PRD 写入 concepts/ 目录</li>
+<li>创建页面：<code>concepts/AI商机雷达-PRD.md</code></li>
+<li>产品定位：面向餐饮供应链 B2B 销售的 AI 客户发现系统，MVP 主打"销售输入产品 → 系统推荐高价值客户"</li>
+<li>核心覆盖：商机定义、MVP 边界、评分模型、页面设计、数据字段、AI 输出规范、验收指标、风险控制</li>
+<li>更新 <code>index.md</code>：在概念类别中新增索引，总页面数更新为 66</li>
+<li>内容格式：Markdown + YAML frontmatter，符合 SCHEMA.md 约定</li>
+</ul>
+<h2 id="2026-06-22-lint">[2026-06-22] lint | 知识库复盘与修复优化</h2>
+<ul>
+<li>用户确认执行复盘中发现的问题，对知识库进行了一次综合修复</li>
+<li>重写 <code>首页.md</code>：</li>
+<li>将旧的英文目录名更新为中文 LLM Wiki 目录名</li>
+<li>更新各目录文件数量：实体 20、概念 36、对比 2、查询 2、原始资料 1、99 附件 5</li>
+<li>移除已丢失的 CodeReview 报告链接</li>
+<li>首页不再重复展示完整索引，改为快速入口 + 指向 [[index.md]]</li>
+<li>修复 CodeReview 死链：</li>
+<li>更新 <code>实体/_审查报告索引.md</code>，标注报告文件在 2026-06-21 整理中丢失、待恢复</li>
+<li>将报告链接改为文件名文本，保留 P0 待修复清单以便追踪</li>
+<li>补齐 AI 商机雷达提示词文件 frontmatter：</li>
+<li><code>概念/AI商机雷达｜AI Coding开发提示词.md</code></li>
+<li><code>概念/AI商机雷达｜Figma -Figma AI设计提示词.md</code></li>
+<li>将两个 AI 商机雷达提示词文件加入 <code>index.md</code> 概念类别索引</li>
+<li>整理根目录图片附件：</li>
+<li>将 17 张 <code>Pasted image ...png</code> 从根目录迁移到 <code>99 附件/</code></li>
+<li>修正 <code>实体/菜洋洋 AI OS 系统架构图.md</code> 和 <code>概念/菜洋洋AIOS-数据基础建设需求梳理.md</code> 中的图片引用链接为 <code>99 附件/Pasted image ...</code> 格式</li>
+<li>重命名并优化 <code>未命名.md</code>：</li>
+<li>新名称：<code>概念/菜洋洋AIOS-数据基础建设需求梳理.md</code></li>
+<li>更新 frontmatter title、tags、updated 日期</li>
+<li>更新 <code>index.md</code> 中的索引条目</li>
+<li>未完成项（待后续处理）：</li>
+<li>ShareLLM 子页面等前向引用仍为死链，需要时创建对应页面</li>
+<li>菜洋洋云星空蓝图评审中的业务概念链接（菜洋洋、金蝶云星空、跨组织销售等）待评估是否需要创建专页</li>
+<li>部分历史文件名仍包含空格和中文标点，建议新文件严格遵守 SCHEMA 命名规范</li>
+</ul>
+<h2 id="2026-06-27-ingest-11ppt">[2026-06-27] ingest | 导入菜洋洋企业定位研讨11问（洞察+建议+参考）PPT</h2>
+<ul>
+<li>用户明确说出"结构化到知识库中"，授权将 PPT 内容结构化导入知识库</li>
+<li>读取源：<code>/Users/skycc/.hermes-fde/cache/documents/doc_699a556f0a06_菜洋洋企业定位研讨11问（洞察+建议+参考）-分享版.pptx</code></li>
+<li>创建页面：<code>概念/菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27.md</code></li>
+<li>内容覆盖：11个问题的访谈洞察、建议方向、参考案例，以及与一页版的差异分析</li>
+<li>更新 <code>index.md</code>：在 Domains 类别中新增索引，总页面数更新为 70</li>
+<li>内容格式：Markdown + YAML frontmatter + 双向链接，符合 SCHEMA.md 约定</li>
+<li>相关链接：与 [[菜洋洋企业定位研讨-思路准备-2026-06-25]]、[[菜洋洋-数据驱动的餐饮供应链操作系统-PRD]] 等页面建立链接</li>
+</ul>
+<h2 id="2026-06-27-create">[2026-06-27] create | 菜洋洋企业定位研讨会发言稿</h2>
+<ul>
+<li>用户明确说出"写入知识库"，授权将发言稿写入知识库</li>
+<li>创建页面：<code>概念/菜洋洋企业定位研讨会发言稿-2026-06-27.md</code></li>
+<li>发言稿时长：约 18-20 分钟，适用于研讨会开场引导</li>
+<li>内容结构：开场 + 企业本质与核心价值（Q1-Q4）+ 社会角色与未来愿景（Q5-Q6）+ 普遍共识与信任资产（Q7-Q11）+ 结语</li>
+<li>基于 [[菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27]] 整理，保持口语化和引导讨论的语气</li>
+<li>更新 <code>index.md</code>：在 Domains 类别中新增索引，总页面数更新为 71</li>
+<li>内容格式：Markdown + YAML frontmatter + 双向链接，符合 SCHEMA.md 约定</li>
+<li>相关链接：与 [[菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27]]、[[菜洋洋企业定位研讨-思路准备-2026-06-25]] 等页面建立链接</li>
+</ul>
+<h2 id="2026-06-27-query-ppt">[2026-06-27] query | 对比一页版 PPT 与菜洋洋核心定位的对齐度</h2>
+<ul>
+<li>基于菜洋洋企业定位研讨11问 PPT 的访谈洞察和建议，判断一页版与核心定位基本对齐</li>
+<li>主要偏差："预制食品产业"边界过窄、数据/AI 被过度前置、"平台 vs 自主品牌"争议被简化、缺少信任资产维度</li>
+<li>已向用户提供修改建议</li>
+</ul>
+<h2 id="2026-06-22-update-ai">[2026-06-22] update | 将 AI 商机雷达从概念迁移至实体</h2>
+<ul>
+<li>用户确认执行迁移，将 <code>AI商机雷达</code>作为具体项目/产品收录</li>
+<li>移动文件：<code>概念/AI商机雷达-PRD.md</code> → <code>实体/AI商机雷达-PRD.md</code></li>
+<li>更新 frontmatter：<code>type: concept</code> → <code>type: project</code></li>
+<li>清理重复文件：删除 <code>概念/AI商机雷达 PRD.md</code>（空标题、无 frontmatter、内容与带连字版本重复）</li>
+<li>更新 <code>index.md</code>：将 <code>AI商机雷达-PRD</code> 从概念类别移至实体类别，概念类保留移动端设计规范和 AI/Figma/Coding 提示词</li>
+<li>总页面数保持 67 不变（删除的为未索引的重复文件）</li>
+<li>迁移原因：已具备明确命名、MVP 范围、设计/开发产物链，从"思路"转变为"可执行项目"</li>
+</ul>
+<h2 id="2026-06-22-create-ai-figma">[2026-06-22] create | 创建 AI 商机雷达移动端 Figma 设计规范</h2>
+<ul>
+<li>用户明确说出"写入知识库"，授权将移动端设计规范单独整理为文件</li>
+<li>创建页面：<code>概念/AI商机雷达-移动端Figma设计规范.md</code></li>
+<li>核心内容：画板尺寸与断点、导航重构、各页面移动端适配、组件规范、交互手势、性能体验、设计禁忌、交付要求</li>
+<li>与桌面端设计提示词形成配套，共同支持 AI 商机雷达完整设计稿输出</li>
+<li>更新 <code>index.md</code>：在概念类别中新增索引，总页面数更新为 67</li>
+<li>内容格式：Markdown + YAML frontmatter，符合 SCHEMA.md 约定</li>
+</ul>
+<h2 id="2026-06-22-update">[2026-06-22] update | 知识库一级目录英文名改为中文</h2>
+<ul>
+<li>用户明确要求将一级目录英文名称改为汉字</li>
+<li>重命名目录：</li>
+<li><code>raw/</code> → <code>原始资料/</code></li>
+<li><code>entities/</code> → <code>实体/</code></li>
+<li><code>concepts/</code> → <code>概念/</code></li>
+<li><code>comparisons/</code> → <code>对比/</code></li>
+<li><code>queries/</code> → <code>查询/</code></li>
+<li>保留 <code>99 附件/</code> 不变</li>
+<li>更新 <code>SCHEMA.md</code>：修改目录结构示意图为中文目录名</li>
+<li>页面 frontmatter 中的 <code>type</code> 字段保持英文不变（entity/concept/comparison/query 等）</li>
+<li>历史日志中的旧路径保留，仅作为历史记录</li>
+<li>总页面数保持 66 不变</li>
+</ul>
+<h2 id="2026-06-22-ingest-prd_1">[2026-06-22] ingest | 导入网店运营与推广综合实训平台 PRD 与人员排期</h2>
+<ul>
+<li>用户明确说出"写入知识库"，授权将 PRD 和人员投入排期写入 concepts/ 目录</li>
+<li>创建页面：<code>concepts/网店运营与推广综合实训平台-PRD.md</code></li>
+<li>创建页面：<code>concepts/网店运营与推广综合实训平台-人员投入排期.md</code></li>
+<li>内容覆盖：B/S 架构网店运营与推广仿真综合实训平台需求分析、6 个月项目人员投入计划</li>
+<li>更新 <code>index.md</code>：在概念类别中新增索引，总页面数更新为 64</li>
+<li>内容格式：Markdown + YAML frontmatter，符合 SCHEMA.md 约定</li>
+</ul>
+<h2 id="2026-06-25-create">[2026-06-25] create | 菜洋洋企业定位研讨思路准备</h2>
+<ul>
+<li>用户明确说出"写入知识库"，授权结合图片与知识库生成研讨思路文档</li>
+<li>创建页面：<code>概念/菜洋洋企业定位研讨-思路准备-2026-06-25.md</code></li>
+<li>内容覆盖：</li>
+<li>整理企业定位研讨框架图片中的三大框架与 11 个问题</li>
+<li>基于知识库提炼菜洋洋业务现状、战略方向、竞争格局</li>
+<li>针对 Q1-Q6 给出研讨思路与参考答案</li>
+<li>针对 Q7-Q11 给出简要思考方向</li>
+<li>附研讨原则与参会者提前思考问题</li>
+<li>更新 <code>index.md</code>：在 Domains 类别中新增索引，总页面数更新为 69</li>
+<li>内容格式：Markdown + YAML frontmatter + 双向链接，符合 SCHEMA.md 约定</li>
+</ul>
+<h2 id="2026-06-27-create-ai-">[2026-06-27] create | AI合规与行业经验-圆桌发言素材</h2>
+<ul>
+<li>创建 <code>概念/AI合规与行业经验-圆桌发言素材-2026-06-27.md</code></li>
+<li>内容：汇总两个圆桌话题的完整发言素材，包含嘉宾基础问答、AI合规与创造力交锋点、行业经验vs数据喂养交锋点</li>
+<li>双向链接：[[菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27]]、[[菜洋洋企业定位研讨-思路准备-2026-06-25]]、[[OpenClaw 架构设计文档]]、[[AI Native 深度解析：从概念到落地]]、AI 数字化素养学习路径图</li>
+</ul>
+<h2 id="2026-06-29-migrate">[2026-06-29] migrate | 重新整理概念目录分类</h2>
+<ul>
+<li>用户授权：科学归类概念目录下的 40 个文件</li>
+<li>整理原则：按 type 语义归位，一级目录不变，增加二级子目录</li>
+<li>移出到 <code>实体/</code>：16 个项目/产品文档</li>
+<li><code>实体/菜洋洋/</code> 包含 9 个菜洋洋相关文档</li>
+<li><code>实体/AI商机雷达/</code> 包含 3 个设计/提示词文档</li>
+<li><code>实体/网店运营实训平台/</code> 包含 2 个项目文档</li>
+<li><code>实体/OpenClaw/</code> 包含 1 个架构文档</li>
+<li><code>实体/研发体系/</code> 包含 1 个方案文档</li>
+<li>在 <code>概念/</code> 下创建子目录：18 个概念/方法论文档</li>
+<li><code>概念/AI Native/</code> 包含 5 个书籍/报告相关文档</li>
+<li><code>概念/AI培训/</code> 包含 6 个岗位培训课件</li>
+<li><code>概念/学习资源/</code> 包含 6 个学习/工具资源</li>
+<li><code>概念/协作规范/</code> 包含 1 个 AI 协作规则</li>
+<li>移出到 <code>原始资料/会议/</code>：2 个会议/发言素材</li>
+<li>新增 <code>日志/</code> 一级目录：3 个反思/日志文档</li>
+<li>移动模板：<code>对话反思日志模板.md</code> → <code>99 附件/模板/</code></li>
+<li>更新所有迁移文件的 frontmatter <code>type</code> 和 <code>updated</code> 字段</li>
+<li>重新生成 <code>index.md</code>，总页面数：76</li>
+<li>检查 wikilink：未发现路径前缀链，同名移动不破坏链接</li>
+<li>备份路径：<code>/Users/skycc/.hermes-siyang/backups/ccknow-reorganize-20260629-*</code></li>
+</ul>
+<h2 id="2026-06-29-migrate_1">[2026-06-29] migrate | 补充整理散落的菜洋洋相关文档</h2>
+<ul>
+<li>在用户反馈后，将实体/根目录和对比/下的菜洋洋相关文档归集到 <code>实体/菜洋洋/</code></li>
+<li>从 <code>实体/</code> 根目录移入 8 个：AI OS 系统架构图、AI选品引擎 PRD、AI原生组织架构调整规划、SaaS商城管理后台设计方案、上新方案包 PRD、云星空旗舰版业务蓝图-老信评审、商城 AI OS 演进路线、数智中心组织定位分析</li>
+<li>从 <code>对比/</code> 移入 1 个：菜洋洋云星空旗舰版项目业务蓝图-初版待完善</li>
+<li><code>实体/菜洋洋/</code> 现共 18 个文件，涵盖战略、组织、产品、项目、会议等全部菜洋洋相关内容</li>
+<li>更新迁移文件 frontmatter <code>type</code> 和 <code>updated</code> 字段</li>
+<li>重新生成 <code>index.md</code></li>
+</ul>
+<h2 id="2026-06-29-cleanup-wikilink">[2026-06-29] cleanup | 清除所有目标页面不存在的 Wikilink</h2>
+<ul>
+<li>用户授权：将所有断链从 <code>[[链接名]]</code> 还原为普通文本</li>
+<li>共清理 11 个文件，63 处断链</li>
+<li>涉及文件：SCHEMA.md、log.md、圆桌发言素材、06 课程 Day-1/3/4/5/6、ShareLLM 项目计划、菜洋洋云星空蓝图老信评审、菜洋洋企业定位研讨11问</li>
+<li>重新生成 <code>index.md</code></li>
+<li>检查结果：剩余断链数为 0</li>
+</ul>
+<h2 id="2026-06-29-create-hermes-skill">[2026-06-29] create | Hermes Skill 索引与触发机制</h2>
+<ul>
+<li>用户明确说出“放到知识库”，授权整理 Skill 触发机制并写入知识库</li>
+<li>源数据：Hermes Agent skills_list，共计 85 个 Skill</li>
+<li>生成文档：<code>concepts/hermes-skills.md</code>，按分类汇总各 Skill 的触发场景、常用命令、简介</li>
+<li>更新 <code>index.md</code>：新增「概念（Concepts）」部分，关联到 [[hermes-skills]]</li>
+<li>文件大小：16516 字符</li>
+<li>内容格式：Markdown + [[双向链接]]</li>
+</ul>
+</body>
+</html>

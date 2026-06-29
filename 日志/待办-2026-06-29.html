@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>待办-2026-06-29 - ccknow</title>
+    <style>
+        :root {
+            --bg: #f7f8fa;
+            --card: #ffffff;
+            --text: #1f2329;
+            --text-secondary: #646a73;
+            --border: #e5e6eb;
+            --primary: #3370ff;
+            --primary-light: #e8f0ff;
+            --radius: 12px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 24px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .nav {
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .nav a { color: var(--primary); text-decoration: none; margin-right: 16px; font-weight: 500; }
+        .nav a:hover { text-decoration: underline; }
+        h1 { font-size: 28px; margin: 0 0 8px; }
+        .subtitle { color: var(--text-secondary); margin-bottom: 24px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .stat-card .number { font-size: 32px; font-weight: 700; color: var(--primary); }
+        .stat-card .label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+            background: var(--card);
+            padding: 16px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            align-items: center;
+        }
+        .filters label { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+        .filters select, .filters button {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            font-size: 14px;
+            color: var(--text);
+        }
+        .filters button {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .filters button.active {
+            background: #fff;
+            color: var(--primary);
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 16px;
+        }
+        .todo-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--border);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .todo-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+        .todo-card.pd { border-left-color: #7b61ff; }
+        .todo-card.high { border-top: 3px solid #e55353; }
+        .todo-card.medium { border-top: 3px solid #f5a623; }
+        .todo-card.low { border-top: 3px solid #6cc57c; }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .card-title { font-size: 15px; font-weight: 600; flex: 1; margin-right: 8px; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .badge-priority-high { background: #fde9e9; color: #e55353; }
+        .badge-priority-medium { background: #fff3d9; color: #f5a623; }
+        .badge-priority-low { background: #e6f7e6; color: #6cc57c; }
+        .badge-pd { background: #ede9fe; color: #7b61ff; }
+        .badge-project { background: #f2f3f5; color: var(--text-secondary); }
+        .meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .meta-item { display: flex; align-items: center; gap: 6px; }
+        .meta-label { color: #8f959e; }
+        .meta-value { color: var(--text); font-weight: 500; }
+        .progress { margin-top: 12px; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+        .group-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 32px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+        .hidden { display: none !important; }
+        @media (max-width: 640px) {
+            .board { grid-template-columns: 1fr; }
+            .meta { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <a href="../首页.html">🏠 首页</a>
+        <a href="../index.html">📚 知识库索引</a>
+        <a href="待办索引.html">📋 待办索引</a>
+    </div>
+
+    <h1>待办-2026-06-29</h1>
+    <div class="subtitle">今日共 18 项待办，其中产品设计相关 3 项</div>
+
+    <div class="stats">
+        <div class="stat-card"><div class="number">18</div><div class="label">总待办</div></div>
+        <div class="stat-card"><div class="number">9</div><div class="label">高优先级</div></div>
+        <div class="stat-card"><div class="number">8</div><div class="label">中优先级</div></div>
+        <div class="stat-card"><div class="number">1</div><div class="label">低优先级</div></div>
+        <div class="stat-card"><div class="number">3</div><div class="label">产品设计</div></div>
+    </div>
+
+    <div class="filters">
+        <label>筛选：</label>
+        <button id="btn-all" class="active" onclick="filter('all')">全部</button>
+        <button id="btn-pd" onclick="filter('pd')">🎨 产品设计</button>
+        <select id="filter-project" onchange="filterGroup()">
+            <option value="">所有项目</option>
+            <option value="AI Agent">AI Agent</option>
+            <option value="—">—</option>
+            <option value="懂菜">懂菜</option>
+            <option value="数据仓库">数据仓库</option>
+            <option value="数据平台">数据平台</option>
+            <option value="研发资源">研发资源</option>
+            <option value="菜洋洋">菜洋洋</option>
+        </select>
+        <select id="filter-owner" onchange="filterGroup()">
+            <option value="">所有负责人</option>
+            <option value="丁金周、王娟、赵英男（张路遥支持把控，不过度投入）">丁金周、王娟、赵英男（张路遥支持把控，不过度投入）</option>
+            <option value="丁金周懂菜">丁金周懂菜</option>
+            <option value="姜云肖">姜云肖</option>
+            <option value="戴光辉">戴光辉</option>
+            <option value="王胡健">王胡健</option>
+            <option value="程峰">程峰</option>
+            <option value="程峰（与冯杰确认）">程峰（与冯杰确认）</option>
+            <option value="胡文倩">胡文倩</option>
+            <option value="赵英男">赵英男</option>
+            <option value="马帅">马帅</option>
+            <option value="马帅、王胡建">马帅、王胡建</option>
+        </select>
+        <select id="filter-priority" onchange="filterGroup()">
+            <option value="">所有优先级</option>
+            <option value="high">高</option>
+            <option value="medium">中</option>
+            <option value="low">低</option>
+        </select>
+    </div>
+
+    <div id="board" class="board">
+
+        <div class="todo-card high" data-pd="false" data-project="菜洋洋" data-owner="程峰" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">机会怎么出来？需要一线出经验，过程指标要求如果出不来结果怎么办</div>
+                <div><span class="badge badge-priority-high">高</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">程峰</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-30</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">形成一线经验与过程指标闭环方案</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card high pd" data-pd="true" data-project="菜洋洋" data-owner="程峰" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">商品&amp;品类：商品和品类的驱动增长为什么没有形成</div>
+                <div><span class="badge badge-priority-high">高</span> <span class="badge badge-pd">产品设计</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">程峰</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-16</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">商业决策</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card high" data-pd="false" data-project="菜洋洋" data-owner="程峰" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">给自己的 deadline 然后进行决策闭环</div>
+                <div><span class="badge badge-priority-high">高</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">程峰</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-16</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">决策闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card medium" data-pd="false" data-project="菜洋洋" data-owner="程峰" data-priority="medium">
+            <div class="card-header">
+                <div class="card-title">信息化的结果指标</div>
+                <div><span class="badge badge-priority-medium">中</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">程峰</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-24</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card medium" data-pd="false" data-project="菜洋洋" data-owner="王胡健" data-priority="medium">
+            <div class="card-header">
+                <div class="card-title">@王胡健 你这边和玉雪聊完有什么结论和想法，抽时间找我闭环</div>
+                <div><span class="badge badge-priority-medium">中</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">王胡健</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-25</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">结论与想法闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card medium" data-pd="false" data-project="菜洋洋" data-owner="马帅" data-priority="medium">
+            <div class="card-header">
+                <div class="card-title">@马帅 少飞的6月底工作沟通、技术负债、非后端的培训计划、智展的支付计划，需要明确时间找我闭环</div>
+                <div><span class="badge badge-priority-medium">中</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">马帅</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-25</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">明确时间找我闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card low" data-pd="false" data-project="菜洋洋" data-owner="胡文倩" data-priority="low">
+            <div class="card-header">
+                <div class="card-title">@胡文倩 团建计划需要明确时间找我闭环</div>
+                <div><span class="badge badge-priority-low">低</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">胡文倩</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-25</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">明确时间找我闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card high" data-pd="false" data-project="菜洋洋" data-owner="赵英男" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">@赵英男 和明宇的前端补货工具，需要找我闭环，不要叙述，要一个稍正式的分析报告</div>
+                <div><span class="badge badge-priority-high">高</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">赵英男</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-25</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">出正式分析报告</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card medium" data-pd="false" data-project="菜洋洋" data-owner="程峰" data-priority="medium">
+            <div class="card-header">
+                <div class="card-title">测试后续方式</div>
+                <div><span class="badge badge-priority-medium">中</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">程峰</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-06-30</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">菜洋洋</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card medium" data-pd="false" data-project="—" data-owner="姜云肖" data-priority="medium">
+            <div class="card-header">
+                <div class="card-title">研发技术资源排期，需姜云肖每周更新</div>
+                <div><span class="badge badge-priority-medium">中</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">姜云肖</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">每周</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">—</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">每周更新并同步</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card high" data-pd="false" data-project="—" data-owner="丁金周懂菜" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">丁金周懂菜的 WBS 计划</div>
+                <div><span class="badge badge-priority-high">高</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">丁金周懂菜</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-07-01</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">—</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">本周三闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card high pd" data-pd="true" data-project="—" data-owner="马帅、王胡建" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">产品、数据、技术的 Q2 绩效和 Q3 绩效制定</div>
+                <div><span class="badge badge-priority-high">高</span> <span class="badge badge-pd">产品设计</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">马帅、王胡建</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-07-01</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">—</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">周三闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card medium" data-pd="false" data-project="—" data-owner="程峰（与冯杰确认）" data-priority="medium">
+            <div class="card-header">
+                <div class="card-title">迭代版本更新与业务部分负责人对齐；迭代发布内容与冯杰确认；发布内容确认</div>
+                <div><span class="badge badge-priority-medium">中</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">程峰（与冯杰确认）</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-07-07</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">—</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">发布内容确认闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card medium pd" data-pd="true" data-project="懂菜" data-owner="丁金周、王娟、赵英男（张路遥支持把控，不过度投入）" data-priority="medium">
+            <div class="card-header">
+                <div class="card-title">懂菜设计时融入商品主数据，启动商品主数据产品方案</div>
+                <div><span class="badge badge-priority-medium">中</span> <span class="badge badge-pd">产品设计</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">丁金周、王娟、赵英男（张路遥支持把控，不过度投入）</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-07-31</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">懂菜</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">7 月份输出商品主数据产品方案</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card medium" data-pd="false" data-project="研发资源" data-owner="戴光辉" data-priority="medium">
+            <div class="card-header">
+                <div class="card-title">戴光辉给 7 月 10 日之后的研发人员做安排</div>
+                <div><span class="badge badge-priority-medium">中</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">戴光辉</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-07-02</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">研发资源</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">研发人员安排方案闭环</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card high" data-pd="false" data-project="数据平台" data-owner="王胡健" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">数据同步工具 Seatunnel 同步数据到客资池问题修复</div>
+                <div><span class="badge badge-priority-high">高</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">王胡健</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-07-05</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">数据平台</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">同步报错修复并验证</span></div>
+            </div>
+            <div class="progress">📝 已与帅总、强强会议沟通；强强提供 30+ 张表，计划周三（07-01）前完成同步；后续由强强提供复杂业务 SQL 测试性能；若指标达标，研发将提供仿真环境验证，通过后可逐步推广替换列式 PolarDB</div>
+        </div>
+
+        <div class="todo-card high" data-pd="false" data-project="AI Agent" data-owner="王胡健" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">使用 LangGraph 自定义开发效率 Agent：Flink CDC 自动任务 DDL 及建表自动生成</div>
+                <div><span class="badge badge-priority-high">高</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">王胡健</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-07-05</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">AI Agent</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">完成开发并输出</span></div>
+            </div>
+            
+        </div>
+
+        <div class="todo-card high" data-pd="false" data-project="数据仓库" data-owner="王胡健" data-priority="high">
+            <div class="card-header">
+                <div class="card-title">销售域商机过程转换数据数仓分层 DWD 层构建</div>
+                <div><span class="badge badge-priority-high">高</span></div>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><span class="meta-label">👤</span><span class="meta-value">王胡健</span></div>
+                <div class="meta-item"><span class="meta-label">📅</span><span class="meta-value">2026-07-05</span></div>
+                <div class="meta-item"><span class="meta-label">📦</span><span class="meta-value">数据仓库</span></div>
+                <div class="meta-item"><span class="meta-label">📋</span><span class="meta-value">DWD 层构建完成</span></div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+function filter(mode) {
+    const cards = document.querySelectorAll('.todo-card');
+    const btnAll = document.getElementById('btn-all');
+    const btnPd = document.getElementById('btn-pd');
+    document.getElementById('filter-project').value = '';
+    document.getElementById('filter-owner').value = '';
+    document.getElementById('filter-priority').value = '';
+    btnAll.classList.toggle('active', mode === 'all');
+    btnPd.classList.toggle('active', mode === 'pd');
+    cards.forEach(c => {
+        c.classList.toggle('hidden', mode === 'pd' && c.dataset.pd !== 'true');
+    });
+}
+function filterGroup() {
+    const project = document.getElementById('filter-project').value;
+    const owner = document.getElementById('filter-owner').value;
+    const priority = document.getElementById('filter-priority').value;
+    document.getElementById('btn-all').classList.remove('active');
+    document.getElementById('btn-pd').classList.remove('active');
+    const cards = document.querySelectorAll('.todo-card');
+    cards.forEach(c => {
+        const okProject = !project || c.dataset.project === project;
+        const okOwner = !owner || c.dataset.owner === owner;
+        const okPriority = !priority || c.dataset.priority === priority;
+        c.classList.toggle('hidden', !(okProject && okOwner && okPriority));
+    });
+}
+</script>
+</body>
+</html>

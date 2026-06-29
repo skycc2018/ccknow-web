@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI商机雷达-PRD - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: AI商机雷达-PRD
+created: 2026-06-22
+updated: 2026-06-22
+type: project
+tags: [PRD, AI商机雷达, Opportunity-AI, B2B销售, 餐饮供应链, 客户发现, 销售辅助]
+sources: [用户策略分析]
+confidence: medium
+review_status: 待评审</p>
+<hr />
+<h1 id="ai-prd">AI商机雷达 PRD</h1>
+<p>版本：V1.0
+产品名称：AI商机雷达
+英文名：Opportunity AI
+产品阶段：MVP V1
+目标用户：餐饮供应链B2B销售
+产品形态：Web端数据产品 + AI销售辅助工具</p>
+<h2 id="_1">一、产品背景</h2>
+<h3 id="11">1.1 行业背景</h3>
+<p>餐饮供应链企业、食材供应商、冻品供应商、调味品供应商、酒水供应商等B2B销售团队，普遍存在客户开发效率低、客户筛选依赖经验、销售拜访随机性强的问题。</p>
+<p>传统销售开发客户的方式主要是：</p>
+<pre><code class="language-PLAIN_TEXT">搜索客户
+↓
+人工筛选
+↓
+挨个联系
+↓
+凭经验判断客户价值
+↓
+低效率拜访
+</code></pre>
+<p>这种方式存在几个核心问题：</p>
+<ol>
+<li>客户数据多，但销售不知道哪些客户更值得优先跟进。</li>
+<li>商家经营情况、门店扩张、品类匹配等信息分散，人工判断成本高。</li>
+<li>销售拜访缺少明确切入点，话术和方案高度依赖个人经验。</li>
+<li>企业无法沉淀“什么客户更容易成交”的规律。</li>
+<li>数据产品多停留在查询层，不能直接帮助销售提升成交效率。</li>
+</ol>
+<p>因此，需要一个从“数据查询”升级为“客户发现与销售行动建议”的产品。</p>
+<h2 id="_2">二、产品定位</h2>
+<h3 id="21">2.1 产品一句话定位</h3>
+<p>AI商机雷达，是面向餐饮供应链B2B销售的AI客户发现系统，基于餐饮商家数据、品牌数据、门店数据和经营信号，自动识别高价值客户，并提供客户推荐、商机评分、销售切入建议和拜访话术。</p>
+<h3 id="22">2.2 产品核心价值</h3>
+<p>传统数据工具解决的是：</p>
+<pre><code class="language-PLAIN_TEXT">我想查谁，就查谁。
+</code></pre>
+<p>AI商机雷达解决的是：</p>
+<pre><code class="language-PLAIN_TEXT">我卖什么，系统告诉我应该先找谁、为什么找他、怎么切入。
+</code></pre>
+<h3 id="23">2.3 与传统数据查询工具的区别</h3>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>传统餐饮数据工具</th>
+<th>AI商机雷达</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心能力</td>
+<td>数据查询</td>
+<td>客户发现</td>
+</tr>
+<tr>
+<td>用户动作</td>
+<td>用户主动搜索</td>
+<td>系统主动推荐</td>
+</tr>
+<tr>
+<td>输出结果</td>
+<td>商家列表、品牌信息</td>
+<td>商机客户、评分、推荐理由、销售建议</td>
+</tr>
+<tr>
+<td>使用价值</td>
+<td>看数据</td>
+<td>找客户、促成交</td>
+</tr>
+<tr>
+<td>用户依赖</td>
+<td>强依赖人工判断</td>
+<td>AI辅助判断优先级</td>
+</tr>
+<tr>
+<td>商业价值</td>
+<td>信息服务</td>
+<td>销售增长服务</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">三、产品目标</h2>
+<h3 id="31">3.1 业务目标</h3>
+<p>MVP阶段主要验证以下问题：</p>
+<ol>
+<li>销售是否愿意通过AI商机雷达寻找客户。</li>
+<li>AI推荐客户是否比人工筛选客户更有价值。</li>
+<li>商机评分和推荐理由是否能被销售理解和信任。</li>
+<li>AI生成的销售切入建议是否能辅助销售开展跟进。</li>
+<li>产品是否具备后续商业化收费潜力。</li>
+</ol>
+<h3 id="32">3.2 产品目标</h3>
+<p>MVP V1重点完成：</p>
+<pre><code class="language-PLAIN_TEXT">输入销售产品
+↓
+推荐高价值客户
+↓
+展示推荐理由
+↓
+生成销售建议
+↓
+支持销售导出/收藏/跟进
+</code></pre>
+<h3 id="33">3.3 不做什么</h3>
+<p>MVP V1暂不做以下内容：</p>
+<ol>
+<li>不做复杂CRM系统。</li>
+<li>不做自动外呼。</li>
+<li>不做自动加微信。</li>
+<li>不做自动发营销消息。</li>
+<li>不做复杂机器学习训练平台。</li>
+<li>不做投资机构、加盟商、SaaS服务商等多用户角色。</li>
+<li>不做完整销售业绩管理。</li>
+<li>不做成交预测的绝对承诺。</li>
+</ol>
+<h2 id="_4">四、目标用户</h2>
+<h3 id="41">4.1 第一阶段核心用户</h3>
+<p>餐饮供应链B2B销售。</p>
+<p>典型行业包括：</p>
+<ol>
+<li>预制菜销售。</li>
+<li>冻品销售。</li>
+<li>调味品销售。</li>
+<li>食材销售。</li>
+<li>酒水饮料销售。</li>
+<li>火锅食材销售。</li>
+<li>烧烤食材销售。</li>
+<li>半成品菜销售。</li>
+</ol>
+<h3 id="42">4.2 用户画像</h3>
+<p>用户角色：B2B销售</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工作目标</td>
+<td>找到潜在客户并促成合作</td>
+</tr>
+<tr>
+<td>日常动作</td>
+<td>搜客户、打电话、加微信、拜访、报价</td>
+</tr>
+<tr>
+<td>核心痛点</td>
+<td>不知道哪些客户值得优先跟进</td>
+</tr>
+<tr>
+<td>决策依据</td>
+<td>客户规模、品类匹配、老板意向、门店扩张情况</td>
+</tr>
+<tr>
+<td>产品诉求</td>
+<td>帮我快速找到更可能成交的客户</td>
+</tr>
+<tr>
+<td>成功标准</td>
+<td>推荐客户质量高、跟进效率提升、成交概率提升</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">五、核心使用场景</h2>
+<h3 id="51">5.1 场景一：销售想开发某个品类客户</h3>
+<p>用户输入：</p>
+<pre><code class="language-PLAIN_TEXT">我卖牛肉卷
+</code></pre>
+<p>系统输出：</p>
+<pre><code class="language-PLAIN_TEXT">适合开发的火锅、烤肉、自助餐、韩餐等客户排行榜。
+</code></pre>
+<p>销售可以查看：</p>
+<ol>
+<li>客户名称。</li>
+<li>商机评分。</li>
+<li>推荐原因。</li>
+<li>门店数量。</li>
+<li>所在城市。</li>
+<li>客单价。</li>
+<li>经营状态。</li>
+<li>销售切入建议。</li>
+<li>电话/微信/拜访话术。</li>
+</ol>
+<h3 id="52">5.2 场景二：销售想找某城市高价值客户</h3>
+<p>用户输入：</p>
+<pre><code class="language-PLAIN_TEXT">上海 火锅 牛肉卷
+</code></pre>
+<p>系统输出：</p>
+<pre><code class="language-PLAIN_TEXT">上海火锅类客户TOP100商机榜。
+</code></pre>
+<p>销售可以优先跟进A级商机客户。</p>
+<h3 id="53">5.3 场景三：销售查看某个品牌是否值得跟进</h3>
+<p>用户搜索品牌名称。</p>
+<p>系统输出：</p>
+<ol>
+<li>品牌基本信息。</li>
+<li>门店规模。</li>
+<li>城市分布。</li>
+<li>经营趋势。</li>
+<li>商机评分。</li>
+<li>推荐理由。</li>
+<li>产品匹配建议。</li>
+<li>拜访切入点。</li>
+</ol>
+<h3 id="54">5.4 场景四：销售需要快速生成话术</h3>
+<p>销售点击客户后，系统自动生成：</p>
+<ol>
+<li>微信开场话术。</li>
+<li>电话沟通话术。</li>
+<li>上门拜访话术。</li>
+<li>产品切入话术。</li>
+<li>跟进提醒话术。</li>
+</ol>
+<h2 id="_6">六、商机定义</h2>
+<h3 id="61">6.1 什么是商机</h3>
+<p>本产品中的“商机”指：</p>
+<p>具备明确采购场景、销售触达价值和潜在成交可能的餐饮商家或品牌客户。</p>
+<h3 id="62">6.2 商机类型</h3>
+<table>
+<thead>
+<tr>
+<th>商机类型</th>
+<th>定义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新客开发商机</td>
+<td>从未合作但具备采购潜力的客户</td>
+<td>新开火锅品牌、区域连锁餐饮</td>
+</tr>
+<tr>
+<td>增长型商机</td>
+<td>近期扩张明显，未来采购量可能增加</td>
+<td>近90天新增门店较多</td>
+</tr>
+<tr>
+<td>品类匹配商机</td>
+<td>与销售产品高度匹配</td>
+<td>卖牛肉卷，推荐火锅/烤肉客户</td>
+</tr>
+<tr>
+<td>区域开拓商机</td>
+<td>某城市、某区域出现集中客户机会</td>
+<td>杭州烧烤客户TOP100</td>
+</tr>
+<tr>
+<td>高价值品牌商机</td>
+<td>门店数、客单价、品牌规模较高</td>
+<td>多城市连锁品牌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63">6.3 商机等级</h3>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>分数</th>
+<th>定义</th>
+<th>建议动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A级</td>
+<td>80-100</td>
+<td>高价值、高匹配、优先跟进</td>
+<td>立即联系/重点拜访</td>
+</tr>
+<tr>
+<td>B级</td>
+<td>60-79</td>
+<td>有价值、有匹配，值得跟进</td>
+<td>纳入销售开发名单</td>
+</tr>
+<tr>
+<td>C级</td>
+<td>40-59</td>
+<td>有一定潜力，但优先级一般</td>
+<td>批量触达或观察</td>
+</tr>
+<tr>
+<td>D级</td>
+<td>0-39</td>
+<td>当前价值较低或匹配较弱</td>
+<td>暂不优先跟进</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mvp">七、MVP范围</h2>
+<h3 id="71-mvp-v1">7.1 MVP V1核心目标</h3>
+<p>MVP V1只解决一个核心问题：</p>
+<pre><code class="language-PLAIN_TEXT">销售输入自己卖的产品，系统推荐最值得优先开发的餐饮客户。
+</code></pre>
+<h3 id="72-mvp-v1">7.2 MVP V1功能范围</h3>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>功能</th>
+<th>是否包含</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>产品/品类输入</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>商机客户推荐</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>商机评分</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>推荐理由展示</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>客户详情画像</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>客户排行榜</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>销售话术生成</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>客户收藏</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>客户导出</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>跟进状态标记</td>
+<td>包含</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>成交结果回收</td>
+<td>二期</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>模型自动训练</td>
+<td>二期</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>外部CRM集成</td>
+<td>二期</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>多行业用户扩展</td>
+<td>三期</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">八、核心业务流程</h2>
+<h3 id="81">8.1 主流程</h3>
+<pre><code class="language-PLAIN_TEXT">用户登录
+↓
+输入销售产品/品类
+↓
+选择城市/区域/客户类型
+↓
+系统解析产品适配场景
+↓
+筛选候选客户
+↓
+计算商机评分
+↓
+生成客户排行榜
+↓
+用户查看客户详情
+↓
+AI生成推荐理由和销售建议
+↓
+用户收藏/导出/标记跟进
+</code></pre>
+<h3 id="82">8.2 客户推荐流程</h3>
+<pre><code class="language-PLAIN_TEXT">用户输入：我卖牛肉卷
+↓
+AI识别产品：牛肉卷
+↓
+匹配适用餐饮场景：火锅、烤肉、自助餐、韩餐
+↓
+筛选相关品牌和门店
+↓
+计算商机指数
+↓
+按分数排序
+↓
+输出TOP客户列表
+</code></pre>
+<h3 id="83">8.3 销售话术生成流程</h3>
+<pre><code class="language-PLAIN_TEXT">用户点击客户
+↓
+系统读取客户画像
+↓
+读取用户销售产品
+↓
+生成客户分析
+↓
+生成切入点
+↓
+生成微信/电话/拜访话术
+</code></pre>
+<h2 id="_8">九、功能需求</h2>
+<h3 id="91">9.1 首页/工作台</h3>
+<p><strong>功能说明</strong></p>
+<p>首页用于展示销售可快速进入的商机场景和推荐入口。</p>
+<p><strong>页面内容</strong></p>
+<ol>
+<li>产品搜索入口。</li>
+<li>热门商机榜。</li>
+<li>热门城市榜。</li>
+<li>热门品类榜。</li>
+<li>最近查看客户。</li>
+<li>我的收藏客户。</li>
+<li>今日推荐客户。</li>
+</ol>
+<p><strong>关键交互</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入产品</td>
+<td>用户输入自己销售的产品</td>
+</tr>
+<tr>
+<td>点击推荐场景</td>
+<td>快速进入客户排行榜</td>
+</tr>
+<tr>
+<td>查看今日推荐</td>
+<td>查看系统推荐的客户</td>
+</tr>
+<tr>
+<td>查看收藏</td>
+<td>进入已收藏客户列表</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong></p>
+<pre><code class="language-PLAIN_TEXT">请输入你销售的产品：牛肉卷
+系统推荐：
+1. 上海火锅客户TOP100
+2. 杭州烤肉客户TOP100
+3. 苏州自助餐客户TOP100
+</code></pre>
+<h3 id="92">9.2 商机搜索页</h3>
+<p><strong>功能说明</strong></p>
+<p>用户通过产品、城市、品类、门店规模等条件搜索潜在客户。</p>
+<p><strong>搜索条件</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>是否必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>销售产品</td>
+<td>文本输入</td>
+<td>是</td>
+<td>如牛肉卷、芝士碎、鸡翅中</td>
+</tr>
+<tr>
+<td>城市</td>
+<td>多选</td>
+<td>否</td>
+<td>如上海、杭州、合肥</td>
+</tr>
+<tr>
+<td>餐饮品类</td>
+<td>多选</td>
+<td>否</td>
+<td>如火锅、烧烤、快餐</td>
+</tr>
+<tr>
+<td>门店数</td>
+<td>区间</td>
+<td>否</td>
+<td>如1-5家、6-20家、20家以上</td>
+</tr>
+<tr>
+<td>客单价</td>
+<td>区间</td>
+<td>否</td>
+<td>如50-100元</td>
+</tr>
+<tr>
+<td>商机等级</td>
+<td>多选</td>
+<td>否</td>
+<td>A/B/C/D</td>
+</tr>
+<tr>
+<td>经营状态</td>
+<td>多选</td>
+<td>否</td>
+<td>正常营业、暂停营业、疑似闭店</td>
+</tr>
+<tr>
+<td>排序方式</td>
+<td>单选</td>
+<td>否</td>
+<td>商机指数、门店数、增长率、活跃度</td>
+</tr>
+</tbody>
+</table>
+<p><strong>输出结果</strong></p>
+<p>客户列表字段包括：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户名称</td>
+<td>品牌或门店名称</td>
+</tr>
+<tr>
+<td>城市</td>
+<td>所在城市</td>
+</tr>
+<tr>
+<td>餐饮品类</td>
+<td>火锅/烧烤/快餐等</td>
+</tr>
+<tr>
+<td>门店数</td>
+<td>品牌门店数量</td>
+</tr>
+<tr>
+<td>客单价</td>
+<td>公开数据或估算区间</td>
+</tr>
+<tr>
+<td>评分</td>
+<td>平台评分</td>
+</tr>
+<tr>
+<td>商机指数</td>
+<td>0-100</td>
+</tr>
+<tr>
+<td>商机等级</td>
+<td>A/B/C/D</td>
+</tr>
+<tr>
+<td>推荐原因</td>
+<td>简短说明</td>
+</tr>
+<tr>
+<td>操作</td>
+<td>查看详情、收藏、导出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="93">9.3 客户排行榜页</h3>
+<p><strong>功能说明</strong></p>
+<p>系统按照城市、品类、产品匹配度，生成客户排行榜。</p>
+<p><strong>榜单示例</strong></p>
+<ol>
+<li>上海火锅TOP100商机客户。</li>
+<li>杭州烧烤TOP100商机客户。</li>
+<li>合肥快餐TOP100商机客户。</li>
+<li>全国牛肉卷适配客户TOP500。</li>
+<li>华东区域高增长餐饮品牌TOP100。</li>
+</ol>
+<p><strong>榜单字段</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>排名</td>
+<td>当前榜单排名</td>
+</tr>
+<tr>
+<td>客户名称</td>
+<td>品牌/门店名称</td>
+</tr>
+<tr>
+<td>商机指数</td>
+<td>综合评分</td>
+</tr>
+<tr>
+<td>商机等级</td>
+<td>A/B/C/D</td>
+</tr>
+<tr>
+<td>推荐原因</td>
+<td>关键推荐理由</td>
+</tr>
+<tr>
+<td>门店数</td>
+<td>品牌规模</td>
+</tr>
+<tr>
+<td>城市数</td>
+<td>覆盖城市</td>
+</tr>
+<tr>
+<td>品类</td>
+<td>餐饮类型</td>
+</tr>
+<tr>
+<td>增长趋势</td>
+<td>高速/稳定/下滑</td>
+</tr>
+<tr>
+<td>操作</td>
+<td>查看详情、生成话术、收藏</td>
+</tr>
+</tbody>
+</table>
+<h3 id="94">9.4 客户详情页</h3>
+<p><strong>功能说明</strong></p>
+<p>展示单个客户的完整画像、商机评分、推荐理由和销售建议。</p>
+<p><strong>页面模块</strong></p>
+<h4 id="1">1. 客户基础信息</h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户名称</td>
+<td>品牌或门店名称</td>
+</tr>
+<tr>
+<td>所属品类</td>
+<td>火锅/烧烤/快餐等</td>
+</tr>
+<tr>
+<td>所在城市</td>
+<td>城市信息</td>
+</tr>
+<tr>
+<td>门店数量</td>
+<td>品牌门店规模</td>
+</tr>
+<tr>
+<td>覆盖城市数</td>
+<td>品牌覆盖范围</td>
+</tr>
+<tr>
+<td>客单价</td>
+<td>平均客单价</td>
+</tr>
+<tr>
+<td>评分</td>
+<td>公开平台评分</td>
+</tr>
+<tr>
+<td>评论数</td>
+<td>用户评论数量</td>
+</tr>
+<tr>
+<td>经营状态</td>
+<td>正常/异常/疑似闭店</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2">2. 商机评分</h4>
+<p>展示：</p>
+<pre><code class="language-PLAIN_TEXT">商机指数：86
+商机等级：A级
+</code></pre>
+<p>评分组成：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>分数</th>
+<th>权重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>增长潜力</td>
+<td>88</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>规模价值</td>
+<td>82</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>品类匹配</td>
+<td>92</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>活跃信号</td>
+<td>78</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>触达可行性</td>
+<td>85</td>
+<td>15%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3">3. 推荐理由</h4>
+<p>推荐理由采用标准结构：</p>
+<pre><code class="language-PLAIN_TEXT">1. 客户价值：该品牌当前门店数量较多，具备规模采购潜力。
+2. 增长信号：近期门店增长明显，处于扩张阶段。
+3. 品类匹配：主营火锅场景，与牛肉卷、冻品类产品匹配度较高。
+4. 切入建议：建议从稳定供货、标准化食材和成本优化角度切入。
+</code></pre>
+<h4 id="4-ai">4. AI客户分析</h4>
+<p>AI自动生成：</p>
+<ol>
+<li>经营情况分析。</li>
+<li>扩张趋势分析。</li>
+<li>品类匹配分析。</li>
+<li>潜在采购需求。</li>
+<li>销售跟进建议。</li>
+</ol>
+<h4 id="5">5. 销售建议</h4>
+<p>输出内容包括：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>推荐产品</td>
+<td>牛肉卷、丸滑、冻品组合</td>
+</tr>
+<tr>
+<td>推荐切入点</td>
+<td>扩张期供应稳定、成本优化、标准化采购</td>
+</tr>
+<tr>
+<td>首次触达方式</td>
+<td>电话/微信/上门拜访</td>
+</tr>
+<tr>
+<td>优先跟进理由</td>
+<td>品类匹配度高、扩张趋势明显</td>
+</tr>
+<tr>
+<td>风险提示</td>
+<td>需确认当前供应商、价格接受度、采购决策人</td>
+</tr>
+</tbody>
+</table>
+<h3 id="95-ai">9.5 AI话术生成</h3>
+<p><strong>功能说明</strong></p>
+<p>系统根据客户画像和销售产品，生成不同场景下的销售话术。</p>
+<p><strong>话术类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微信开场话术</td>
+<td>用于加微信或首次微信沟通</td>
+</tr>
+<tr>
+<td>电话开场话术</td>
+<td>用于电话触达</td>
+</tr>
+<tr>
+<td>上门拜访话术</td>
+<td>用于线下拜访</td>
+</tr>
+<tr>
+<td>产品推荐话术</td>
+<td>用于介绍产品</td>
+</tr>
+<tr>
+<td>二次跟进话术</td>
+<td>用于客户未回复后的跟进</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例：微信话术</strong></p>
+<pre><code class="language-PLAIN_TEXT">您好，我关注到贵品牌近期门店扩张较快，目前已经覆盖多个区域。
+我们主要服务火锅、烤肉类餐饮客户，提供标准化牛肉卷、冻品等食材供应方案，重点帮助扩张期门店提升供货稳定性、降低后厨备货压力。
+想和您简单交流一下，看是否有机会为贵品牌提供一些供应链支持。
+</code></pre>
+<p><strong>示例：电话话术</strong></p>
+<pre><code class="language-PLAIN_TEXT">您好，我这边关注到贵品牌近期在多个城市都有门店布局，应该对标准化食材供应和稳定配送要求比较高。
+我们主要做牛肉卷、冻品类产品，已经服务不少火锅和烤肉门店，想了解一下贵品牌目前这类产品是否有统一采购或供应优化的需求。
+</code></pre>
+<h3 id="96">9.6 客户收藏</h3>
+<p><strong>功能说明</strong></p>
+<p>用户可以收藏感兴趣的客户，形成个人商机池。</p>
+<p><strong>收藏字段</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户名称</td>
+<td>被收藏客户</td>
+</tr>
+<tr>
+<td>收藏时间</td>
+<td>收藏日期</td>
+</tr>
+<tr>
+<td>销售产品</td>
+<td>用户搜索时输入的产品</td>
+</tr>
+<tr>
+<td>商机等级</td>
+<td>收藏时商机等级</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>用户自定义备注</td>
+</tr>
+<tr>
+<td>跟进状态</td>
+<td>未跟进/已联系/有意向/无意向</td>
+</tr>
+</tbody>
+</table>
+<h3 id="97">9.7 客户导出</h3>
+<p><strong>功能说明</strong></p>
+<p>支持用户将筛选结果导出为Excel。</p>
+<p><strong>导出字段</strong></p>
+<ol>
+<li>客户名称。</li>
+<li>城市。</li>
+<li>品类。</li>
+<li>门店数。</li>
+<li>客单价。</li>
+<li>评分。</li>
+<li>商机指数。</li>
+<li>商机等级。</li>
+<li>推荐原因。</li>
+<li>联系信息。</li>
+<li>地址信息。</li>
+</ol>
+<p><strong>导出限制</strong></p>
+<ol>
+<li>普通用户单次最多导出100条。</li>
+<li>管理员可配置导出上限。</li>
+<li>导出行为需要记录日志。</li>
+<li>敏感字段根据权限控制。</li>
+</ol>
+<h3 id="98">9.8 跟进状态标记</h3>
+<p><strong>功能说明</strong></p>
+<p>用户可以对推荐客户标记简单跟进状态，用于后续反馈和产品优化。</p>
+<p><strong>跟进状态</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未跟进</td>
+<td>默认状态</td>
+</tr>
+<tr>
+<td>已联系</td>
+<td>已完成电话/微信/拜访</td>
+</tr>
+<tr>
+<td>有意向</td>
+<td>客户有进一步沟通意愿</td>
+</tr>
+<tr>
+<td>无意向</td>
+<td>客户明确拒绝</td>
+</tr>
+<tr>
+<td>信息无效</td>
+<td>电话、地址、门店状态无效</td>
+</tr>
+<tr>
+<td>已成交</td>
+<td>客户已成交，MVP可手动标记</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">十、商机评分模型</h2>
+<h3 id="101">10.1 评分原则</h3>
+<p>MVP V1采用规则评分模型，不直接使用复杂机器学习模型。</p>
+<p>评分模型要求：</p>
+<ol>
+<li>可解释。</li>
+<li>可配置。</li>
+<li>可追溯。</li>
+<li>可根据用户反馈持续优化。</li>
+<li>评分结果必须展示组成维度，不能只给总分。</li>
+</ol>
+<h3 id="102">10.2 综合商机指数</h3>
+<pre><code class="language-PLAIN_TEXT">商机指数
+= 增长潜力 × 25%
++ 规模价值 × 20%
++ 品类匹配 × 25%
++ 活跃信号 × 15%
++ 触达可行性 × 15%
+</code></pre>
+<p>总分为0-100分。</p>
+<h3 id="103">10.3 指标说明</h3>
+<h4 id="1_1">1. 增长潜力</h4>
+<p>衡量客户是否处于增长阶段。</p>
+<p>参考字段：</p>
+<ol>
+<li>近90天新增门店数。</li>
+<li>近180天新增门店数。</li>
+<li>门店增长率。</li>
+<li>评论增长率。</li>
+<li>品牌热度变化。</li>
+</ol>
+<h4 id="2_1">2. 规模价值</h4>
+<p>衡量客户采购价值和规模潜力。</p>
+<p>参考字段：</p>
+<ol>
+<li>门店数量。</li>
+<li>覆盖城市数。</li>
+<li>客单价。</li>
+<li>品牌连锁化程度。</li>
+<li>评论总量。</li>
+</ol>
+<h4 id="3_1">3. 品类匹配</h4>
+<p>衡量客户经营场景与销售产品是否匹配。</p>
+<p>示例：</p>
+<table>
+<thead>
+<tr>
+<th>用户销售产品</th>
+<th>高匹配餐饮类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>牛肉卷</td>
+<td>火锅、烤肉、自助餐、韩餐</td>
+</tr>
+<tr>
+<td>芝士碎</td>
+<td>披萨、烘焙、西餐、茶饮</td>
+</tr>
+<tr>
+<td>鸡翅中</td>
+<td>烧烤、炸鸡、小吃、快餐</td>
+</tr>
+<tr>
+<td>调味料</td>
+<td>中餐、快餐、连锁餐饮</td>
+</tr>
+<tr>
+<td>冻品</td>
+<td>火锅、烧烤、快餐、团餐</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4">4. 活跃信号</h4>
+<p>衡量客户近期是否有经营活跃度。</p>
+<p>参考字段：</p>
+<ol>
+<li>近30天评论数。</li>
+<li>近30天评分变化。</li>
+<li>近30天新增门店。</li>
+<li>近30天品牌热度。</li>
+<li>门店经营状态。</li>
+</ol>
+<h4 id="5_1">5. 触达可行性</h4>
+<p>衡量销售是否能有效联系和跟进。</p>
+<p>参考字段：</p>
+<ol>
+<li>是否有电话。</li>
+<li>是否有地址。</li>
+<li>是否正常营业。</li>
+<li>是否存在疑似闭店。</li>
+<li>是否具备门店定位信息。</li>
+<li>联系信息完整度。</li>
+</ol>
+<h3 id="104">10.4 商机等级规则</h3>
+<table>
+<thead>
+<tr>
+<th>分数</th>
+<th>等级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>80-100</td>
+<td>A级</td>
+<td>高优先级商机</td>
+</tr>
+<tr>
+<td>60-79</td>
+<td>B级</td>
+<td>中高优先级商机</td>
+</tr>
+<tr>
+<td>40-59</td>
+<td>C级</td>
+<td>一般商机</td>
+</tr>
+<tr>
+<td>0-39</td>
+<td>D级</td>
+<td>暂不建议优先跟进</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ai">十一、AI能力设计</h2>
+<h3 id="111-ai">11.1 AI能力边界</h3>
+<p>AI在MVP中主要负责：</p>
+<ol>
+<li>用户输入理解。</li>
+<li>品类匹配解释。</li>
+<li>客户画像总结。</li>
+<li>推荐理由生成。</li>
+<li>销售话术生成。</li>
+<li>风险提示生成。</li>
+</ol>
+<p>AI不负责：</p>
+<ol>
+<li>编造客户事实。</li>
+<li>直接修改商机评分。</li>
+<li>自动承诺成交概率。</li>
+<li>自动联系客户。</li>
+<li>替代销售决策。</li>
+</ol>
+<h3 id="112-ai">11.2 AI输出要求</h3>
+<p>AI生成内容必须遵循：</p>
+<ol>
+<li>基于已有数据。</li>
+<li>不编造未提供事实。</li>
+<li>推荐理由必须可解释。</li>
+<li>话术必须自然、克制、适合B2B销售。</li>
+<li>输出内容需要标注“依据”和“建议”。</li>
+<li>对数据不足的情况要明确提示。</li>
+</ol>
+<h3 id="113-ai">11.3 AI客户分析模板</h3>
+<pre><code class="language-PLAIN_TEXT">客户名称：
+所属品类：
+门店规模：
+经营状态：
+增长趋势：
+品类匹配：
+推荐理由：
+销售切入点：
+风险提示：
+建议动作：
+</code></pre>
+<h3 id="114-ai">11.4 AI推荐理由模板</h3>
+<pre><code class="language-PLAIN_TEXT">推荐该客户的原因主要有：
+1. 客户价值：
+【基于门店数、客单价、品牌规模说明】
+2. 增长信号：
+【基于新增门店、评论增长、活跃度说明】
+3. 品类匹配：
+【说明为什么该客户适合用户销售的产品】
+4. 跟进建议：
+【说明销售应该从什么角度切入】
+5. 风险提示：
+【说明需要进一步确认的信息】
+</code></pre>
+<h2 id="_10">十二、数据需求</h2>
+<h3 id="121">12.1 商家基础数据</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>merchant_id</td>
+<td>商家ID</td>
+</tr>
+<tr>
+<td>merchant_name</td>
+<td>商家名称</td>
+</tr>
+<tr>
+<td>brand_id</td>
+<td>品牌ID</td>
+</tr>
+<tr>
+<td>brand_name</td>
+<td>品牌名称</td>
+</tr>
+<tr>
+<td>category</td>
+<td>餐饮品类</td>
+</tr>
+<tr>
+<td>city</td>
+<td>城市</td>
+</tr>
+<tr>
+<td>district</td>
+<td>区域</td>
+</tr>
+<tr>
+<td>address</td>
+<td>地址</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>电话</td>
+</tr>
+<tr>
+<td>business_status</td>
+<td>经营状态</td>
+</tr>
+<tr>
+<td>avg_price</td>
+<td>客单价</td>
+</tr>
+<tr>
+<td>rating</td>
+<td>评分</td>
+</tr>
+<tr>
+<td>review_count</td>
+<td>评论数</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>纬度</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>经度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="122">12.2 品牌数据</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>brand_id</td>
+<td>品牌ID</td>
+</tr>
+<tr>
+<td>brand_name</td>
+<td>品牌名称</td>
+</tr>
+<tr>
+<td>store_count</td>
+<td>门店数</td>
+</tr>
+<tr>
+<td>city_count</td>
+<td>覆盖城市数</td>
+</tr>
+<tr>
+<td>main_category</td>
+<td>主营品类</td>
+</tr>
+<tr>
+<td>avg_price</td>
+<td>平均客单价</td>
+</tr>
+<tr>
+<td>avg_rating</td>
+<td>平均评分</td>
+</tr>
+<tr>
+<td>total_reviews</td>
+<td>总评论数</td>
+</tr>
+<tr>
+<td>growth_rate_90d</td>
+<td>90天增长率</td>
+</tr>
+<tr>
+<td>growth_rate_180d</td>
+<td>180天增长率</td>
+</tr>
+</tbody>
+</table>
+<h3 id="123">12.3 增长数据</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new_store_30d</td>
+<td>近30天新增门店数</td>
+</tr>
+<tr>
+<td>new_store_90d</td>
+<td>近90天新增门店数</td>
+</tr>
+<tr>
+<td>new_store_180d</td>
+<td>近180天新增门店数</td>
+</tr>
+<tr>
+<td>review_growth_30d</td>
+<td>近30天评论增长</td>
+</tr>
+<tr>
+<td>rating_change_30d</td>
+<td>近30天评分变化</td>
+</tr>
+<tr>
+<td>active_score</td>
+<td>活跃度评分</td>
+</tr>
+</tbody>
+</table>
+<h3 id="124">12.4 商机评分数据</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opportunity_score</td>
+<td>综合商机指数</td>
+</tr>
+<tr>
+<td>opportunity_level</td>
+<td>商机等级</td>
+</tr>
+<tr>
+<td>growth_score</td>
+<td>增长潜力分</td>
+</tr>
+<tr>
+<td>scale_score</td>
+<td>规模价值分</td>
+</tr>
+<tr>
+<td>category_match_score</td>
+<td>品类匹配分</td>
+</tr>
+<tr>
+<td>active_score</td>
+<td>活跃信号分</td>
+</tr>
+<tr>
+<td>reachability_score</td>
+<td>触达可行性分</td>
+</tr>
+<tr>
+<td>recommend_reason</td>
+<td>推荐原因</td>
+</tr>
+</tbody>
+</table>
+<h3 id="125">12.5 用户行为数据</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>用户ID</td>
+</tr>
+<tr>
+<td>search_keyword</td>
+<td>搜索关键词</td>
+</tr>
+<tr>
+<td>product_input</td>
+<td>销售产品</td>
+</tr>
+<tr>
+<td>viewed_customer</td>
+<td>查看客户</td>
+</tr>
+<tr>
+<td>favorite_customer</td>
+<td>收藏客户</td>
+</tr>
+<tr>
+<td>export_customer</td>
+<td>导出客户</td>
+</tr>
+<tr>
+<td>generated_script</td>
+<td>是否生成话术</td>
+</tr>
+<tr>
+<td>follow_status</td>
+<td>跟进状态</td>
+</tr>
+<tr>
+<td>feedback</td>
+<td>用户反馈</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">十三、权限设计</h2>
+<h3 id="131">13.1 用户角色</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通销售</td>
+<td>搜索客户、查看客户、收藏、导出、生成话术</td>
+</tr>
+<tr>
+<td>销售主管</td>
+<td>查看团队使用情况、团队收藏客户、导出更多数据</td>
+</tr>
+<tr>
+<td>管理员</td>
+<td>用户管理、数据管理、评分权重配置、导出权限配置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="132">13.2 数据权限</h3>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>普通销售</th>
+<th>销售主管</th>
+<th>管理员</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户基础信息</td>
+<td>可看</td>
+<td>可看</td>
+<td>可看</td>
+</tr>
+<tr>
+<td>联系方式</td>
+<td>根据权限</td>
+<td>可看</td>
+<td>可看</td>
+</tr>
+<tr>
+<td>批量导出</td>
+<td>限量</td>
+<td>较高额度</td>
+<td>不限或配置</td>
+</tr>
+<tr>
+<td>评分配置</td>
+<td>不可</td>
+<td>不可</td>
+<td>可配置</td>
+</tr>
+<tr>
+<td>用户行为数据</td>
+<td>仅本人</td>
+<td>团队</td>
+<td>全部</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">十四、埋点与数据分析</h2>
+<h3 id="141">14.1 核心埋点</h3>
+<table>
+<thead>
+<tr>
+<th>埋点事件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>search_opportunity</td>
+<td>搜索商机</td>
+</tr>
+<tr>
+<td>view_customer_detail</td>
+<td>查看客户详情</td>
+</tr>
+<tr>
+<td>favorite_customer</td>
+<td>收藏客户</td>
+</tr>
+<tr>
+<td>export_customer</td>
+<td>导出客户</td>
+</tr>
+<tr>
+<td>generate_sales_script</td>
+<td>生成销售话术</td>
+</tr>
+<tr>
+<td>update_follow_status</td>
+<td>更新跟进状态</td>
+</tr>
+<tr>
+<td>feedback_recommendation</td>
+<td>反馈推荐质量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="142">14.2 分析指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>搜索次数</td>
+<td>用户使用频率</td>
+</tr>
+<tr>
+<td>客户详情点击率</td>
+<td>推荐列表吸引力</td>
+</tr>
+<tr>
+<td>收藏率</td>
+<td>推荐客户认可度</td>
+</tr>
+<tr>
+<td>导出率</td>
+<td>客户可执行价值</td>
+</tr>
+<tr>
+<td>话术生成率</td>
+<td>AI助手使用价值</td>
+</tr>
+<tr>
+<td>跟进状态更新率</td>
+<td>用户是否形成使用闭环</td>
+</tr>
+<tr>
+<td>推荐有效率</td>
+<td>用户反馈为有效的推荐占比</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mvp_1">十五、MVP成功指标</h2>
+<h3 id="151">15.1 产品使用指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>搜索后点击客户详情比例</td>
+<td>≥ 50%</td>
+</tr>
+<tr>
+<td>推荐客户收藏率</td>
+<td>≥ 20%</td>
+</tr>
+<tr>
+<td>推荐客户导出率</td>
+<td>≥ 15%</td>
+</tr>
+<tr>
+<td>话术生成使用率</td>
+<td>≥ 30%</td>
+</tr>
+<tr>
+<td>次周留存率</td>
+<td>≥ 30%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="152">15.2 推荐质量指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>销售认为推荐有效比例</td>
+<td>≥ 60%</td>
+</tr>
+<tr>
+<td>A级客户被收藏比例</td>
+<td>高于B/C/D级</td>
+</tr>
+<tr>
+<td>A级客户被导出比例</td>
+<td>高于B/C/D级</td>
+</tr>
+<tr>
+<td>信息无效率</td>
+<td>≤ 20%</td>
+</tr>
+<tr>
+<td>推荐理由满意度</td>
+<td>≥ 4分/5分</td>
+</tr>
+</tbody>
+</table>
+<h3 id="153">15.3 商业验证指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>付费意愿访谈</td>
+<td>至少10个目标客户</td>
+</tr>
+<tr>
+<td>试用转正式意向</td>
+<td>≥ 20%</td>
+</tr>
+<tr>
+<td>销售效率提升反馈</td>
+<td>用户明确感知效率提升</td>
+</tr>
+<tr>
+<td>客户名单质量认可</td>
+<td>用户愿意持续使用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_13">十六、页面结构</h2>
+<h3 id="161">16.1 页面清单</h3>
+<pre><code class="language-PLAIN_TEXT">1. 登录页
+2. 首页/工作台
+3. 商机搜索页
+4. 客户排行榜页
+5. 客户详情页
+6. AI话术生成页
+7. 我的收藏页
+8. 导出记录页
+9. 跟进状态管理页
+10. 管理后台
+</code></pre>
+<h3 id="162">16.2 首页结构</h3>
+<pre><code class="language-PLAIN_TEXT">顶部：搜索框
+左侧：功能导航
+中部：今日推荐商机
+中部：热门榜单
+右侧：我的收藏、最近查看
+底部：使用数据概览
+</code></pre>
+<h3 id="163">16.3 客户详情页结构</h3>
+<pre><code class="language-PLAIN_TEXT">客户基础信息
+↓
+商机评分
+↓
+评分拆解
+↓
+推荐理由
+↓
+AI客户分析
+↓
+销售建议
+↓
+话术生成
+↓
+收藏/导出/标记跟进
+</code></pre>
+<h2 id="_14">十七、技术架构建议</h2>
+<h3 id="171">17.1 技术架构</h3>
+<pre><code class="language-PLAIN_TEXT">Frontend
+- Next.js
+- Tailwind CSS
+- Shadcn UI
+API
+- FastAPI
+Service
+- 商机评分服务
+- 客户画像服务
+- 推荐服务
+- AI话术服务
+- 用户行为服务
+Data
+- MySQL
+- Redis
+Search
+- Elasticsearch
+AI
+- DeepSeek
+- Qwen
+- OpenAI
+</code></pre>
+<h3 id="172">17.2 服务说明</h3>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商机评分服务</td>
+<td>根据规则计算客户商机指数</td>
+</tr>
+<tr>
+<td>客户画像服务</td>
+<td>聚合品牌、门店、增长数据</td>
+</tr>
+<tr>
+<td>推荐服务</td>
+<td>根据用户输入产品推荐客户</td>
+</tr>
+<tr>
+<td>LLM服务</td>
+<td>生成客户分析、推荐理由、销售话术</td>
+</tr>
+<tr>
+<td>用户行为服务</td>
+<td>记录搜索、收藏、导出、反馈</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_15">十八、版本规划</h2>
+<h3 id="181-mvp-v1">18.1 MVP V1：客户推荐验证</h3>
+<p>目标：</p>
+<pre><code class="language-PLAIN_TEXT">验证销售是否愿意用AI商机雷达找客户。
+</code></pre>
+<p>核心功能：</p>
+<ol>
+<li>输入产品。</li>
+<li>推荐客户。</li>
+<li>商机评分。</li>
+<li>客户详情。</li>
+<li>推荐理由。</li>
+<li>销售话术。</li>
+<li>收藏导出。</li>
+<li>跟进状态标记。</li>
+</ol>
+<h3 id="182-v2">18.2 V2：销售反馈闭环</h3>
+<p>目标：</p>
+<pre><code class="language-PLAIN_TEXT">验证推荐客户是否真的更容易成交。
+</code></pre>
+<p>新增功能：</p>
+<ol>
+<li>跟进结果回收。</li>
+<li>推荐有效性反馈。</li>
+<li>成交状态记录。</li>
+<li>客户无效原因标记。</li>
+<li>推荐模型权重优化。</li>
+<li>团队使用看板。</li>
+</ol>
+<h3 id="183-v3">18.3 V3：智能销售大脑</h3>
+<p>目标：</p>
+<pre><code class="language-PLAIN_TEXT">形成持续优化的AI销售推荐系统。
+</code></pre>
+<p>新增功能：</p>
+<ol>
+<li>基于成交结果优化评分模型。</li>
+<li>个性化销售推荐。</li>
+<li>行业化推荐模板。</li>
+<li>CRM系统集成。</li>
+<li>自动生成销售计划。</li>
+<li>付费版商业化能力。</li>
+</ol>
+<h2 id="_16">十九、风险与应对</h2>
+<h3 id="191">19.1 数据质量风险</h3>
+<p>风险：</p>
+<pre><code class="language-PLAIN_TEXT">门店状态不准、电话无效、数据延迟。
+</code></pre>
+<p>应对：</p>
+<ol>
+<li>展示数据更新时间。</li>
+<li>增加信息无效反馈。</li>
+<li>对疑似闭店客户降低评分。</li>
+<li>触达可行性单独计分。</li>
+</ol>
+<h3 id="192">19.2 推荐不准风险</h3>
+<p>风险：</p>
+<pre><code class="language-PLAIN_TEXT">销售认为推荐客户没有价值。
+</code></pre>
+<p>应对：</p>
+<ol>
+<li>推荐理由必须可解释。</li>
+<li>用户可以反馈“推荐有效/无效”。</li>
+<li>A/B测试不同评分权重。</li>
+<li>优先从单一品类场景验证。</li>
+</ol>
+<h3 id="193-ai">19.3 AI幻觉风险</h3>
+<p>风险：</p>
+<pre><code class="language-PLAIN_TEXT">AI编造客户经营情况或采购需求。
+</code></pre>
+<p>应对：</p>
+<ol>
+<li>AI只能基于已有字段生成内容。</li>
+<li>数据不足时必须提示“暂无足够信息”。</li>
+<li>推荐理由区分“数据依据”和“销售建议”。</li>
+<li>关键字段不由AI生成，只由结构化数据提供。</li>
+</ol>
+<h3 id="194">19.4 用户不持续使用风险</h3>
+<p>风险：</p>
+<pre><code class="language-PLAIN_TEXT">用户试用后觉得只是换一种方式查数据。
+</code></pre>
+<p>应对：</p>
+<ol>
+<li>首页突出“今日推荐”。</li>
+<li>推荐结果必须比普通查询更省时间。</li>
+<li>支持收藏和导出，进入真实销售动作。</li>
+<li>增加跟进状态，让用户形成使用习惯。</li>
+</ol>
+<h3 id="195">19.5 商业化风险</h3>
+<p>风险：</p>
+<pre><code class="language-PLAIN_TEXT">用户愿意试用，但不愿付费。
+</code></pre>
+<p>应对：</p>
+<ol>
+<li>明确节省销售筛选时间。</li>
+<li>验证推荐客户成交率提升。</li>
+<li>按席位、导出量、区域数据包收费。</li>
+<li>面向销售团队而不是个人销售收费。</li>
+</ol>
+<h2 id="_17">二十、验收标准</h2>
+<h3 id="201">20.1 功能验收</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>验收标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品输入</td>
+<td>用户输入产品后可识别品类和适配场景</td>
+</tr>
+<tr>
+<td>客户推荐</td>
+<td>可输出按商机指数排序的客户列表</td>
+</tr>
+<tr>
+<td>商机评分</td>
+<td>每个客户都有总分和分项评分</td>
+</tr>
+<tr>
+<td>推荐理由</td>
+<td>每个客户都有结构化推荐原因</td>
+</tr>
+<tr>
+<td>客户详情</td>
+<td>可查看基础信息、评分、画像、建议</td>
+</tr>
+<tr>
+<td>话术生成</td>
+<td>可生成微信、电话、拜访话术</td>
+</tr>
+<tr>
+<td>收藏</td>
+<td>可收藏客户并在收藏页查看</td>
+</tr>
+<tr>
+<td>导出</td>
+<td>可按权限导出客户列表</td>
+</tr>
+<tr>
+<td>跟进状态</td>
+<td>可标记客户跟进状态</td>
+</tr>
+</tbody>
+</table>
+<h3 id="202">20.2 体验验收</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>搜索响应时间</td>
+<td>常规搜索3秒内返回</td>
+</tr>
+<tr>
+<td>客户详情加载</td>
+<td>2秒内加载主要信息</td>
+</tr>
+<tr>
+<td>话术生成</td>
+<td>10秒内生成</td>
+</tr>
+<tr>
+<td>页面操作</td>
+<td>核心路径不超过3步</td>
+</tr>
+<tr>
+<td>推荐解释</td>
+<td>用户能看懂为什么推荐</td>
+</tr>
+</tbody>
+</table>
+<h3 id="203">20.3 数据验收</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户基础字段</td>
+<td>核心字段完整率达到要求</td>
+</tr>
+<tr>
+<td>商机评分</td>
+<td>所有推荐客户都有评分</td>
+</tr>
+<tr>
+<td>推荐理由</td>
+<td>推荐理由不得为空</td>
+</tr>
+<tr>
+<td>数据更新时间</td>
+<td>页面展示数据更新时间</td>
+</tr>
+<tr>
+<td>用户行为</td>
+<td>搜索、查看、收藏、导出均有记录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_18">二十一、核心原型路径</h2>
+<h3 id="211">21.1 用户主路径</h3>
+<pre><code class="language-PLAIN_TEXT">登录
+↓
+首页输入“牛肉卷”
+↓
+选择城市“上海”
+↓
+系统展示“上海火锅/烤肉TOP客户”
+↓
+点击客户A
+↓
+查看商机评分和推荐理由
+↓
+生成微信话术
+↓
+收藏客户
+↓
+导出客户
+↓
+标记“已联系”
+</code></pre>
+<h2 id="_19">二十二、商业化方向</h2>
+<h3 id="221">22.1 可能收费方式</h3>
+<table>
+<thead>
+<tr>
+<th>收费方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按账号收费</td>
+<td>每个销售账号按月收费</td>
+</tr>
+<tr>
+<td>按区域数据包收费</td>
+<td>购买指定城市/省份客户数据</td>
+</tr>
+<tr>
+<td>按导出量收费</td>
+<td>超过免费额度后付费</td>
+</tr>
+<tr>
+<td>按行业包收费</td>
+<td>火锅包、烧烤包、快餐包等</td>
+</tr>
+<tr>
+<td>企业版</td>
+<td>团队管理、CRM集成、私有数据导入</td>
+</tr>
+</tbody>
+</table>
+<h3 id="222">22.2 商业化前提</h3>
+<p>产品必须先证明：</p>
+<pre><code class="language-PLAIN_TEXT">推荐客户质量 &gt; 人工搜索客户质量
+</code></pre>
+<p>核心证明方式：</p>
+<ol>
+<li>推荐客户被收藏率更高。</li>
+<li>推荐客户被导出率更高。</li>
+<li>推荐客户跟进反馈更好。</li>
+<li>推荐客户成交率更高。</li>
+<li>销售愿意持续使用。</li>
+</ol>
+<h2 id="_20">二十三、最终产品愿景</h2>
+<p>AI商机雷达的长期目标不是做一个餐饮数据查询平台，而是成为餐饮B2B销售的AI销售大脑。</p>
+<p>长期形态是：</p>
+<pre><code class="language-PLAIN_TEXT">商家数据
++
+品牌增长数据
++
+品类需求理解
++
+销售行为反馈
++
+成交结果回流
++
+AI推荐模型
+</code></pre>
+<p>最终帮助销售持续回答三个问题：</p>
+<pre><code class="language-PLAIN_TEXT">我该找谁？
+为什么找他？
+怎么更容易成交？
+</code></pre>
+<h2 id="_21">二十四、总结</h2>
+<p>AI商机雷达MVP V1的核心不是做“大而全”的餐饮数据平台，而是聚焦一个明确场景：</p>
+<pre><code class="language-PLAIN_TEXT">餐饮供应链销售找客户。
+</code></pre>
+<p>第一版必须优先跑通：</p>
+<pre><code class="language-PLAIN_TEXT">产品输入
+↓
+客户推荐
+↓
+商机评分
+↓
+推荐理由
+↓
+销售话术
+↓
+收藏/导出/跟进
+</code></pre>
+<p>只要能够证明AI推荐客户比人工筛选更高效、更容易被销售接受，产品就具备继续迭代和商业化的基础。</p>
+</body>
+</html>

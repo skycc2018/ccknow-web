@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hermes-skills - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: Hermes Skill 索引与触发机制
+created: 2026-06-29
+updated: 2026-06-29
+tags: [hermes, skill, agent, 触发机制, 命令]</p>
+<hr />
+<h1 id="hermes-skill">Hermes Skill 索引与触发机制</h1>
+<blockquote>
+<p>本页面汇总当前 Hermes Agent 环境中的所有 Skill，按分类组织，并给出每个 Skill 的触发场景与常用命令。
+总计 Skill 数量：85</p>
+</blockquote>
+<h2 id="_1">使用方式</h2>
+<p>Hermes Skill 的触发方式主要有两种：</p>
+<ol>
+<li><strong>自动触发</strong>：当用户的自然语言匹配某个 Skill 的描述或触发条件时，Hermes 会自动加载并使用该 Skill。</li>
+<li><strong>主动调用</strong>：用户可以明确说「加载 xxx skill」或「使用 xxx」来强制指定使用某个 Skill。</li>
+</ol>
+<hr />
+<h2 id="apple">apple</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[apple-notes]]</td>
+<td>管理 Apple Notes</td>
+<td>Manage Apple Notes via the memo CLI on macOS (create, view, search, edit).</td>
+</tr>
+<tr>
+<td>[[apple-reminders]]</td>
+<td>管理 Apple 提醒事项</td>
+<td>Manage Apple Reminders via remindctl CLI (list, add, complete, delete).</td>
+</tr>
+<tr>
+<td>[[findmy]]</td>
+<td>定位 Apple 设备或 AirTag</td>
+<td>Track Apple devices and AirTags via FindMy.app on macOS using AppleScript and screen capture.</td>
+</tr>
+<tr>
+<td>[[imessage]]</td>
+<td>发送/接收 iMessage/SMS</td>
+<td>Send and receive iMessages/SMS via the imsg CLI on macOS.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="autonomous-ai-agents">autonomous-ai-agents</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[claude-code]]</td>
+<td>需要委派编码任务给 Claude Code CLI</td>
+<td>Delegate coding tasks to Claude Code (Anthropic's CLI agent). Use for building features, refactoring, PR reviews, and iterative coding. Requires the claude CLI installed.</td>
+</tr>
+<tr>
+<td>[[codex]]</td>
+<td>需要委派编码任务给 OpenAI Codex CLI</td>
+<td>Delegate coding tasks to OpenAI Codex CLI agent. Use for building features, refactoring, PR reviews, and batch issue fixing. Requires the codex CLI and a git repository.</td>
+</tr>
+<tr>
+<td>[[hermes-agent]]</td>
+<td>Hermes 配置、故障排查、扩展开发或贡献</td>
+<td>Complete guide to using and extending Hermes Agent — CLI usage, setup, configuration, spawning additional agents, gateway platforms, skills, voice, tools, profiles, and a concise contributor reference. Load this skill when helping users configure Hermes, troubleshoot issues, spawn agent instances, or make code contributions.</td>
+</tr>
+<tr>
+<td>[[opencode]]</td>
+<td>需要委派编码任务给 OpenCode CLI</td>
+<td>Delegate coding tasks to OpenCode CLI agent for feature implementation, refactoring, PR review, and long-running autonomous sessions. Requires the opencode CLI installed and authenticated.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="content-creation">content-creation</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[recurring-tutorial-generation]]</td>
+<td>定期生成教程或课程</td>
+<td>Generate scheduled, research-backed tutorials or lessons by reading a progress file, searching the latest web sources, reading a knowledge base, and producing a structured markdown lesson with runnable code.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="creative">creative</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[architecture-diagram]]</td>
+<td>生成暗色主题的软件架构图</td>
+<td>Generate dark-themed SVG diagrams of software systems and cloud infrastructure as standalone HTML files with inline SVG graphics.</td>
+</tr>
+<tr>
+<td>[[ascii-art]]</td>
+<td>生成 ASCII 艺术字</td>
+<td>Generate ASCII art using pyfiglet (571 fonts), cowsay, boxes, toilet, image-to-ascii, remote APIs (asciified, ascii.co.uk), and LLM fallback. No API keys required.</td>
+</tr>
+<tr>
+<td>[[ascii-video]]</td>
+<td>制作 ASCII 视频</td>
+<td>Production pipeline for ASCII art video — any format. Converts video/audio/images/generative input into colored ASCII character video output (MP4, GIF, image sequence).</td>
+</tr>
+<tr>
+<td>[[baoyu-comic]]</td>
+<td>创建知识漫画 / 教育漫画</td>
+<td>Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and sequential image generation. Use when user asks to create "知识漫画", "教育漫画", "biography comic", "tutorial comic", or "Logicomix-style comic".</td>
+</tr>
+<tr>
+<td>[[baoyu-infographic]]</td>
+<td>生成信息图 / 可视化大图</td>
+<td>Generate professional infographics with 21 layout types and 21 visual styles. Analyzes content, recommends layout×style combinations, and generates publication-ready infographics. Use when user asks to create "infographic", "visual summary", "信息图", "可视化", or "高密度信息大图".</td>
+</tr>
+<tr>
+<td>[[design-md]]</td>
+<td>编写 DESIGN.md 设计系统文档</td>
+<td>Author, validate, diff, and export DESIGN.md files — Google's open-source format spec that gives coding agents a persistent, structured understanding of a design system (tokens + rationale in one file).</td>
+</tr>
+<tr>
+<td>[[excalidraw]]</td>
+<td>创建手绘风格图表</td>
+<td>Create hand-drawn style diagrams using Excalidraw JSON format. Generate .excalidraw files for architecture diagrams, flowcharts, sequence diagrams, concept maps, and more.</td>
+</tr>
+<tr>
+<td>[[ideation]]</td>
+<td>需要项目创意或灵感</td>
+<td>Generate project ideas through creative constraints. Use when the user says 'I want to build something', 'give me a project idea', 'I'm bored', 'what should I make', 'inspire me', or any variant of 'I have tools but no direction'.</td>
+</tr>
+<tr>
+<td>[[manim-video]]</td>
+<td>制作 Manim 动画解释视频</td>
+<td>Production pipeline for mathematical and technical animations using Manim Community Edition. Creates 3Blue1Brown-style explainer videos, algorithm visualizations, equation derivations, architecture diagrams, and data stories.</td>
+</tr>
+<tr>
+<td>[[p5js]]</td>
+<td>创建 p5.js 交互或生成艺术</td>
+<td>Production pipeline for interactive and generative visual art using p5.js. Creates browser-based sketches, generative art, data visualizations, interactive experiences, 3D scenes, audio-reactive visuals, and motion graphics.</td>
+</tr>
+<tr>
+<td>[[pixel-art]]</td>
+<td>将图片转换为像素艺术</td>
+<td>Convert images into retro pixel art with hardware-accurate palettes (NES, Game Boy, PICO-8, C64, etc.), and animate them into short videos.</td>
+</tr>
+<tr>
+<td>[[popular-web-designs]]</td>
+<td>使用知名网站设计系统模板</td>
+<td>54 production-quality design systems extracted from real websites. Load a template to generate HTML/CSS that matches the visual identity of sites like Stripe, Linear, Vercel, Notion, Airbnb, and more.</td>
+</tr>
+<tr>
+<td>[[songwriting-and-ai-music]]</td>
+<td>创作歌曲或 AI 音乐</td>
+<td>Songwriting craft, AI music generation prompts (Suno focus), parody/adaptation techniques, and lessons learned.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-science">data-science</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[jupyter-live-kernel]]</td>
+<td>需要交互式、迭代式 Python 执行</td>
+<td>Use a live Jupyter kernel for stateful, iterative Python execution via hamelnb. Load this skill when the task involves exploration, iteration, or inspecting intermediate results.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="devops">devops</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[hermes-multi-instance]]</td>
+<td>部署多个 Hermes 实例</td>
+<td>Deploy and operate multiple independent Hermes instances on the same machine, each with its own platform credentials, isolated sessions, and shared resources.</td>
+</tr>
+<tr>
+<td>[[webhook-subscriptions]]</td>
+<td>创建 webhook 订阅触发 agent</td>
+<td>Create and manage webhook subscriptions for event-driven agent activation, or for direct push notifications (zero LLM cost).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="email">email</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[himalaya]]</td>
+<td>通过终端管理邮件</td>
+<td>CLI to manage emails via IMAP/SMTP. Use himalaya to list, read, write, reply, forward, search, and organize emails from the terminal.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="gaming">gaming</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[minecraft-modpack-server]]</td>
+<td>搭建 Minecraft modpack 服务器</td>
+<td>Set up a modded Minecraft server from a CurseForge/Modrinth server pack zip.</td>
+</tr>
+<tr>
+<td>[[pokemon-player]]</td>
+<td>通过模拟器自动玩 Pokemon</td>
+<td>Play Pokemon games autonomously via headless emulation.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="github">github</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[codebase-inspection]]</td>
+<td>统计代码库规模、语言分布</td>
+<td>Inspect and analyze codebases using pygount for LOC counting, language breakdown, and code-vs-comment ratios.</td>
+</tr>
+<tr>
+<td>[[github-auth]]</td>
+<td>配置 GitHub 认证</td>
+<td>Set up GitHub authentication for the agent using git or the gh CLI.</td>
+</tr>
+<tr>
+<td>[[github-code-review]]</td>
+<td>审查 PR 或代码变更</td>
+<td>Review code changes by analyzing git diffs, leaving inline comments on PRs, and performing thorough pre-push review.</td>
+</tr>
+<tr>
+<td>[[github-issues]]</td>
+<td>管理 GitHub Issues</td>
+<td>Create, manage, triage, and close GitHub issues.</td>
+</tr>
+<tr>
+<td>[[github-pr-workflow]]</td>
+<td>完整 PR 生命周期</td>
+<td>Full pull request lifecycle — create branches, commit changes, open PRs, monitor CI status, auto-fix failures, and merge.</td>
+</tr>
+<tr>
+<td>[[github-repo-management]]</td>
+<td>管理 GitHub 仓库</td>
+<td>Clone, create, fork, configure, and manage GitHub repositories.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mcp">mcp</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[native-mcp]]</td>
+<td>连接和使用 MCP 服务器</td>
+<td>Built-in MCP (Model Context Protocol) client that connects to external MCP servers, discovers their tools, and registers them as native Hermes Agent tools.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="media">media</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[gif-search]]</td>
+<td>搜索和下载 GIF</td>
+<td>Search and download GIFs from Tenor using curl.</td>
+</tr>
+<tr>
+<td>[[heartmula]]</td>
+<td>运行 HeartMuLa 音乐生成模型</td>
+<td>Set up and run HeartMuLa, the open-source music generation model family (Suno-like).</td>
+</tr>
+<tr>
+<td>[[songsee]]</td>
+<td>生成音频可视化</td>
+<td>Generate spectrograms and audio feature visualizations from audio files via CLI.</td>
+</tr>
+<tr>
+<td>[[spotify]]</td>
+<td>控制 Spotify 播放、搜索、播单管理</td>
+<td>Control Spotify — play music, search the catalog, manage playlists and library, inspect devices and playback state.</td>
+</tr>
+<tr>
+<td>[[youtube-content]]</td>
+<td>获取 YouTube 视频字幕并转化内容</td>
+<td>Fetch YouTube video transcripts and transform them into structured content.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mlops">mlops</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[audiocraft-audio-generation]]</td>
+<td>使用 AudioCraft 生成音乐/音效</td>
+<td>PyTorch library for audio generation including text-to-music (MusicGen) and text-to-sound (AudioGen).</td>
+</tr>
+<tr>
+<td>[[axolotl]]</td>
+<td>使用 Axolotl 微调 LLM</td>
+<td>Expert guidance for fine-tuning LLMs with Axolotl - YAML configs, 100+ models, LoRA/QLoRA, DPO/KTO/ORPO/GRPO, multimodal support</td>
+</tr>
+<tr>
+<td>[[dspy]]</td>
+<td>使用 DSPy 构建复杂 AI 系统</td>
+<td>Build complex AI systems with declarative programming, optimize prompts automatically, create modular RAG systems and agents with DSPy.</td>
+</tr>
+<tr>
+<td>[[evaluating-llms-harness]]</td>
+<td>评估 LLM 学术基准</td>
+<td>Evaluates LLMs across 60+ academic benchmarks (MMLU, HumanEval, GSM8K, TruthfulQA, HellaSwag).</td>
+</tr>
+<tr>
+<td>[[fine-tuning-with-trl]]</td>
+<td>使用 TRL 进行微调</td>
+<td>Fine-tune LLMs using reinforcement learning with TRL - SFT, DPO, PPO/GRPO, reward model training.</td>
+</tr>
+<tr>
+<td>[[huggingface-hub]]</td>
+<td>使用 Hugging Face Hub CLI</td>
+<td>Hugging Face Hub CLI (hf) — search, download, and upload models and datasets, manage repos, query datasets with SQL, deploy inference endpoints.</td>
+</tr>
+<tr>
+<td>[[llama-cpp]]</td>
+<td>本地 GGUF 推理</td>
+<td>llama.cpp local GGUF inference + HF Hub model discovery.</td>
+</tr>
+<tr>
+<td>[[obliteratus]]</td>
+<td>去除 LLM 拒绝行为</td>
+<td>Remove refusal behaviors from open-weight LLMs using OBLITERATUS — mechanistic interpretability techniques.</td>
+</tr>
+<tr>
+<td>[[outlines]]</td>
+<td>结构化输出生成</td>
+<td>Guarantee valid JSON/XML/code structure during generation, use Pydantic models for type-safe outputs.</td>
+</tr>
+<tr>
+<td>[[segment-anything-model]]</td>
+<td>图像分割</td>
+<td>Foundation model for image segmentation with zero-shot transfer.</td>
+</tr>
+<tr>
+<td>[[serving-llms-vllm]]</td>
+<td>使用 vLLM 部署 LLM</td>
+<td>Serves LLMs with high throughput using vLLM's PagedAttention and continuous batching.</td>
+</tr>
+<tr>
+<td>[[unsloth]]</td>
+<td>使用 Unsloth 快速微调</td>
+<td>Expert guidance for fast fine-tuning with Unsloth - 2-5x faster training, 50-80% less memory.</td>
+</tr>
+<tr>
+<td>[[weights-and-biases]]</td>
+<td>使用 W&amp;B 跟踪 ML 实验</td>
+<td>Track ML experiments with automatic logging, visualize training in real-time, optimize hyperparameters with sweeps.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="note-taking">note-taking</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[obsidian]]</td>
+<td>读取、搜索、创建 Obsidian 笔记</td>
+<td>Read, search, and create notes in the Obsidian vault.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="openclaw-imports">openclaw-imports</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[wms-design-analysis]]</td>
+<td>设计或评审 WMS 系统 / 仓储管理系统方案</td>
+<td>基于儈军产品方法论，对 WMS（仓储管理系统）进行系统性设计分析。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="productivity">productivity</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[airtable]]</td>
+<td>操作 Airtable 数据</td>
+<td>Airtable REST API via curl. Records CRUD, filters, upserts.</td>
+</tr>
+<tr>
+<td>[[google-workspace]]</td>
+<td>集成 Google Workspace（Gmail、日历、文档等）</td>
+<td>Gmail, Calendar, Drive, Contacts, Sheets, and Docs integration for Hermes.</td>
+</tr>
+<tr>
+<td>[[interview-assistant]]</td>
+<td>准备面试 / 根据 JD 生成岗位画像 / 生成面试大纲 / 面试追问 / 面试评估报告</td>
+<td>结构化面试智能助手 —— 帮助面试官完成岗位画像、面试大纲、实时追问建议、结构化评分与评估报告全流程。</td>
+</tr>
+<tr>
+<td>[[linear]]</td>
+<td>管理 Linear 问题和项目</td>
+<td>Manage Linear issues, projects, and teams via the GraphQL API.</td>
+</tr>
+<tr>
+<td>[[maps]]</td>
+<td>地理编码、逆地理编码、路线规划</td>
+<td>Location intelligence — geocode, reverse-geocode, find nearby places, distance/time, directions, timezone lookup.</td>
+</tr>
+<tr>
+<td>[[nano-pdf]]</td>
+<td>使用自然语言编辑 PDF</td>
+<td>Edit PDFs with natural-language instructions using the nano-pdf CLI.</td>
+</tr>
+<tr>
+<td>[[notion]]</td>
+<td>操作 Notion 页面和数据库</td>
+<td>Notion API for creating and managing pages, databases, and blocks via curl.</td>
+</tr>
+<tr>
+<td>[[ocr-and-documents]]</td>
+<td>从 PDF 和扫描文档中提取文字</td>
+<td>Extract text from PDFs and scanned documents.</td>
+</tr>
+<tr>
+<td>[[powerpoint]]</td>
+<td>任何涉及 .pptx 的操作（创建、编辑、读取、转换）</td>
+<td>Use this skill any time a .pptx file is involved in any way — as input, output, or both.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="red-teaming">red-teaming</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[godmode]]</td>
+<td>对 LLM 进行红队测试或 jailbreak</td>
+<td>Jailbreak API-served LLMs using G0DM0D3 techniques.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="research">research</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[arxiv]]</td>
+<td>搜索和获取 arXiv 论文</td>
+<td>Search and retrieve academic papers from arXiv using their free REST API.</td>
+</tr>
+<tr>
+<td>[[blogwatcher]]</td>
+<td>监控博客和 RSS/Atom feed</td>
+<td>Monitor blogs and RSS/Atom feeds for updates using the blogwatcher-cli tool.</td>
+</tr>
+<tr>
+<td>[[llm-wiki]]</td>
+<td>构建和维护 LLM Wiki 知识库</td>
+<td>Karpathy's LLM Wiki — build and maintain a persistent, interlinked markdown knowledge base.</td>
+</tr>
+<tr>
+<td>[[polymarket]]</td>
+<td>查询 Polymarket 预测市场数据</td>
+<td>Query Polymarket prediction market data — search markets, get prices, orderbooks, and price history.</td>
+</tr>
+<tr>
+<td>[[research-paper-writing]]</td>
+<td>撰写 ML/AI 研究论文</td>
+<td>End-to-end pipeline for writing ML/AI research papers — from experiment design through analysis, drafting, revision, and submission.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="smart-home">smart-home</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[openhue]]</td>
+<td>控制 Philips Hue 灯光</td>
+<td>Control Philips Hue lights, rooms, and scenes via the OpenHue CLI.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="social-media">social-media</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[xurl]]</td>
+<td>使用 xurl CLI 与 X/Twitter 交互</td>
+<td>Interact with X/Twitter via xurl, the official X API CLI.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="software-development">software-development</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[plan]]</td>
+<td>需要计划而非执行时（可使用 /plan 或明确说“先做个计划”）</td>
+<td>Plan mode for Hermes — inspect context, write a markdown plan into the active workspace's <code>.hermes/plans/</code> directory, and do not execute the work.</td>
+</tr>
+<tr>
+<td>[[requesting-code-review]]</td>
+<td>代码修改后、提交/推送/创建 PR 之前</td>
+<td>Pre-commit verification pipeline — static security scan, baseline-aware quality gates, independent reviewer subagent, and auto-fix loop.</td>
+</tr>
+<tr>
+<td>[[subagent-driven-development]]</td>
+<td>需要通过子代理执行已有计划</td>
+<td>Use when executing implementation plans with independent tasks. Dispatches fresh delegate_task per task with two-stage review.</td>
+</tr>
+<tr>
+<td>[[systematic-debugging]]</td>
+<td>遇到 bug、测试失败或异常行为</td>
+<td>Use when encountering any bug, test failure, or unexpected behavior. 4-phase root cause investigation.</td>
+</tr>
+<tr>
+<td>[[test-driven-development]]</td>
+<td>实现功能或修复 bug 前，要求先写测试</td>
+<td>Use when implementing any feature or bugfix, before writing implementation code. Enforces RED-GREEN-REFACTOR cycle.</td>
+</tr>
+<tr>
+<td>[[writing-plans]]</td>
+<td>有明确需求的多步任务，需要详细实施计划</td>
+<td>Use when you have a spec or requirements for a multi-step task. Creates comprehensive implementation plans.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="uncategorized">uncategorized</h2>
+<table>
+<thead>
+<tr>
+<th>Skill 名称</th>
+<th>触发场景 / 常用命令</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[apikey-image-gen]]</td>
+<td>通过 Hermes Web UI 生成/编辑图片</td>
+<td>Generate or edit images through Hermes Web UI using the selected/requested profile's configured API-key image provider from config.yaml.</td>
+</tr>
+<tr>
+<td>[[dogfood]]</td>
+<td>提及相关需求时自动触发（见 SKILL.md 描述）</td>
+<td>Systematic exploratory QA testing of web applications — find bugs, capture evidence, and generate structured reports</td>
+</tr>
+<tr>
+<td>[[grok-image-to-video]]</td>
+<td>将本地图片动态化为短视频</td>
+<td>Animate a local image into a short mp4 video through Hermes Web UI using xAI Grok Imagine.</td>
+</tr>
+<tr>
+<td>[[hyperframes]]</td>
+<td>使用 HyperFrames 创建 AI 视频</td>
+<td>Create AI videos with HyperFrames in Hermes using HTML, CSS, and JavaScript compositions, then validate and render them to MP4. Use for short video intros, cinematic trailers, product promos, subtitle animations, HUD/tech visuals, web-to-video work, and motion graphics.</td>
+</tr>
+<tr>
+<td>[[markdown-viewer]]</td>
+<td>在 Markdown 中创建图表、架构图、可视化内容</td>
+<td>Create rich diagrams, data visualizations, technical architecture views, and editorial content cards directly in Markdown using the Markdown Viewer Agent Skills pack. Use for Mermaid-like diagram requests, PlantUML architecture diagrams, Vega charts, JSON Canvas maps, infographics, UML, cloud/network/security/data/IoT diagrams, and polished Markdown documentation visuals.</td>
+</tr>
+<tr>
+<td>[[remotion]]</td>
+<td>使用 Remotion + React 创建可编辑视频项目</td>
+<td>Create editable AI video projects with Remotion and React, then preview and render them to MP4. Use for vertical short videos, product demos, story-driven animations, HUD/tech visuals, feed ads, tutorial videos, subtitles, voiceover, sound effects, and code-based video iteration.</td>
+</tr>
+<tr>
+<td>[[yuanbao]]</td>
+<td>元宝群交互（@用户、查询群信息）</td>
+<td>Yuanbao (元宝) group interaction — @mention users, query group info and members</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

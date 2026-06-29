@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI商机雷达-移动端Figma设计规范 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: AI商机雷达-移动端Figma设计规范
+created: 2026-06-22
+updated: 2026-06-29
+type: project
+tags: [AI商机雷达, Figma, 移动端设计, UI规范, 响应式, B2B SaaS, 设计稿]
+sources: [用户设计分析]
+confidence: medium</p>
+<hr />
+<h1 id="ai-figma">AI 商机雷达 移动端 Figma 设计规范</h1>
+<blockquote>
+<p>本文档是《AI商机雷达｜Figma - Figma AI 设计提示词》的移动端补充规范，专门用于指导移动端高保真设计稿输出。</p>
+</blockquote>
+<hr />
+<h2 id="_1">一、移动端设计定位</h2>
+<h3 id="_2">核心原则</h3>
+<pre><code class="language-text">移动端不是桌面端的缩小版，而是销售外勤场景的效率工具。
+桌面端做深度分析，移动端做快速发现、快速决策、快速行动。
+</code></pre>
+<h3 id="_3">移动端使用场景</h3>
+<ol>
+<li>通勤途中查看今日推荐客户</li>
+<li>客户楼下快速查看客户画像和切入点</li>
+<li>拜访后随手标记跟进状态</li>
+<li>电话中需要快速复制话术</li>
+<li>等餐/会议间隙浏览商机排行榜</li>
+</ol>
+<h3 id="_4">端侧重分工</h3>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>桌面端</th>
+<th>移动端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>复杂筛选</td>
+<td>主战场</td>
+<td>弱化，保留核心 2-3 个条件</td>
+</tr>
+<tr>
+<td>数据表格</td>
+<td>主战场</td>
+<td>转为卡片列表</td>
+</tr>
+<tr>
+<td>客户详情</td>
+<td>完整画像</td>
+<td>精简版 + 一键电话/微信/收藏</td>
+</tr>
+<tr>
+<td>话术生成</td>
+<td>长文本编辑</td>
+<td>快速复制 + 分享到微信</td>
+</tr>
+<tr>
+<td>排行榜</td>
+<td>多维度对比</td>
+<td>TOP 推荐流</td>
+</tr>
+<tr>
+<td>跟进状态</td>
+<td>表格批量管理</td>
+<td>滑动更新 + 状态标记</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">二、画板尺寸与断点</h2>
+<h3 id="_6">推荑画板</h3>
+<pre><code class="language-text">手机基准：375 × 812（iPhone 13/14/15）
+大屏手机：390 × 844（iPhone Pro Max）
+小平板：768 × 1024
+大平板：820 × 1180
+桌面端：1440 × 1024（已有）
+</code></pre>
+<h3 id="_7">响应式断点</h3>
+<pre><code class="language-text">&lt; 576px   → 手机端
+576-768px → 大手机/小平板
+768-1024px → 平板/小笔记本
+&gt; 1024px  → 桌面端
+</code></pre>
+<h3 id="_8">安全区</h3>
+<pre><code class="language-text">顶部状态栏：44px（iOS）、24px（Android）
+底部手势区：34px（iOS）、20-30px（Android）
+内容左右边距：16px（手机）、24px（平板）
+</code></pre>
+<hr />
+<h2 id="_9">三、导航重构</h2>
+<h3 id="_10">桌面端 → 移动端</h3>
+<pre><code class="language-text">桌面端：左侧固定导航栏
+移动端：底部 Tab Bar
+</code></pre>
+<h3 id="tab">底部 Tab 入口</h3>
+<pre><code class="language-text">首页（工作台）
+商机（搜索+排行榜）
+收藏
+跟进
+我的
+</code></pre>
+<h3 id="_11">顶部导航</h3>
+<pre><code class="language-text">取消复杂顶部栏
+保留：品牌名 + 通知图标 + 用户头像
+搜索入口放在首页中心或商机页顶部
+</code></pre>
+<hr />
+<h2 id="_12">四、各页面移动端适配</h2>
+<h3 id="41">4.1 工作台首页</h3>
+<p><strong>核心变化</strong></p>
+<pre><code class="language-text">- 顶部大搜索框保留，宽度占 90%
+- 数据卡片改为横向滑动或 2×2 网格
+- 今日推荐改为垂直卡片流
+- 热门榜单改为横向滚动 Chip
+</code></pre>
+<p><strong>一屏优先展示</strong></p>
+<pre><code class="language-text">搜索框
+今日推荐 TOP3 卡片（可横向滑动）
+快捷入口：我的收藏 / 已跟进 / 导出
+</code></pre>
+<p><strong>客户卡片精简字段</strong></p>
+<pre><code class="language-text">客户名称
+城市
+商机指数（圆形徽章）
+商机等级标签
+1 句推荐理由摘要
+查看详情按钮
+</code></pre>
+<hr />
+<h3 id="42">4.2 商机搜索页</h3>
+<p><strong>核心变化</strong></p>
+<pre><code class="language-text">- 筛选条件收起为&quot;筛选&quot;按钮
+- 默认只展示：产品输入 + 城市
+- 结果用卡片列表替代表格
+- 支持左滑收藏、长按快捷操作
+</code></pre>
+<p><strong>卡片字段</strong></p>
+<pre><code class="language-text">客户名称 | 城市
+商机指数（圆形）| 商机等级标签
+1 句推荐理由
+操作：查看详情 / 收藏 / 生成话术
+</code></pre>
+<hr />
+<h3 id="43">4.3 客户排行榜页</h3>
+<p><strong>核心变化</strong></p>
+<pre><code class="language-text">- TOP 3 客户突出展示为大卡片
+- 4-10 名用紧凑列表
+- 城市/品类切换用横向 Tab
+- 榜单卡片可左右滑动切换
+</code></pre>
+<p><strong>榜单示例</strong></p>
+<pre><code class="language-text">[上海火锅榜] [杭州烧烤榜] [全国牛肉卷榜]
+</code></pre>
+<hr />
+<h3 id="44">4.4 客户详情页</h3>
+<p><strong>核心变化</strong></p>
+<pre><code class="language-text">- 改为单栏垂直布局
+- 顶部：客户名 + 商机指数大数字 + 等级标签 + 收藏
+- 底部固定快捷操作栏：电话 / 微信 / 生成话术 / 标记跟进
+- 评分拆解用横向进度条或小雷达图
+- AI 推荐理由默认折叠，点击展开
+</code></pre>
+<p><strong>底部固定操作栏</strong></p>
+<pre><code class="language-text">[拨打电话] [复制微信] [生成话术] [标记跟进]
+</code></pre>
+<hr />
+<h3 id="45-ai">4.5 AI 话术生成页</h3>
+<p><strong>核心变化</strong></p>
+<pre><code class="language-text">- 话术类型用横向 Tab 切换
+- 生成结果区域占主要空间
+- 底部固定：复制话术 + 分享到微信
+- 支持生成后弹窗提示&quot;已复制&quot;
+</code></pre>
+<hr />
+<h3 id="46">4.6 我的收藏页</h3>
+<p><strong>核心变化</strong></p>
+<pre><code class="language-text">- 卡片列表 + 滑动取消收藏
+- 顶部统计改为横向数据条
+- 支持按商机等级筛选
+</code></pre>
+<hr />
+<h3 id="47">4.7 跟进状态页</h3>
+<p><strong>核心变化</strong></p>
+<pre><code class="language-text">- 采用状态分 Tab 或 Kanban 垂直堆叠
+- 点击状态标签弹出底部选项
+- 支持快速修改备注
+</code></pre>
+<hr />
+<h2 id="_13">五、移动端组件规范</h2>
+<h3 id="51">5.1 商机指数徽章</h3>
+<pre><code class="language-text">尺寸：直径 44-48px
+数字字号：16-18px，加粗
+颜色：根据分数区间使用桌面端同色规范
+</code></pre>
+<h3 id="52">5.2 商机等级标签</h3>
+<pre><code class="language-text">高度：24px
+圆角：12px
+字号：12px
+A级：绿色  B级：蓝色  C级：橙色  D级：灰色
+</code></pre>
+<h3 id="53">5.3 按钮</h3>
+<pre><code class="language-text">主要按钮高度：48px
+次要按钮高度：40px
+底部固定操作栏高度：56-64px
+圆角：8-12px
+</code></pre>
+<h3 id="54">5.4 卡片</h3>
+<pre><code class="language-text">圆角：12px
+阴影：0 2px 8px rgba(0,0,0,0.06)
+内边距：16px
+卡片间距：12px
+背景：白色
+</code></pre>
+<h3 id="55">5.5 字体</h3>
+<pre><code class="language-text">基础正文：16px
+页面标题：20-24px
+卡片标题：16-17px
+辅助信息：13-14px
+行高：1.5-1.6
+</code></pre>
+<h3 id="56">5.6 输入框</h3>
+<pre><code class="language-text">高度：48px
+圆角：8-12px
+下拉选择用底部弹出 Picker
+日期/区间选择用底部 Sheet
+</code></pre>
+<hr />
+<h2 id="_14">六、交互与手势</h2>
+<h3 id="61">6.1 常用手势</h3>
+<table>
+<thead>
+<tr>
+<th>手势</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下滑刷新</td>
+<td>推荐列表、收藏列表</td>
+</tr>
+<tr>
+<td>上拉加载</td>
+<td>排行榜、搜索结果</td>
+</tr>
+<tr>
+<td>左滑</td>
+<td>收藏页取消收藏、跟进页快速改状态</td>
+</tr>
+<tr>
+<td>右滑</td>
+<td>搜索结果快速收藏</td>
+</tr>
+<tr>
+<td>点击卡片</td>
+<td>进入详情</td>
+</tr>
+<tr>
+<td>长按</td>
+<td>弹出快捷操作菜单</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62">6.2 手机原生能力</h3>
+<pre><code class="language-text">点击电话：调起系统拨号
+点击微信：复制话术 + 唤起微信
+点击地址：调起地图导航
+分享：生成客户海报 / 小程序卡片
+</code></pre>
+<h3 id="63">6.3 反馈机制</h3>
+<pre><code class="language-text">收藏成功：底部 Toast 提示
+话术生成中：骨架屏 + 流式输出
+状态更新：卡片微动效 + Toast
+复制成功：Toast &quot;已复制到剪贴板&quot;
+</code></pre>
+<hr />
+<h2 id="_15">七、性能与体验</h2>
+<h3 id="71">7.1 加载策略</h3>
+<pre><code class="language-text">首页首屏 1 秒内加载
+列表图片/头像懒加载
+骨架屏替代全页 Loading
+话术生成 10 秒内可交互
+</code></pre>
+<h3 id="72">7.2 空状态</h3>
+<pre><code class="language-text">无推荐客户：引导修改产品或城市
+无网络：显示离线缓存的最近查看
+无权限：提示联系管理员
+</code></pre>
+<hr />
+<h2 id="_16">八、移动端设计禁忌</h2>
+<pre><code class="language-text">1. 不要把桌面端表格直接缩小到手机上
+2. 不要在一屏内塞入超过 3 个核心操作
+3. 不要使用小于 44px 的点击区域
+4. 不要隐藏电话/微信/跟进等高频操作
+5. 不要让用户在手机上做复杂的筛选组合
+6. 不要让 AI 推荐理由默认展开占用大量空间
+7. 不要使用需要横向滚动的复杂表格
+</code></pre>
+<hr />
+<h2 id="_17">九、移动端交付要求</h2>
+<h3 id="figma">Figma 移动端高保真页面</h3>
+<pre><code class="language-text">1. 移动端工作台首页
+2. 移动端商机搜索页
+3. 移动端客户排行榜页
+4. 移动端客户详情页
+5. 移动端 AI 话术生成页
+6. 移动端我的收藏页
+7. 移动端跟进状态页
+8. 移动端组件库（底部 Tab、底部 Sheet、滑动卡片、Toast、空状态）
+</code></pre>
+<h3 id="_18">每个页面需要具备</h3>
+<pre><code class="language-text">清晰的信息层级
+一屏内可见核心内容
+底部固定高频操作
+真实示例数据
+与桌面端统一的视觉风格
+符合 iOS / Android 触摸规范
+</code></pre>
+<hr />
+<h2 id="_19">十、落地建议</h2>
+<h3 id="_20">推荐技术路径</h3>
+<pre><code class="language-text">MVP V1：桌面 Web 为主，但前端采用响应式框架，确保 H5 可用
+MVP V1.5：补充手机端核心页面（首页、搜索、详情、收藏）
+V2：如果销售高频使用，再考虑微信小程序
+</code></pre>
+<h3 id="_21">与桌面端的关系</h3>
+<pre><code class="language-text">账号数据通通：收藏、跟进状态、搜索记录云端同步
+功能上分工：桌面端做分析和批量操作，移动端做行动和快速浏览
+视觉一致：保持相同的色彩、字体、圆角、徽章规范
+</code></pre>
+<hr />
+<h2 id="_22">相关链接</h2>
+<ul>
+<li>[[AI商机雷达-PRD]]</li>
+<li>[[AI商机雷达｜Figma AI设计提示词]]</li>
+<li>[[AI商机雷达｜AI Coding开发提示词]]</li>
+</ul>
+</body>
+</html>

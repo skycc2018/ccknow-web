@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大众点评品类品牌数据分析报告 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>tags:
+- 数据分析
+- 大众点评
+- 餐饮
+- 市场分析
+- 数据质量
+date: 2026-05-25
+source: 大众点评品类品牌数据分析_0521.xlsx
+title: 大众点评品类品牌数据分析报告
+created: '2026-06-21'
+updated: '2026-06-21'
+type: query
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="_1">大众点评品类品牌数据分析报告</h1>
+<blockquote>
+<p>数据来源：大众点评 03期→04期（2024年3月→4月）
+分析范围：美食类品牌（已剔除茶饮/咖啡/面包/甜品等非目标品类）
+覆盖门店：595,430 家（排除8,774个非目标品牌后）</p>
+</blockquote>
+<hr />
+<h2 id="_2">⚠️ 数据质量说明与局限性</h2>
+<h3 id="_3">已知数据问题</h3>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>具体表现</th>
+<th>影响程度</th>
+<th>建议处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>品类定义模糊</strong></td>
+<td>"其他美食"、"小吃快餐"等品类界限不清晰</td>
+<td>高</td>
+<td>需人工复核品类归类</td>
+</tr>
+<tr>
+<td><strong>旧标签未更新</strong></td>
+<td>9,453个品牌使用33个旧品类标签，涉及230,596家门店</td>
+<td>中</td>
+<td>对"小碗菜"等受影响品类需单独分析</td>
+</tr>
+<tr>
+<td><strong>渗透率异常值</strong></td>
+<td>部分品牌渗透率≥100%（数据采集或新品牌增长影响）</td>
+<td>中</td>
+<td>高渗透率数据需人工验证</td>
+</tr>
+<tr>
+<td><strong>样本偏差</strong></td>
+<td>仅展示04期门店超千家的品类，小众品类被过滤</td>
+<td>中</td>
+<td>小品类机会可能遗漏</td>
+</tr>
+<tr>
+<td><strong>时间跨度短</strong></td>
+<td>仅1个月环比（03期→04期），季节性因素未排除</td>
+<td>高</td>
+<td>需结合多期数据验证趋势</td>
+</tr>
+<tr>
+<td><strong>地域分布未知</strong></td>
+<td>数据未区分城市层级（一线/二线/下沉）</td>
+<td>高</td>
+<td>同一品类在不同城市表现差异大</td>
+</tr>
+<tr>
+<td><strong>品牌层级缺失</strong></td>
+<td>未分析同一品类内不同品牌层级的表现差异</td>
+<td>中</td>
+<td>F级品牌与C级品牌策略不同</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">数据可靠性评估</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>评分</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据完整性</td>
+<td>⭐⭐⭐☆☆</td>
+<td>存在缺失值和异常值</td>
+</tr>
+<tr>
+<td>数据准确性</td>
+<td>⭐⭐⭐⭐☆</td>
+<td>大众点评数据源较可靠</td>
+</tr>
+<tr>
+<td>时间代表性</td>
+<td>⭐⭐☆☆☆</td>
+<td>仅1个月，无法判断长期趋势</td>
+</tr>
+<tr>
+<td>品类一致性</td>
+<td>⭐⭐⭐☆☆</td>
+<td>三级品类划分标准不统一</td>
+</tr>
+<tr>
+<td>可比性</td>
+<td>⭐⭐⭐⭐☆</td>
+<td>03期→04期口径一致</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">一、市场大盘总览</h2>
+<h3 id="_6">核心数据</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>04期数据</th>
+<th>环比变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>全量门店数</strong></td>
+<td>915.62 万</td>
+<td>+0.42%</td>
+</tr>
+<tr>
+<td><strong>品牌门店数</strong></td>
+<td>183.22 万</td>
+<td>+1.77%</td>
+</tr>
+<tr>
+<td><strong>连锁化率</strong></td>
+<td>20.0%</td>
+<td>+0.3%</td>
+</tr>
+<tr>
+<td><strong>市场状态</strong></td>
+<td>平稳微增</td>
+<td>品牌化扩张动力充足</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键洞察：</strong>
+- 品牌门店净增长率（1.77%）显著高于全量门店（0.42%），说明<strong>品牌化扩张是核心驱动力</strong>
+- 连锁化率 20% 仍有较大提升空间</p>
+<hr />
+<h2 id="_7">二、品类增长分析</h2>
+<h3 id="21-top-15">2.1 增长最快的品类 TOP 15</h3>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>品类</th>
+<th>净增率</th>
+<th>门店数</th>
+<th>机会评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>蘸水菜</td>
+<td><strong>+46.81%</strong></td>
+<td>69</td>
+<td>🔥 新兴品类，爆发式增长</td>
+</tr>
+<tr>
+<td>2</td>
+<td>鱼翅捞饭</td>
+<td><strong>+25.00%</strong></td>
+<td>5</td>
+<td>规模极小，观察</td>
+</tr>
+<tr>
+<td>3</td>
+<td>疙瘩汤</td>
+<td><strong>+17.37%</strong></td>
+<td>392</td>
+<td>潜力品类，值得关注</td>
+</tr>
+<tr>
+<td>4</td>
+<td>其他盖浇饭</td>
+<td><strong>+16.70%</strong></td>
+<td>1,020</td>
+<td>盖浇饭赛道持续火热</td>
+</tr>
+<tr>
+<td>5</td>
+<td>干锅排骨（快餐）</td>
+<td><strong>+13.31%</strong></td>
+<td>630</td>
+<td>快餐化干锅，创新模式</td>
+</tr>
+<tr>
+<td>6</td>
+<td>馋嘴鱼</td>
+<td><strong>+12.22%</strong></td>
+<td>101</td>
+<td>小众增长</td>
+</tr>
+<tr>
+<td>7</td>
+<td>罐罐粉面线</td>
+<td><strong>+11.20%</strong></td>
+<td>1,062</td>
+<td>粉面线创新形态</td>
+</tr>
+<tr>
+<td>8</td>
+<td>海肠捞饭</td>
+<td><strong>+10.57%</strong></td>
+<td>136</td>
+<td>地域特色，区域机会</td>
+</tr>
+<tr>
+<td>9</td>
+<td>干锅煎肉饭</td>
+<td><strong>+9.52%</strong></td>
+<td>23</td>
+<td>规模小，观察</td>
+</tr>
+<tr>
+<td>10</td>
+<td>滑蛋饭</td>
+<td><strong>+7.95%</strong></td>
+<td>665</td>
+<td>日式快餐，稳定增长</td>
+</tr>
+<tr>
+<td>11</td>
+<td>龙虾/小龙虾</td>
+<td><strong>+6.97%</strong></td>
+<td>6,400</td>
+<td>季节性品类，规模可观</td>
+</tr>
+<tr>
+<td>12</td>
+<td>炸鸡柳年糕</td>
+<td><strong>+6.45%</strong></td>
+<td>6,249</td>
+<td>小吃赛道，持续扩张</td>
+</tr>
+<tr>
+<td>13</td>
+<td>猪脚饭</td>
+<td><strong>+4.79%</strong></td>
+<td>13,338</td>
+<td>快餐热门，规模化</td>
+</tr>
+<tr>
+<td>14</td>
+<td>螺蛳粉</td>
+<td><strong>+4.31%</strong></td>
+<td>19,420</td>
+<td>网红品类，持续渗透</td>
+</tr>
+<tr>
+<td>15</td>
+<td>快餐型粥店</td>
+<td><strong>+3.87%</strong></td>
+<td>14,803</td>
+<td>健康早餐，稳定增长</td>
+</tr>
+</tbody>
+</table>
+<p><strong>趋势洞察：</strong>
+- <strong>快餐化是大趋势</strong>：盖浇饭、滑蛋饭、猪脚饭等快餐品类增长强劲
+- <strong>地方特色全国化</strong>：螺蛳粉、蘸水菜等地域品类快速扩张
+- <strong>创新形态受追捧</strong>：罐罐粉面线、干锅排骨快餐等新形态表现亮眼</p>
+<hr />
+<h3 id="22-top-10">2.2 下滑最严重的品类 TOP 10</h3>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>品类</th>
+<th>净增率</th>
+<th>门店数</th>
+<th>风险评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>其他（旧）</td>
+<td><strong>-14.29%</strong></td>
+<td>6</td>
+<td>淘汰中</td>
+</tr>
+<tr>
+<td>2</td>
+<td>土豆泥拌面</td>
+<td><strong>-14.29%</strong></td>
+<td>12</td>
+<td>网红退潮</td>
+</tr>
+<tr>
+<td>3</td>
+<td>卤鹅饭</td>
+<td><strong>-12.50%</strong></td>
+<td>28</td>
+<td>小众萎缩</td>
+</tr>
+<tr>
+<td>4</td>
+<td>渣渣牛肉米线</td>
+<td><strong>-11.11%</strong></td>
+<td>16</td>
+<td>概念疲劳</td>
+</tr>
+<tr>
+<td>5</td>
+<td>社会食堂</td>
+<td><strong>-11.11%</strong></td>
+<td>24</td>
+<td>模式问题</td>
+</tr>
+<tr>
+<td>6</td>
+<td>干蒸菜</td>
+<td><strong>-8.80%</strong></td>
+<td>508</td>
+<td>品类老化</td>
+</tr>
+<tr>
+<td>7</td>
+<td>酸菜牛肉火锅</td>
+<td><strong>-8.35%</strong></td>
+<td>461</td>
+<td>火锅细分竞争加剧</td>
+</tr>
+<tr>
+<td>8</td>
+<td>皮肚面</td>
+<td><strong>-8.18%</strong></td>
+<td>101</td>
+<td>地域局限</td>
+</tr>
+<tr>
+<td>9</td>
+<td>鱼籽拌饭</td>
+<td><strong>-7.89%</strong></td>
+<td>35</td>
+<td>小众退潮</td>
+</tr>
+<tr>
+<td>10</td>
+<td>担担面</td>
+<td><strong>-7.69%</strong></td>
+<td>12</td>
+<td>传统品类萎缩</td>
+</tr>
+</tbody>
+</table>
+<p><strong>风险提示：</strong>
+- <strong>网红品类生命周期短</strong>：土豆泥拌面、渣渣牛肉米线等快速退潮
+- <strong>火锅细分竞争激烈</strong>：酸菜牛肉火锅、川渝火锅（-1.59%）面临压力
+- <strong>传统品类需创新</strong>：担担面、皮肚面等老化品类萎缩</p>
+<hr />
+<h2 id="_8">三、市场规模分析</h2>
+<h3 id="31-top-10">3.1 门店规模最大的品类 TOP 10</h3>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>品类</th>
+<th>门店数</th>
+<th>净增率</th>
+<th>市场地位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>汉堡炸鸡（西式）</strong></td>
+<td>87,143</td>
+<td>+0.11%</td>
+<td>🏆 绝对龙头，规模稳定</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>沙县小吃</strong></td>
+<td>43,080</td>
+<td>-1.14%</td>
+<td>⚠️ 规模萎缩，需关注</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>烧烤</strong></td>
+<td>40,277</td>
+<td>+0.03%</td>
+<td>规模稳定，增长乏力</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>麻辣烫</strong></td>
+<td>39,858</td>
+<td>+0.25%</td>
+<td>规模稳定，微增</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>包子</strong></td>
+<td>28,985</td>
+<td>-1.01%</td>
+<td>传统品类，轻微下滑</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>川渝火锅</strong></td>
+<td>24,745</td>
+<td>-1.59%</td>
+<td>⚠️ 下滑明显，竞争加剧</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>披萨</strong></td>
+<td>20,467</td>
+<td>-0.01%</td>
+<td>规模稳定，停滞</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>卤菜/熟食店</strong></td>
+<td>19,452</td>
+<td>-0.89%</td>
+<td>轻微下滑</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>螺蛳粉</strong></td>
+<td>19,420</td>
+<td>+0.18%</td>
+<td>网红品类，持续渗透</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>馄饨</strong></td>
+<td>18,443</td>
+<td>-1.04%</td>
+<td>传统品类萎缩</td>
+</tr>
+</tbody>
+</table>
+<p><strong>市场格局洞察：</strong>
+- <strong>西式快餐主导</strong>：汉堡炸鸡以87,143家门店遥遥领先
+- <strong>传统中式快餐承压</strong>：沙县小吃、包子、馄饨等品类下滑
+- <strong>火锅进入调整期</strong>：川渝火锅下滑1.59%，行业竞争白热化</p>
+<hr />
+<h2 id="crm">四、CRM渗透率分析</h2>
+<h3 id="41-top-10">4.1 渗透率最高的品类 TOP 10</h3>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>品类</th>
+<th>渗透率</th>
+<th>门店数</th>
+<th>开发状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>蘸水菜</strong></td>
+<td><strong>97.10%</strong></td>
+<td>69</td>
+<td>✅ 高度覆盖</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>肉酱饭</strong></td>
+<td><strong>44.10%</strong></td>
+<td>161</td>
+<td>✅ 深度覆盖</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>瓦锅饭</strong></td>
+<td><strong>43.97%</strong></td>
+<td>257</td>
+<td>✅ 深度覆盖</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>鲜炒/鲜椒牛肉饭</strong></td>
+<td><strong>37.81%</strong></td>
+<td>611</td>
+<td>✅ 较好覆盖</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>中式健康菜（偏热菜）</strong></td>
+<td><strong>37.60%</strong></td>
+<td>3,295</td>
+<td>✅ 较好覆盖</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>叉烧饭</strong></td>
+<td><strong>35.38%</strong></td>
+<td>913</td>
+<td>✅ 较好覆盖</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>朝鲜族汤饭</strong></td>
+<td><strong>31.43%</strong></td>
+<td>245</td>
+<td>✅ 中等覆盖</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>板凳面</strong></td>
+<td><strong>27.95%</strong></td>
+<td>297</td>
+<td>✅ 中等覆盖</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>其他盖浇饭</strong></td>
+<td><strong>26.18%</strong></td>
+<td>1,020</td>
+<td>✅ 中等覆盖</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>猪脚饭</strong></td>
+<td><strong>24.30%</strong></td>
+<td>13,338</td>
+<td>⚠️ 规模大但覆盖率低</td>
+</tr>
+</tbody>
+</table>
+<p><strong>渗透率洞察：</strong>
+- <strong>高渗透率品类特征</strong>：规模小（&lt;1000家）、标准化程度高、供应链集中
+- <strong>低渗透率机会</strong>：猪脚饭（13,338家，仅24.3%覆盖）、螺蛳粉（19,420家，仅6.14%覆盖）
+- <strong>开发优先级</strong>：大规模+低渗透率 = 最大机会</p>
+<hr />
+<h2 id="_9">五、品牌开发机会矩阵</h2>
+<h3 id="51">5.1 四象限分析</h3>
+<pre><code>                    高增长率
+                         │
+    🔥 明星品类         │      💎 潜力品类
+    （高增长+高渗透）    │      （高增长+低渗透）
+                         │
+    蘸水菜               │      疙瘩汤
+    肉酱饭               │      其他盖浇饭
+    瓦锅饭               │      滑蛋饭
+    鲜椒牛肉饭           │      龙虾/小龙虾
+                         │
+    ─────────────────────┼─────────────────────
+                         │
+    ⚠️ 成熟品类          │      ❌ 风险品类
+    （低增长+高渗透）    │      （低增长+低渗透）
+                         │      
+    汉堡炸鸡             │      沙县小吃
+    披萨                 │      川渝火锅
+    烧烤                 │      传统面食
+                         │
+                    低增长率
+</code></pre>
+<h3 id="52">5.2 重点开发机会</h3>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>品类</th>
+<th>门店数</th>
+<th>增长率</th>
+<th>渗透率</th>
+<th>机会说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P0</strong></td>
+<td>猪脚饭</td>
+<td>13,338</td>
+<td>+4.79%</td>
+<td>24.3%</td>
+<td>规模大、增长快、渗透率低</td>
+</tr>
+<tr>
+<td><strong>P0</strong></td>
+<td>螺蛳粉</td>
+<td>19,420</td>
+<td>+4.31%</td>
+<td>6.14%</td>
+<td>网红品类、渗透率低</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>快餐型粥店</td>
+<td>14,803</td>
+<td>+3.87%</td>
+<td>45.3%</td>
+<td>健康趋势、增长稳定</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>木桶饭</td>
+<td>14,019</td>
+<td>+3.49%</td>
+<td>37.9%</td>
+<td>快餐热门、中等渗透</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>炸鸡柳年糕</td>
+<td>6,249</td>
+<td>+6.45%</td>
+<td>19.6%</td>
+<td>小吃爆发、渗透率低</td>
+</tr>
+<tr>
+<td><strong>P2</strong></td>
+<td>龙虾/小龙虾</td>
+<td>6,400</td>
+<td>+6.97%</td>
+<td>1.0%</td>
+<td>季节性、渗透极低</td>
+</tr>
+<tr>
+<td><strong>P2</strong></td>
+<td>疙瘩汤</td>
+<td>392</td>
+<td>+17.37%</td>
+<td>未知</td>
+<td>高增长、待观察</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_10">六、核心结论与建议</h2>
+<h3 id="61">6.1 市场趋势</h3>
+<ol>
+<li><strong>品牌化加速</strong>：品牌门店净增率（1.77%）是全量门店（0.42%）的4.2倍</li>
+<li><strong>快餐化主导</strong>：盖浇饭、猪脚饭、滑蛋饭等快餐品类增长强劲</li>
+<li><strong>传统品类承压</strong>：沙县小吃、包子、馄饨等品类持续萎缩</li>
+<li><strong>网红生命周期短</strong>：土豆泥拌面、渣渣牛肉米线等快速退潮</li>
+</ol>
+<h3 id="62">6.2 开发策略建议</h3>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>目标品类</th>
+<th>行动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>重点突破</strong></td>
+<td>猪脚饭、螺蛳粉</td>
+<td>加大地推力度，提升渗透率</td>
+</tr>
+<tr>
+<td><strong>跟随增长</strong></td>
+<td>盖浇饭、滑蛋饭、粥店</td>
+<td>借势增长红利，快速覆盖</td>
+</tr>
+<tr>
+<td><strong>观察培育</strong></td>
+<td>蘸水菜、疙瘩汤</td>
+<td>小规模试点，验证模式</td>
+</tr>
+<tr>
+<td><strong>谨慎对待</strong></td>
+<td>火锅、传统面食</td>
+<td>维持现有覆盖，不追加投入</td>
+</tr>
+<tr>
+<td><strong>逐步退出</strong></td>
+<td>土豆泥拌面、社会食堂</td>
+<td>减少资源投入</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63">6.3 关键数据监控</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前值</th>
+<th>目标值</th>
+<th>监控频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>猪脚饭渗透率</td>
+<td>24.3%</td>
+<td>40%</td>
+<td>月度</td>
+</tr>
+<tr>
+<td>螺蛳粉渗透率</td>
+<td>6.14%</td>
+<td>15%</td>
+<td>月度</td>
+</tr>
+<tr>
+<td>快餐品类覆盖率</td>
+<td>35%</td>
+<td>50%</td>
+<td>季度</td>
+</tr>
+<tr>
+<td>品牌门店净增率</td>
+<td>1.77%</td>
+<td>2.5%</td>
+<td>季度</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_11">七、数据优化建议</h2>
+<h3 id="71-1-2">7.1 短期可优化项（1-2周内）</h3>
+<table>
+<thead>
+<tr>
+<th>优化项</th>
+<th>当前问题</th>
+<th>优化方案</th>
+<th>预期效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>品类标签清洗</strong></td>
+<td>33个旧标签未更新</td>
+<td>统一品类命名规则，更新标签映射</td>
+<td>提升品类分析准确性</td>
+</tr>
+<tr>
+<td><strong>异常值处理</strong></td>
+<td>渗透率≥100%的数据</td>
+<td>设置合理阈值（如≤95%），超阈值数据人工复核</td>
+<td>提升数据可信度</td>
+</tr>
+<tr>
+<td><strong>缺失值标注</strong></td>
+<td>部分品类渗透率显示为公式（如=I2/F2）</td>
+<td>计算实际值并填充</td>
+<td>确保数据完整性</td>
+</tr>
+<tr>
+<td><strong>时间维度扩展</strong></td>
+<td>仅1个月环比</td>
+<td>增加02期数据，计算3个月趋势</td>
+<td>判断趋势稳定性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-1">7.2 中期可优化项（1个月内）</h3>
+<table>
+<thead>
+<tr>
+<th>优化项</th>
+<th>当前问题</th>
+<th>优化方案</th>
+<th>预期效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>地域维度拆分</strong></td>
+<td>数据未区分城市层级</td>
+<td>增加城市分级字段（一线/二线/三线/下沉）</td>
+<td>识别区域差异机会</td>
+</tr>
+<tr>
+<td><strong>品牌层级分析</strong></td>
+<td>未区分F/E/D/C/B/A级品牌</td>
+<td>按层级拆分品类数据</td>
+<td>制定差异化开发策略</td>
+</tr>
+<tr>
+<td><strong>季节性调整</strong></td>
+<td>03期→04期含清明节、五一假期</td>
+<td>标注节假日影响，对比去年同期</td>
+<td>排除季节性干扰</td>
+</tr>
+<tr>
+<td><strong>竞品数据补充</strong></td>
+<td>仅大众点评数据</td>
+<td>补充美团、抖音本地生活数据</td>
+<td>全面评估市场</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-3">7.3 长期可优化项（3个月内）</h3>
+<table>
+<thead>
+<tr>
+<th>优化项</th>
+<th>当前问题</th>
+<th>优化方案</th>
+<th>预期效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>动态监控体系</strong></td>
+<td>静态月度报告</td>
+<td>建立自动化数据看板，实时更新</td>
+<td>快速响应市场变化</td>
+</tr>
+<tr>
+<td><strong>预测模型</strong></td>
+<td>仅描述历史数据</td>
+<td>建立品类增长预测模型</td>
+<td>提前布局新兴品类</td>
+</tr>
+<tr>
+<td><strong>关联分析</strong></td>
+<td>单品类独立分析</td>
+<td>分析品类间关联（如火锅+茶饮）</td>
+<td>发现组合机会</td>
+</tr>
+<tr>
+<td><strong>客户画像</strong></td>
+<td>仅门店数据</td>
+<td>关联客户订单数据，分析消费偏好</td>
+<td>精准定位目标品牌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="74">7.4 数据质量提升路线图</h3>
+<pre><code>Week 1-2: 数据清洗
+  ├── 品类标签统一
+  ├── 异常值处理
+  ├── 缺失值填充
+  └── 公式转数值
+
+Week 3-4: 维度扩展
+  ├── 增加城市层级
+  ├── 增加品牌层级
+  ├── 增加时间序列
+  └── 标注节假日
+
+Month 2: 分析深化
+  ├── 建立动态看板
+  ├── 开发预测模型
+  ├── 品类关联分析
+  └── 客户画像构建
+
+Month 3: 体系固化
+  ├── 自动化报告生成
+  ├── 预警机制建立
+  ├── 季度复盘流程
+  └── 数据治理规范
+</code></pre>
+<hr />
+<p><em>报告生成时间：2026-05-25</em>
+<em>数据来源：大众点评品类品牌数据分析_0521.xlsx</em>
+<em>分析范围：03期→04期（2024年3月→4月）</em>
+<em>数据质量评级：⭐⭐⭐☆☆（3/5分，需优化后使用）</em></p>
+<h2 id="_12">相关链接</h2>
+<ul>
+<li>[[1号楼改造工程-工程量清单]]</li>
+<li>[[AI Native 深度报告]]</li>
+<li>[[管理层数字化素养提升方案]]</li>
+</ul>
+</body>
+</html>

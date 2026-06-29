@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI商机雷达｜Figma AI设计提示词 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: AI商机雷达｜Figma AI设计提示词
+created: 2026-06-22
+updated: 2026-06-29
+type: project
+tags: [AI商机雷达, Figma, 提示词, 设计规范, UI设计, B2B SaaS, 高保真原型]
+sources: [用户设计分析]
+confidence: medium</p>
+<hr />
+<h1 id="_1"></h1>
+<h2 id="_2">一、设计目标</h2>
+<p>请为一个名为“AI商机雷达”的B2B SaaS产品设计一套高保真Web端界面。</p>
+<p>产品定位：</p>
+<pre><code class="language-text">AI商机雷达，是面向餐饮供应链B2B销售的AI客户发现系统。
+</code></pre>
+<p>核心目标：</p>
+<pre><code class="language-text">帮助销售输入自己销售的产品后，系统自动推荐最值得优先开发的餐饮客户，并展示商机评分、推荐理由、客户画像和销售话术。
+</code></pre>
+<p>设计重点不是普通数据查询工具，而是：</p>
+<pre><code class="language-text">AI客户推荐
+商机评分
+销售行动建议
+客户发现效率提升
+</code></pre>
+<hr />
+<h1 id="_3">二、整体设计风格</h1>
+<p>请采用专业、清爽、科技感强的B2B SaaS后台风格。</p>
+<p>关键词：</p>
+<pre><code class="language-text">AI智能
+商机雷达
+数据分析
+销售增长
+客户发现
+专业可信
+高效行动
+</code></pre>
+<p>视觉方向：</p>
+<pre><code class="language-text">整体背景：浅灰白
+卡片背景：白色
+主色：科技蓝 / 深蓝紫
+辅助色：绿色表示高价值商机
+强调色：橙色表示中等机会
+风险色：红色表示异常或低价值
+文字：深灰黑
+边框：浅灰
+圆角：中等圆角
+阴影：轻量阴影
+</code></pre>
+<p>页面气质要求：</p>
+<pre><code class="language-text">不要太花哨
+不要像普通CRM
+不要像传统数据表格系统
+要体现AI推荐、增长效率、商机优先级
+</code></pre>
+<hr />
+<h1 id="_4">三、设计尺寸</h1>
+<p>请优先设计桌面Web端。</p>
+<p>画板尺寸：</p>
+<pre><code class="language-text">1440 × 1024
+</code></pre>
+<p>需要适配：</p>
+<pre><code class="language-text">大屏桌面端
+销售办公电脑
+数据看板展示
+</code></pre>
+<hr />
+<h1 id="_5">四、信息架构</h1>
+<p>左侧导航栏：</p>
+<pre><code class="language-text">工作台
+商机搜索
+客户排行榜
+我的收藏
+跟进状态
+导出记录
+系统设置
+</code></pre>
+<p>顶部区域：</p>
+<pre><code class="language-text">产品名称：AI商机雷达
+全局搜索框
+消息通知
+用户头像
+</code></pre>
+<p>核心页面：</p>
+<pre><code class="language-text">1. 工作台首页
+2. 商机搜索页
+3. 客户排行榜页
+4. 客户详情页
+5. AI话术生成页
+6. 我的收藏页
+7. 跟进状态页
+</code></pre>
+<hr />
+<h1 id="_6">五、页面一：工作台首页</h1>
+<h2 id="_7">页面目标</h2>
+<p>让销售一进入系统就知道：</p>
+<pre><code class="language-text">今天有哪些客户值得优先跟进？
+我可以输入什么产品查商机？
+哪些城市和品类机会最多？
+</code></pre>
+<h2 id="_8">页面结构</h2>
+<p>顶部大搜索区：</p>
+<pre><code class="language-text">标题：今天想开发什么客户？
+输入框占据视觉中心
+Placeholder：请输入你销售的产品，例如：牛肉卷、芝士碎、鸡翅中
+按钮：发现商机
+</code></pre>
+<p>核心数据卡片：</p>
+<pre><code class="language-text">今日推荐客户：128
+A级商机客户：36
+已收藏客户：24
+已标记跟进：18
+</code></pre>
+<p>今日推荐商机：</p>
+<p>展示3-5张客户推荐卡片。</p>
+<p>客户卡片内容：</p>
+<pre><code class="language-text">客户名称
+餐饮品类
+城市
+商机指数
+商机等级
+推荐理由摘要
+按钮：查看详情
+</code></pre>
+<p>热门榜单区域：</p>
+<pre><code class="language-text">上海火锅TOP100商机客户
+杭州烧烤TOP100商机客户
+全国牛肉卷适配客户TOP500
+华东高增长品牌TOP100
+</code></pre>
+<p>右侧辅助区域：</p>
+<pre><code class="language-text">我的收藏
+最近查看
+使用提示
+</code></pre>
+<hr />
+<h1 id="_9">六、页面二：商机搜索页</h1>
+<h2 id="_10">页面目标</h2>
+<p>让销售输入产品和筛选条件，快速找到目标客户。</p>
+<h2 id="_11">页面结构</h2>
+<p>顶部搜索条件区：</p>
+<pre><code class="language-text">销售产品输入框
+城市筛选
+餐饮品类筛选
+门店数筛选
+客单价筛选
+商机等级筛选
+经营状态筛选
+排序方式
+</code></pre>
+<p>结果区域：</p>
+<p>使用表格 + 商机标签结合的方式。</p>
+<p>表格字段：</p>
+<pre><code class="language-text">客户名称
+城市
+餐饮品类
+门店数
+客单价
+评分
+商机指数
+商机等级
+推荐原因
+操作
+</code></pre>
+<p>商机指数展示方式：</p>
+<pre><code class="language-text">圆形分数
+进度条
+等级标签
+</code></pre>
+<p>操作按钮：</p>
+<pre><code class="language-text">查看详情
+收藏
+生成话术
+</code></pre>
+<hr />
+<h1 id="_12">七、页面三：客户排行榜页</h1>
+<h2 id="_13">页面目标</h2>
+<p>让用户快速查看不同城市、品类、产品下的TOP商机客户。</p>
+<h2 id="_14">页面结构</h2>
+<p>顶部榜单筛选：</p>
+<pre><code class="language-text">榜单类型
+城市
+品类
+销售产品
+时间范围
+</code></pre>
+<p>榜单卡片：</p>
+<pre><code class="language-text">上海火锅TOP100商机客户
+杭州烧烤TOP100商机客户
+合肥快餐TOP100商机客户
+全国牛肉卷适配客户TOP500
+华东区域高增长餐饮品牌TOP100
+</code></pre>
+<p>排行榜列表：</p>
+<pre><code class="language-text">排名
+客户名称
+商机指数
+商机等级
+门店数
+增长趋势
+推荐原因
+操作
+</code></pre>
+<p>视觉重点：</p>
+<pre><code class="language-text">TOP 1-3客户突出展示
+A级商机用明显标签
+分数越高视觉越突出
+</code></pre>
+<hr />
+<h1 id="_15">八、页面四：客户详情页</h1>
+<h2 id="_16">页面目标</h2>
+<p>让销售判断这个客户是否值得跟进，以及应该怎么切入。</p>
+<h2 id="_17">页面结构</h2>
+<h3 id="_18">顶部客户信息区</h3>
+<p>内容：</p>
+<pre><code class="language-text">客户名称
+商机等级
+商机指数
+城市
+餐饮品类
+经营状态
+收藏按钮
+生成话术按钮
+</code></pre>
+<h3 id="_19">左侧客户画像区</h3>
+<p>展示：</p>
+<pre><code class="language-text">门店数
+覆盖城市数
+客单价
+评分
+评论数
+近90天新增门店
+经营状态
+</code></pre>
+<h3 id="_20">中间商机评分区</h3>
+<p>展示：</p>
+<pre><code class="language-text">综合商机指数：86
+商机等级：A级
+</code></pre>
+<p>评分拆解：</p>
+<pre><code class="language-text">增长潜力：88
+规模价值：82
+品类匹配：92
+活跃信号：78
+触达可行性：85
+</code></pre>
+<p>建议使用：</p>
+<pre><code class="language-text">进度条
+雷达图
+分项卡片
+</code></pre>
+<h3 id="ai">右侧AI推荐理由区</h3>
+<p>标题：</p>
+<pre><code class="language-text">为什么推荐这个客户？
+</code></pre>
+<p>内容结构：</p>
+<pre><code class="language-text">客户价值
+增长信号
+品类匹配
+销售切入点
+风险提示
+</code></pre>
+<h3 id="_21">底部销售建议区</h3>
+<p>展示：</p>
+<pre><code class="language-text">推荐产品
+推荐切入点
+首次触达方式
+拜访建议
+风险提示
+</code></pre>
+<hr />
+<h1 id="ai_1">九、页面五：AI话术生成页</h1>
+<h2 id="_22">页面目标</h2>
+<p>让销售基于客户画像快速生成可复制的话术。</p>
+<h2 id="_23">页面结构</h2>
+<p>左侧客户信息卡片：</p>
+<pre><code class="language-text">客户名称
+商机指数
+品类
+城市
+门店数
+推荐理由摘要
+</code></pre>
+<p>中间话术类型选择：</p>
+<pre><code class="language-text">微信开场话术
+电话开场话术
+上门拜访话术
+产品推荐话术
+二次跟进话术
+</code></pre>
+<p>右侧话术内容区域：</p>
+<pre><code class="language-text">生成后的话术正文
+复制按钮
+重新生成按钮
+保存话术按钮
+</code></pre>
+<p>话术展示风格：</p>
+<pre><code class="language-text">像AI助手生成的结果
+内容清晰分段
+重点话术可以加浅色背景
+</code></pre>
+<hr />
+<h1 id="_24">十、页面六：我的收藏页</h1>
+<h2 id="_25">页面目标</h2>
+<p>帮助销售管理自己觉得有价值的客户。</p>
+<h2 id="_26">页面结构</h2>
+<p>顶部统计：</p>
+<pre><code class="language-text">收藏客户总数
+A级商机数量
+已联系数量
+有意向数量
+</code></pre>
+<p>客户列表字段：</p>
+<pre><code class="language-text">客户名称
+城市
+品类
+商机等级
+商机指数
+收藏时间
+跟进状态
+备注
+操作
+</code></pre>
+<p>操作：</p>
+<pre><code class="language-text">查看详情
+取消收藏
+生成话术
+标记跟进
+</code></pre>
+<hr />
+<h1 id="_27">十一、页面七：跟进状态页</h1>
+<h2 id="_28">页面目标</h2>
+<p>帮助销售查看推荐客户后续跟进情况。</p>
+<h2 id="_29">状态看板</h2>
+<p>状态包括：</p>
+<pre><code class="language-text">未跟进
+已联系
+有意向
+无意向
+信息无效
+已成交
+</code></pre>
+<p>可以设计为Kanban看板，也可以设计为表格。</p>
+<p>建议设计为：</p>
+<pre><code class="language-text">上方状态统计卡片
+下方客户跟进表格
+右侧备注/状态更新弹窗
+</code></pre>
+<hr />
+<h1 id="_30">十二、核心组件设计</h1>
+<p>请设计以下组件：</p>
+<pre><code class="language-text">1. 左侧导航栏
+2. 顶部搜索栏
+3. 商机评分卡片
+4. 客户推荐卡片
+5. 客户排行榜表格
+6. 商机等级标签
+7. 评分进度条
+8. AI推荐理由卡片
+9. AI话术生成卡片
+10. 筛选器组件
+11. 收藏按钮
+12. 导出按钮
+13. 跟进状态标签
+14. 空状态页面
+15. 加载状态
+</code></pre>
+<hr />
+<h1 id="_31">十三、商机等级视觉规范</h1>
+<p>商机等级：</p>
+<pre><code class="language-text">A级：高价值商机
+B级：中高价值商机
+C级：一般商机
+D级：低优先级商机
+</code></pre>
+<p>视觉建议：</p>
+<pre><code class="language-text">A级：绿色标签，突出展示
+B级：蓝色标签
+C级：橙色标签
+D级：灰色标签
+</code></pre>
+<p>商机指数展示：</p>
+<pre><code class="language-text">80-100：强调视觉
+60-79：中等强调
+40-59：弱强调
+0-39：低强调
+</code></pre>
+<hr />
+<h1 id="_32">十四、设计内容示例</h1>
+<p>请在设计中使用以下示例数据：</p>
+<pre><code class="language-text">客户名称：川味老火锅
+城市：上海
+品类：火锅
+门店数：35
+覆盖城市：5
+客单价：98
+评分：4.8
+评论数：12800
+近90天新增门店：8
+商机指数：86
+商机等级：A级
+推荐原因：该品牌处于扩张阶段，主营火锅场景，与牛肉卷、冻品类产品匹配度较高。
+</code></pre>
+<p>其他示例客户：</p>
+<pre><code class="language-text">炙牛烤肉社
+江南小碗菜
+韩都烤肉
+鲜辣牛肉火锅
+城市便当
+小巷烧烤
+锅气小炒
+芝士披萨工坊
+炸鸡研究所
+</code></pre>
+<hr />
+<h1 id="_33">十五、设计重点</h1>
+<p>请重点突出以下能力：</p>
+<pre><code class="language-text">1. AI正在帮助销售发现客户
+2. 客户不是简单列表，而是按商机价值排序
+3. 每个推荐都有明确理由
+4. 销售可以直接生成话术并采取行动
+5. 页面要让用户感觉“我打开就知道该跟进谁”
+</code></pre>
+<hr />
+<h1 id="_34">十六、不要这样设计</h1>
+<p>请避免：</p>
+<pre><code class="language-text">1. 不要设计成普通CRM客户列表。
+2. 不要设计成传统数据查询平台。
+3. 不要只有表格，没有AI推荐感。
+4. 不要页面过度花哨，影响业务效率。
+5. 不要弱化商机评分和推荐理由。
+6. 不要把销售话术藏得太深。
+</code></pre>
+<hr />
+<h1 id="_35">十七、最终交付要求</h1>
+<p>请输出一套高保真Figma设计稿，包括：</p>
+<pre><code class="language-text">1. 工作台首页
+2. 商机搜索页
+3. 客户排行榜页
+4. 客户详情页
+5. AI话术生成页
+6. 我的收藏页
+7. 跟进状态页
+8. 核心组件库
+</code></pre>
+<p>每个页面需要具备：</p>
+<pre><code class="language-text">清晰的信息层级
+完整业务字段
+真实示例数据
+统一视觉风格
+可交付给前端开发的布局
+</code></pre>
+<p>整体设计目标：</p>
+<pre><code class="language-text">让用户一眼看出这是一个帮助销售发现高价值客户的AI商机系统。
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜洋洋数智中心组织定位分析 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: 菜洋洋产研团队组织架构与数智中心定位分析
+created: '2026-06-21'
+updated: 2026-06-29
+type: project
+tags:
+- '#菜洋洋'
+- '#项目'
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="_1">菜洋洋产研团队组织架构与数智中心定位分析</h1>
+<h2 id="_2">一、从岗位说明书看组织架构</h2>
+<p>根据《产研团队-岗位说明书汇编》分析，菜洋洋产研团队采用 <strong>管理序列(M) × 专业序列(C) 双通道并行</strong> 模式。</p>
+<h3 id="11">1.1 专业序列职级体系</h3>
+<table>
+<thead>
+<tr>
+<th>职级</th>
+<th>头衔</th>
+<th>关键能力要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C4-C5</td>
+<td>专员/高级专员</td>
+<td>在指导下完成基础工作，使用AI工具辅助</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>专家</td>
+<td>独立完成模块级工作，沉淀可复用资产</td>
+</tr>
+<tr>
+<td>C7</td>
+<td>高级专家</td>
+<td>独立负责复杂场景，跨部门协同</td>
+</tr>
+<tr>
+<td>C8</td>
+<td>资深专家</td>
+<td>负责产品线/核心系统，培养骨干</td>
+</tr>
+<tr>
+<td>C9</td>
+<td>首席专家</td>
+<td>公司级战略，建设体系，培养C6-C8</td>
+</tr>
+<tr>
+<td>C10</td>
+<td>高级首席专家</td>
+<td>推动技术体系成为核心竞争力</td>
+</tr>
+<tr>
+<td>C11</td>
+<td>资深首席专家</td>
+<td>定义行业方向，引领技术创新</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">二、数智中心/产研团队组织架构</h2>
+<h3 id="21">2.1 部门结构（从岗位说明书推导）</h3>
+<pre><code>                    ┌─────────────────┐
+                    │   产研团队/CTO   │
+                    │  （管理序列 M）   │
+                    └────────┬────────┘
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+        ▼                    ▼                    ▼
+┌───────────────┐   ┌───────────────┐   ┌───────────────┐
+│  数智产品部    │   │  智能工程部    │   │  数算研发部    │
+│  （产品序列）  │   │  （工程序列）  │   │  （算法序列）  │
+└───────┬───────┘   └───────┬───────┘   └───────┬───────┘
+        │                   │                   │
+   ┌────┴────┐         ┌────┴────┐         ┌────┴────┐
+   │         │         │         │         │         │
+   ▼         ▼         ▼         ▼         ▼         ▼
+┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐
+│数智 │  │应用 │  │平台 │  │研发 │  │算法 │  │数据 │
+│产品 │  │产品 │  │组   │  │组   │  │决策 │  │开发 │
+│经理 │  │经理 │  │     │  │     │  │组   │  │组   │
+│     │  │     │  │     │  │     │  │     │  │     │
+│流程 │  │     │  │质效 │  │     │  │     │  │数据 │
+│产品 │  │     │  │组   │  │     │  │     │  │治理 │
+│经理 │  │     │  │     │  │     │  │     │  │     │
+│     │  │     │  │SRE  │  │     │  │     │  │     │
+└─────┘  └─────┘  └─────┘  └─────┘  └─────┘  └─────┘
+</code></pre>
+<h3 id="22">2.2 各部门定位</h3>
+<table>
+<thead>
+<tr>
+<th>部门</th>
+<th>核心定位</th>
+<th>关键岗位</th>
+<th>核心产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数智产品部</strong></td>
+<td>AI产品化与数智化场景落地</td>
+<td>数智产品经理、应用产品经理、流程产品经理</td>
+<td>AI产品矩阵、Skills、数智化方案</td>
+</tr>
+<tr>
+<td><strong>智能工程部</strong></td>
+<td>系统研发与工程交付</td>
+<td>技术架构师、技术经理、MTS/Senior MTS、QA、SRE</td>
+<td>核心业务系统、技术底座、AI能力底座</td>
+</tr>
+<tr>
+<td><strong>数算研发部</strong></td>
+<td>算法模型与数据智能</td>
+<td>算法工程师、大数据架构师、数据开发工程师、数据治理工程师</td>
+<td>预测模型、推荐系统、数据平台、数据治理</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">三、数智中心（或产研团队）的组织定位</h2>
+<h3 id="31">3.1 定位：数字化增长引擎</h3>
+<blockquote>
+<p><strong>不是"IT支持部门"，而是"业务增长的数字化引擎"</strong></p>
+</blockquote>
+<p>从岗位说明书中的关键描述可以看出：</p>
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>关键描述</th>
+<th>定位解读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数智产品经理</strong></td>
+<td>"推动传统应用系统从'流程支撑工具'升级为'数据驱动、智能辅助、人机协同、持续优化'的数智化产品"</td>
+<td>产品驱动数智化转型</td>
+</tr>
+<tr>
+<td><strong>技术架构师</strong></td>
+<td>"主导可复用技术底座（脚手架/公共组件/AI能力底座）的建设...以技术影响力牵引团队"</td>
+<td>技术底座赋能业务</td>
+</tr>
+<tr>
+<td><strong>算法工程师</strong></td>
+<td>"驱动业务智能决策"</td>
+<td>算法驱动决策优化</td>
+</tr>
+<tr>
+<td><strong>数据治理工程师</strong></td>
+<td>"智能主数据管理体系建设...数据产品与服务化运营"</td>
+<td>数据资产化运营</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 核心价值主张</h3>
+<pre><code>┌─────────────────────────────────────────┐
+│         菜洋洋业务全景                   │
+├─────────────────────────────────────────┤
+│  供应链端      平台端          客户端   │
+│  (供应商)     (菜洋洋)        (商家)    │
+│     ↑            ↑               ↑      │
+│     └────── 数智中心 ────────────┘      │
+│         数据流 + 智能决策 + 增长引擎      │
+└─────────────────────────────────────────┘
+</code></pre>
+<p><strong>核心使命</strong>：
+1. <strong>方案商品化</strong> - 将经营知识打包为可售卖的数字商品（上新方案包）
+2. <strong>食材商城化</strong> - 方案与食材打通，一键采购
+3. <strong>服务在线化</strong> - AI+人工咨询，7×24小时服务
+4. <strong>案例资产化</strong> - 客户反馈沉淀为可复用的案例库
+5. <strong>AI智能化</strong> - 智能推荐、智能定价、智能问答</p>
+<hr />
+<h2 id="_5">四、数智中心与业务部门的关系</h2>
+<h3 id="41">4.1 协作矩阵</h3>
+<table>
+<thead>
+<tr>
+<th>业务线</th>
+<th>数智产品部</th>
+<th>智能工程部</th>
+<th>数算研发部</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>供应链</strong></td>
+<td>流程优化、AI预测需求</td>
+<td>供应链系统、库存系统</td>
+<td>销量预测、智能补货、库存优化</td>
+</tr>
+<tr>
+<td><strong>交易/商城</strong></td>
+<td>方案包产品、用户体验</td>
+<td>商城系统、订单系统、支付系统</td>
+<td>商品推荐、个性化定价</td>
+</tr>
+<tr>
+<td><strong>CRM/客户</strong></td>
+<td>客户经营、智能客服</td>
+<td>CRM系统、客户标签系统</td>
+<td>客户评分、流失预警</td>
+</tr>
+<tr>
+<td><strong>履约/配送</strong></td>
+<td>配送流程优化</td>
+<td>配送调度系统、物流系统</td>
+<td>路径优化、时效预测</td>
+</tr>
+<tr>
+<td><strong>财务/结算</strong></td>
+<td>结算流程自动化</td>
+<td>财务系统、分账系统</td>
+<td>智能对账、风控模型</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42">4.2 协作模式</h3>
+<pre><code>业务部门（需求方）
+    ↓ 提出业务痛点/需求
+数智产品部（翻译方）
+    ↓ 拆解为AI场景/数据需求/系统需求
+┌─────────────────────────────────────┐
+│  智能工程部（执行方）  数算研发部（执行方）  │
+│  系统开发              算法模型/数据平台     │
+└─────────────────────────────────────┘
+    ↓ 交付上线
+数智产品部（验收方）
+    ↓ 效果评估、迭代优化
+业务部门（使用方）
+</code></pre>
+<hr />
+<h2 id="ai">五、关键岗位能力模型（AI原生）</h2>
+<h3 id="51-ai">5.1 全员AI能力要求</h3>
+<p>从岗位说明书中可以看到，<strong>AI能力是所有岗位的标配要求</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>AI能力要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数智产品经理</strong></td>
+<td>理解大模型、Prompt、RAG、Agent、AI工作流；协同研发完成AI产品化</td>
+</tr>
+<tr>
+<td><strong>应用产品经理</strong></td>
+<td>使用AI辅助需求分析、PRD初稿、竞品调研；识别AI增强场景</td>
+</tr>
+<tr>
+<td><strong>流程产品经理</strong></td>
+<td>了解RPA、低代码、AI自动化；推动流程智能化</td>
+</tr>
+<tr>
+<td><strong>技术架构师</strong></td>
+<td>把AI能力(Agent/RAG/知识库)沉淀进底座；AI辅助架构分析</td>
+</tr>
+<tr>
+<td><strong>MTS/Senior MTS</strong></td>
+<td>AI编码工具(Cursor/Claude Code)常态化；设计AI研发工作流</td>
+</tr>
+<tr>
+<td><strong>算法工程师</strong></td>
+<td>AutoML、AI辅助特征工程、LLM应用开发</td>
+</tr>
+<tr>
+<td><strong>数据开发工程师</strong></td>
+<td>AI辅助SQL开发、自动化数据流水线</td>
+</tr>
+<tr>
+<td><strong>数据治理工程师</strong></td>
+<td>AI辅助API文档生成、NL2SQL工具配置</td>
+</tr>
+<tr>
+<td><strong>QA</strong></td>
+<td>AI生成用例、AI代码审查、智能测试</td>
+</tr>
+<tr>
+<td><strong>SRE</strong></td>
+<td>AIOps、AI异常检测、AI辅助故障定位</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-ai">5.2 AI能力分层</h3>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>能力要求</th>
+<th>典型岗位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI使用者</strong></td>
+<td>熟练使用AI工具辅助日常工作</td>
+<td>C4-C5</td>
+</tr>
+<tr>
+<td><strong>AI应用者</strong></td>
+<td>能识别AI场景，推动AI落地</td>
+<td>C6-C7</td>
+</tr>
+<tr>
+<td><strong>AI建设者</strong></td>
+<td>能建设AI基础设施、沉淀AI资产</td>
+<td>C8</td>
+</tr>
+<tr>
+<td><strong>AI战略者</strong></td>
+<td>定义AI战略、建设AI体系、培养人才</td>
+<td>C9-C11</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_6">六、晋升与成长路径</h2>
+<h3 id="61">6.1 双通道发展</h3>
+<pre><code>专业序列（C）                    管理序列（M）
+    │                               │
+    ▼                               ▼
+C4-C5 专员 ──→ C6 专家 ──→ C7 高级专家    M1 组长
+    │          │          │            │
+    ▼          ▼          ▼            ▼
+C8 资深专家 ──→ C9 首席专家              M2 经理
+    │          │                        │
+    ▼          ▼                        ▼
+C10 高级首席 ──→ C11 资深首席            M3 总监
+                                          │
+                                          ▼
+                                         M4 VP
+                                          │
+                                          ▼
+                                         M5 CEO
+</code></pre>
+<h3 id="62">6.2 关键晋升条件</h3>
+<ul>
+<li><strong>专业序列</strong>：连续两季度绩效≥四星；技术/产品影响力；培养骨干</li>
+<li><strong>破格晋升</strong>：连续两季度五星且无处分记录，或重大贡献</li>
+</ul>
+<hr />
+<h2 id="_7">七、数智中心的核心竞争力</h2>
+<h3 id="71">7.1 技术底座</h3>
+<p>从岗位说明书中可以看出，菜洋洋正在建设：</p>
+<table>
+<thead>
+<tr>
+<th>底座类型</th>
+<th>内容</th>
+<th>负责岗位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>技术中台</strong></td>
+<td>脚手架、公共组件、API网关、微服务框架</td>
+<td>技术架构师+平台组</td>
+</tr>
+<tr>
+<td><strong>AI能力底座</strong></td>
+<td>Agent框架、RAG能力、知识库、Prompt管理</td>
+<td>技术架构师+数智产品经理</td>
+</tr>
+<tr>
+<td><strong>数据中台</strong></td>
+<td>数据仓库、数据服务、指标平台、数据治理</td>
+<td>大数据架构师+数据开发</td>
+</tr>
+<tr>
+<td><strong>算法中台</strong></td>
+<td>模型训练、模型服务、MLOps、特征平台</td>
+<td>算法工程师+数据开发</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72">7.2 关键成功指标</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>指标</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>系统稳定性</strong></td>
+<td>核心系统可用性</td>
+<td>≥99.9%</td>
+</tr>
+<tr>
+<td><strong>研发效能</strong></td>
+<td>AI工具adoption率</td>
+<td>≥90%</td>
+</tr>
+<tr>
+<td><strong>交付质量</strong></td>
+<td>需求按时交付率</td>
+<td>≥95%</td>
+</tr>
+<tr>
+<td><strong>AI落地</strong></td>
+<td>AI场景覆盖率</td>
+<td>≥40%</td>
+</tr>
+<tr>
+<td><strong>数据质量</strong></td>
+<td>数据质量评分</td>
+<td>≥4分（5分制）</td>
+</tr>
+<tr>
+<td><strong>人才梯队</strong></td>
+<td>关键岗位覆盖率</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><strong>核心人才留存</strong></td>
+<td>年留存率</td>
+<td>≥90%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_8">八、总结</h2>
+<h3 id="_9">数智中心的组织定位</h3>
+<blockquote>
+<p><strong>菜洋洋数智中心（产研团队）是公司的"数字化增长引擎"，通过"产品+技术+算法+数据"四位一体的能力，推动公司从"卖菜的"升级为"卖经营能力的"，最终形成可复制、可运营、可持续增长的数字化经营体系。</strong></p>
+</blockquote>
+<h3 id="_10">关键特征</h3>
+<ol>
+<li><strong>AI原生</strong>：所有岗位都具备AI能力要求，AI不是附加项而是基础项</li>
+<li><strong>双通道发展</strong>：专业序列和管理序列并行，技术专家可以走到C11</li>
+<li><strong>底座思维</strong>：强调可复用技术底座、AI能力底座、数据中台的建设</li>
+<li><strong>业务导向</strong>：所有技术项目必须有明确的业务指标挂钩</li>
+<li><strong>数据驱动</strong>：用数据说话，用AB测试验证，用效果评估闭环</li>
+</ol>
+<h3 id="_11">与上新方案包的关系</h3>
+<p>上新方案包是数智中心<strong>产品化能力</strong>的集中体现：
+- <strong>数智产品部</strong>负责方案包的产品设计、AI场景识别、用户体验
+- <strong>智能工程部</strong>负责方案包系统、租户后台、商城系统的研发
+- <strong>数算研发部</strong>负责AI定价、智能推荐、案例匹配的算法模型</p>
+<p><strong>最终目标</strong>：通过数字化产品能力，把一次性的方案销售升级为持续的食材采购、咨询服务和数据沉淀闭环，形成AI增长飞轮。</p>
+<hr />
+<p><em>分析来源：产研团队-岗位说明书汇编.xlsx</em>
+<em>分析日期：2026-06-11</em>
+<em>分析人：claw</em></p>
+</body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜洋洋 AI选品引擎 PRD - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>tags:
+- 项目
+- 菜洋洋
+- AI选品
+- PRD
+- 知识图谱
+- ML
+date: 2026-05-25
+title: 菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD
+created: '2026-06-21'
+updated: 2026-06-29
+type: project
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="ai-ml-hybrid-prd">菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD</h1>
+<blockquote>
+<p>产品名称：CYY Product Brain（菜洋洋商品智能选品中台）
+定位：面向采购、运营、销售的 AI 商品决策平台</p>
+</blockquote>
+<hr />
+<h2 id="_1">一、产品概述</h2>
+<h3 id="11">1.1 产品名称</h3>
+<p><strong>菜洋洋商品智能选品中台（CYY Product Brain）</strong></p>
+<h3 id="12">1.2 产品定位</h3>
+<p>面向采购、运营、销售的 <strong>AI 商品决策平台</strong>。</p>
+<p>通过六大技术能力：
+- 客户行为知识图谱
+- 商品关系图谱
+- 销售经验沉淀
+- 机器学习预测
+- 规则约束引擎
+- LLM解释层</p>
+<p>实现五大业务目标：
+- 智能选品
+- 智能推品
+- 智能补货
+- 滞销预警
+- 新品试销决策</p>
+<hr />
+<h2 id="_2">二、业务目标</h2>
+<h3 id="_3">核心指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>目标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>商品动销率</strong></td>
+<td>+15%</td>
+<td>提升商品周转效率</td>
+</tr>
+<tr>
+<td><strong>补货准确率</strong></td>
+<td>+20%</td>
+<td>减少缺货和积压</td>
+</tr>
+<tr>
+<td><strong>新品成功率</strong></td>
+<td>+25%</td>
+<td>提高新品选品命中率</td>
+</tr>
+<tr>
+<td><strong>客户复购率</strong></td>
+<td>+12%</td>
+<td>增强客户粘性</td>
+</tr>
+<tr>
+<td><strong>滞销库存</strong></td>
+<td>-20%</td>
+<td>降低库存成本</td>
+</tr>
+<tr>
+<td><strong>采购误判</strong></td>
+<td>-30%</td>
+<td>减少人为决策失误</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">三、角色定义</h2>
+<h3 id="_5">采购</h3>
+<table>
+<thead>
+<tr>
+<th>关注点</th>
+<th>系统支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上什么品</td>
+<td>AI选品推荐</td>
+</tr>
+<tr>
+<td>上多少</td>
+<td>补货建议</td>
+</tr>
+<tr>
+<td>哪个仓铺货</td>
+<td>区域适配分析</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">商品运营</h3>
+<table>
+<thead>
+<tr>
+<th>关注点</th>
+<th>系统支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>哪些该推</td>
+<td>智能推品排序</td>
+</tr>
+<tr>
+<td>哪些降权</td>
+<td>滞销预警</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">销售</h3>
+<table>
+<thead>
+<tr>
+<th>关注点</th>
+<th>系统支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>今天找谁</td>
+<td>客户画像</td>
+</tr>
+<tr>
+<td>推荐什么</td>
+<td>智能推品</td>
+</tr>
+<tr>
+<td>怎么说</td>
+<td>LLM话术生成</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">管理层</h3>
+<table>
+<thead>
+<tr>
+<th>关注点</th>
+<th>系统支持</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商品效率</td>
+<td>商品驾驶舱</td>
+</tr>
+<tr>
+<td>AI决策准确率</td>
+<td>命中率统计</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_9">四、系统架构</h2>
+<pre><code>数据采集层
+  ERP / WMS / CRM / 商城 / 销售记录 / 搜索行为
+         ↓
+特征处理层
+  画像生成 / 标签计算 / 图谱构建
+         ↓
+AI决策层
+  ├─ Graph Engine（知识图谱推理）
+  ├─ ML Scoring（机器学习评分）
+  ├─ Rule Engine（规则约束）
+  └─ LLM Explain（解释层）
+         ↓
+业务应用层
+  采购台 / 销售助手 / 商品驾驶舱
+</code></pre>
+<hr />
+<h2 id="_10">五、核心模块设计</h2>
+<h3 id="1">模块1：数据导入中心</h3>
+<p><strong>功能：</strong>
+- Excel上传
+- CSV上传
+- 智能字段识别
+- 映射校验
+- 导入日志</p>
+<p><strong>字段定义：</strong></p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>客户维度</strong></td>
+<td>customer_id</td>
+<td>客户唯一标识</td>
+</tr>
+<tr>
+<td></td>
+<td>store_type</td>
+<td>门店类型</td>
+</tr>
+<tr>
+<td></td>
+<td>city</td>
+<td>城市</td>
+</tr>
+<tr>
+<td></td>
+<td>purchase_cycle</td>
+<td>采购周期</td>
+</tr>
+<tr>
+<td></td>
+<td>price_sensitivity</td>
+<td>价格敏感度</td>
+</tr>
+<tr>
+<td><strong>商品维度</strong></td>
+<td>sku_id</td>
+<td>SKU唯一标识</td>
+</tr>
+<tr>
+<td></td>
+<td>sku_name</td>
+<td>商品名称</td>
+</tr>
+<tr>
+<td></td>
+<td>category</td>
+<td>品类</td>
+</tr>
+<tr>
+<td></td>
+<td>price</td>
+<td>价格</td>
+</tr>
+<tr>
+<td></td>
+<td>margin</td>
+<td>毛利率</td>
+</tr>
+<tr>
+<td></td>
+<td>warehouse</td>
+<td>仓库</td>
+</tr>
+<tr>
+<td></td>
+<td>lifecycle</td>
+<td>生命周期</td>
+</tr>
+<tr>
+<td><strong>行为维度</strong></td>
+<td>sales_7d</td>
+<td>7日销量</td>
+</tr>
+<tr>
+<td></td>
+<td>sales_30d</td>
+<td>30日销量</td>
+</tr>
+<tr>
+<td></td>
+<td>repeat_rate</td>
+<td>复购率</td>
+</tr>
+<tr>
+<td></td>
+<td>search_heat</td>
+<td>搜索热度</td>
+</tr>
+<tr>
+<td></td>
+<td>browse_count</td>
+<td>浏览次数</td>
+</tr>
+<tr>
+<td></td>
+<td>recommend_success</td>
+<td>推荐成功率</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="2">模块2：客户知识图谱</h3>
+<p><strong>节点类型：</strong>
+- 客户
+- 商品
+- 销售
+- 区域
+- 品类</p>
+<p><strong>边关系：</strong>
+- 经常购买
+- 偏好价格带
+- 搭配购买
+- 推荐成功
+- 周期补货</p>
+<p><strong>输出：客户画像卡</strong></p>
+<pre><code>张老板
+├── 火锅店
+├── 周三补货
+├── 对促销敏感
+└── 偏好中高端肉类
+</code></pre>
+<hr />
+<h3 id="3">模块3：商品关系图谱</h3>
+<p><strong>关系类型：</strong>
+- 替代关系（可互相替换）
+- 搭配关系（常一起购买）
+- 场景关系（同一场景使用）
+- 区域适配（区域偏好）
+- 季节性关系（季节相关）</p>
+<p><strong>输出：商品推荐链路图</strong></p>
+<hr />
+<h3 id="4ml">模块4：ML评分引擎</h3>
+<p><strong>评分维度：</strong></p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>权重</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>爆发概率</td>
+<td>25%</td>
+<td>短期增长潜力</td>
+</tr>
+<tr>
+<td>滞销概率</td>
+<td>20%</td>
+<td>积压风险</td>
+</tr>
+<tr>
+<td>毛利价值</td>
+<td>20%</td>
+<td>利润贡献</td>
+</tr>
+<tr>
+<td>区域适配</td>
+<td>20%</td>
+<td>区域匹配度</td>
+</tr>
+<tr>
+<td>客户匹配</td>
+<td>15%</td>
+<td>客户需求匹配</td>
+</tr>
+</tbody>
+</table>
+<p><strong>评分规则：</strong></p>
+<table>
+<thead>
+<tr>
+<th>分数</th>
+<th>等级</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>80+</td>
+<td>强推荐</td>
+<td>优先推广</td>
+</tr>
+<tr>
+<td>60-80</td>
+<td>可试销</td>
+<td>小批量测试</td>
+</tr>
+<tr>
+<td>40-60</td>
+<td>观察</td>
+<td>持续监控</td>
+</tr>
+<tr>
+<td>40以下</td>
+<td>淘汰候选</td>
+<td>考虑下架</td>
+</tr>
+</tbody>
+</table>
+<p><strong>技术栈：</strong>
+- LightGBM
+- sklearn</p>
+<hr />
+<h3 id="5">模块5：智能推品决策</h3>
+<p><strong>输入：</strong> 客户ID</p>
+<p><strong>输出：</strong></p>
+<pre><code>推荐商品：
+├── SKU: 澳洲肥牛卷
+├── 成交概率: 87%
+├── 推荐理由:
+│   ├── 周期补货临近
+│   ├── 最近浏览过
+│   └── 区域销量增长18%
+└── 建议话术:
+    &quot;张总这批价格下降6%，建议今天补2件。&quot;
+</code></pre>
+<hr />
+<h3 id="6">模块6：补货建议中心</h3>
+<p><strong>公式：</strong></p>
+<pre><code>replenishment = forecast_7d × 1.5 - stock
+</code></pre>
+<p><strong>输出：</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SKU</td>
+<td>商品标识</td>
+</tr>
+<tr>
+<td>建议仓</td>
+<td>目标仓库</td>
+</tr>
+<tr>
+<td>建议量</td>
+<td>补货数量</td>
+</tr>
+<tr>
+<td>风险等级</td>
+<td>高/中/低</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="7">模块7：滞销预警中心</h3>
+<p><strong>预警规则：</strong></p>
+<pre><code>库存 &gt; 30日销量 × 2倍
+AND 复购率 &lt; 20%
+</code></pre>
+<p><strong>建议动作：</strong>
+- 降价促销
+- 清仓处理
+- 下架观察</p>
+<hr />
+<h3 id="8llm">模块8：LLM解释助手</h3>
+<p><strong>支持问答：</strong>
+- "为什么推荐这个？"
+- "为什么下架？"
+- "为什么补货？"</p>
+<p><strong>示例输出：</strong></p>
+<pre><code>因为近14日区域销量增长23%，
+且该客户过去60天复购4次。
+</code></pre>
+<p><strong>模型：</strong>
+- OpenAI API
+- 本地 Qwen</p>
+<hr />
+<h2 id="_11">六、页面原型</h2>
+<h3 id="1_1">页面1：数据中心</h3>
+<ul>
+<li>上传区</li>
+<li>映射区</li>
+<li>校验区</li>
+</ul>
+<h3 id="2ai">页面2：AI驾驶舱</h3>
+<p><strong>展示指标：</strong>
+- 推荐商品数
+- 风险商品数
+- 爆品数
+- AI命中率</p>
+<p><strong>图表：</strong>
+- 热力图
+- 趋势图
+- 类目评分分布</p>
+<h3 id="3_1">页面3：商品机会池</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SKU</td>
+<td>商品标识</td>
+</tr>
+<tr>
+<td>推荐分</td>
+<td>0-100分</td>
+</tr>
+<tr>
+<td>爆发概率</td>
+<td>百分比</td>
+</tr>
+<tr>
+<td>建议动作</td>
+<td>试销/推广/下架</td>
+</tr>
+<tr>
+<td>推荐原因</td>
+<td>文字说明</td>
+</tr>
+</tbody>
+</table>
+<p><strong>操作：</strong>
+- 试销
+- 推广
+- 下架</p>
+<h3 id="4">页面4：客户推品页</h3>
+<p><strong>展示：</strong>
+- 客户画像
+- 推荐商品
+- 成交概率
+- 推荐话术</p>
+<h3 id="5_1">页面5：图谱关系页</h3>
+<p><strong>展示：</strong>
+- 客户 ↔ 商品 ↔ 销售关系网络
+- 可视化图谱</p>
+<hr />
+<h2 id="_12">七、接口设计</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>路径</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>/upload</td>
+<td>数据上传</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/graph/build</td>
+<td>构建图谱</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/score/run</td>
+<td>运行评分</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/dashboard</td>
+<td>驾驶舱数据</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/customer/{id}/recommend</td>
+<td>客户推荐</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/sku/{id}/analysis</td>
+<td>商品分析</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/graph/query</td>
+<td>图谱查询</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/llm/explain</td>
+<td>LLM解释</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_13">八、技术实现</h2>
+<h3 id="_14">前端</h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>React</td>
+<td>UI框架</td>
+</tr>
+<tr>
+<td>Tailwind</td>
+<td>CSS框架</td>
+</tr>
+<tr>
+<td>shadcn/ui</td>
+<td>组件库</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_15">后端</h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FastAPI</td>
+<td>API框架</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_16">数据库</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>技术</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MVP</td>
+<td>SQLite</td>
+<td>快速验证</td>
+</tr>
+<tr>
+<td>后期</td>
+<td>Neo4j</td>
+<td>图数据库</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_17">算法</h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pandas</td>
+<td>数据处理</td>
+</tr>
+<tr>
+<td>networkx</td>
+<td>图谱构建</td>
+</tr>
+<tr>
+<td>lightgbm</td>
+<td>评分模型</td>
+</tr>
+<tr>
+<td>sklearn</td>
+<td>机器学习</td>
+</tr>
+</tbody>
+</table>
+<h3 id="llm">LLM</h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI Compatible API</td>
+<td>标准接口</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_18">部署</h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker Compose</td>
+<td>一键部署</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_19">九、开发排期</h2>
+<table>
+<thead>
+<tr>
+<th>周次</th>
+<th>任务</th>
+<th>产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Week 1</strong></td>
+<td>数据导入 + Dashboard</td>
+<td>数据上传 + 驾驶舱</td>
+</tr>
+<tr>
+<td><strong>Week 2</strong></td>
+<td>Graph Engine + 推荐逻辑</td>
+<td>知识图谱 + 推荐系统</td>
+</tr>
+<tr>
+<td><strong>Week 3</strong></td>
+<td>ML评分 + 补货预测</td>
+<td>评分引擎 + 补货建议</td>
+</tr>
+<tr>
+<td><strong>Week 4</strong></td>
+<td>LLM解释 + UI优化 + Docker发布</td>
+<td>完整系统</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ai-coding-prompt">十、AI Coding Prompt</h2>
+<p><strong>生成完整可运行系统：</strong></p>
+<pre><code>技术栈：
+React + FastAPI + SQLite + NetworkX + LightGBM + Docker
+
+必须包含：
+1. Excel上传
+2. 图谱构建
+3. 商品评分
+4. 推荐决策
+5. 补货建议
+6. 商品驾驶舱
+7. 客户推品页
+8. 图谱可视化
+9. LLM解释页
+10. 一键部署
+
+输出完整生产代码，不允许伪代码。
+</code></pre>
+<hr />
+<p><em>PRD版本：v1.0</em>
+<em>编制时间：2026-05-25</em>
+<em>状态：产品级PRD，可直接进入开发</em></p>
+<h2 id="_20">相关链接</h2>
+<ul>
+<li>[[多租户SaaS商城平台-产品功能文档]]</li>
+<li>[[菜洋洋SaaS商城-管理后台设计方案-v1.0]]</li>
+<li>[[AI Native 深度报告]]</li>
+</ul>
+</body>
+</html>

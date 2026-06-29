@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-5 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: "AI Native 实战课程 - Day 5: 第五章 - 生成即服务"
+date: 2026-06-27
+type: course
+chapter: "第五章"
+tags:
+  - AI Native
+  - 生成即服务
+  - Generative API
+  - 多模态生成
+  - Function Calling
+updated: 2026-06-29</p>
+<hr />
+<h1 id="ai-native-day-5-">🎓 AI Native 实战课程 - Day 5: 第五章 - 生成即服务</h1>
+<h2 id="_1">📖 今日导读</h2>
+<p>在 [[AI Native 深度解析：从概念到落地]] 中，[[《AI Native：从概念到落地》- 书籍规划]] 把第五章命名为「生成即服务」。经历了 Prompt 即接口、上下文即状态 后，今天我们进入 AI Native 产品的核心交付形态：<strong>AI 不再只是“返回信息”，而是“生成内容”</strong>。</p>
+<p>传统软件的本质是“帮你找到已有数据”：查报表、看页面、下载模板。而生成即服务（Generation as a Service）让产品的核心交付物变成了<strong>文章、图片、视频、音乐、代码、甚至 3D 模型</strong>——每一次调用都可能产生世界上从未出现过的东西。2025–2026 年，OpenAI、Google、Runway、Suno 等厂商把生成能力打包成 API，让任何产品都能“插电”式地获得多模态创作能力。</p>
+<p>今天的核心认知是：**AI Native 产品设计者的工作，从“怎么展示数据”变成了“怎么设计生成任务”——输入控制、输出验证、成本优化、安全审查，每一项都是新的产品评估维度。</p>
+<hr />
+<h2 id="_2">🔍 核心概念</h2>
+<h3 id="1">1. 什么是生成即服务？</h3>
+<p><strong>生成即服务（GaaS）</strong> 是指将生成式 AI 模型的能力封装成可调用的服务，让程序或用户通过简单接口（通常是自然语言或结构化 Prompt）获得新生成的内容。</p>
+<p>它和传统软件的根本区别在于：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>传统软件</th>
+<th>生成即服务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心交付物</td>
+<td>已有数据、模板、功能</td>
+<td>新生成的文本/图像/视频/音乐</td>
+</tr>
+<tr>
+<td>用户操作</td>
+<td>选择、筛选、填写</td>
+<td>描述意图、迭代修改</td>
+</tr>
+<tr>
+<td>价值来源</td>
+<td>信息查找效率</td>
+<td>创造力和个性化</td>
+</tr>
+<tr>
+<td>产品边界</td>
+<td>功能模块</td>
+<td>模态 API 生态</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2">2. 从“查询数据”到“生成答案”</h3>
+<p>RAG 让大模型在回答时有事实依据，但它仍然是“梳理现有知识”。生成即服务走得更远：它能够把不同来源的信息重新组合，生成一份<strong>原创报告、海报、视频素材或代码</strong>。</p>
+<blockquote>
+<p>例如：营销人员不再“下载 PPT 模板”，而是说：<strong>“根据这份产品说明书和目标客户画像，生成一份 10 页的销售 PPT。”</strong></p>
+</blockquote>
+<h3 id="3">3. 多模态统一生成服务</h3>
+<p>2025 年以后，“文生图”已经进化为“文生图、图生视频、文生音乐”。同一个服务接口可以按照<strong>模态（modality）</strong>路由到不同模型：</p>
+<table>
+<thead>
+<tr>
+<th>模态</th>
+<th>代表能力</th>
+<th>主要供应商</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本</td>
+<td>文章、代码、报告</td>
+<td>OpenAI、Anthropic、Google</td>
+</tr>
+<tr>
+<td>图像</td>
+<td>文生图、图片编辑</td>
+<td>OpenAI、Black Forest Labs、Midjourney、Google</td>
+</tr>
+<tr>
+<td>视频</td>
+<td>文/图生视频、动作一致性</td>
+<td>Runway、Google Veo、Pika、Kling</td>
+</tr>
+<tr>
+<td>音频</td>
+<td>伴奏、歌曲、声音克隆</td>
+<td>Suno、Udio、ElevenLabs</td>
+</tr>
+<tr>
+<td>3D/代码</td>
+<td>模型、程序</td>
+<td>Meshy、Tripo、GitHub Copilot</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4">4. 涌现能力与零样本/少样本学习</h3>
+<p>涌现能力 让生成服务可以在没有针对某个任务训练过的情况下，通过 Prompt 控制输出风格、格式和内容。少样本学习则让它在提供几个示例后，快速复制特定风格。</p>
+<h3 id="5">5. 服务化的关键设计维度</h3>
+<p>一个生产级的生成服务需要关注：</p>
+<ol>
+<li><strong>模态路由</strong>：按任务类型和质量要求选择最小足够的模型，避免“杀鸡焉用牛刀”。</li>
+<li><strong>Prompt 即接口</strong>：封装角色、风格、约束和输出格式，让上层业务代码不会被 Prompt 细节污染。</li>
+<li><strong>输出验证</strong>：生成内容必须经过事实校准、风格一致性检查、版权和安全审查。</li>
+<li><strong>成本与延迟</strong>：预览用小模型，正式输出用大模型；对于重复性请求，缓存可以显著降低成本。</li>
+<li><strong>Provider 履带</strong>：通过 OpenAI-compatible API 封装，便于在不同供应商之间切换，避免被单一厂商锁定。</li>
+<li><strong>人机协作</strong>：生成草稿 → 人工确认 → 发布，确保用户始终掌握最终决定权。</li>
+</ol>
+<h3 id="6">6. 从单次生成到生成工作流</h3>
+<p>最早的生成服务是<strong>单次调用</strong>：输入 Prompt → 输出结果。但 2025 年以后，行业趋势是<strong>连续生成</strong>：AI 根据用户反馈不断迭代，同时结合 工具调用与 Agent 调用其他系统（搜索数据、发送邮件、发布内容）。</p>
+<p>比如一个营销工作流可能是：</p>
+<pre><code>用户提供产品信息
+  ↓
+AI 生成多版海报草稿
+  ↓
+用户选择/编辑
+  ↓
+AI 生成配套的社交媒体文案和短视频
+  ↓
+一键发布到多平台
+</code></pre>
+<p>这就是为什么说<strong>生成即服务</strong>不仅仅是一个 API，而是整个 AI Native 产品的核心交付形态。</p>
+<hr />
+<h2 id="_3">💼 最新案例</h2>
+<h3 id="openai-gpt-4o">案例一：OpenAI GPT-4o 图像生成 —— 聊天里“画”出精确内容</h3>
+<p>2025 年 5 月 11 日，OpenAI 正式发布 GPT-4o 图像生成能力，它被直接集成在 ChatGPT 对话中，同时也通过 API 开放。</p>
+<ul>
+<li><strong>关键能力</strong>：不仅能根据文字生图，还支持<strong>精确文字渲染</strong> 和 <strong>跨轮对话的图片编辑</strong>。例如用户可以说“把刚才那张海报上的标题改成简体中文，风格保持一致”，AI 会在保持风格统一的情况下完成修改。</li>
+<li><strong>产品意义</strong>：设计师和营销人员不需要在多个工具间切换，可以用自然语言迭代图片，极大降低了视觉内容的生产门槛。</li>
+<li><strong>对行业的影响</strong>：图片生成从“单次抽卡”进化为“可持续协作的生成工作流”。</li>
+</ul>
+<blockquote>
+<p>来源：OpenAI 官方博客 <em>Introducing 4o Image Generation</em> （2025-05-11），Hacker News 讨论 #43952386</p>
+</blockquote>
+<h3 id="runway-gen-4-gen-45-api">案例二：Runway Gen-4 / Gen-4.5 —— 电影级视频生成 API</h3>
+<p>Runway 是 AI 视频生成领域的标杆。2025 年 3 月 31 日，Runway 发布 <strong>Gen-4</strong>；2025 年 12 月 1 日又推出 <strong>Gen-4.5</strong>。</p>
+<ul>
+<li><strong>关键能力</strong>：Gen-4 强调<strong>角色、物体和场景在多个镜头之间保持一致性</strong>，生成具有电影感的运动和摄影效果。</li>
+<li><strong>API 化</strong>：Runway 提供了面向创作者和工作室的 API，可以把视频生成插入到后期制作流水线中。</li>
+<li><strong>产业影响</strong>：低成本短片、广告素材和影视前期预览的生产方式被重塑，“拍摄”和“生成”的边界开始模糊。</li>
+</ul>
+<blockquote>
+<p>来源：Runway Research <em>Introducing Runway Gen-4</em> （2025-03-31）、<em>Introducing Runway Gen-4.5</em> （2025-12-01）</p>
+</blockquote>
+<h3 id="google-veo-3-imagen-4-flow">案例三：Google Veo 3 + Imagen 4 + Flow —— 原生音视频与影视工作流</h3>
+<p>2025 年 5 月 20 日的 Google I/O 上，Google 一次性发布了多款生成媒体模型和工具：</p>
+<ul>
+<li><strong>Veo 3</strong>：支持文本到视频，并且可以生成<strong>原生音频</strong>（不再是“无声电影”），大幅提升视频的沉浸感。</li>
+<li><strong>Imagen 4</strong>：更高的写实级图像质量，更准确的文字渲染，900 万 token 的上下文让编辑更精确。</li>
+<li><strong>Flow</strong>：专为影视创作设计的 AI 工作流工具，把视频生成、镜头调度、音频编辑整合在一起。</li>
+</ul>
+<p>这三个产品的组合说明：<strong>生成即服务正在从“单点工具”演进为“端到端创作流”。</strong></p>
+<blockquote>
+<p>来源：Google Blog <em>Veo 3 and Imagen 4, and a new tool for filmmaking called Flow</em> （2025-05-20），Hacker News 讨论 #44044043</p>
+</blockquote>
+<h3 id="falai">案例四（行业趋势）：fal.ai —— 开发者优先的生成基础设施</h3>
+<p>2025 年 10 月 21 日，TechCrunch 报道称多模态 AI 创业公司 <strong>fal.ai</strong> 已以<strong>超过 40 亿美元</strong>的估值完成新一轮融资。</p>
+<ul>
+<li><strong>定位</strong>：面向开发者的生成媒体平台，托管 Black Forest Labs、Runway、Suno 等模型的推理服务。</li>
+<li><strong>价值</strong>：提供低延迟推理、微调（fine-tuning）和 OpenAI-compatible API，让中小团队无需自建 GPU 集群就能获得生成能力。</li>
+<li><strong>启示</strong>：和云计算当年的 AWS 类似，生成即服务的<strong>基础设施层</strong>正在成熟，大多数企业不需要自己训练模型，只需会用 API。</li>
+</ul>
+<blockquote>
+<p>来源：TechCrunch <em>Multimodal AI startup Fal.ai raised at $4B+ valuation</em> （2025-10-21），Hacker News 讨论 #45661851</p>
+</blockquote>
+<hr />
+<h2 id="_4">💻 实战代码</h2>
+<p>下面的脚本演示了<strong>一个统一的多模态生成服务</strong>。它的核心思想是：</p>
+<ol>
+<li>对外提供统一的 <code>generate(request)</code> 接口，不管底层是哪个模型、哪个供应商。</li>
+<li>根据 <code>modality</code> 和环境变量自动路由：文本走 OpenAI，图片/视频/音乐走 Replicate，没有密钥时自动回退到本地 Mock，确保代码可立即运行。</li>
+<li>同时提供一个轻量 HTTP API（仅依赖 Python 标准库），方便接入其他应用。</li>
+</ol>
+<pre><code class="language-python">&quot;&quot;&quot;
+Day 5 实战代码：生成即服务
+一个统一的多模态生成服务。支持：
+  - 文本、图片、视频、音乐生成
+  - 多后端路由（OpenAI / Replicate / 本地 Mock）
+  - 无需 API Key 时自动使用本地占位生成器，可立即运行
+  - 内置轻量 HTTP API（仅依赖 Python 标准库）
+
+运行方式：
+  python3 day5_code.py              # 本地演示
+  python3 day5_code.py server       # 启动 HTTP 服务（默认 8000 端口）
+
+可选环境变量：
+  OPENAI_API_KEY     # 启用 OpenAI 文本生成
+  REPLICATE_API_TOKEN + pip install replicate  # 启用 Replicate 媒体生成
+&quot;&quot;&quot;
+import os
+import json
+import sys
+import urllib.parse
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from typing import Dict, Any
+
+# ------------------- 配置 -------------------
+OPENAI_API_KEY = os.getenv(&quot;OPENAI_API_KEY&quot;)
+REPLICATE_API_TOKEN = os.getenv(&quot;REPLICATE_API_TOKEN&quot;)
+
+try:
+    import replicate  # type: ignore
+except ImportError:
+    replicate = None  # 未安装时不启用 Replicate 路径
+
+
+# ------------------- 本地 Mock 生成器 -------------------
+class LocalMockGenerator:
+    &quot;&quot;&quot;无需外部 API 的本地占位生成器，保证脚本可立即运行。&quot;&quot;&quot;
+
+    def generate(self, modality: str, prompt: str, params: Dict[str, Any]) -&gt; Dict[str, Any]:
+        safe_prompt = prompt[:80].replace(&quot;\n&quot;, &quot; &quot;)
+        if modality == &quot;text&quot;:
+            return {
+                &quot;modality&quot;: &quot;text&quot;,
+                &quot;content&quot;: f&quot;【本地 Mock 文本】收到提示：{safe_prompt}。这里会替换为真实模型生成的文本。&quot;,
+                &quot;model&quot;: &quot;local-mock&quot;,
+            }
+        if modality == &quot;image&quot;:
+            return {
+                &quot;modality&quot;: &quot;image&quot;,
+                &quot;url&quot;: f&quot;https://placehold.co/600x400?text={urllib.parse.quote(safe_prompt)}&quot;,
+                &quot;alt&quot;: prompt,
+                &quot;model&quot;: &quot;local-mock&quot;,
+            }
+        if modality == &quot;video&quot;:
+            return {
+                &quot;modality&quot;: &quot;video&quot;,
+                &quot;url&quot;: &quot;https://www.w3schools.com/html/mov_bbb.mp4&quot;,
+                &quot;caption&quot;: prompt,
+                &quot;model&quot;: &quot;local-mock&quot;,
+            }
+        if modality == &quot;music&quot;:
+            return {
+                &quot;modality&quot;: &quot;music&quot;,
+                &quot;url&quot;: &quot;https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3&quot;,
+                &quot;caption&quot;: prompt,
+                &quot;model&quot;: &quot;local-mock&quot;,
+            }
+        raise ValueError(f&quot;不支持的模态：{modality}&quot;)
+
+
+# ------------------- OpenAI 文本生成 -------------------
+class OpenAITextGenerator:
+    def generate(self, prompt: str, params: Dict[str, Any]) -&gt; Dict[str, Any]:
+        if not OPENAI_API_KEY:
+            raise RuntimeError(&quot;OPENAI_API_KEY 未设置&quot;)
+        import urllib.request
+
+        model = params.get(&quot;model&quot;, &quot;gpt-4o-mini&quot;)
+        data = json.dumps({
+            &quot;model&quot;: model,
+            &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}],
+            &quot;temperature&quot;: params.get(&quot;temperature&quot;, 0.7),
+        }).encode()
+        req = urllib.request.Request(
+            &quot;https://api.openai.com/v1/chat/completions&quot;,
+            data=data,
+            headers={
+                &quot;Authorization&quot;: f&quot;Bearer {OPENAI_API_KEY}&quot;,
+                &quot;Content-Type&quot;: &quot;application/json&quot;,
+            },
+            method=&quot;POST&quot;,
+        )
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            result = json.loads(resp.read().decode())
+        return {
+            &quot;modality&quot;: &quot;text&quot;,
+            &quot;content&quot;: result[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot;],
+            &quot;model&quot;: model,
+        }
+
+
+# ------------------- Replicate 媒体生成 -------------------
+class ReplicateMediaGenerator:
+    &quot;&quot;&quot;使用 Replicate 官方 Python 客户端调用第三方媒体模型。&quot;&quot;&quot;
+
+    DEFAULT_MODELS = {
+        &quot;image&quot;: &quot;black-forest-labs/flux-schnell&quot;,
+        &quot;video&quot;: &quot;minimax/video-01&quot;,
+        &quot;music&quot;: &quot;suno-ai/bark&quot;,  # 示例占位，实际请以 Replicate 模型库为准
+    }
+
+    def generate(self, modality: str, prompt: str, params: Dict[str, Any]) -&gt; Dict[str, Any]:
+        if replicate is None:
+            raise RuntimeError(&quot;请先安装 replicate：pip install replicate&quot;)
+        if not REPLICATE_API_TOKEN:
+            raise RuntimeError(&quot;REPLICATE_API_TOKEN 未设置&quot;)
+        os.environ.setdefault(&quot;REPLICATE_API_TOKEN&quot;, REPLICATE_API_TOKEN)
+        model = params.get(&quot;model&quot;) or self.DEFAULT_MODELS.get(modality)
+        if not model:
+            raise ValueError(f&quot;没有为 {modality} 配置默认模型&quot;)
+        output = replicate.run(model, input={&quot;prompt&quot;: prompt})
+        # 不同模型输出格式不同，简单取字符串 URL
+        url = output[0] if isinstance(output, list) else output
+        return {&quot;modality&quot;: modality, &quot;url&quot;: url, &quot;prompt&quot;: prompt, &quot;model&quot;: model}
+
+
+# ------------------- 统一生成服务 -------------------
+class GenerationService:
+    &quot;&quot;&quot;
+    生成即服务（Generation as a Service）的最小可用实现。
+    对外暴露统一的 generate 接口，内部根据模态、可用密钥和参数自动路由。
+    &quot;&quot;&quot;
+
+    def __init__(self):
+        self.mock = LocalMockGenerator()
+        self.openai_text = OpenAITextGenerator()
+        self.replicate_media = ReplicateMediaGenerator()
+
+    def generate(self, request: Dict[str, Any]) -&gt; Dict[str, Any]:
+        modality = request.get(&quot;modality&quot;, &quot;text&quot;)
+        prompt = request.get(&quot;prompt&quot;, &quot;&quot;)
+        provider = request.get(&quot;provider&quot;, &quot;auto&quot;)
+        params = request.get(&quot;params&quot;, {})
+
+        if not prompt:
+            raise ValueError(&quot;prompt 为必填字段&quot;)
+        if modality not in (&quot;text&quot;, &quot;image&quot;, &quot;video&quot;, &quot;music&quot;):
+            raise ValueError(f&quot;不支持的模态：{modality}&quot;)
+
+        # 文本优先走 OpenAI
+        if modality == &quot;text&quot;:
+            if provider in (&quot;auto&quot;, &quot;openai&quot;) and OPENAI_API_KEY:
+                try:
+                    return self.openai_text.generate(prompt, params)
+                except Exception as e:
+                    return {**self.mock.generate(modality, prompt, params),
+                            &quot;warning&quot;: f&quot;OpenAI 调用失败，已回退到 Mock：{e}&quot;}
+            return self.mock.generate(modality, prompt, params)
+
+        # 媒体优先走 Replicate
+        if provider in (&quot;auto&quot;, &quot;replicate&quot;) and REPLICATE_API_TOKEN and replicate is not None:
+            try:
+                return self.replicate_media.generate(modality, prompt, params)
+            except Exception as e:
+                return {**self.mock.generate(modality, prompt, params),
+                        &quot;warning&quot;: f&quot;Replicate 调用失败，已回退到 Mock：{e}&quot;}
+        return self.mock.generate(modality, prompt, params)
+
+    def health(self) -&gt; Dict[str, Any]:
+        return {
+            &quot;openai_ready&quot;: bool(OPENAI_API_KEY),
+            &quot;replicate_ready&quot;: bool(REPLICATE_API_TOKEN) and replicate is not None,
+            &quot;routing&quot;: {
+                &quot;text&quot;: &quot;openai -&gt; mock&quot;,
+                &quot;image&quot;: &quot;replicate -&gt; mock&quot;,
+                &quot;video&quot;: &quot;replicate -&gt; mock&quot;,
+                &quot;music&quot;: &quot;replicate -&gt; mock&quot;,
+            },
+        }
+
+
+# ------------------- 轻量 HTTP API（标准库） -------------------
+class GenerateHandler(BaseHTTPRequestHandler):
+    service = GenerationService()
+
+    def _json_response(self, status: int, body: Dict[str, Any]):
+        self.send_response(status)
+        self.send_header(&quot;Content-Type&quot;, &quot;application/json; charset=utf-8&quot;)
+        self.end_headers()
+        self.wfile.write(json.dumps(body, ensure_ascii=False).encode())
+
+    def do_POST(self):
+        if self.path != &quot;/generate&quot;:
+            self._json_response(404, {&quot;error&quot;: &quot;not found&quot;})
+            return
+        try:
+            length = int(self.headers.get(&quot;Content-Length&quot;, 0))
+            body = json.loads(self.rfile.read(length).decode())
+            result = self.service.generate(body)
+            self._json_response(200, result)
+        except Exception as e:
+            self._json_response(500, {&quot;error&quot;: str(e)})
+
+    def do_GET(self):
+        if self.path == &quot;/health&quot;:
+            self._json_response(200, self.service.health())
+        else:
+            self._json_response(404, {&quot;error&quot;: &quot;not found&quot;})
+
+    def log_message(self, format, *args):
+        pass  # 静默日志
+
+
+def run_server(port: int = 8000):
+    server = HTTPServer((&quot;0.0.0.0&quot;, port), GenerateHandler)
+    print(f&quot;Generation-as-a-Service running on http://0.0.0.0:{port}&quot;)
+    print('POST /generate JSON: {&quot;modality&quot;:&quot;text|image|video|music&quot;, &quot;prompt&quot;:&quot;...&quot;, &quot;provider&quot;:&quot;auto|openai|replicate&quot;}')
+    print(&quot;GET  /health&quot;)
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print(&quot;\nShutting down.&quot;)
+
+
+def demo():
+    svc = GenerationService()
+    samples = [
+        {&quot;modality&quot;: &quot;text&quot;, &quot;prompt&quot;: &quot;用一句话解释什么是生成即服务&quot;},
+        {&quot;modality&quot;: &quot;image&quot;, &quot;prompt&quot;: &quot;一个机器人在画室里画油画的赛博朋克场景&quot;},
+        {&quot;modality&quot;: &quot;video&quot;, &quot;prompt&quot;: &quot;无人机穿越樱花林的 5 秒短视频&quot;},
+        {&quot;modality&quot;: &quot;music&quot;, &quot;prompt&quot;: &quot;轻快、适合短视频开头的电子音乐&quot;},
+    ]
+    for req in samples:
+        print(&quot;\n&quot; + &quot;=&quot; * 60)
+        print(f&quot;Request: {req}&quot;)
+        result = svc.generate(req)
+        print(f&quot;Result:\n{json.dumps(result, ensure_ascii=False, indent=2)}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    if len(sys.argv) &gt; 1 and sys.argv[1] == &quot;server&quot;:
+        run_server()
+    else:
+        demo()
+</code></pre>
+<p><strong>本地运行预览（无 API Key）：</strong></p>
+<pre><code class="language-text">============================================================
+Request: {'modality': 'text', 'prompt': '用一句话解释什么是生成即服务'}
+Result:
+{
+  &quot;modality&quot;: &quot;text&quot;,
+  &quot;content&quot;: &quot;【本地 Mock 文本】收到提示：用一句话解释什么是生成即服务。这里会替换为真实模型生成的文本。&quot;,
+  &quot;model&quot;: &quot;local-mock&quot;
+}
+
+============================================================
+Request: {'modality': 'image', 'prompt': '一个机器人在画室里画油画的赛博朋克场景'}
+Result:
+{
+  &quot;modality&quot;: &quot;image&quot;,
+  &quot;url&quot;: &quot;https://placehold.co/600x400?text=%E4%B8%80%E4%B8%AA%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9C%A8%E7%94%BB%E5%AE%A4%E9%87%8C%E7%94%BB%E6%B2%B9%E7%94%BB%E7%9A%84%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B%E5%9C%BA%E6%99%AF&quot;,
+  &quot;alt&quot;: &quot;一个机器人在画室里画油画的赛博朋克场景&quot;,
+  &quot;model&quot;: &quot;local-mock&quot;
+}
+</code></pre>
+<blockquote>
+<p>代码启示：<code>GenerationService</code> 封装了<strong>模态路由、Provider 回退、轻量 API</strong>三件事。在生成即服务的架构里，产品层不应该直接索引某个模型，而是调用一个稳定的生成服务接口，由它根据成本、质量和可用性自动选择最佳后端。</p>
+</blockquote>
+<hr />
+<h2 id="_5">✅ 最佳实践</h2>
+<p>结合 2025–2026 年头部产品和开源社区实践，总结出 7 条可操作的生成服务设计指南：</p>
+<ol>
+<li>
+<p><strong>把生成当作 API 产品来设计</strong>
+   不要只用一个巨大的 Prompt 字符串。定义清晰的输入 schema（任务、风格、约束、输出格式）和输出 schema，并像维护 REST API 一样维护 Prompt 版本。</p>
+</li>
+<li>
+<p><strong>用 Prompt 即接口 控制生成</strong>
+   角色、风格、输出格式、安全约束都应该在 Prompt 中体现，而不是散落在业务代码里。这样可以快速迭代，也方便 A/B 测试。</p>
+</li>
+<li>
+<p><strong>做多模态路由与 Provider 履带</strong>
+   不要把所有生成任务都发给一个模型。预览用小模型，正式输出用大模型；本地化部署敏感场景，云端部署创意场景。同时封装成 OpenAI-compatible 格式，便于切换。</p>
+</li>
+<li>
+<p><strong>输出必须可验证、可审查</strong>
+   生成内容必须经过内容安全、版权风险、事实准确性的检查。对于图片和视频，加入水印或隐写标识；对于文本和代码，设置人工确认节点。</p>
+</li>
+<li>
+<p><strong>成本与延迟分层</strong>
+   生成服务的成本可能随着模态和分辨率指数级上涨。设计“草稿-预览-精修-正式输出”的多阶段流程，让用户在每个阶段都能使用足够小但足够好的模型。</p>
+</li>
+<li>
+<p><strong>人机协作是必须品</strong>
+   即使生成质量越来越高，也应该让用户保留<strong>编辑、回退和最终确认</strong>的权利。生成结果是草稿，不是最终产品。</p>
+</li>
+<li>
+<p><strong>评估不只是准确率</strong>
+   生成服务的评估应该包括：任务完成度、用户满意度、风格一致性、内容安全、成本效率。建立一个“生成质量评估集”，用于持续迭代 Prompt 和模型选型。</p>
+</li>
+</ol>
+<hr />
+<h2 id="_6">🤔 思考题</h2>
+<ol>
+<li>
+<p>你的产品/业务中，哪些“交付物”可以从“查询已有模板”升级为“实时生成”？请列出至少3个场景，并说明需要生成的模态（文本、图像、视频还是音频）。</p>
+</li>
+<li>
+<p>当生成内容出现问题时（例如图片文字乱码、视频角色不一致、音乐版权风险），你会在产品层设计哪些<strong>置信度评分、人工确认和回退机制</strong>？</p>
+</li>
+<li>
+<p>多模态生成服务通常涉及多个 Provider 和不同计费方式。如果让你设计一个<strong>成本感知的生成路由层</strong>，你会考虑哪些因素（模态质量、延迟、价格、用户等级、敏感度）？</p>
+</li>
+</ol>
+<hr />
+<h2 id="_7">📚 扩展阅读</h2>
+<ul>
+<li><strong>OpenAI</strong>: <em>Introducing 4o Image Generation</em> （2025-05-11）—— Hacker News 讨论 #43952386</li>
+<li><strong>Runway Research</strong>: <em>Introducing Runway Gen-4</em> （2025-03-31）—— Hacker News #43536085；<em>Introducing Runway Gen-4.5</em> （2025-12-01）—— Hacker News #46108123</li>
+<li><strong>Google Blog</strong>: <em>Veo 3 and Imagen 4, and a new tool for filmmaking called Flow</em> （2025-05-20）—— Hacker News #44044043</li>
+<li><strong>Suno</strong>: <em>Introducing v4.5</em> （2025-05-01）—— Hacker News #43861020</li>
+<li><strong>TechCrunch</strong>: <em>Multimodal AI startup Fal.ai raised at $4B+ valuation</em> （2025-10-21）—— Hacker News #45661851</li>
+<li><strong>GitHub diffusers</strong>: <code>huggingface/diffusers</code> —— 图像/视频/音频扩散模型框架（33.9k ⭐）</li>
+<li><strong>GitHub ComfyUI</strong>: <code>comfyanonymous/ComfyUI</code> —— 模块化扩散工作流 GUI 与 API（118.4k ⭐）</li>
+<li><strong>arXiv 最新研究</strong>: <em>DanceOPD: On-Policy Generative Field Distillation</em> （2026-06-25）—— 统一 T2I 编辑与生成的新方法</li>
+</ul>
+<hr />
+<p>💡 今日课程已保存至知识库：[[Day-5]]</p>
+</body>
+</html>

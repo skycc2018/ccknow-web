@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI商机雷达｜AI Coding开发提示词 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: AI商机雷达｜AI Coding开发提示词
+created: 2026-06-22
+updated: 2026-06-29
+type: project
+tags: [AI商机雷达, AI Coding, 提示词, 开发规范, MVP, Next.js, B2B SaaS]
+sources: [用户设计分析]
+confidence: medium</p>
+<hr />
+<h1 id="_1"></h1>
+<h2 id="_2">一、你的角色</h2>
+<p>你是一名资深全栈产品开发工程师，需要根据以下产品需求，生成一个可运行的Web端MVP原型。</p>
+<p>产品名称：AI商机雷达<br />
+英文名：Opportunity AI<br />
+产品定位：面向餐饮供应链B2B销售的AI客户发现系统。<br />
+核心目标：帮助销售输入自己销售的产品后，系统自动推荐最值得优先开发的餐饮客户，并展示商机评分、推荐理由、客户画像和销售话术。</p>
+<hr />
+<h1 id="_3">二、技术栈要求</h1>
+<p>请使用以下技术栈开发：</p>
+<pre><code class="language-text">前端：
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Shadcn UI
+- Lucide Icons
+
+数据：
+- 本地Mock数据
+- 暂不接真实后端
+
+状态管理：
+- React Hooks
+- 可使用本地状态管理
+
+图表：
+- 使用简洁卡片和基础图表即可
+- 不需要复杂可视化
+</code></pre>
+<p>本阶段目标是生成一个<strong>可运行、可演示、可交互的前端MVP原型</strong>，不是完整生产系统。</p>
+<hr />
+<h1 id="_4">三、产品核心逻辑</h1>
+<p>用户输入自己销售的产品，例如：</p>
+<pre><code class="language-text">牛肉卷
+芝士碎
+鸡翅中
+调味料
+冻品
+</code></pre>
+<p>系统根据产品匹配适合开发的餐饮客户类型，并推荐客户列表。</p>
+<p>示例：</p>
+<pre><code class="language-text">用户输入：牛肉卷
+
+系统推荐客户类型：
+- 火锅
+- 烤肉
+- 自助餐
+- 韩餐
+
+系统输出：
+- 上海火锅TOP商机客户
+- 杭州烤肉TOP商机客户
+- 全国高潜客户排行榜
+</code></pre>
+<hr />
+<h1 id="_5">四、页面结构</h1>
+<p>请生成以下页面：</p>
+<pre><code class="language-text">1. 首页 / 工作台
+2. 商机搜索页
+3. 客户排行榜页
+4. 客户详情页
+5. AI话术生成页
+6. 我的收藏页
+7. 跟进状态页
+8. 导出记录页
+</code></pre>
+<p>可以使用前端路由，也可以做成单页应用中的多视图切换。</p>
+<hr />
+<h1 id="_6">五、整体布局要求</h1>
+<p>使用B2B SaaS后台风格。</p>
+<p>页面整体结构：</p>
+<pre><code class="language-text">左侧导航栏
+顶部搜索栏
+主内容区域
+右侧辅助信息区，可选
+</code></pre>
+<p>左侧导航菜单包含：</p>
+<pre><code class="language-text">工作台
+商机搜索
+客户排行榜
+我的收藏
+跟进状态
+导出记录
+系统设置
+</code></pre>
+<p>顶部区域包含：</p>
+<pre><code class="language-text">产品名称：AI商机雷达
+全局搜索框
+用户头像
+通知入口
+</code></pre>
+<hr />
+<h1 id="_7">六、页面详细要求</h1>
+<h2 id="1">1. 首页 / 工作台</h2>
+<p>首页需要展示：</p>
+<pre><code class="language-text">- 顶部产品搜索框
+- 今日推荐商机
+- 热门商机榜单
+- 热门城市
+- 热门品类
+- 我的收藏客户
+- 最近查看客户
+- 关键数据概览
+</code></pre>
+<p>关键数据卡片：</p>
+<pre><code class="language-text">今日推荐客户：128
+A级商机客户：36
+已收藏客户：24
+已标记跟进：18
+</code></pre>
+<p>首页主搜索框文案：</p>
+<pre><code class="language-text">请输入你销售的产品，例如：牛肉卷、芝士碎、鸡翅中
+</code></pre>
+<p>点击搜索后，进入商机搜索结果页。</p>
+<hr />
+<h2 id="2">2. 商机搜索页</h2>
+<p>搜索条件包括：</p>
+<pre><code class="language-text">销售产品
+城市
+餐饮品类
+门店数
+客单价
+商机等级
+经营状态
+排序方式
+</code></pre>
+<p>搜索结果以表格展示。</p>
+<p>表格字段：</p>
+<pre><code class="language-text">客户名称
+城市
+餐饮品类
+门店数
+客单价
+评分
+商机指数
+商机等级
+推荐原因
+操作
+</code></pre>
+<p>操作按钮：</p>
+<pre><code class="language-text">查看详情
+收藏
+生成话术
+</code></pre>
+<hr />
+<h2 id="3">3. 客户排行榜页</h2>
+<p>展示不同榜单：</p>
+<pre><code class="language-text">上海火锅TOP100商机客户
+杭州烧烤TOP100商机客户
+合肥快餐TOP100商机客户
+全国牛肉卷适配客户TOP500
+华东区域高增长餐饮品牌TOP100
+</code></pre>
+<p>页面展示：</p>
+<pre><code class="language-text">榜单卡片
+客户排名表格
+商机等级标签
+评分进度条
+推荐理由摘要
+</code></pre>
+<hr />
+<h2 id="4">4. 客户详情页</h2>
+<p>客户详情页需要包含以下模块：</p>
+<h3 id="_8">客户基础信息</h3>
+<p>字段：</p>
+<pre><code class="language-text">客户名称
+所属品类
+所在城市
+门店数量
+覆盖城市数
+客单价
+评分
+评论数
+经营状态
+</code></pre>
+<h3 id="_9">商机评分</h3>
+<p>展示总分：</p>
+<pre><code class="language-text">商机指数：86
+商机等级：A级
+</code></pre>
+<p>展示评分拆解：</p>
+<pre><code class="language-text">增长潜力：88
+规模价值：82
+品类匹配：92
+活跃信号：78
+触达可行性：85
+</code></pre>
+<p>可以使用进度条、雷达图或卡片形式展示。</p>
+<h3 id="_10">推荐理由</h3>
+<p>按以下格式展示：</p>
+<pre><code class="language-text">1. 客户价值：该品牌当前门店数量较多，具备规模采购潜力。
+2. 增长信号：近期门店增长明显，处于扩张阶段。
+3. 品类匹配：主营火锅场景，与牛肉卷、冻品类产品匹配度较高。
+4. 切入建议：建议从稳定供货、标准化食材和成本优化角度切入。
+</code></pre>
+<h3 id="ai">AI客户分析</h3>
+<p>展示：</p>
+<pre><code class="language-text">经营情况分析
+扩张趋势分析
+品类匹配分析
+潜在采购需求
+销售跟进建议
+风险提示
+</code></pre>
+<h3 id="_11">操作按钮</h3>
+<pre><code class="language-text">收藏客户
+生成销售话术
+导出客户
+标记跟进
+返回列表
+</code></pre>
+<hr />
+<h2 id="5-ai">5. AI话术生成页</h2>
+<p>用户点击客户后，可以生成不同类型话术。</p>
+<p>话术类型：</p>
+<pre><code class="language-text">微信开场话术
+电话开场话术
+上门拜访话术
+产品推荐话术
+二次跟进话术
+</code></pre>
+<p>页面结构：</p>
+<pre><code class="language-text">左侧：客户信息卡片
+中间：话术类型选择
+右侧：生成话术内容
+底部：复制按钮、重新生成按钮
+</code></pre>
+<p>示例话术：</p>
+<pre><code class="language-text">您好，我关注到贵品牌近期门店扩张较快，目前已经覆盖多个区域。
+
+我们主要服务火锅、烤肉类餐饮客户，提供标准化牛肉卷、冻品等食材供应方案，重点帮助扩张期门店提升供货稳定性、降低后厨备货压力。
+
+想和您简单交流一下，看是否有机会为贵品牌提供一些供应链支持。
+</code></pre>
+<hr />
+<h2 id="6">6. 我的收藏页</h2>
+<p>展示用户收藏的客户。</p>
+<p>字段：</p>
+<pre><code class="language-text">客户名称
+城市
+品类
+商机等级
+商机指数
+收藏时间
+跟进状态
+备注
+操作
+</code></pre>
+<p>操作：</p>
+<pre><code class="language-text">查看详情
+取消收藏
+标记跟进
+生成话术
+</code></pre>
+<hr />
+<h2 id="7">7. 跟进状态页</h2>
+<p>展示用户标记过的客户跟进状态。</p>
+<p>状态包括：</p>
+<pre><code class="language-text">未跟进
+已联系
+有意向
+无意向
+信息无效
+已成交
+</code></pre>
+<p>支持切换状态、添加备注。</p>
+<hr />
+<h2 id="8">8. 导出记录页</h2>
+<p>展示用户导出记录。</p>
+<p>字段：</p>
+<pre><code class="language-text">导出时间
+导出条件
+导出数量
+导出人
+下载状态
+</code></pre>
+<hr />
+<h1 id="_12">七、商机评分模型</h1>
+<p>请在前端Mock中实现评分展示逻辑。</p>
+<p>综合商机指数公式：</p>
+<pre><code class="language-text">商机指数
+= 增长潜力 × 25%
++ 规模价值 × 20%
++ 品类匹配 × 25%
++ 活跃信号 × 15%
++ 触达可行性 × 15%
+</code></pre>
+<p>等级规则：</p>
+<pre><code class="language-text">80-100：A级
+60-79：B级
+40-59：C级
+0-39：D级
+</code></pre>
+<p>客户列表中的每个客户都需要有：</p>
+<pre><code class="language-text">综合商机指数
+商机等级
+评分拆解
+推荐理由
+</code></pre>
+<hr />
+<h1 id="mock">八、Mock数据要求</h1>
+<p>请内置不少于20条餐饮客户Mock数据。</p>
+<p>客户数据字段：</p>
+<pre><code class="language-text">id
+客户名称
+品牌名称
+城市
+区域
+餐饮品类
+门店数
+覆盖城市数
+客单价
+评分
+评论数
+经营状态
+近90天新增门店
+增长潜力分
+规模价值分
+品类匹配分
+活跃信号分
+触达可行性分
+综合商机指数
+商机等级
+推荐原因
+联系人
+电话
+地址
+</code></pre>
+<p>示例客户：</p>
+<pre><code class="language-text">川味老火锅
+炙牛烤肉社
+江南小碗菜
+韩都烤肉
+鲜辣牛肉火锅
+城市便当
+小巷烧烤
+锅气小炒
+芝士披萨工坊
+炸鸡研究所
+</code></pre>
+<hr />
+<h1 id="_13">九、交互要求</h1>
+<p>必须支持以下交互：</p>
+<pre><code class="language-text">1. 输入产品后筛选推荐客户。
+2. 按城市筛选客户。
+3. 按餐饮品类筛选客户。
+4. 按商机等级筛选客户。
+5. 点击客户进入详情页。
+6. 收藏客户。
+7. 取消收藏。
+8. 生成销售话术。
+9. 复制话术。
+10. 修改跟进状态。
+11. 查看我的收藏。
+12. 查看导出记录。
+</code></pre>
+<hr />
+<h1 id="_14">十、视觉风格要求</h1>
+<p>整体风格：</p>
+<pre><code class="language-text">专业
+清爽
+科技感
+B2B SaaS
+数据智能
+销售增长工具
+</code></pre>
+<p>颜色建议：</p>
+<pre><code class="language-text">主色：蓝色或深蓝紫
+辅助色：绿色表示高价值机会
+预警色：橙色表示中等机会
+风险色：红色表示低价值或异常
+背景：浅灰白
+卡片：白色
+</code></pre>
+<p>商机等级颜色：</p>
+<pre><code class="language-text">A级：绿色
+B级：蓝色
+C级：橙色
+D级：灰色
+</code></pre>
+<hr />
+<h1 id="_15">十一、组件要求</h1>
+<p>请使用统一组件风格，包括：</p>
+<pre><code class="language-text">导航栏
+搜索框
+筛选器
+数据卡片
+客户卡片
+表格
+标签
+评分进度条
+弹窗
+下拉选择
+按钮
+空状态
+加载状态
+复制按钮
+</code></pre>
+<hr />
+<h1 id="_16">十二、验收标准</h1>
+<p>生成结果必须满足：</p>
+<pre><code class="language-text">1. 项目可以本地运行。
+2. 页面结构完整。
+3. 主要页面可以切换。
+4. 搜索、筛选、收藏、详情、话术生成可交互。
+5. 使用Mock数据，不依赖真实接口。
+6. UI具备B2B SaaS质感。
+7. 代码结构清晰，便于后续接后端。
+8. 商机评分和推荐理由必须展示。
+9. 客户详情页信息完整。
+10. AI话术生成页可以模拟生成不同类型话术。
+</code></pre>
+<hr />
+<h1 id="_17">十三、输出要求</h1>
+<p>请输出完整项目代码，包括：</p>
+<pre><code class="language-text">Next.js项目结构
+页面组件
+Mock数据
+评分工具函数
+样式文件
+README说明
+</code></pre>
+<p>README需要说明：</p>
+<pre><code class="language-text">如何安装依赖
+如何启动项目
+页面功能说明
+Mock数据位置
+后续如何接入真实API
+</code></pre>
+<hr />
+<h1 id="_18">十四、重要要求</h1>
+<p>不要只生成静态页面，必须具备基础交互。</p>
+<p>不要做成普通CRM系统，要突出：</p>
+<pre><code class="language-text">AI推荐
+商机评分
+客户发现
+销售建议
+成交机会
+</code></pre>
+<p>产品核心体验必须是：</p>
+<pre><code class="language-text">销售输入产品
+↓
+系统推荐客户
+↓
+展示为什么推荐
+↓
+生成怎么跟进
+</code></pre>
+</body>
+</html>

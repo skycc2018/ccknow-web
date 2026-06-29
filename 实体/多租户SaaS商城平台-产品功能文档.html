@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多租户SaaS商城平台-产品功能文档 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: 多租户SaaS商城平台 - 产品功能文档
+created: '2026-06-21'
+updated: '2026-06-21'
+type: entity
+tags:
+- '#产品'
+- '#项目'
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="saas-">多租户SaaS商城平台 - 产品功能文档</h1>
+<h2 id="1">1. 产品概述与定位</h2>
+<h3 id="11">1.1 产品定位</h3>
+<p><strong>产品名称</strong>：UniShop SaaS 商城平台
+<strong>产品定位</strong>：面向中小微企业和个体商户的一站式多租户电商SaaS解决方案
+<strong>核心价值</strong>：让商户在5分钟内快速搭建独立品牌商城，无需技术投入即可拥有专业级电商能力</p>
+<h3 id="12">1.2 目标用户</h3>
+<ul>
+<li><strong>中小微电商企业</strong>：年GMV 50万-5000万，无技术团队</li>
+<li><strong>品牌零售商</strong>：希望快速拓展线上渠道</li>
+<li><strong>个体创业者</strong>：微商、代购、内容创作者变现</li>
+<li><strong>连锁门店</strong>：总部统一管理，门店独立运营</li>
+</ul>
+<h3 id="13">1.3 产品愿景</h3>
+<p>成为中小微商户最信赖的电商基础设施，提供"开店即经营"的极致体验。</p>
+<hr />
+<h2 id="2">2. 多租户架构设计</h2>
+<h3 id="21-id">2.1 架构模式：共享数据库 + 租户ID隔离（推荐）</h3>
+<pre><code>┌─────────────────────────────────────────┐
+│           接入层 (Gateway)               │
+│  - 域名路由: shop1.unishop.com          │
+│  - 租户识别: Header / Subdomain / Path  │
+│  - 流量控制: 按租户限流                  │
+└──────────────┬──────────────────────────┘
+               │
+┌──────────────▼──────────────────────────┐
+│           应用层 (Service)              │
+│  - 租户上下文传递: TenantContext         │
+│  - 数据自动过滤: WHERE tenant_id = ?   │
+│  - 缓存隔离: tenant_id:key              │
+└──────────────┬──────────────────────────┘
+               │
+┌──────────────▼──────────────────────────┐
+│           数据层 (Database)             │
+│  - 共享数据库 + 租户ID字段隔离            │
+│  - 索引优化: (tenant_id, business_key)  │
+│  - 分表策略: 大数据量时按租户分表         │
+└─────────────────────────────────────────┘
+</code></pre>
+<h3 id="22">2.2 租户隔离策略</h3>
+<table>
+<thead>
+<tr>
+<th>隔离维度</th>
+<th>实现方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据隔离</strong></td>
+<td>行级隔离（tenant_id字段）</td>
+<td>所有业务表含tenant_id，查询自动注入条件</td>
+</tr>
+<tr>
+<td><strong>配置隔离</strong></td>
+<td>独立配置表 + 租户覆盖</td>
+<td>系统默认配置 + 租户自定义覆盖</td>
+</tr>
+<tr>
+<td><strong>文件隔离</strong></td>
+<td>对象存储路径隔离</td>
+<td>/{tenant_id}/uploads/...</td>
+</tr>
+<tr>
+<td><strong>缓存隔离</strong></td>
+<td>Key前缀隔离</td>
+<td>cache:{tenant_id}:{key}</td>
+</tr>
+<tr>
+<td><strong>队列隔离</strong></td>
+<td>队列名称/Tag隔离</td>
+<td>租户级别消息分组</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23">2.3 租户生命周期管理</h3>
+<pre><code>注册 → 试用(14天) → 付费订阅 → 正常运营 → 续费/升级/降级 → 到期提醒 → 暂停/恢复 → 注销
+</code></pre>
+<p><strong>状态定义</strong>：
+- <code>trial</code>：试用期，功能全开，带水印
+- <code>active</code>：正常付费运营
+- <code>suspended</code>：欠费暂停，仅保留数据，前端展示维护页
+- <code>expired</code>：到期未续费，进入30天保留期
+- <code>terminated</code>：彻底注销，数据归档（保留90天后删除）</p>
+<hr />
+<h2 id="3">3. 核心功能模块</h2>
+<h3 id="31-tenant-admin">3.1 租户管理后台（Tenant Admin）</h3>
+<h4 id="311">3.1.1 店铺配置</h4>
+<ul>
+<li><strong>基础信息</strong>：店铺名称、Logo、简介、客服电话、ICP备案</li>
+<li><strong>域名管理</strong>：</li>
+<li>默认子域名：{shop_id}.unishop.com</li>
+<li>自定义域名绑定：支持CNAME，自动SSL证书（Let's Encrypt）</li>
+<li>域名备案状态检测</li>
+<li><strong>地区/语言</strong>：多语言支持（中/英/日/韩），多币种（CNY/USD/EUR）</li>
+<li><strong>营业时间</strong>：可设置配送/自提营业时间</li>
+<li><strong>物流配置</strong>：默认运费模板、发货地址管理</li>
+</ul>
+<h4 id="312">3.1.2 主题/装修管理</h4>
+<ul>
+<li><strong>主题市场</strong>：官方主题库（免费+付费），支持一键切换</li>
+<li><strong>可视化装修</strong>：</li>
+<li>拖拽式页面编辑器（类似Shopify Sections）</li>
+<li>组件库：轮播图、商品列表、图文、视频、倒计时、优惠券领取</li>
+<li>页面管理：首页、分类页、商品详情、自定义页</li>
+<li><strong>自定义CSS/JS</strong>：高级用户可注入自定义样式（需安全审核）</li>
+<li><strong>预览与发布</strong>：草稿/发布双版本，支持多端预览</li>
+</ul>
+<h4 id="313">3.1.3 支付与财务</h4>
+<ul>
+<li><strong>支付渠道配置</strong>：</li>
+<li>微信支付（需商户自行申请）</li>
+<li>支付宝</li>
+<li>银联云闪付</li>
+<li>国际：Stripe、PayPal</li>
+<li><strong>分账设置</strong>：平台抽成比例、自动分账规则</li>
+<li><strong>结算周期</strong>：T+7/T+14/T+30，自动结算到绑定银行卡</li>
+<li><strong>发票管理</strong>：电子发票申请、开票记录</li>
+</ul>
+<h4 id="314">3.1.4 员工与权限</h4>
+<ul>
+<li><strong>角色系统</strong>：超级管理员、运营、客服、财务、仓管</li>
+<li><strong>权限矩阵</strong>：菜单权限 + 操作权限 + 数据权限（仅看自己/看全部）</li>
+<li><strong>操作日志</strong>：关键操作留痕，支持导出审计</li>
+</ul>
+<hr />
+<h3 id="32-pms">3.2 商品管理系统（PMS）</h3>
+<h4 id="321">3.2.1 商品模型</h4>
+<pre><code>SPU（标准产品单元）
+├── 基础信息：名称、副标题、品牌、分类、主图、视频、详情
+├── 销售属性：颜色、尺码、规格 → 组合生成SKU
+├── 扩展属性：材质、产地、保质期等（按类目模板）
+├── 图文详情：富文本编辑器，支持组件化模板
+└── 营销标签：新品、热销、推荐、限时
+
+SKU（库存量单元）
+├── 规格组合：{颜色:红, 尺码:XL}
+├── 价格体系：售价、原价、成本价、会员价
+├── 库存：独立库存/共享库存，支持多仓
+├── 条码：SKU编码、条形码、二维码
+└── 图片：SKU专属图（如不同颜色展示不同图）
+</code></pre>
+<h4 id="322">3.2.2 分类与品牌</h4>
+<ul>
+<li><strong>类目体系</strong>：</li>
+<li>平台标准类目（3级）：后台维护，租户选用</li>
+<li>租户自定义类目：可映射到平台类目，支持独立展示</li>
+<li><strong>品牌管理</strong>：品牌库（平台预置 + 租户自建），品牌授权资质上传</li>
+<li><strong>类目属性模板</strong>：不同类目自动加载对应规格属性（如服装有尺码表，食品有保质期）</li>
+</ul>
+<h4 id="323">3.2.3 库存管理</h4>
+<ul>
+<li><strong>库存类型</strong>：实物库存、虚拟库存、预售库存</li>
+<li><strong>库存操作</strong>：入库、出库、盘点、调拨、报损</li>
+<li><strong>库存预警</strong>：低库存提醒、缺货自动下架</li>
+<li><strong>多仓支持</strong>：</li>
+<li>仓库管理：主仓、分仓、门店仓</li>
+<li>库存分配规则：就近发货、库存均衡、指定仓库</li>
+<li>库存同步：实时同步/定时同步</li>
+</ul>
+<h4 id="324">3.2.4 商品状态流转</h4>
+<pre><code>草稿 → 待审核（可选） → 上架 → 在售 → 售罄 → 下架 → 删除
+</code></pre>
+<h4 id="325">3.2.5 批量操作</h4>
+<ul>
+<li>Excel导入/导出（标准化模板）</li>
+<li>批量修改：价格、库存、分类、上下架</li>
+<li>批量图片上传（压缩、水印、CDN加速）</li>
+</ul>
+<hr />
+<h3 id="33-oms">3.3 订单管理系统（OMS）</h3>
+<h4 id="331">3.3.1 订单状态机</h4>
+<pre><code>待付款 → 已付款 → 待发货 → 已发货 → 待收货 → 已完成
+   ↓        ↓         ↓         ↓          ↓
+ 已取消   退款中    退款完成   退货中     退货完成
+</code></pre>
+<h4 id="332">3.3.2 核心功能</h4>
+<ul>
+<li><strong>订单列表</strong>：多维度筛选（状态、时间、来源、金额），高级搜索</li>
+<li><strong>订单详情</strong>：完整信息展示、操作日志、物流跟踪</li>
+<li><strong>发货管理</strong>：</li>
+<li>电子面单：对接菜鸟、快递100，自动打印</li>
+<li>批量发货：Excel导入运单号</li>
+<li>拆单/合单：多商品拆开发货、多订单合并发货</li>
+<li>无需物流：虚拟商品自动发货</li>
+<li><strong>物流跟踪</strong>：对接主流快递，实时轨迹查询，异常预警</li>
+</ul>
+<h4 id="333">3.3.3 售后管理</h4>
+<ul>
+<li><strong>退款/退货流程</strong>：</li>
+<li>仅退款：未发货时买家申请</li>
+<li>退货退款：已发货后申请，填写物流单号</li>
+<li>换货：库存充足时支持</li>
+<li><strong>售后审核</strong>：商家审核 → 买家退货 → 商家确认收货 → 退款</li>
+<li><strong>退款路径</strong>：原路退回（微信/支付宝/银行卡）</li>
+<li><strong>纠纷处理</strong>：平台介入仲裁（针对平台自营模式）</li>
+</ul>
+<h4 id="334">3.3.4 订单来源与标记</h4>
+<ul>
+<li>来源渠道：H5、小程序、App、PC、线下POS</li>
+<li>订单标记：加急、赠品、大客户、备注标签</li>
+<li>自动规则：自动打标签（如首单、高客单、复购）</li>
+</ul>
+<hr />
+<h3 id="34-crm">3.4 会员/用户系统（CRM）</h3>
+<h4 id="341">3.4.1 用户体系</h4>
+<ul>
+<li><strong>用户注册</strong>：手机号+验证码、微信授权、Apple ID（iOS）</li>
+<li><strong>用户画像</strong>：基础信息、收货地址、浏览偏好、消费特征</li>
+<li><strong>用户分层</strong>：</li>
+<li>按消费：普通会员、银卡、金卡、钻石</li>
+<li>按RFM：重要价值、重要保持、新客户、流失预警</li>
+<li>按行为：活跃、沉默、沉睡、流失</li>
+</ul>
+<h4 id="342">3.4.2 会员等级</h4>
+<ul>
+<li><strong>成长值体系</strong>：消费1元=1成长值，签到、评价额外获得</li>
+<li><strong>等级权益</strong>：</li>
+<li>折扣权益：不同等级享受不同折扣</li>
+<li>服务权益：优先发货、专属客服、生日礼</li>
+<li>营销权益：专属优惠券、提前购、专享价</li>
+<li><strong>等级有效期</strong>：按自然年/滚动年计算，到期降级</li>
+</ul>
+<h4 id="343">3.4.3 积分系统</h4>
+<ul>
+<li><strong>积分获取</strong>：消费返积分、签到、分享、评价、完善资料</li>
+<li><strong>积分消耗</strong>：抵扣现金（100积分=1元）、兑换商品、抽奖</li>
+<li><strong>积分规则</strong>：商户自定义比例、有效期、使用门槛</li>
+<li><strong>积分明细</strong>：完整流水记录</li>
+</ul>
+<h4 id="344">3.4.4 用户标签</h4>
+<ul>
+<li><strong>自动标签</strong>：基于行为自动打标（高客单、爱折扣、夜间购物）</li>
+<li><strong>手动标签</strong>：运营人工标注（大客户、KOC、投诉用户）</li>
+<li><strong>标签应用</strong>：精准营销、分组推送、个性化展示</li>
+</ul>
+<h4 id="345">3.4.5 用户运营工具</h4>
+<ul>
+<li><strong>群发消息</strong>：按标签/分组推送短信/站内信/订阅消息</li>
+<li><strong>关怀提醒</strong>：生日祝福、沉默唤醒、购物车召回</li>
+<li><strong>黑名单</strong>：恶意用户、羊毛党标记</li>
+</ul>
+<hr />
+<h3 id="35">3.5 营销系统</h3>
+<h4 id="351">3.5.1 优惠券</h4>
+<ul>
+<li><strong>券类型</strong>：</li>
+<li>满减券：满X元减Y元</li>
+<li>折扣券：X折，最高减Y元</li>
+<li>兑换券：凭码兑换指定商品</li>
+<li>运费券：免邮/减邮费</li>
+<li><strong>发放方式</strong>：</li>
+<li>主动领取：领券中心、商品详情页</li>
+<li>被动发放：新客注册、生日、消费返券、补偿</li>
+<li>定向发放：指定用户/标签群发</li>
+<li><strong>使用规则</strong>：</li>
+<li>适用范围：全店/指定商品/指定分类</li>
+<li>叠加规则：是否可叠加、互斥组</li>
+<li>有效期：固定日期/领取后N天</li>
+<li>使用门槛：最低消费金额、指定会员等级</li>
+</ul>
+<h4 id="352">3.5.2 满减/满折</h4>
+<ul>
+<li><strong>阶梯满减</strong>：满100减10、满200减30、满300减50</li>
+<li><strong>每满减</strong>：每满100减10，上不封顶</li>
+<li><strong>满件折</strong>：满2件8折、满3件7折</li>
+<li><strong>满赠</strong>：满额赠商品/赠品池随机</li>
+</ul>
+<h4 id="353">3.5.3 限时秒杀</h4>
+<ul>
+<li><strong>场次管理</strong>：固定场次（10:00/14:00/20:00）或自定义</li>
+<li><strong>商品设置</strong>：秒杀价、库存、限购数量、预热时间</li>
+<li><strong>防超卖</strong>：独立秒杀库存，与主库存隔离</li>
+<li><strong>高并发</strong>：库存扣减优化（Redis预扣 + 异步落库）</li>
+</ul>
+<h4 id="354">3.5.4 拼团</h4>
+<ul>
+<li><strong>团类型</strong>：普通团（2-5人）、阶梯团（人越多越便宜）、新人团</li>
+<li><strong>成团规则</strong>：成团时间、人数、虚拟成团（差1人自动成团）</li>
+<li><strong>分享机制</strong>：海报分享、小程序卡片、链接</li>
+</ul>
+<h4 id="355">3.5.5 分销/推广员</h4>
+<ul>
+<li><strong>分销模式</strong>：</li>
+<li>一级分销：A推广B，A得佣金</li>
+<li>二级分销：A推广B，B推广C，A和B都得佣金（合规风险需注意）</li>
+<li><strong>推广员管理</strong>：申请审核、等级体系、佣金比例</li>
+<li><strong>佣金结算</strong>：订单完成后结算，可提现到微信零钱</li>
+<li><strong>推广工具</strong>：专属海报、推广链接、二维码</li>
+</ul>
+<h4 id="356">3.5.6 直播带货（可选高级功能）</h4>
+<ul>
+<li>直播间管理、商品上架、优惠券发放、弹幕互动</li>
+<li>回放功能、直播数据统计</li>
+</ul>
+<h4 id="357">3.5.7 营销工具箱</h4>
+<ul>
+<li><strong>签到有礼</strong>：连续签到奖励递增</li>
+<li><strong>抽奖/转盘</strong>：积分抽奖、消费抽奖</li>
+<li><strong>砍价</strong>：邀请好友帮忙砍价</li>
+<li><strong>预售</strong>：定金膨胀、尾款支付</li>
+<li><strong>组合套餐</strong>：固定搭配、自由搭配</li>
+</ul>
+<hr />
+<h3 id="36">3.6 支付系统</h3>
+<h4 id="361">3.6.1 支付渠道</h4>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>场景</th>
+<th>费率</th>
+<th>结算周期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微信支付</td>
+<td>小程序、H5、App</td>
+<td>0.6%</td>
+<td>T+1</td>
+</tr>
+<tr>
+<td>支付宝</td>
+<td>H5、App、PC</td>
+<td>0.6%</td>
+<td>T+1</td>
+</tr>
+<tr>
+<td>银联云闪付</td>
+<td>全渠道</td>
+<td>0.6%</td>
+<td>T+1</td>
+</tr>
+<tr>
+<td>Stripe</td>
+<td>国际信用卡</td>
+<td>2.9%+0.3$</td>
+<td>T+7</td>
+</tr>
+<tr>
+<td>余额支付</td>
+<td>平台内余额</td>
+<td>0%</td>
+<td>实时</td>
+</tr>
+<tr>
+<td>货到付款</td>
+<td>线下</td>
+<td>0%</td>
+<td>实时</td>
+</tr>
+</tbody>
+</table>
+<h4 id="362">3.6.2 支付流程</h4>
+<pre><code>用户下单 → 选择支付方式 → 调起支付 → 支付成功回调 → 订单状态更新 → 通知商户/用户
+</code></pre>
+<h4 id="363">3.6.3 对账系统</h4>
+<ul>
+<li><strong>自动对账</strong>：每日自动拉取支付渠道账单，与平台订单匹配</li>
+<li><strong>差异处理</strong>：单边账（有支付无订单/有订单无支付）标记预警</li>
+<li><strong>对账报表</strong>：按渠道、按日期、按商户汇总</li>
+</ul>
+<h4 id="364">3.6.4 退款处理</h4>
+<ul>
+<li><strong>原路退回</strong>：微信退微信、支付宝退支付宝</li>
+<li><strong>部分退款</strong>：支持订单部分商品退款</li>
+<li><strong>退款时效</strong>：微信/支付宝实时，银行卡3-15个工作日</li>
+</ul>
+<hr />
+<h3 id="37-bi">3.7 数据分析系统（BI）</h3>
+<h4 id="371">3.7.1 交易数据</h4>
+<ul>
+<li><strong>实时大盘</strong>：今日订单数、GMV、客单价、支付转化率</li>
+<li><strong>趋势分析</strong>：日/周/月趋势，同比环比</li>
+<li><strong>商品分析</strong>：</li>
+<li>热销排行：按销量、销售额、利润</li>
+<li>动销分析：有库存无销量商品预警</li>
+<li>价格带分析：各价位段销售占比</li>
+<li><strong>交易漏斗</strong>：浏览 → 加购 → 下单 → 支付转化率</li>
+</ul>
+<h4 id="372">3.7.2 用户数据</h4>
+<ul>
+<li><strong>用户增长</strong>：新增、活跃、留存（次日/7日/30日）</li>
+<li><strong>用户价值</strong>：LTV、ARPU、复购率、消费频次</li>
+<li><strong>用户分布</strong>：地域、性别、年龄、设备、来源渠道</li>
+</ul>
+<h4 id="373">3.7.3 经营报表</h4>
+<ul>
+<li><strong>利润报表</strong>：收入、成本、毛利、平台费用</li>
+<li><strong>财务报表</strong>：收支明细、对账单、结算记录</li>
+<li><strong>自定义报表</strong>：拖拽式报表配置，支持导出Excel</li>
+</ul>
+<h4 id="374">3.7.4 数据可视化</h4>
+<ul>
+<li><strong>Dashboard</strong>：可自定义的数据看板</li>
+<li><strong>图表类型</strong>：折线、柱状、饼图、漏斗、地图</li>
+<li><strong>数据下钻</strong>：从汇总数据逐层查看明细</li>
+</ul>
+<hr />
+<h3 id="38-cms">3.8 内容管理系统（CMS）</h3>
+<h4 id="381">3.8.1 页面管理</h4>
+<ul>
+<li><strong>自定义页面</strong>：关于我们、帮助中心、品牌故事、活动页</li>
+<li><strong>页面模板</strong>：空白页、图文页、商品聚合页、表单页</li>
+<li><strong>SEO设置</strong>：页面标题、关键词、描述、URL别名、结构化数据</li>
+</ul>
+<h4 id="382">3.8.2 文章/资讯</h4>
+<ul>
+<li><strong>文章分类</strong>：帮助中心、品牌资讯、使用教程</li>
+<li><strong>文章编辑</strong>：富文本编辑器，支持图片、视频、表格</li>
+<li><strong>文章展示</strong>：列表页、详情页、相关推荐</li>
+</ul>
+<h4 id="383">3.8.3 素材库</h4>
+<ul>
+<li><strong>图片管理</strong>：批量上传、文件夹分类、水印设置</li>
+<li><strong>视频管理</strong>：上传、转码、封面设置</li>
+<li><strong>文件管理</strong>：PDF、压缩包等附件管理</li>
+<li><strong>CDN加速</strong>：自动分发到CDN节点</li>
+</ul>
+<hr />
+<h2 id="4">4. 技术架构方案</h2>
+<h3 id="41">4.1 整体架构</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                         客户端层                             │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
+│  │  小程序  │  │   H5    │  │   App   │  │  PC后台  │        │
+│  │(微信/支付宝)│ │(响应式) │  │(iOS/Android)│ │(React)  │        │
+│  └─────────┘  └─────────┘  └─────────┘  └─────────┘        │
+└────────────────────┬────────────────────────────────────────┘
+                     │ HTTPS/WSS
+┌────────────────────▼────────────────────────────────────────┐
+│                        网关层                                │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
+│  │  Nginx  │  │  WAF    │  │ Rate    │  │  Auth   │        │
+│  │(反向代理)│  │(防火墙) │  │ Limiter │  │ Gateway │        │
+│  └─────────┘  └─────────┘  └─────────┘  └─────────┘        │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+┌────────────────────▼────────────────────────────────────────┐
+│                       服务层 (微服务)                        │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
+│  │ 租户服务 │  │ 商品服务 │  │ 订单服务 │  │ 用户服务 │        │
+│  │ Tenant  │  │  Product│  │  Order  │  │  User   │        │
+│  └─────────┘  └─────────┘  └─────────┘  └─────────┘        │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
+│  │ 营销服务 │  │ 支付服务 │  │ 消息服务 │  │ 文件服务 │        │
+│  │Marketing│  │ Payment │  │ Message │  │  File   │        │
+│  └─────────┘  └─────────┘  └─────────┘  └─────────┘        │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐                     │
+│  │ 搜索服务 │  │ 数据服务 │  │ 配置服务 │                     │
+│  │ Search  │  │   BI    │  │  Config │                     │
+│  └─────────┘  └─────────┘  └─────────┘                     │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+┌────────────────────▼────────────────────────────────────────┐
+│                       基础设施层                           │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
+│  │  MySQL  │  │  Redis  │  │Elasticsearch│ │  Kafka  │        │
+│  │(主从集群)│  │(缓存/会话)│  │(搜索引擎) │  │(消息队列)│        │
+│  └─────────┘  └─────────┘  └─────────┘  └─────────┘        │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐                     │
+│  │   OSS   │  │  CDN    │  │Scheduler│                     │
+│  │(对象存储)│  │(静态加速)│  │(定时任务)│                     │
+│  └─────────┘  └─────────┘  └─────────┘                     │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="42">4.2 技术栈选型</h3>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>技术选型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>前端</strong></td>
+<td>React 18 + Ant Design / Taro（小程序）</td>
+<td>后台管理 + 多端商城</td>
+</tr>
+<tr>
+<td><strong>网关</strong></td>
+<td>Spring Cloud Gateway / Nginx</td>
+<td>路由、限流、认证</td>
+</tr>
+<tr>
+<td><strong>服务框架</strong></td>
+<td>Spring Boot 3.x + Spring Cloud</td>
+<td>Java生态，成熟稳定</td>
+</tr>
+<tr>
+<td><strong>ORM</strong></td>
+<td>MyBatis-Plus</td>
+<td>多租户插件支持</td>
+</tr>
+<tr>
+<td><strong>缓存</strong></td>
+<td>Redis Cluster</td>
+<td>分布式缓存、会话、锁</td>
+</tr>
+<tr>
+<td><strong>消息队列</strong></td>
+<td>Apache Kafka / RabbitMQ</td>
+<td>异步解耦、削峰</td>
+</tr>
+<tr>
+<td><strong>搜索引擎</strong></td>
+<td>Elasticsearch</td>
+<td>商品搜索、日志分析</td>
+</tr>
+<tr>
+<td><strong>数据库</strong></td>
+<td>MySQL 8.0（主从集群）</td>
+<td>核心业务数据</td>
+</tr>
+<tr>
+<td><strong>对象存储</strong></td>
+<td>阿里云OSS / AWS S3</td>
+<td>文件、图片存储</td>
+</tr>
+<tr>
+<td><strong>CDN</strong></td>
+<td>阿里云CDN / CloudFlare</td>
+<td>静态资源加速</td>
+</tr>
+<tr>
+<td><strong>容器</strong></td>
+<td>Kubernetes + Docker</td>
+<td>容器编排、弹性伸缩</td>
+</tr>
+<tr>
+<td><strong>监控</strong></td>
+<td>Prometheus + Grafana + ELK</td>
+<td>指标监控、日志分析</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43">4.3 多租户技术实现</h3>
+<h4 id="431">4.3.1 租户路由</h4>
+<pre><code class="language-java">// 网关层识别租户
+public class TenantContext {
+    private static final ThreadLocal&lt;Long&gt; CURRENT_TENANT = new ThreadLocal&lt;&gt;();
+
+    public static void setTenant(Long tenantId) {
+        CURRENT_TENANT.set(tenantId);
+    }
+
+    public static Long getTenant() {
+        return CURRENT_TENANT.get();
+    }
+}
+
+// 基于子域名识别
+shop123.unishop.com → tenant_id = 123
+</code></pre>
+<h4 id="432-mybatis-plus">4.3.2 MyBatis-Plus多租户拦截器</h4>
+<pre><code class="language-java">@Component
+public class TenantLineInnerInterceptor extends TenantLineInnerInterceptor {
+    @Override
+    public Expression getTenantId() {
+        return new LongValue(TenantContext.getTenant());
+    }
+
+    @Override
+    public boolean ignoreTable(String tableName) {
+        // 系统表不需要租户隔离
+        return &quot;sys_config&quot;.equals(tableName) || 
+               &quot;sys_dict&quot;.equals(tableName);
+    }
+}
+</code></pre>
+<h4 id="433-redis">4.3.3 Redis缓存隔离</h4>
+<pre><code class="language-java">// Key格式: tenant:{tenantId}:biz:{key}
+String cacheKey = String.format(&quot;tenant:%d:product:%s&quot;, tenantId, productId);
+</code></pre>
+<h3 id="44">4.4 数据库设计要点</h3>
+<h4 id="441-tenant_id">4.4.1 核心表结构（均含tenant_id）</h4>
+<pre><code class="language-sql">-- 租户表
+CREATE TABLE sys_tenant (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    domain VARCHAR(200),
+    status TINYINT DEFAULT 1, -- 0禁用 1正常 2暂停
+    expire_time DATETIME,
+    plan_id BIGINT, -- 套餐ID
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_domain (domain)
+);
+
+-- 商品SPU表
+CREATE TABLE pms_spu (
+    id BIGINT PRIMARY KEY,
+    tenant_id BIGINT NOT NULL,
+    name VARCHAR(200) NOT NULL,
+    category_id BIGINT,
+    brand_id BIGINT,
+    main_image VARCHAR(500),
+    detail LONGTEXT,
+    status TINYINT DEFAULT 0, -- 0下架 1上架
+    created_at DATETIME,
+    INDEX idx_tenant_category (tenant_id, category_id),
+    INDEX idx_tenant_status (tenant_id, status)
+);
+
+-- 商品SKU表
+CREATE TABLE pms_sku (
+    id BIGINT PRIMARY KEY,
+    tenant_id BIGINT NOT NULL,
+    spu_id BIGINT NOT NULL,
+    sku_code VARCHAR(100),
+    specs JSON, -- {color: &quot;红&quot;, size: &quot;XL&quot;}
+    price DECIMAL(10,2),
+    stock INT DEFAULT 0,
+    INDEX idx_tenant_spu (tenant_id, spu_id)
+);
+
+-- 订单主表
+CREATE TABLE oms_order (
+    id BIGINT PRIMARY KEY,
+    tenant_id BIGINT NOT NULL,
+    order_no VARCHAR(32) UNIQUE, -- 订单编号
+    user_id BIGINT,
+    total_amount DECIMAL(10,2),
+    pay_amount DECIMAL(10,2),
+    status TINYINT, -- 10待付款 20已付款 30待发货...
+    pay_type TINYINT,
+    pay_time DATETIME,
+    created_at DATETIME,
+    INDEX idx_tenant_user (tenant_id, user_id),
+    INDEX idx_tenant_status (tenant_id, status),
+    INDEX idx_order_no (order_no)
+);
+</code></pre>
+<h4 id="442">4.4.2 索引策略</h4>
+<ul>
+<li><strong>所有业务表</strong>：(tenant_id, ...) 复合索引优先</li>
+<li><strong>订单表</strong>：按时间分区（按月），历史数据归档</li>
+<li><strong>大数据量表</strong>：考虑按tenant_id分表（如订单表：oms_order_001, oms_order_002）</li>
+</ul>
+<hr />
+<h2 id="5-rbac">5. 权限与角色设计（RBAC）</h2>
+<h3 id="51">5.1 权限模型</h3>
+<pre><code>用户(User) → 角色(Role) → 权限(Permission) → 资源(Resource)
+                ↓
+            数据范围(DataScope)
+</code></pre>
+<h3 id="52">5.2 系统角色定义</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>权限范围</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>超级管理员</strong></td>
+<td>全部菜单 + 全部数据</td>
+<td>店铺 owner</td>
+</tr>
+<tr>
+<td><strong>运营经理</strong></td>
+<td>商品、订单、营销、内容</td>
+<td>日常运营</td>
+</tr>
+<tr>
+<td><strong>运营专员</strong></td>
+<td>商品上架、订单处理</td>
+<td>执行层</td>
+</tr>
+<tr>
+<td><strong>客服人员</strong></td>
+<td>订单查看、售后处理、消息回复</td>
+<td>客服</td>
+</tr>
+<tr>
+<td><strong>财务人员</strong></td>
+<td>订单查看（无操作）、财务报表、对账</td>
+<td>财务</td>
+</tr>
+<tr>
+<td><strong>仓管人员</strong></td>
+<td>库存管理、发货处理</td>
+<td>仓库</td>
+</tr>
+<tr>
+<td><strong>数据分析师</strong></td>
+<td>数据报表、用户分析（只读）</td>
+<td>数据分析</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53">5.3 数据权限范围</h3>
+<ul>
+<li><strong>全部数据</strong>：可看所有租户数据（平台管理员）</li>
+<li><strong>本部门数据</strong>：仅看本部门相关数据</li>
+<li><strong>仅本人数据</strong>：仅看自己创建/负责的数据</li>
+<li><strong>自定义数据</strong>：指定某些条件的数据</li>
+</ul>
+<h3 id="54">5.4 权限配置表</h3>
+<pre><code class="language-sql">CREATE TABLE sys_permission (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(100), -- 如：商品新增
+    code VARCHAR(100), -- 如：product:create
+    type TINYINT, -- 1菜单 2按钮 3接口
+    parent_id BIGINT,
+    path VARCHAR(200), -- 前端路由或API路径
+    sort INT
+);
+
+CREATE TABLE sys_role (
+    id BIGINT PRIMARY KEY,
+    tenant_id BIGINT,
+    name VARCHAR(100),
+    code VARCHAR(100),
+    data_scope TINYINT -- 1全部 2本部门 3本人 4自定义
+);
+
+CREATE TABLE sys_role_permission (
+    role_id BIGINT,
+    permission_id BIGINT,
+    PRIMARY KEY (role_id, permission_id)
+);
+
+CREATE TABLE sys_user_role (
+    user_id BIGINT,
+    role_id BIGINT,
+    PRIMARY KEY (user_id, role_id)
+);
+</code></pre>
+<hr />
+<h2 id="6">6. 安全与合规</h2>
+<h3 id="61">6.1 数据安全</h3>
+<ul>
+<li><strong>传输加密</strong>：全站HTTPS（TLS 1.3），HSTS头部</li>
+<li><strong>存储加密</strong>：</li>
+<li>敏感字段加密（手机号、身份证、银行卡）</li>
+<li>数据库TDE透明加密（可选）</li>
+<li>配置文件加密（Nacos配置中心加密）</li>
+<li><strong>密码安全</strong>：BCrypt加密，禁止明文存储</li>
+<li><strong>密钥管理</strong>：阿里云KMS / AWS KMS，定期轮换</li>
+</ul>
+<h3 id="62">6.2 接口安全</h3>
+<ul>
+<li><strong>认证方式</strong>：JWT Token + Refresh Token</li>
+<li><strong>防重放攻击</strong>：请求时间戳 + 随机数校验</li>
+<li><strong>防篡改</strong>：请求签名（HMAC-SHA256）</li>
+<li><strong>限流熔断</strong>：</li>
+<li>网关层：IP限流（100次/分钟）</li>
+<li>租户级：按套餐配额限流</li>
+<li>接口级：敏感接口额外限流（如支付、发短信）</li>
+</ul>
+<h3 id="63">6.3 业务安全</h3>
+<ul>
+<li><strong>防刷单</strong>：设备指纹、行为分析、异常订单拦截</li>
+<li><strong>防羊毛党</strong>：新人标识、同设备/同IP限制、黑名单</li>
+<li><strong>库存安全</strong>：Redis原子扣减 + 数据库乐观锁，防止超卖</li>
+<li><strong>支付安全</strong>：</li>
+<li>支付密码/指纹/面容验证</li>
+<li>大额支付二次确认</li>
+<li>异常支付风控拦截</li>
+</ul>
+<h3 id="64">6.4 合规要求</h3>
+<ul>
+<li><strong>等保三级</strong>：符合中国网络安全等级保护要求</li>
+<li><strong>数据隐私</strong>：</li>
+<li>用户协议与隐私政策</li>
+<li>数据最小化原则</li>
+<li>用户数据导出与删除（GDPR/个人信息保护法）</li>
+<li><strong>内容审核</strong>：商品信息敏感词过滤、图片鉴黄（阿里云内容安全）</li>
+<li><strong>电商合规</strong>：</li>
+<li>7天无理由退货（法定）</li>
+<li>发票合规（电子发票）</li>
+<li>价格合规（禁止价格欺诈）</li>
+</ul>
+<hr />
+<h2 id="7">7. 部署与运维方案</h2>
+<h3 id="71">7.1 部署架构</h3>
+<pre><code>生产环境（Production）
+├── 阿里云/腾讯云/AWS
+├── Kubernetes集群（3 Master + N Worker）
+├── 多可用区部署（AZ-A, AZ-B, AZ-C）
+├── 自动扩缩容：HPA（CPU/内存）+ VPA + Cluster Autoscaler
+└── 灰度发布：基于Header/权重的流量分割
+
+测试环境（Staging）
+├── 1:1 镜像生产环境（规模缩小）
+├── 预发布验证
+└── 自动化测试流水线
+
+开发环境（Development）
+├── 本地Docker Compose
+├── 远程开发环境（命名空间隔离）
+└──  feature分支自动部署
+</code></pre>
+<h3 id="72-cicd">7.2 CI/CD流水线</h3>
+<pre><code>代码提交 → 自动构建 → 单元测试 → 代码扫描 → 构建镜像 → 推送仓库
+    ↓
+部署Staging → 集成测试 → 人工审核 → 灰度发布 → 全量发布 → 监控验证
+</code></pre>
+<p><strong>工具链</strong>：GitLab CI / Jenkins + Harbor + ArgoCD + SonarQube</p>
+<h3 id="73">7.3 监控告警体系</h3>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>工具</th>
+<th>监控内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基础设施</strong></td>
+<td>Prometheus + Grafana</td>
+<td>CPU、内存、磁盘、网络、Pod状态</td>
+</tr>
+<tr>
+<td><strong>应用性能</strong></td>
+<td>APM（SkyWalking/Pinpoint）</td>
+<td>接口响应时间、调用链、错误率</td>
+</tr>
+<tr>
+<td><strong>业务监控</strong></td>
+<td>自定义Metrics</td>
+<td>订单量、支付成功率、转化率</td>
+</tr>
+<tr>
+<td><strong>日志分析</strong></td>
+<td>ELK（Elasticsearch + Logstash + Kibana）</td>
+<td>错误日志、业务日志、审计日志</td>
+</tr>
+<tr>
+<td><strong>告警通知</strong></td>
+<td>AlertManager + 钉钉/飞书/短信</td>
+<td>分级告警、值班轮换</td>
+</tr>
+</tbody>
+</table>
+<h3 id="74">7.4 备份与灾备</h3>
+<ul>
+<li><strong>数据库</strong>：</li>
+<li>每日全量备份 + Binlog实时备份</li>
+<li>跨地域容灾（主：华东，备：华南）</li>
+<li>备份保留：30天</li>
+<li><strong>文件存储</strong>：</li>
+<li>OSS多副本 + 跨区域复制</li>
+<li><strong>故障恢复</strong>：</li>
+<li>RTO &lt; 30分钟（恢复时间目标）</li>
+<li>RPO &lt; 5分钟（恢复点目标）</li>
+</ul>
+<h3 id="75">7.5 运维自动化</h3>
+<ul>
+<li><strong>自动化扩缩容</strong>：基于QPS/CPU的HPA</li>
+<li><strong>自动化故障恢复</strong>：Pod自动重启、服务自动漂移</li>
+<li><strong>自动化巡检</strong>：每日定时巡检脚本，生成报告</li>
+<li><strong>混沌工程</strong>：定期故障演练（随机杀Pod、模拟网络分区）</li>
+</ul>
+<hr />
+<h2 id="8">8. 平台运营支撑（平台方功能）</h2>
+<h3 id="81">8.1 租户管理（平台后台）</h3>
+<ul>
+<li><strong>租户列表</strong>：注册信息、套餐、状态、到期时间</li>
+<li><strong>租户审核</strong>：企业资质审核（营业执照、法人身份证）</li>
+<li><strong>租户操作</strong>：暂停、恢复、注销、数据导出</li>
+<li><strong>租户迁移</strong>：套餐升降级、数据迁移工具</li>
+</ul>
+<h3 id="82">8.2 套餐与计费</h3>
+<ul>
+<li><strong>套餐设计</strong>：</li>
+<li>免费版：基础功能，交易抽成5%</li>
+<li>基础版：￥99/月，核心功能，抽成3%</li>
+<li>专业版：￥299/月，高级营销+分销，抽成2%</li>
+<li>旗舰版：￥999/月，全功能+专属客服，抽成1%</li>
+<li><strong>计费方式</strong>：按月/按年订阅，年付折扣</li>
+<li><strong>增值服务</strong>：额外流量包、短信包、存储包、客服坐席</li>
+</ul>
+<h3 id="83">8.3 平台内容运营</h3>
+<ul>
+<li><strong>主题市场</strong>：主题审核、上架、分成（开发者70%，平台30%）</li>
+<li><strong>应用市场</strong>：第三方插件审核与管理</li>
+<li><strong>帮助中心</strong>：文档、视频教程、FAQ</li>
+<li><strong>公告系统</strong>：平台公告、租户通知</li>
+</ul>
+<h3 id="84">8.4 平台数据分析</h3>
+<ul>
+<li><strong>全局数据</strong>：总租户数、总GMV、总订单量</li>
+<li><strong>租户分层</strong>：高价值租户、流失风险租户识别</li>
+<li><strong>收入分析</strong>：订阅收入、交易抽成收入、增值服务收入</li>
+<li><strong>渠道分析</strong>：租户来源渠道效果</li>
+</ul>
+<hr />
+<h2 id="9">9. 实施路线图</h2>
+<h3 id="91">9.1 阶段规划</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>周期</th>
+<th>目标</th>
+<th>核心功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MVP</strong></td>
+<td>2个月</td>
+<td>最小可用</td>
+<td>店铺搭建、商品、订单、支付、H5商城</td>
+</tr>
+<tr>
+<td><strong>V1.0</strong></td>
+<td>+2个月</td>
+<td>正式商用</td>
+<td>会员、优惠券、满减、小程序、数据统计</td>
+</tr>
+<tr>
+<td><strong>V1.5</strong></td>
+<td>+2个月</td>
+<td>增强竞争力</td>
+<td>分销、秒杀、拼团、多仓、电子面单</td>
+</tr>
+<tr>
+<td><strong>V2.0</strong></td>
+<td>+3个月</td>
+<td>生态建设</td>
+<td>主题市场、应用市场、直播、API开放</td>
+</tr>
+<tr>
+<td><strong>V3.0</strong></td>
+<td>+3个月</td>
+<td>智能化</td>
+<td>智能推荐、智能客服、BI增强、自动化营销</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92">9.2 团队配置建议</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>团队规模</th>
+<th>核心角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MVP</td>
+<td>6-8人</td>
+<td>产品经理1、前端2、后端2、测试1、UI1</td>
+</tr>
+<tr>
+<td>V1.0</td>
+<td>12-15人</td>
+<td>+运营1、客服1、后端+1、测试+1</td>
+</tr>
+<tr>
+<td>V1.5+</td>
+<td>20-30人</td>
+<td>+数据1、安全1、运维1、商务2、内容1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10">10. 竞品分析参考</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>有赞</th>
+<th>微盟</th>
+<th>Shopify</th>
+<th>本方案定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目标用户</td>
+<td>中小微</td>
+<td>中小微</td>
+<td>全球中小微</td>
+<td>中小微</td>
+</tr>
+<tr>
+<td>年费</td>
+<td>4800起</td>
+<td>5800起</td>
+<td>$29/月起</td>
+<td>99/月起</td>
+</tr>
+<tr>
+<td>抽成</td>
+<td>无</td>
+<td>无</td>
+<td>交易费2%</td>
+<td>1-5%</td>
+</tr>
+<tr>
+<td>开源</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>可开源核心</td>
+</tr>
+<tr>
+<td>多租户</td>
+<td>是</td>
+<td>是</td>
+<td>否（单店铺）</td>
+<td>是</td>
+</tr>
+<tr>
+<td>部署方式</td>
+<td>SaaS</td>
+<td>SaaS</td>
+<td>SaaS</td>
+<td>SaaS/私有化</td>
+</tr>
+<tr>
+<td>定制性</td>
+<td>低</td>
+<td>低</td>
+<td>中</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_1">附录</h2>
+<h3 id="a">A. 术语表</h3>
+<ul>
+<li><strong>SPU</strong>：Standard Product Unit，标准产品单元（抽象商品）</li>
+<li><strong>SKU</strong>：Stock Keeping Unit，库存量单元（具体规格商品）</li>
+<li><strong>GMV</strong>：Gross Merchandise Volume，商品交易总额</li>
+<li><strong>LTV</strong>：Life Time Value，用户生命周期价值</li>
+<li><strong>ARPU</strong>：Average Revenue Per User，每用户平均收入</li>
+<li><strong>RFM</strong>：Recency, Frequency, Monetary，用户价值分析模型</li>
+<li><strong>RBAC</strong>：Role-Based Access Control，基于角色的访问控制</li>
+</ul>
+<h3 id="b">B. 接口规范</h3>
+<ul>
+<li>RESTful API设计规范</li>
+<li>统一响应格式：{code, message, data, timestamp}</li>
+<li>分页规范：{page, pageSize, total, list}</li>
+<li>错误码规范：1xxxx系统级、2xxxx业务级、3xxxx第三方</li>
+</ul>
+<h3 id="c">C. 文档版本</h3>
+<ul>
+<li>版本：v1.0</li>
+<li>日期：2026-06-03</li>
+<li>作者：产品技术团队</li>
+<li>状态：初稿</li>
+</ul>
+<h2 id="_2">相关链接</h2>
+<ul>
+<li>[[菜洋洋SaaS商城-管理后台设计方案-v1.0]]</li>
+<li>[[AI Native 深度报告]]</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜洋洋商城战略PRD - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>date: 2026-05-26
+type: project
+status: draft
+version: 1.0
+tags:
+- 菜洋洋
+- 商城
+- 竞品分析
+- 铱云
+- Shopify
+- AI Commerce
+- 战略规划
+author: 程峰
+source: 飞书文档
+title: 菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS
+created: '2026-06-21'
+updated: 2026-06-29
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="prdb2bai-commerce-os">菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS</h1>
+<h2 id="1">1. 文档概述</h2>
+<h3 id="11">1.1 文档目的</h3>
+<p>本文档旨在明确菜洋洋商城的未来发展路线，基于铱云科技与 Shopify 的竞品分析，回答三个核心问题：
+1. <strong>菜洋洋到底该学谁？</strong>
+2. <strong>先做什么？</strong>
+3. <strong>3 年后怎么走到 AI Commerce OS？</strong></p>
+<h3 id="12">1.2 核心结论（给老板的汇报版）</h3>
+<p>菜洋洋商城未来不应继续做<strong>"功能型商城系统"</strong>，而要分三步走：</p>
+<p><strong>第一步</strong>：做中国最强快消 B2B 订货商城（超越铱云）
+<strong>第二步</strong>：做开放商业操作系统（对标 Shopify）
+<strong>第三步</strong>：做 AI Commerce OS（领先国内同行）</p>
+<p><strong>一句话总结：</strong></p>
+<blockquote>
+<p>短期抄铱云补交易能力，中期抄 Shopify 建平台能力，长期超 Shopify 做 AI 原生商业操作系统。</p>
+</blockquote>
+<p>这条路线，最符合菜洋洋现在的组织能力和技术积累。</p>
+<hr />
+<h2 id="2-vs-shopify">2. 竞品定位：铱云 vs Shopify 本质区别</h2>
+<h3 id="21">2.1 两种完全不同的商城哲学</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>铱云科技<br>（国内产业互联网派）</th>
+<th>Shopify<br>（商业操作系统派）</th>
+<th>菜洋洋是什么样子的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心定位</strong></td>
+<td>经销订货 + 渠道数字化</td>
+<td>全渠道 Commerce OS</td>
+<td>前期学铱云，中后期学 Shopify</td>
+</tr>
+<tr>
+<td><strong>服务对象</strong></td>
+<td>品牌商 / 经销体系 / B2B 批发</td>
+<td>DTC / 品牌零售 / 全球商家</td>
+<td>菜洋洋偏 B2B，应先铱云</td>
+</tr>
+<tr>
+<td><strong>架构思路</strong></td>
+<td>ERP 驱动商城</td>
+<td>Commerce-first 平台</td>
+<td>最终要 Shopify 化</td>
+</tr>
+<tr>
+<td><strong>商品模型</strong></td>
+<td>SKU 中心</td>
+<td>Product Graph 中心</td>
+<td>必须升级 Product Graph</td>
+</tr>
+<tr>
+<td><strong>营销能力</strong></td>
+<td>相对弱</td>
+<td>极强（插件生态）</td>
+<td>要补齐增长系统</td>
+</tr>
+<tr>
+<td><strong>SaaS 能力</strong></td>
+<td>多租户一般</td>
+<td>真正云原生多租户</td>
+<td>必须重构底座</td>
+</tr>
+<tr>
+<td><strong>开放生态</strong></td>
+<td>集成导向</td>
+<td>Platform API First</td>
+<td>必须做开放平台</td>
+</tr>
+<tr>
+<td><strong>AI 能力</strong></td>
+<td>辅助运营</td>
+<td>Agentic Commerce 原生支持</td>
+<td>必须提前布局</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22">2.2 一句话定位</h3>
+<ul>
+<li><strong>铱云</strong> = "渠道数字化软件"</li>
+<li><strong>Shopify</strong> = "商业基础设施"</li>
+</ul>
+<p>菜洋洋的现实选择：**
+- 如果只学铱云 → 会成为传统订货系统
+- 如果直接学 Shopify → 会因为基础能力不足而摔死</p>
+<p><strong>所以路线应该是：</strong></p>
+<pre><code>第一阶段做铱云 → 第二阶段长成中国版 Shopify → 第三阶段进化 AI Commerce OS
+</code></pre>
+<hr />
+<h2 id="3">3. 铱云软件竞品拆解（值得学的）</h2>
+<p>铱云厉害的不是页面，而是<strong>B2B 交易规则引擎</strong>和<strong>销售驱动模式</strong>。</p>
+<h3 id="31">3.1 订货交易闭环（第一优先级）</h3>
+<p><strong>核心能力：</strong>
+- 客户分层
+- 客户价盘
+- 渠道价体系
+- 授信
+- 账期
+- 配送规则
+- 返利
+- 对账</p>
+<p><strong>本质：</strong> B2B 交易规则引擎</p>
+<p><strong>菜洋洋目前问题：</strong>
+如果商城还是"普通下单页"，会很弱。</p>
+<p><strong>必须建设：交易规则中心</strong></p>
+<pre><code>交易规则中心
+├── 客户等级
+├── 客户协议价
+├── 区域限制
+├── SKU 可售范围
+├── 促销规则
+├── 信控规则
+├── 返利策略
+└── 履约优先级
+</code></pre>
+<h3 id="32">3.2 销售驱动商城</h3>
+<p><strong>铱云强在：</strong>
+销售员不是旁观者，而是参与者：
+- 代客下单
+- 客户推荐
+- 跟单
+- 客户行为洞察</p>
+<p><strong>与 CRM 规划高度契合</strong></p>
+<p><strong>菜洋洋必须做：Sales-assisted Commerce</strong></p>
+<pre><code>AI 销售助手能力
+├── AI 推荐今日该联系谁
+├── AI 生成沟通建议
+├── 客户下单预测
+├── 缺货提醒
+├── 商机预警
+└── 客户画像自动构建
+</code></pre>
+<p><strong>这会形成护城河。</strong></p>
+<h3 id="33">3.3 渠道运营中台</h3>
+<p><strong>铱云：</strong> 经销商数字化管理很强</p>
+<p><strong>菜洋洋可以升级成：智能渠道运营中台</strong></p>
+<pre><code>智能渠道运营中台
+├── 区域渗透分析
+├── 品类空白识别
+├── 自动招商建议
+├── 销售路径优化
+├── 经销商健康度评分
+└── 渠道冲突预警
+</code></pre>
+<p><strong>这个会比铱云先进。</strong></p>
+<hr />
+<h2 id="4-shopify">4. Shopify 拆解（真正该抄的）</h2>
+<p>Shopify 2026 已经不是建站工具，而是 <strong>Commerce OS</strong>。</p>
+<p>核心是 <strong>5 层架构</strong>：</p>
+<h3 id="41-layer-1product-graph">4.1 Layer 1：统一商品底座（Product Graph）</h3>
+<p><strong>Shopify 的商品不是 SKU 表，而是：</strong></p>
+<pre><code>Product Graph
+├── 商品
+│   ├── 属性
+│   ├── 变体
+│   ├── 价格
+│   ├── 库存
+│   ├── 内容
+│   ├── 媒体
+│   ├── SEO
+│   ├── 渠道映射
+│   └── 推荐关系
+</code></pre>
+<p><strong>菜洋洋必须重构：</strong></p>
+<pre><code># 从
+sku_basic
+
+# 升级
+product_graph
+├── product_attribute
+├── product_relation
+├── product_embedding
+└── channel_mapping
+</code></pre>
+<p><strong>这是 AI 选品基础。</strong></p>
+<h3 id="42-layer-2app-marketplace">4.2 Layer 2：应用市场（App Marketplace）</h3>
+<p><strong>Shopify 最大壁垒：生态</strong></p>
+<p>商家缺功能 → 直接装 App</p>
+<p><strong>菜洋洋未来必须支持：</strong></p>
+<pre><code>App Marketplace
+├── BI 插件
+├── CRM 插件
+├── AI 插件
+├── 营销插件
+├── 仓储插件
+└── 渠道插件
+
+底层支撑：
+├── OAuth
+├── Webhook
+├── Event Bus
+└── SDK
+</code></pre>
+<h3 id="43-layer-3flow-engine">4.3 Layer 3：Flow Engine（自动化）</h3>
+<p><strong>Shopify Flow 很强。</strong></p>
+<p><strong>菜洋洋要做：规则自动化引擎</strong></p>
+<pre><code>when:
+  客户 30 天未下单
+
+then:
+  生成销售任务
+  推送优惠策略
+  推荐替代品
+  提醒销售跟进
+</code></pre>
+<p><strong>这是效率爆发点。</strong></p>
+<h3 id="44-layer-4sidekickai-copilot">4.4 Layer 4：Sidekick（AI Copilot）</h3>
+<p><strong>Shopify Sidekick 已经开始进入执行型 AI。</strong></p>
+<p><strong>菜洋洋未来必须有：菜小羊 Agent</strong></p>
+<p><strong>示例：</strong></p>
+<p>用户说：<em>"最近华东饮料怎么补？"</em></p>
+<p>AI 自动：
+1. 分析销量
+2. 判断库存
+3. 推荐采购
+4. 给销售生成策略
+5. 一键执行</p>
+<p><strong>这就是 AI OS 雏形。</strong></p>
+<h3 id="45-layer-5agentic-commerce">4.5 Layer 5：Agentic Commerce</h3>
+<p><strong>未来流量入口不是商城首页，而是 AI 对话入口。</strong></p>
+<p><strong>示例：</strong></p>
+<p>客户直接问：<em>"给我推荐利润最高且周转快的矿泉水"</em></p>
+<p>AI 完成交易。</p>
+<p><strong>菜洋洋必须提前准备：</strong>
+- 商品语义索引
+- 商品知识库
+- MCP 接口
+- Agent API</p>
+<hr />
+<h2 id="5">5. 菜洋洋实施路线（最现实）</h2>
+<h3 id="51-phase-10-6">5.1 Phase 1（0-6 个月）：铱云增强版</h3>
+<p><strong>目标：</strong> 做成铱云增强版</p>
+<p><strong>建设内容：</strong></p>
+<h4 id="511">5.1.1 交易底座</h4>
+<ul>
+<li>[ ] 多客户价</li>
+<li>[ ] 信控</li>
+<li>[ ] 返利</li>
+<li>[ ] 配送规则</li>
+<li>[ ] 合同规则</li>
+</ul>
+<h4 id="512">5.1.2 销售协同</h4>
+<ul>
+<li>[ ] AI 销售助手</li>
+<li>[ ] 跟单提醒</li>
+<li>[ ] 客户画像</li>
+</ul>
+<h4 id="513">5.1.3 搜索推荐</h4>
+<ul>
+<li>[ ] ES + 向量检索</li>
+<li>[ ] 智能排序</li>
+</ul>
+<p><strong>技术栈：</strong></p>
+<pre><code>Spring Cloud
+MySQL
+Redis
+ES
+Kafka
+MinIO
+pgvector
+</code></pre>
+<h3 id="52-phase-26-18-shopify-b2b">5.2 Phase 2（6-18 个月）：中国版 Shopify B2B</h3>
+<p><strong>目标：</strong> 变成中国版 Shopify B2B</p>
+<p><strong>建设内容：</strong></p>
+<h4 id="521-product-graph">5.2.1 Product Graph</h4>
+<ul>
+<li>[ ] 统一商品模型</li>
+</ul>
+<h4 id="522-plugin-platform">5.2.2 Plugin Platform</h4>
+<ul>
+<li>[ ] 开放 API</li>
+</ul>
+<h4 id="523-flow-engine">5.2.3 Flow Engine</h4>
+<ul>
+<li>[ ] 自动化规则</li>
+</ul>
+<h4 id="524-headless-storefront">5.2.4 Headless Storefront</h4>
+<ul>
+<li>[ ] 前后端解耦</li>
+</ul>
+<p><strong>技术栈：</strong></p>
+<pre><code>GraphQL
+EventBus
+Flink
+Vector DB
+React/Next.js
+</code></pre>
+<h3 id="53-phase-318-36-ai-commerce-os">5.3 Phase 3（18-36 个月）：AI Commerce OS</h3>
+<p><strong>目标：</strong> AI Commerce OS</p>
+<p><strong>建设内容：</strong></p>
+<h4 id="531-copilot">5.3.1 菜小羊 Copilot</h4>
+<ul>
+<li>[ ] 智能运营助手</li>
+</ul>
+<h4 id="532-agent-store">5.3.2 Agent Store</h4>
+<ul>
+<li>[ ] 任务型 Agent 生态</li>
+<li>补货 Agent</li>
+<li>选品 Agent</li>
+<li>销售 Agent</li>
+<li>招商 Agent</li>
+</ul>
+<h4 id="533-agentic-transaction">5.3.3 Agentic Transaction</h4>
+<ul>
+<li>[ ] 对话式成交</li>
+</ul>
+<p><strong>技术栈：</strong></p>
+<pre><code>LangGraph
+MCP
+RAG
+Knowledge Graph
+Multi-Agent Scheduler
+Feature Store
+</code></pre>
+<hr />
+<h2 id="6">6. 给老板的最终汇报结论</h2>
+<h3 id="61">6.1 核心观点</h3>
+<p>菜洋洋商城未来不应继续做：</p>
+<blockquote>
+<p><strong>"功能型商城系统"</strong></p>
+</blockquote>
+<p>而要分三步：</p>
+<pre><code>第一步：做中国最强快消 B2B 订货商城（超越铱云）
+        ↓
+第二步：做开放商业操作系统（对标 Shopify）
+        ↓
+第三步：做 AI Commerce OS（领先国内同行）
+</code></pre>
+<h3 id="62">6.2 一句话总结</h3>
+<blockquote>
+<p><strong>短期抄铱云补交易能力，中期抄 Shopify 建平台能力，长期超 Shopify 做 AI 原生商业操作系统。</strong></p>
+</blockquote>
+<h3 id="63">6.3 路线合理性</h3>
+<p>这条路线，最符合菜洋洋现在的：
+- 组织能力
+- 技术积累
+- 客户基础
+- 行业认知</p>
+<hr />
+<h2 id="7">7. 附录</h2>
+<h3 id="71">7.1 参考链接</h3>
+<ul>
+<li><a href="https://www.shopify.com/editions/winter2026">Shopify Editions Winter 2026</a></li>
+<li><a href="https://www.vogue.com/article/shopify-launches-agentic-storefronts-what-it-means-for-fashion">Shopify Agentic Storefronts</a></li>
+</ul>
+<h3 id="72">7.2 术语表</h3>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commerce OS</td>
+<td>商业操作系统</td>
+</tr>
+<tr>
+<td>Product Graph</td>
+<td>商品图谱</td>
+</tr>
+<tr>
+<td>Agentic Commerce</td>
+<td>代理式商业</td>
+</tr>
+<tr>
+<td>Headless</td>
+<td>前后端解耦架构</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>Model Context Protocol</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>文档生成时间：2026-05-26</em>
+<em>作者：程峰</em>
+<em>状态：草案，待评审</em></p>
+<h2 id="_1">相关链接</h2>
+<ul>
+<li>[[多租户SaaS商城平台-产品功能文档]]</li>
+<li>[[菜洋洋商城战略评审-2026-05-29]]</li>
+<li>[[菜洋洋商城 AI OS 演进路线与架构方案]]</li>
+</ul>
+</body>
+</html>

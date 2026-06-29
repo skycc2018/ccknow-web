@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw 架构设计文档 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: OpenClaw 架构设计文档
+created: '2026-06-21'
+updated: 2026-06-29
+type: project
+tags:
+- '#AI'
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="openclaw">OpenClaw 架构设计文档</h1>
+<blockquote>
+<p>🏗️ OpenClaw 是一个 AI 代理运行平台，支持多种通信渠道，提供技能（Skill）扩展机制，允许 AI 代理执行复杂的多步骤任务。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心架构</h2>
+<pre><code class="language-mermaid">graph TD
+    subgraph 用户层
+        U1[飞书用户]
+        U2[企业微信用户]
+        U3[Discord用户]
+        U4[Telegram用户]
+        U5[Web UI]
+    end
+
+    subgraph 渠道适配层
+        C1[飞书适配器]
+        C2[企业微信适配器]
+        C3[Discord适配器]
+        C4[Telegram适配器]
+        C5[WebSocket适配器]
+    end
+
+    subgraph 核心引擎
+        E1[消息路由]
+        E2[会话管理]
+        E3[技能调度器]
+        E4[上下文管理]
+    end
+
+    subgraph 技能层
+        S1[内置技能]
+        S2[第三方技能]
+        S3[MCP技能]
+    end
+
+    subgraph 模型层
+        M1[OpenAI]
+        M2[Anthropic]
+        M3[Google]
+        M4[本地模型]
+    end
+
+    U1 --&gt; C1
+    U2 --&gt; C2
+    U3 --&gt; C3
+    U4 --&gt; C4
+    U5 --&gt; C5
+
+    C1 --&gt; E1
+    C2 --&gt; E1
+    C3 --&gt; E1
+    C4 --&gt; E1
+    C5 --&gt; E1
+
+    E1 --&gt; E2
+    E2 --&gt; E3
+    E3 --&gt; S1
+    E3 --&gt; S2
+    E3 --&gt; S3
+    E3 --&gt; M1
+    E3 --&gt; M2
+    E3 --&gt; M3
+    E3 --&gt; M4
+</code></pre>
+<hr />
+<h2 id="_2">关键组件</h2>
+<h3 id="1-gateway">1. Gateway（网关）</h3>
+<table>
+<thead>
+<tr>
+<th>职责</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>渠道接入</td>
+<td>接收并解析各渠道消息</td>
+</tr>
+<tr>
+<td>协议转换</td>
+<td>统一不同渠道的消息格式</td>
+</tr>
+<tr>
+<td>身份认证</td>
+<td>验证请求来源合法性</td>
+</tr>
+<tr>
+<td>负载均衡</td>
+<td>分发请求到可用 Worker</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-agent">2. Agent（代理）</h3>
+<blockquote>
+<p>🤖 Agent 是 OpenClaw 的核心执行单元，每个 Agent 拥有独立的配置、技能和上下文。</p>
+</blockquote>
+<p><strong>核心能力：</strong>
+- 自然语言理解与生成
+- 工具调用（Tools/Functions）
+- 会话状态维护
+- 技能动态加载</p>
+<h3 id="3-skill">3. Skill（技能）</h3>
+<pre><code class="language-mermaid">mindmap
+  root((技能体系))
+    内置技能
+      文件操作
+      代码执行
+      网络请求
+    第三方技能
+      飞书集成
+      企业微信集成
+      GitHub集成
+    MCP技能
+      标准化接口
+      跨平台兼容
+      安全沙箱
+</code></pre>
+<hr />
+<h2 id="_3">数据流</h2>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant User as 用户
+    participant Channel as 渠道适配器
+    participant Gateway as 网关
+    participant Agent as AI代理
+    participant Skill as 技能
+    participant LLM as 大模型
+
+    User-&gt;&gt;Channel: 发送消息
+    Channel-&gt;&gt;Gateway: 标准化消息格式
+    Gateway-&gt;&gt;Agent: 路由到对应代理
+    Agent-&gt;&gt;LLM: 请求意图理解
+    LLM--&gt;&gt;Agent: 返回意图+所需工具
+    Agent-&gt;&gt;Skill: 调用相关技能
+    Skill--&gt;&gt;Agent: 返回执行结果
+    Agent-&gt;&gt;LLM: 请求结果生成
+    LLM--&gt;&gt;Agent: 返回回复内容
+    Agent-&gt;&gt;Gateway: 发送响应
+    Gateway-&gt;&gt;Channel: 转换为渠道格式
+    Channel-&gt;&gt;User: 展示回复
+</code></pre>
+<hr />
+<h2 id="_4">扩展机制</h2>
+<h3 id="mcpmodel-context-protocol">MCP（Model Context Protocol）</h3>
+<blockquote>
+<p>🔌 MCP 是 OpenClaw 的核心扩展协议，标准化了 AI 模型与外部工具的交互方式。</p>
+</blockquote>
+<p><strong>优势：</strong>
+- <strong>标准化</strong>：统一的工具调用接口
+- <strong>安全</strong>：内置权限控制和审计
+- <strong>灵活</strong>：支持本地和远程工具
+- <strong>兼容</strong>：跨模型、跨平台兼容</p>
+<h3 id="_5">技能开发流程</h3>
+<ol>
+<li><strong>定义接口</strong>：使用 TypeScript 定义技能输入输出</li>
+<li><strong>实现逻辑</strong>：编写业务处理代码</li>
+<li><strong>注册技能</strong>：通过配置文件或 API 注册</li>
+<li><strong>测试验证</strong>：本地测试后部署上线</li>
+</ol>
+<hr />
+<h2 id="_6">安全设计</h2>
+<table>
+<thead>
+<tr>
+<th>层面</th>
+<th>措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通信安全</td>
+<td>TLS 1.3 加密传输</td>
+</tr>
+<tr>
+<td>认证授权</td>
+<td>OAuth 2.0 + JWT</td>
+</tr>
+<tr>
+<td>权限控制</td>
+<td>RBAC 角色权限模型</td>
+</tr>
+<tr>
+<td>代码执行</td>
+<td>沙箱隔离 + 资源限制</td>
+</tr>
+<tr>
+<td>数据隐私</td>
+<td>敏感信息脱敏 + 审计日志</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_7">部署架构</h2>
+<pre><code class="language-mermaid">graph LR
+    subgraph 接入层
+        LB[负载均衡器]
+    end
+
+    subgraph 服务层
+        G1[Gateway-1]
+        G2[Gateway-2]
+        G3[Gateway-N]
+    end
+
+    subgraph 数据层
+        R[Redis缓存]
+        P[PostgreSQL]
+        MQ[消息队列]
+    end
+
+    LB --&gt; G1
+    LB --&gt; G2
+    LB --&gt; G3
+    G1 --&gt; R
+    G2 --&gt; R
+    G3 --&gt; R
+    G1 --&gt; P
+    G2 --&gt; P
+    G3 --&gt; P
+    G1 --&gt; MQ
+    G2 --&gt; MQ
+    G3 --&gt; MQ
+</code></pre>
+<hr />
+<h2 id="_8">技术栈</h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>技术</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运行时</td>
+<td>Node.js 22+</td>
+</tr>
+<tr>
+<td>语言</td>
+<td>TypeScript</td>
+</tr>
+<tr>
+<td>框架</td>
+<td>Fastify</td>
+</tr>
+<tr>
+<td>数据库</td>
+<td>PostgreSQL</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>Redis</td>
+</tr>
+<tr>
+<td>消息</td>
+<td>RabbitMQ</td>
+</tr>
+<tr>
+<td>容器</td>
+<td>Docker</td>
+</tr>
+<tr>
+<td>编排</td>
+<td>Kubernetes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_9">未来演进</h2>
+<ul>
+<li><strong>多模态支持</strong>：图像、音频、视频理解</li>
+<li><strong>联邦学习</strong>：分布式模型训练</li>
+<li><strong>边缘计算</strong>：本地模型推理</li>
+<li><strong>自治代理</strong>：自主决策与任务规划</li>
+</ul>
+<hr />
+<p><em>文档生成时间：2026-05-25</em></p>
+<h2 id="_10">相关链接</h2>
+<ul>
+<li>[[AI Native 深度报告]]</li>
+<li>[[多租户SaaS商城平台-产品功能文档]]</li>
+<li>[[菜洋洋 AI OS 系统架构图]]</li>
+</ul>
+</body>
+</html>

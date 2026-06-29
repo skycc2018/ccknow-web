@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜洋洋云星空旗舰版项目业务蓝图-老信评审-2026-06-22 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: 菜洋洋云星空旗舰版项目业务蓝图——老信评审
+created: 2026-06-22
+updated: 2026-06-29
+type: project
+tags: ["#项目", "#技术", "#待评审", "#内部"]
+sources: ["/Users/skycc/.hermes-fde/cache/documents/doc_6831e33cd84b_菜洋洋云星空旗舰版项目业务蓝图——初版待完善.docx"]
+confidence: high</p>
+<hr />
+<h1 id="_1">菜洋洋云星空旗舰版项目业务蓝图——老信评审</h1>
+<blockquote>
+<p><strong>评审对象</strong>：菜洋洋云星空旗舰版项目业务蓝图 V1.0（2026-06-10）
+<strong>评审人</strong>：老信
+<strong>评审日期</strong>：2026-06-22
+<strong>结论</strong>：<strong>原则上通过，但需在 7 个维度补充完善后才能进入下一阶段。</strong></p>
+</blockquote>
+<hr />
+<h2 id="_2">一、总体评价</h2>
+<ol>
+<li><strong>范围清晰，但精度不够</strong></li>
+<li>文档对实施组织范围、实施模块、基础资料管控策略做了初步定义，能看出“一期财务+供应链+多组织”的边界。</li>
+<li>
+<p>但大量流程只有标题和简短说明，缺少流程图、字段映射、异常分支、角色权限等关键内容，不能直接作为实施依据。</p>
+</li>
+<li>
+<p><strong>集成依赖是最大风险</strong></p>
+</li>
+<li>
+<p>整个方案中第三方集成（吉客云、自研 SRM、自研分账系统）几乎覆盖了 80% 以上业务单据。文档对集成架构、接口清单、异常处理机制说得太少，这是下一版本必须补上的重头。</p>
+</li>
+<li>
+<p><strong>多组织设计需要进一步明确</strong></p>
+</li>
+<li>跨组织销售、内部交易价、结算规则、利润分配机制等内容还比较空，需要补充。</li>
+</ol>
+<hr />
+<h2 id="_3">二、核心问题与建议</h2>
+<h3 id="21">2.1 集成方案（核心风险）</h3>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>问题</th>
+<th>影响</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>缺少统一的接口架构图（业务系统→中间件/ESB→金蝶）</td>
+<td>无法判断集成复杂度和可靠性</td>
+<td>补充：系统架构图、接口清单、数据传输频率、异常重试机制</td>
+</tr>
+<tr>
+<td>2</td>
+<td>第三方集成业务主体不清</td>
+<td>流程落地时会涉及多个系统，容易互相牵扯</td>
+<td>明确每个流程中“第三方”具体是哪个系统</td>
+</tr>
+<tr>
+<td>3</td>
+<td>异常数据处理机制未体现</td>
+<td>上线后会出现大量手工修单</td>
+<td>补充：重复同步、单据回滚、价税分离失败等异常场景处理 SOP</td>
+</tr>
+<tr>
+<td>4</td>
+<td>销售/采购变更单传输规则描述不清</td>
+<td>变更管理不规范，影响数据一致性</td>
+<td>明确变更字段、审批规则、系统处理逻辑</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22">2.2 财务核算</h3>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>问题</th>
+<th>影响</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>销售出库直接进“应收账款+主营业务收入”，不区分暂估应收/暂估收入</td>
+<td>违反权责发生制，开票时点与确认收入时点不匹配</td>
+<td>建议讨论是否采用“暂估应收/暂估收入”过渡，再下推财务应收</td>
+</tr>
+<tr>
+<td>6</td>
+<td>费用类销售流程中写入“应付账款和主营业务收收入”</td>
+<td>科目配置存在明显错误</td>
+<td>立即校正</td>
+</tr>
+<tr>
+<td>7</td>
+<td>采购入库直接产生暂估应付，但后续票到后下推财务应付</td>
+<td>月末对账时容易出现差异</td>
+<td>补充：暂估应付、财务应付、进项税的会计分录和核销逻辑</td>
+</tr>
+<tr>
+<td>8</td>
+<td>收款/付款核销规则过于简略</td>
+<td>财务与业务之间可能存在未达账或重复核销</td>
+<td>补充：在线收款、线下收款、预收预付、票到收付款的核销 SOP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23">2.3 供应链流程</h3>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>问题</th>
+<th>影响</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>销售退货统一传递为“退补货”，后期人工关闭订单</td>
+<td>操作主体不明确，人工干预容易造成订单状态不一致</td>
+<td>在集成方案中明确系统自动关闭和人工审批的条件</td>
+</tr>
+<tr>
+<td>10</td>
+<td>跨组织销售中“库组织”概念不清，内部交易价如何确定</td>
+<td>利润分配、结算会有争议</td>
+<td>补充：内部交易价格策略（成本加成、市场价、协议价）、结算单据规则</td>
+</tr>
+<tr>
+<td>11</td>
+<td>采购流程不允许超入</td>
+<td>业务被过度限制</td>
+<td>建议保留一定的超入容差并设置审批流</td>
+</tr>
+<tr>
+<td>12</td>
+<td>采购付款流程中“票到付款”与“预付款”的切换规则不清</td>
+<td>付款单与应付单的关联关系容易混乱</td>
+<td>补充切换规则和差异化处理</td>
+</tr>
+</tbody>
+</table>
+<h3 id="24">2.4 基础资料与主数据</h3>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>问题</th>
+<th>影响</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13</td>
+<td>部门、人员、业务员、仓库全部“手工录入+映射表”</td>
+<td>主数据维护量大，且容易出现不一致</td>
+<td>建议：部门、人员等通用基础资料考虑集成同步，减少手工</td>
+</tr>
+<tr>
+<td>14</td>
+<td>“现有物料对应库存组织唯一”这个假设是否长期成立</td>
+<td>若未来同一物料多组织使用，需要重新设计</td>
+<td>明确物料编码规则，预留跨组织共用的扩展性</td>
+</tr>
+<tr>
+<td>15</td>
+<td>BOM 全部手工录入，研发部负责</td>
+<td>一期不含生产模块，BOM 与生产如何衔接未明</td>
+<td>补充 BOM 与后续生产模块的数据衔接设计</td>
+</tr>
+<tr>
+<td>16</td>
+<td>物料不启用保质期</td>
+<td>食品行业通常有保质期管理需求</td>
+<td>在蓝图中补充不启用保质期的理由</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25">2.5 库存与成本</h3>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>问题</th>
+<th>影响</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>17</td>
+<td>存货核算采用“总仓核算”，但多组织下“总仓”定义不清</td>
+<td>成本计算责任主体不明</td>
+<td>明确总仓核算的组织、报表取数逻辑</td>
+</tr>
+<tr>
+<td>18</td>
+<td>月末一次加权平均法，批号不影响成本，同时物料启用了批号</td>
+<td>线索与成本核算逻辑可能冲突</td>
+<td>明确启用批号的业务目的</td>
+</tr>
+<tr>
+<td>19</td>
+<td>翻新入库成本需“财务人为指定”</td>
+<td>成本不准确，主观性强</td>
+<td>补充翻新入库成本的计算规则</td>
+</tr>
+<tr>
+<td>20</td>
+<td>盘点流程中仓库在线下盘点，财务录入盘盈盘亏</td>
+<td>数据重复录入和延迟</td>
+<td>建议仓库直接在系统录入盘点数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="26">2.6 文档完整性</h3>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>问题</th>
+<th>影响</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21</td>
+<td>流程图缺失，多处只有“业务流程图”标题</td>
+<td>无法审查流程合理性</td>
+<td>补充 Visio/流程图片，或用文字描述清晰的判断/处理分支</td>
+</tr>
+<tr>
+<td>22</td>
+<td>签字确认页全部空白</td>
+<td>责任不清晰，无法形成里程碑</td>
+<td>填充各模块负责人、确认人、日期</td>
+</tr>
+<tr>
+<td>23</td>
+<td>名词术语及图例说明为空</td>
+<td>后续培训、沟通成本高</td>
+<td>补充组织、单据、科目等关键术语解释</td>
+</tr>
+<tr>
+<td>24</td>
+<td>缺少权限与角色设计</td>
+<td>上线后权限混乱，影响审批流</td>
+<td>补充角色-模块-权限矩阵</td>
+</tr>
+<tr>
+<td>25</td>
+<td>缺少报表清单</td>
+<td>管理层不能确认系统能出什么数据</td>
+<td>列出一期必须提供的财务、业务报表</td>
+</tr>
+<tr>
+<td>26</td>
+<td>缺少初始化与切换方案</td>
+<td>旧系统数据如何切换不明</td>
+<td>补充：初始化范围、数据清理方案、切换时间点、回滚预案</td>
+</tr>
+<tr>
+<td>27</td>
+<td>缺少风险与应急预案</td>
+<td>上线风险不可控</td>
+<td>补充：上线风险清单、应急回退方案</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">三、强烈建议补充的 5 个关键附件</h2>
+<ol>
+<li><strong>系统架构与接口清单</strong>：吉客云/SRM/分账系统与金蝶云星空的接口对应表，包含接口名称、传输方向、频率、异常处理。</li>
+<li><strong>财务科目映射表</strong>：暂估应收/财务应收、暂估应付/财务应付、进项税、成本类科目的具体映射。</li>
+<li><strong>基础资料编码规则</strong>：物料、客户、供应商、部门、仓库等的编码规则，特别是多组织下的区分逻辑。</li>
+<li><strong>权限角色矩阵</strong>：按组织、模块、功能点列出权限分配。</li>
+<li><strong>上线切换计划</strong>：初始化数据清单、切换步骤、验证点、Go-Live 时间表。</li>
+</ol>
+<hr />
+<h2 id="_4">四、结论</h2>
+<ul>
+<li><strong>当前版本</strong>：可以作为项目内部讨论的轮廓稿，但不建议直接作为实施依据和培训手册。</li>
+<li><strong>下一版本目标</strong>：在保持范围不变的前提下，重点完善：</li>
+<li>集成方案与接口清单；</li>
+<li>财务核算科目映射与暂估/财务应收应付逻辑；</li>
+<li>多组织内部交易与结算规则；</li>
+<li>基础资料编码与主数据维护 SOP；</li>
+<li>权限、报表、初始化、风险应急预案。</li>
+</ul>
+<p>建议由项目经理组织一次专题评审会，针对上述 27 项问题逐一落实责任人和时间节点，形成会议纪要后重新发版。</p>
+<hr />
+<h2 id="_5">相关链接</h2>
+<ul>
+<li>菜洋洋</li>
+<li>[[菜洋洋数智中心组织定位分析]]</li>
+<li>[[菜洋洋商城战略评审-2026-05-29]]</li>
+<li>[[菜洋洋商城 AI OS 演进路线与架构方案]]</li>
+<li>金蝶云星空</li>
+<li>第三方集成</li>
+<li>跨组织销售</li>
+<li>权责发生制</li>
+<li>暂估应收</li>
+<li>暂估应付</li>
+</ul>
+</body>
+</html>

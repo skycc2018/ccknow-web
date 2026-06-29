@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI岗位培训课件 - 销售：客户洞察跟进话术 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>date: 2026-05-26
+type: concept
+tags:
+- AI培训
+- 销售
+- 客户洞察
+- 话术
+source: 飞书文档
+title: AI岗位培训课件 - 销售：客户洞察/跟进话术
+created: '2026-06-21'
+updated: 2026-06-29
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="ai-">AI岗位培训课件 - 销售：客户洞察/跟进话术</h1>
+<h2 id="_1">课程目标</h2>
+<p>让销售人员掌握用AI分析客户需求、优化跟进策略、提升转化效率的方法</p>
+<h2 id="ai">一、销售AI应用场景概览</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>AI能力</th>
+<th>预期效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户画像分析</td>
+<td>自动分析客户背景，生成画像</td>
+<td>客户理解深度提升</td>
+</tr>
+<tr>
+<td>跟进话术生成</td>
+<td>基于客户阶段生成个性化话术</td>
+<td>回复效率提升3倍</td>
+</tr>
+<tr>
+<td>商机预测</td>
+<td>分析历史数据，预测成交概率</td>
+<td>资源聚焦高价值客户</td>
+</tr>
+<tr>
+<td>异议处理</td>
+<td>生成常见异议的标准应答</td>
+<td>转化率提升20%</td>
+</tr>
+<tr>
+<td>合同/方案生成</td>
+<td>自动生成定制化方案/合同</td>
+<td>方案产出时间节省80%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prompt-engineering">二、核心技能：Prompt Engineering</h2>
+<h3 id="21-prompt">2.1 标准Prompt模板（销售专用）</h3>
+<pre><code>【背景】
+我是[公司名]的[销售经理]，负责[行业/区域]客户。
+当前跟进[客户名称/阶段]。
+
+【角色】
+请你扮演一位资深销售专家，擅长[行业]大客户销售。
+
+【输入材料】
+- 客户信息：[公司规模/行业/痛点]
+- 沟通记录：[上次沟通要点]
+- 竞品情况：[已知竞品介入情况]
+- 我方优势：[差异化能力]
+
+【任务】
+请帮我[具体需求]。
+
+【输出格式】
+1. 客户洞察
+2. 策略建议
+3. 具体话术
+4. 风险预警
+5. 下一步行动
+
+【校验标准】
+- 符合商务礼仪
+- 不夸大承诺
+- 可落地执行
+</code></pre>
+<h3 id="22">2.2 高频场景模板</h3>
+<p><strong>场景1：客户画像分析</strong>
+- 背景：准备拜访新客户[XX公司]
+- 角色：行业顾问 + 销售专家
+- 输入：
+  - 公司公开信息：[官网/财报/新闻]
+  - 行业趋势：[行业报告要点]
+  - 已知联系人：[职位/背景]
+- 任务：生成客户画像
+- 输出：
+  1. 公司战略优先级（Top 3）
+  2. 可能痛点（5个）
+  3. 决策链分析（关键人/影响人/使用人）
+  4. 竞品使用情况
+  5. 我方切入点
+  6. 初次拜访策略</p>
+<p><strong>场景2：跟进话术生成</strong>
+- 背景：客户[XX]处于[方案确认]阶段，已3天未回复
+- 角色：资深销售
+- 输入：
+  - 客户角色：[采购经理]
+  - 上次沟通：[方案已发，对方表示需内部讨论]
+  - 已知顾虑：[价格/交付周期]
+- 任务：生成跟进话术
+- 输出：
+  1. 3种跟进策略（温和/直接/价值强化）
+  2. 每种策略的话术模板
+  3. 客户可能的回复及应对
+  4. 升级时机判断
+  5. 备选方案（如客户沉默超1周）</p>
+<p><strong>场景3：方案/合同生成</strong>
+- 背景：客户[XX]需求已明确，需输出正式方案
+- 角色：解决方案专家
+- 输入：
+  - 客户需求：[列出5-8条]
+  - 我方能力：[匹配的产品/服务]
+  - 商务条件：[预算范围/交付时间]
+- 任务：生成方案框架
+- 输出：
+  1. 客户痛点共鸣
+  2. 解决方案架构
+  3. 实施路径
+  4. 投资回报分析
+  5. 成功案例（类似客户）
+  6. 下一步推进计划
+  - 格式：可直接发给客户的PPT大纲</p>
+<h2 id="_2">三、实操案例</h2>
+<h3 id="1">案例1：大客户首次拜访准备</h3>
+<p><strong>背景：</strong>
+销售小张要拜访行业头部客户，但准备时间只有半天。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>客户研究Prompt</strong></p>
+<pre><code>请基于以下信息，生成客户深度画像：
+客户：[XX集团]
+行业：[制造业]
+规模：[年营收100亿/员工5000]
+公开信息：[粘贴]
+
+要求：
+1. 业务板块分析
+2. 近期战略动向
+3. 数字化水平评估
+4. 可能需求场景（5个）
+5. 我方最佳切入点
+6. 初次拜访谈话框架
+</code></pre>
+<p><strong>话术准备Prompt</strong></p>
+<pre><code>基于以上画像，请准备：
+1. 开场白（建立共鸣）
+2. 需求探询问题（10个）
+3. 价值陈述（3个场景）
+4. 常见抗拒及应对
+5. 收尾与下一步
+6. 需避免的话题
+</code></pre>
+<p><strong>效果：</strong>
+- 准备时间：2天 → 半天
+- 客户专业度感知：一般 → 非常专业
+- 初次拜访成功率：30% → 70%</p>
+<h3 id="2">案例2：沉默客户激活</h3>
+<p><strong>背景：</strong>
+多个客户进入"沉默期"，不知如何有效激活。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>沉默原因分析Prompt</strong></p>
+<pre><code>以下是[5个]沉默客户的情况：
+[粘贴客户信息+沟通记录]
+
+请分析：
+1. 沉默可能原因分类
+2. 每个客户的激活难度
+3. 最佳激活时机
+4. 激活话术策略
+5. 放弃标准（何时止损）
+</code></pre>
+<p><strong>激活话术生成Prompt</strong></p>
+<pre><code>请为以下客户生成激活话术：
+客户类型：[预算冻结/竞品介入/需求变化/内部变动]
+
+输出：
+1. 激活邮件/微信（3个版本）
+2. 电话脚本
+3. 价值点重新包装
+4. 优惠/活动借力方案
+5. 跟进节奏（频次/内容）
+</code></pre>
+<p><strong>效果：</strong>
+- 激活率：10% → 35%
+- 平均激活周期：2个月 → 2周
+- 资源浪费减少：大量 → 精准</p>
+<h3 id="3">案例3：招投标方案快速产出</h3>
+<p><strong>背景：</strong>
+临时接到招标通知，5天内需提交完整方案。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>招标分析Prompt</strong></p>
+<pre><code>请分析以下招标文件：
+[粘贴招标要求]
+
+输出：
+1. 招标方真实需求（显性+隐性）
+2. 评分标准权重分析
+3. 我方优势/劣势
+4. 主要竞争对手预判
+5. 方案策略建议
+6. 需澄清的问题
+</code></pre>
+<p><strong>方案生成Prompt</strong></p>
+<pre><code>基于以上分析，请生成投标方案：
+约束：5天内完成
+
+输出：
+1. 技术方案框架
+2. 实施计划
+3. 团队配置
+4. 成功案例匹配
+5. 差异化亮点
+6. 风险承诺
+
+格式：可直接排版的标准结构
+</code></pre>
+<p><strong>效果：</strong>
+- 方案产出时间：2周 → 3天
+- 方案完整度：70% → 95%
+- 中标率提升：+15%</p>
+<h2 id="_3">四、工具推荐</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT/Claude</td>
+<td>客户分析、方案生成</td>
+<td>大客户销售</td>
+</tr>
+<tr>
+<td>豆包/DeepSeek</td>
+<td>话术优化、日常跟进</td>
+<td>客户维护</td>
+</tr>
+<tr>
+<td>Excel + AI插件</td>
+<td>商机管理、预测</td>
+<td>销售管理</td>
+</tr>
+<tr>
+<td>飞书多维表格</td>
+<td>客户信息管理</td>
+<td>销售团队协同</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">五、常见误区与避坑指南</h2>
+<p><strong>误区1：AI生成的方案直接发给客户</strong>
+→ 必须人工审核，确保数据准确、承诺可兑现。</p>
+<p><strong>误区2：用AI完全替代客户沟通</strong>
+→ AI辅助准备，但真诚的人际互动不可替代。</p>
+<p><strong>误区3：过度承诺</strong>
+→ AI可能生成过于乐观的方案，需人工把关。</p>
+<p><strong>误区4：泄露客户机密</strong>
+→ 客户敏感信息输入AI需脱敏，注意保密。</p>
+<h2 id="_5">六、课后作业</h2>
+<ol>
+<li><strong>实操任务</strong>：用AI辅助准备一次真实客户拜访，对比传统方式</li>
+<li><strong>Prompt优化</strong>：针对你的常见销售场景，优化3个专属Prompt模板</li>
+<li><strong>案例沉淀</strong>：将本次实操经验整理为团队SOP</li>
+</ol>
+<hr />
+<p>课件版本：V1.0
+适用对象：销售团队
+建议时长：2小时（理论1h + 实操1h）</p>
+<h2 id="_6">相关链接</h2>
+<ul>
+<li>[[AI岗位培训课件 - 运营：活动方案数据分析]]</li>
+<li>[[AI岗位培训课件 - HR：招聘JD简历分析绩效辅助]]</li>
+<li>[[AI岗位培训课件 - 产品：PRD原型Demo]]</li>
+</ul>
+</body>
+</html>

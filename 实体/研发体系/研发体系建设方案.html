@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研发体系建设方案 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="../首页.html">🏠 首页</a> | <a href="../index.html">返回知识库索引</a></div>
+    <hr />
+<h1 id="_1">研发体系建设方案</h1>
+<blockquote>
+<p>为程峰（CIO）团队建立标准化、可落地的产品研发体系
+制定时间：2026-06-21 | 版本：v1.0</p>
+</blockquote>
+<hr />
+<h2 id="_2">一、总体架构</h2>
+<h3 id="11">1.1 体系全景图</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    战略层（CIO 决策）                          │
+│  技术战略 ←→ 产品战略 ←→ 资源规划 ←→ 目标管理                │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    管理层（流程规范）                          │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
+│  │ 需求管理 │→│ 技术设计 │→│ 开发实现 │→│ 测试发布 │   │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘   │
+│       ↓              ↓              ↓              ↓        │
+│  产品总监       架构师        FDE         QA/自动化       │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    支撑层（工具与资产）                        │
+│  项目管理 | 代码管理 | CI/CD | 知识库 | 监控告警 | 协作工具   │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="12">1.2 团队角色与职责</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>实例</th>
+<th>核心职责</th>
+<th>关键产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>程峰（CIO）</strong></td>
+<td>程峰</td>
+<td>技术战略决策、资源协调、风险控制</td>
+<td>技术路线图、季度目标</td>
+</tr>
+<tr>
+<td><strong>产品总监</strong></td>
+<td>待定</td>
+<td>产品战略、路线规划、跨部门协调</td>
+<td>产品路线图、PRD规范</td>
+</tr>
+<tr>
+<td><strong>PM</strong></td>
+<td><code>[[四洋]]</code></td>
+<td>需求分析、PRD撰写、迭代跟进</td>
+<td>PRD文档、需求清单</td>
+</tr>
+<tr>
+<td><strong>架构师</strong></td>
+<td><code>[[满满]]</code></td>
+<td>技术架构设计、选型决策、技术债管理</td>
+<td>架构文档、技术方案</td>
+</tr>
+<tr>
+<td><strong>FDE</strong></td>
+<td><code>[[惠开发]]</code></td>
+<td>代码开发、技术落地、DevOps</td>
+<td>代码、单元测试、部署脚本</td>
+</tr>
+<tr>
+<td><strong>主助理</strong></td>
+<td><code>[[龙龙]]</code></td>
+<td>统筹协调、项目管理、知识沉淀</td>
+<td>会议纪要、进度跟踪、知识库</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="13-ai">1.3 AI 团队实例与部署</h3>
+<blockquote>
+<p>本节记录 AI Agent 团队成员的实例化对应关系与运行配置，方便后续查询与扩容。</p>
+</blockquote>
+<h4 id="131">1.3.1 角色与实例对应</h4>
+<table>
+<thead>
+<tr>
+<th>团队角色</th>
+<th>AI 实例名称</th>
+<th>飞书 Bot 名称</th>
+<th>端口 / 访问方式</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主助理</td>
+<td>龙龙</td>
+<td>龙龙</td>
+<td>主 Hermes 实例</td>
+<td>统一任务分发与协调</td>
+</tr>
+<tr>
+<td>产品经理</td>
+<td><code>[[四洋]]</code></td>
+<td>四洋</td>
+<td><code>8643</code></td>
+<td>原 8645 产品总监实例已关闭合并</td>
+</tr>
+<tr>
+<td>架构师</td>
+<td><code>[[满满]]</code></td>
+<td>满满</td>
+<td>待定</td>
+<td>后续团队配置</td>
+</tr>
+<tr>
+<td>FDE</td>
+<td><code>[[惠开发]]</code></td>
+<td>惠开发</td>
+<td>待定</td>
+<td>后续团队配置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="132">1.3.2 部署记录</h4>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>动作</th>
+<th>实例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06-29</td>
+<td>合并</td>
+<td>四洋</td>
+<td>原 8645 端口产品总监实例关闭，统一至 8643 端口，飞书 Bot 名称保持"四洋"</td>
+</tr>
+<tr>
+<td>2026-06-29</td>
+<td>规划</td>
+<td>满满、惠开发</td>
+<td>确认架构师与 FDE 角色名称及飞书 Bot 名称，端口待后续部署时补充</td>
+</tr>
+<tr>
+<td>2026-06-29</td>
+<td>规划</td>
+<td>后续角色</td>
+<td>按计划继续拓展技术人员，角色名称与实例配置保持统一</td>
+</tr>
+</tbody>
+</table>
+<h4 id="133">1.3.3 协作规则</h4>
+<ul>
+<li><strong>任务发起</strong>：所有任务统一发给 <code>[[龙龙]]</code>（主助理），由其负责分发和安排。</li>
+<li><strong>飞书群答复</strong>：在研发军团群中，<code>[[龙龙]]</code> 仅在被 <code>@龙龙</code> 时回复，未 <code>@</code> 的消息不主动回复。</li>
+<li><strong>知识库写入</strong>：只有用户明确说出"写入知识库"时，才可将内容添加到 <code>[[ccknow]]</code>。</li>
+<li><strong>知识库检索</strong>：只有用户明确说出"结合知识库"时，才先检索知识库再回答。</li>
+</ul>
+<hr />
+<h2 id="_3">二、研发流程规范</h2>
+<h3 id="21">2.1 全流程概览</h3>
+<pre><code>需求提出 → 需求评审 → 技术方案 → 开发实现 → Code Review → 测试 → 发布 → 复盘
+   (PM)      (全员)      (架构师)     (FDE)       (架构师+FDE)   (FDE)   (FDE)    (全员)
+</code></pre>
+<h3 id="22">2.2 各阶段详细规范</h3>
+<h4 id="phase-1">Phase 1：需求管理（产品总监 + 四洋）</h4>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>输入</th>
+<th>输出</th>
+<th>负责人</th>
+<th>时限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求收集</td>
+<td>业务痛点、用户反馈、竞品分析</td>
+<td>需求池（Backlog）</td>
+<td>四洋</td>
+<td>持续</td>
+</tr>
+<tr>
+<td>需求分析</td>
+<td>需求池</td>
+<td>PRD文档</td>
+<td>四洋</td>
+<td>2-3天</td>
+</tr>
+<tr>
+<td>需求评审</td>
+<td>PRD</td>
+<td>评审纪要、修改清单</td>
+<td>产品总监</td>
+<td>1天</td>
+</tr>
+<tr>
+<td>优先级排序</td>
+<td>评审通过的PRD</td>
+<td>迭代计划</td>
+<td>产品总监</td>
+<td>半天</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PRD 规范</strong>：
+- 必须包含：背景、目标、用户故事、功能清单、验收标准
+- 可选包含：原型图、流程图、数据埋点
+- 模板位置：<code>知识库/templates/PRD-模板.md</code></p>
+<hr />
+<h4 id="phase-2">Phase 2：技术设计（架构师）</h4>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>输入</th>
+<th>输出</th>
+<th>负责人</th>
+<th>时限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>技术方案</td>
+<td>PRD</td>
+<td>技术方案文档</td>
+<td>架构师</td>
+<td>1-2天</td>
+</tr>
+<tr>
+<td>方案评审</td>
+<td>技术方案</td>
+<td>评审纪要</td>
+<td>架构师+CIO</td>
+<td>半天</td>
+</tr>
+<tr>
+<td>任务拆分</td>
+<td>技术方案</td>
+<td>开发任务清单</td>
+<td>FDE</td>
+<td>半天</td>
+</tr>
+</tbody>
+</table>
+<p><strong>技术方案文档必须包含</strong>：
+1. 架构设计（系统图、数据流图）
+2. 接口设计（API 定义、数据模型）
+3. 技术选型（选型对比表、决策依据）
+4. 风险评估（技术风险、应对策略）
+5. 性能预估（QPS、存储、带宽）</p>
+<hr />
+<h4 id="phase-3fde">Phase 3：开发实现（FDE）</h4>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>输入</th>
+<th>输出</th>
+<th>负责人</th>
+<th>时限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码开发</td>
+<td>开发任务</td>
+<td>代码 + 单元测试</td>
+<td>FDE</td>
+<td>按迭代计划</td>
+</tr>
+<tr>
+<td>Code Review</td>
+<td>PR</td>
+<td>Review 意见</td>
+<td>架构师</td>
+<td>1天内</td>
+</tr>
+<tr>
+<td>文档更新</td>
+<td>代码变更</td>
+<td>技术文档更新</td>
+<td>FDE</td>
+<td>随代码提交</td>
+</tr>
+</tbody>
+</table>
+<p><strong>代码提交规范</strong>：</p>
+<pre><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+
+&lt;body&gt;
+
+&lt;footer&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feat</code></td>
+<td>新功能</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>Bug 修复</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>文档更新</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>代码格式（不影响功能）</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>重构</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>测试相关</td>
+</tr>
+<tr>
+<td><code>chore</code></td>
+<td>构建/工具相关</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="phase-4fde">Phase 4：测试与发布（FDE + 架构师）</h4>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>输入</th>
+<th>输出</th>
+<th>负责人</th>
+<th>时限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自测</td>
+<td>代码</td>
+<td>自测报告</td>
+<td>FDE</td>
+<td>开发完成后</td>
+</tr>
+<tr>
+<td>集成测试</td>
+<td>合并后的代码</td>
+<td>测试报告</td>
+<td>FDE</td>
+<td>1天</td>
+</tr>
+<tr>
+<td>发布准备</td>
+<td>测试通过</td>
+<td>发布清单</td>
+<td>FDE</td>
+<td>半天</td>
+</tr>
+<tr>
+<td>灰度发布</td>
+<td>发布清单</td>
+<td>线上验证</td>
+<td>FDE</td>
+<td>按策略</td>
+</tr>
+<tr>
+<td>全量发布</td>
+<td>灰度通过</td>
+<td>上线完成</td>
+<td>FDE</td>
+<td>半天</td>
+</tr>
+</tbody>
+</table>
+<p><strong>发布流程</strong>：
+1. 功能开关（Feature Flag）控制
+2. 灰度发布：5% → 20% → 50% → 100%
+3. 回滚策略：自动监控，异常自动回滚
+4. 发布窗口：工作日 10:00-12:00 或 14:00-16:00</p>
+<hr />
+<h4 id="phase-5">Phase 5：复盘迭代（全员）</h4>
+<table>
+<thead>
+<tr>
+<th>环节</th>
+<th>输入</th>
+<th>输出</th>
+<th>负责人</th>
+<th>时限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>迭代复盘</td>
+<td>迭代数据</td>
+<td>复盘纪要</td>
+<td>我（助理）</td>
+<td>迭代结束后1天</td>
+</tr>
+<tr>
+<td>经验沉淀</td>
+<td>复盘纪要</td>
+<td>知识库更新</td>
+<td>全员</td>
+<td>持续</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">三、项目管理机制</h2>
+<h3 id="31">3.1 迭代节奏</h3>
+<table>
+<thead>
+<tr>
+<th>项目类型</th>
+<th>迭代周期</th>
+<th>站会频率</th>
+<th>评审频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心产品（ShareLLM）</td>
+<td>2周</td>
+<td>每日</td>
+<td>每迭代</td>
+</tr>
+<tr>
+<td>支撑项目（内部工具）</td>
+<td>1周</td>
+<td>按需</td>
+<td>每迭代</td>
+</tr>
+<tr>
+<td>探索项目（AI实验）</td>
+<td>3周</td>
+<td>每周2次</td>
+<td>每迭代</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 会议机制</h3>
+<table>
+<thead>
+<tr>
+<th>会议</th>
+<th>频率</th>
+<th>参与人</th>
+<th>时长</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>晨会（Stand-up）</td>
+<td>每日</td>
+<td>全员</td>
+<td>15min</td>
+<td>阻塞项清单</td>
+</tr>
+<tr>
+<td>需求评审会</td>
+<td>每迭代启动</td>
+<td>PM+架构师+FDE</td>
+<td>1h</td>
+<td>迭代需求清单</td>
+</tr>
+<tr>
+<td>技术方案评审</td>
+<td>按需</td>
+<td>架构师+FDE</td>
+<td>1-2h</td>
+<td>技术方案文档</td>
+</tr>
+<tr>
+<td>迭代复盘会</td>
+<td>迭代结束</td>
+<td>全员</td>
+<td>1h</td>
+<td>复盘纪要</td>
+</tr>
+<tr>
+<td>月度规划会</td>
+<td>每月</td>
+<td>全员+CIO</td>
+<td>2h</td>
+<td>月度计划</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3 优先级定义</h3>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>定义</th>
+<th>响应时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P0</strong></td>
+<td>阻塞主流程，必须立即处理</td>
+<td>2小时内</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>影响核心功能，本周必须完成</td>
+<td>1天内</td>
+</tr>
+<tr>
+<td><strong>P2</strong></td>
+<td>影响体验，本迭代完成</td>
+<td>按迭代计划</td>
+</tr>
+<tr>
+<td><strong>P3</strong></td>
+<td>优化项，有空再做</td>
+<td>排入后续迭代</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">四、技术规范</h2>
+<h3 id="41">4.1 技术栈标准</h3>
+<p><strong>当前项目（ShareLLM / 菜洋洋商城）统一技术栈</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>选型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前端</td>
+<td>React 19 + TypeScript + Ant Design</td>
+<td>统一UI框架</td>
+</tr>
+<tr>
+<td>后端</td>
+<td>Go 1.22 (Gin/GORM)</td>
+<td>高性能网关</td>
+</tr>
+<tr>
+<td>AI服务</td>
+<td>Python (FastAPI)</td>
+<td>LLM生态更成熟</td>
+</tr>
+<tr>
+<td>数据库</td>
+<td>PostgreSQL + Redis</td>
+<td>主从分离</td>
+</tr>
+<tr>
+<td>向量库</td>
+<td>Milvus / PGVector</td>
+<td>RAG能力</td>
+</tr>
+<tr>
+<td>消息队列</td>
+<td>Redis Stream / NATS</td>
+<td>异步处理</td>
+</tr>
+<tr>
+<td>容器化</td>
+<td>Docker + Docker Compose</td>
+<td>开发/测试</td>
+</tr>
+<tr>
+<td>部署</td>
+<td>K8s (生产)</td>
+<td>云原生</td>
+</tr>
+<tr>
+<td>监控</td>
+<td>Prometheus + Grafana</td>
+<td>指标监控</td>
+</tr>
+<tr>
+<td>日志</td>
+<td>ELK / Loki</td>
+<td>日志收集</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42">4.2 代码规范</h3>
+<p><strong>必读规范</strong>：
+- Go: 遵循 <code>gofmt</code> + <code>golint</code>
+- TypeScript: ESLint + Prettier
+- Python: PEP8 + Black
+- 代码注释率：关键逻辑必须注释
+- 单测覆盖率：核心逻辑 ≥ 70%</p>
+<p><strong>分支模型</strong>：</p>
+<pre><code>main (生产)
+  ↑
+release/v1.x (预发)
+  ↑
+develop (开发)
+  ↑
+feature/xxx (功能)
+  ↑
+hotfix/xxx (紧急修复)
+</code></pre>
+<hr />
+<h2 id="_6">五、工具链选型</h2>
+<h3 id="51">5.1 协作工具</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>工具</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>即时沟通</td>
+<td>飞书</td>
+<td>团队已在使用</td>
+</tr>
+<tr>
+<td>项目管理</td>
+<td>飞书项目 / Linear</td>
+<td>看板 + 迭代管理</td>
+</tr>
+<tr>
+<td>文档协作</td>
+<td>飞书文档 + 知识库</td>
+<td>PRD、技术文档</td>
+</tr>
+<tr>
+<td>设计协作</td>
+<td>Figma</td>
+<td>原型、UI设计</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52">5.2 研发工具</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>工具</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码托管</td>
+<td>GitHub / GitLab</td>
+<td>私有仓库</td>
+</tr>
+<tr>
+<td>CI/CD</td>
+<td>GitHub Actions / GitLab CI</td>
+<td>自动化流水线</td>
+</tr>
+<tr>
+<td>代码质量</td>
+<td>SonarQube</td>
+<td>静态扫描</td>
+</tr>
+<tr>
+<td>API文档</td>
+<td>Swagger / OpenAPI</td>
+<td>自动生成</td>
+</tr>
+<tr>
+<td>容器镜像</td>
+<td>Harbor</td>
+<td>私有镜像仓库</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53">5.3 运维工具</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>工具</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>监控</td>
+<td>Prometheus + Grafana</td>
+<td>系统指标</td>
+</tr>
+<tr>
+<td>日志</td>
+<td>Loki / ELK</td>
+<td>日志收集</td>
+</tr>
+<tr>
+<td>告警</td>
+<td>AlertManager</td>
+<td>异常告警</td>
+</tr>
+<tr>
+<td>链路追踪</td>
+<td>Jaeger</td>
+<td>分布式追踪</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_7">六、知识沉淀机制</h2>
+<h3 id="61">6.1 文档体系</h3>
+<table>
+<thead>
+<tr>
+<th>文档类型</th>
+<th>位置</th>
+<th>维护人</th>
+<th>更新时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品文档</td>
+<td><code>知识库/产品/</code></td>
+<td>四洋</td>
+<td>PRD评审后</td>
+</tr>
+<tr>
+<td>技术文档</td>
+<td><code>知识库/技术/</code></td>
+<td>架构师</td>
+<td>方案评审后</td>
+</tr>
+<tr>
+<td>API文档</td>
+<td>代码内 + Swagger</td>
+<td>FDE</td>
+<td>代码提交时</td>
+</tr>
+<tr>
+<td>操作手册</td>
+<td><code>知识库/运维/</code></td>
+<td>FDE</td>
+<td>上线后</td>
+</tr>
+<tr>
+<td>复盘纪要</td>
+<td><code>知识库/复盘/</code></td>
+<td>我（助理）</td>
+<td>复盘会后</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62">6.2 知识库目录结构</h3>
+<pre><code>ccknow/
+├── 00 体系/              # 研发体系、流程规范
+│   ├── 研发流程规范.md
+│   ├── 代码规范.md
+│   └── 项目管理规范.md
+├── 01 项目/              # 项目文档
+│   ├── ShareLLM/
+│   ├── 菜洋洋商城/
+│   └── ...
+├── 02 技术/              # 技术文档
+│   ├── 架构设计/
+│   ├── API文档/
+│   └── 技术选型/
+├── 03 产品/              # 产品文档
+│   ├── PRD/
+│   └── 原型/
+├── 04 复盘/              # 复盘纪要
+└── 05 资源/              # 工具、模板
+    └── 模板/
+</code></pre>
+<hr />
+<h2 id="_8">七、当前行动项</h2>
+<h3 id="71">7.1 立即执行（本周）</h3>
+<ul>
+<li>[ ] 团队全员确认本方案</li>
+<li>[ ] 配置项目管理工具（飞书项目看板）</li>
+<li>[ ] 建立代码仓库（GitHub/GitLab）</li>
+<li>[ ] 配置 CI/CD 基础流水线</li>
+<li>[ ] 整理现有项目文档入知识库</li>
+</ul>
+<h3 id="72">7.2 短期完成（本月）</h3>
+<ul>
+<li>[ ] 输出 ShareLLM 技术架构详细设计</li>
+<li>[ ] 制定代码规范文档</li>
+<li>[ ] 建立 Code Review 机制</li>
+<li>[ ] 配置基础监控告警</li>
+<li>[ ] 完成第一次迭代复盘</li>
+</ul>
+<h3 id="73">7.3 持续优化（长期）</h3>
+<ul>
+<li>[ ] 建立技术债追踪机制</li>
+<li>[ ] 完善自动化测试体系</li>
+<li>[ ] 建立性能基准测试</li>
+<li>[ ] 定期技术分享会</li>
+</ul>
+<hr />
+<h2 id="_9">八、相关链接</h2>
+<ul>
+<li><code>[[ShareLLM项目开发计划-2026-06-21]]</code> — 首个按本体系执行的项目</li>
+<li><code>[[AI能力体系建设]]</code> — 能力体系支撑</li>
+<li><code>[[菜洋洋SaaS商城-管理后台设计方案-v1.0]]</code> — 现有项目迁移到本体系</li>
+</ul>
+<hr />
+<p><em>本方案由 CIO 助理起草，需程峰（CIO）确认后生效。</em></p>
+<h2 id="_10">相关链接</h2>
+<ul>
+<li><code>[[多租户SaaS商城平台-产品功能文档]]</code></li>
+<li><code>[[ShareLLM项目开发计划-2026-06-21]]</code></li>
+<li><code>[[代码规范]]</code></li>
+</ul>
+</body>
+</html>

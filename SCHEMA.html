@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCHEMA - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <h1 id="wiki-schema">Wiki Schema</h1>
+<h2 id="_1">知识库信息</h2>
+<ul>
+<li><strong>路径</strong>: <code>/Users/skycc/Documents/个人/ccknow</code></li>
+<li><strong>所有者</strong>: 程峰</li>
+<li><strong>创建时间</strong>: 2026-05-25</li>
+<li><strong>管理规则版本</strong>: 2026-06-21</li>
+</ul>
+<h2 id="_2">核心管理规则（严格遵循）</h2>
+<h3 id="1">规则 1：写入权限控制</h3>
+<p><strong>只有用户明确说出"写入知识库"时，才可以将内容添加到知识库中。</strong>
+- 禁止在用户未明确授权时创建、修改或删除任何知识页面
+- 禁止自动将对话内容保存到知识库
+- 禁止将外部信息未经确认直接写入知识库</p>
+<h3 id="2">规则 2：检索权限控制</h3>
+<p><strong>只有用户明确说出"结合知识库"时，才先检索知识库再回答用户问题。</strong>
+- 默认回答模式下，不查询知识库内容
+- 仅在用户明确要求时，执行知识库检索并基于检索结果回答
+- 检索时应优先读取 <code>index.md</code> 定位相关页面，再读取具体页面内容</p>
+<h3 id="3">规则 3：格式规范</h3>
+<ul>
+<li>所有知识页面统一使用 <strong>Markdown 格式</strong></li>
+<li>为关键概念添加 <strong>双向链接</strong>（Wikilink 格式）</li>
+<li>每个页面开头包含 YAML frontmatter（见下方模板）</li>
+<li>文件名：小写、英文或中文，使用连字符或下划线，无空格</li>
+</ul>
+<h3 id="4">规则 4：文件结构</h3>
+<p>严格按照 <strong>LLM Wiki</strong> 文件结构组织：</p>
+<pre><code>ccknow/
+├── SCHEMA.md          # 本文件：管理规则与约定
+├── index.md           # 内容目录：所有页面的索引
+├── log.md             # 操作日志：仅追加的编年史
+├── 首页.md            # 知识库入口
+├── 原始资料/          # 原始资料（不可变）
+│   ├── articles/      # 文章、网页摘录
+│   ├── papers/        # 论文、PDF
+│   ├── transcripts/   # 会议记录、访谈
+│   └── assets/        # 图片、附件
+├── 实体/             # 实体页面（人、组织、产品、项目）
+├── 概念/             # 概念/主题页面
+├── 对比/             # 对比分析页面
+├── 查询/             # 有价值的查询结果
+└── 99 附件/          # 模板与附件
+</code></pre>
+<p><strong>注意</strong>：原有文件夹结构（00 体系、01 项目、04 归档、05 日常、06 资源、07 领域）已于 2026-06-21 迁移至 LLM Wiki 结构。旧目录已清理，附件统一归入 <code>99 附件/</code> 。</p>
+<h2 id="_3">页面创建阈值</h2>
+<ul>
+<li><strong>创建页面</strong>：当实体/概念出现在 2+ 个来源中，或在单个来源中处于核心地位</li>
+<li><strong>更新现有页面</strong>：当来源提及已有内容时</li>
+<li><strong>不创建页面</strong>：仅提及一次的次要细节、超出知识库范围的内容</li>
+<li><strong>拆分页面</strong>：当页面超过 ~200 行时，拆分为子主题并交叉链接</li>
+</ul>
+<h2 id="frontmatter">页面 Frontmatter 模板</h2>
+<pre><code class="language-yaml">---
+title: 页面标题
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+type: entity | concept | comparison | query | summary | project | resource | note
+tags: []
+sources: []
+confidence: high | medium | low
+---
+</code></pre>
+<h2 id="_4">标签体系</h2>
+<p>基于用户现有内容，定义以下标签：</p>
+<ul>
+<li><strong>类型</strong>: <code>#项目</code>, <code>#会议</code>, <code>#学习</code>, <code>#复盘</code>, <code>#灵感</code></li>
+<li><strong>领域</strong>: <code>#AI</code>, <code>#产品</code>, <code>#管理</code>, <code>#运营</code>, <code>#数据</code>, <code>#技术</code></li>
+<li><strong>状态</strong>: <code>#进行中</code>, <code>#已完成</code>, <code>#待评审</code>, <code>#归档</code></li>
+<li><strong>来源</strong>: <code>#文章</code>, <code>#论文</code>, <code>#访谈</code>, <code>#内部</code></li>
+</ul>
+<h2 id="_5">双向链接规范</h2>
+<ul>
+<li>每个新页面至少链接到 <strong>2 个其他页面</strong></li>
+<li>使用 <code>页面名</code> 格式创建双向链接</li>
+<li>在页面末尾添加 "相关链接" 部分，汇总出链</li>
+<li>当提到关键概念时，优先使用链接而非纯文本</li>
+</ul>
+<h2 id="_6">更新政策</h2>
+<ul>
+<li>新信息冲突时：检查日期，新来源通常优先</li>
+<li>真正矛盾时：记录双方立场，标注日期和来源</li>
+<li>在 frontmatter 中标记矛盾：<code>contradictions: [页面名]</code></li>
+<li>在 lint 报告中标记待审阅</li>
+</ul>
+<h2 id="_7">日志规范</h2>
+<ul>
+<li>所有操作必须追加到 <code>log.md</code></li>
+<li>格式：<code>## [YYYY-MM-DD] action | subject</code></li>
+<li>操作类型：ingest, update, query, lint, create, archive, delete</li>
+<li><code>log.md</code> 超过 500 条时，轮转为 <code>log-YYYY.md</code></li>
+</ul>
+</body>
+</html>

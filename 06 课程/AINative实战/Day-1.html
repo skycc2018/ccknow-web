@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-1 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: "AI Native 实战课程 - Day 1: AI Enhanced vs AI Native"
+date: 2026-06-23
+type: course
+chapter: "第一章"
+tags:
+  - AI Native
+  - AI Enhanced
+  - 意图驱动
+  - Agent
+updated: 2026-06-29</p>
+<hr />
+<h1 id="ai-native-day-1-ai-enhanced-vs-ai-native">🎓 AI Native 实战课程 - Day 1: 第一章 - AI Enhanced vs AI Native</h1>
+<h2 id="_1">📖 今日导读</h2>
+<p>2023 年 ChatGPT 点燃生成式 AI 以来，企业最容易踩的第一个坑就是：<strong>把 AI 当成一个功能按钮</strong>。在原有产品里加一个「AI 写作助手」、「AI 总结」，这叫 <strong>AI Enhanced（AI 增强）</strong>。而 <strong>AI Native（AI 原生）</strong>是从设计之初就让 AI 成为核心引擎，重新定义交互范式：从「人适应机器」变成「机器理解人」。</p>
+<p>今天这一章是整门课程的地基。只有先分清两者的边界，你才能在后续设计 Prompt 即接口、上下文即状态、工具调用与 Agent 时做出正确的产品决策。我们会结合 2026 年最新的产品动态，用一个可运行的 CRM 案例，让你直观感受两种范式的差距。</p>
+<hr />
+<h2 id="_2">🔍 核心概念</h2>
+<h3 id="1-ai-native">1. AI Native 的三个特征</h3>
+<p>在 [[AI Native 深度解析：从概念到落地]] 中，AI Native 被定义为「从设计之初就以 AI 为核心驱动力的产品」。它必须同时具备三个特征：</p>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>传统 +AI</th>
+<th>AI Native</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>意图驱动</strong></td>
+<td>点菜单、填表单、筛选器</td>
+<td>说自然语言，系统理解目标</td>
+</tr>
+<tr>
+<td><strong>持续学习</strong></td>
+<td>功能一成不变</td>
+<td>每次交互都优化下次交互</td>
+</tr>
+<tr>
+<td><strong>自主行动</strong></td>
+<td>等待指令才执行</td>
+<td>主动规划并调用工具完成目标</td>
+</tr>
+</tbody>
+</table>
+<p>三者缺一不可。只有当 AI 从「会说话」进化到「会办事」，才能称之为真正的 AI Native 。</p>
+<h3 id="2-ai-enhanced-vs-ai-native-vs-ai-first">2. AI Enhanced vs AI Native vs AI First</h3>
+<p>[[《AI Native：从概念到落地》- 第一章]] 把 AI 产品分为三层：</p>
+<ul>
+<li><strong>AI Enhanced（AI 增强）</strong>：给现有产品加个 AI 按钮。例如 Word 里的「AI 写作助手」。交互方式没变，人仍然在适应机器。</li>
+<li><strong>AI Native（AI 原生）</strong>：围绕 AI 重新设计产品。例如 Notion 从「文档工具」变成「AI 工作空间」，人只需表达意图。</li>
+<li><strong>AI First（AI 优先）</strong>：AI 成为核心，人做审核。例如 Devin 自主完成编程任务。</li>
+</ul>
+<blockquote>
+<p><strong>2024-2026 年的机会在第二层。</strong> 第一层是红海，第三层还不成熟（技术、信任、监管都未就绪），<strong>AI Native 是蓝海</strong>。</p>
+</blockquote>
+<h3 id="3-2026">3. 2026 年的关键趋势</h3>
+<p>结合 Anthropic 2026 年5 月发布的 <em>The Founder’s Playbook</em> 和 Block 6 月实践，行业已经从「用 AI 写代码」进入「<strong>AI-native engineering / AI-native org</strong> 」阶段：</p>
+<ul>
+<li><strong>Agentic workflow 成为主流</strong>：AI 不再是「回答问题」，而是「规划任务 → 调用工具 → 执行 → 反馈」的循环。</li>
+<li><strong>MCP（Model Context Protocol）成为标配</strong>：Anthropic 与 Block 联合推动的 MCP 正在成为连接 AI Agent 与企业数据源的行业标准。</li>
+<li><strong>组织范式变革</strong>：AI 吃掉的不是某个岗位，而是「翻译层」（需求 → 报告 → JIRA → PR → 发布说明的无限转换）。未来组织的核心竞争力是「如何让人类从执行者变成 orchestrator」。</li>
+</ul>
+<hr />
+<h2 id="_3">💼 最新案例</h2>
+<h3 id="block-builderbot-ai-native">案例一：Block Builderbot —— AI-native 的工程协同</h3>
+<p>2026 年6 月17 日，Block 发布了 <strong>Builderbot</strong>：一套 AI-native 工具集，目标是改变大规模组织的开发方式。</p>
+<ul>
+<li><strong>数据</strong>：Block 100% 的工程师定期使用 AI；Builderbot 每天执行超过 <strong>20 万次</strong> 操作，每周合并约 <strong>1,500 个 Pull Request</strong>，约占 Block 全部生产代码变更的 <strong>15%</strong>。</li>
+<li><strong>交互范式</strong>：工程师在 Slack 里 @builderbot，用自然语言描述 bug 修复、跨服务迁移或新功能，AI 在线程里完成调研、规划、写代码、提交 PR、监控 CI 和迭代。</li>
+<li><strong>关键差异</strong>：它不是「一个仓库里的代码补全」，而是能跨越 Block 数亿行代码、数百个服务和整套工程规范的编排层。</li>
+<li><strong>开源</strong>：Builderbot 建立在 Block 开源的 goose Agent 框架上，并使用 MCP 作为 AI 与工具/数据源的连接协议。</li>
+</ul>
+<blockquote>
+<p>这正是 AI Native 的典型特征：<strong>不是「给现有工作流程加 AI 」，而是「让 AI 成为工作流程本身」</strong>。</p>
+</blockquote>
+<h3 id="perplexity-ai-native">案例二：Perplexity —— AI-native 搜索的持续进化</h3>
+<p>Perplexity 是 AI Native 搜索的标杆。与传统搜索「给链接」不同，Perplexity 「给答案」，并为每个数据标注来源。</p>
+<ul>
+<li><strong>2026 年新动态</strong>：</li>
+<li>5 月推出 Mac 应用，并上线 <strong>Personal Computer</strong> —— 一个混合本地与云端的 AI Agent，被定位为「个人编排器」。</li>
+<li>6 月 Perplexity CEO 在 CNBC 采访中确认计划 <strong>2028 年 IPO</strong>。</li>
+<li>其系统会根据任务自动选择最优模型，并考虑成本。</li>
+<li><strong>关键差异</strong>：传统搜索你输入关键词，然后自己筛选阅读；Perplexity 让你直接提问，它理解问题、检索多个来源、生成带引用的答案，并支持上下文追问。</li>
+</ul>
+<blockquote>
+<p>Perplexity 的竞争力不是「更快的 Google」，而是 <strong>「从找信息到获取知识」的范式转移</strong>。</p>
+</blockquote>
+<h3 id="vessel-browser">案例三（开源项目）：Vessel Browser</h3>
+<p>Vessel 是 2026 年出现的开源 AI-native 浏览器，它的定位不是「带 AI 功能的浏览器」，而是「<strong>Agent 的浏览器运行时</strong>」：</p>
+<ul>
+<li>Agent 是主要操作者，人类通过可见界面监督、审计和干预。</li>
+<li>支持持久状态、MCP 控制、书签、检查点、动作撤销，适合长时间运行的 Agent 工作流。</li>
+<li>GitHub: <code>unmodeled-tyler/vessel-browser</code></li>
+</ul>
+<hr />
+<h2 id="_4">💻 实战代码</h2>
+<p>下面这个 Python 脚本模拟了一个简单的 CRM 场景，对比 <strong>AI Enhanced</strong>（固定筛选）与 <strong>AI Native</strong>（意图驱动）的差异。</p>
+<ul>
+<li>不需要外部 API 即可运行本地演示版本。</li>
+<li>如果设置了 <code>OPENAI_API_KEY</code>，脚本会自动切换到 OpenAI 的 <strong>Function Calling</strong> 模式，体验真正的 AI Native 交互。</li>
+</ul>
+<pre><code class="language-python">import os
+import re
+import json
+import sqlite3
+from datetime import datetime, timedelta
+
+DB_PATH = &quot;crm_demo.db&quot;
+
+# ===== 1. 数据准备 =====
+def init_db():
+    &quot;&quot;&quot;初始化示例数据库&quot;&quot;&quot;
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute(&quot;DROP TABLE IF EXISTS customers&quot;)
+    c.execute('''
+        CREATE TABLE customers (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            company TEXT,
+            last_visit TEXT,
+            status TEXT,
+            deal_size INTEGER
+        )
+    ''')
+    today = datetime.now().date()
+    sample = [
+        (1, &quot;张三&quot;, &quot;智云科技&quot;, (today - timedelta(days=5)).isoformat(), &quot;pending&quot;, 80000),
+        (2, &quot;李四&quot;, &quot;碧海集团&quot;, (today - timedelta(days=10)).isoformat(), &quot;pending&quot;, 120000),
+        (3, &quot;王五&quot;, &quot;星火网络&quot;, (today - timedelta(days=20)).isoformat(), &quot;won&quot;, 50000),
+        (4, &quot;赵六&quot;, &quot;金沙云&quot;, (today - timedelta(days=3)).isoformat(), &quot;pending&quot;, 30000),
+        (5, &quot;钱七&quot;, &quot;青山科技&quot;, (today - timedelta(days=12)).isoformat(), &quot;pending&quot;, 60000),
+    ]
+    c.executemany(&quot;INSERT INTO customers VALUES (?,?,?,?,?,?)&quot;, sample)
+    conn.commit()
+    return conn
+
+# ===== 2. AI Enhanced: 固定筛选器 =====
+def ai_enhanced_find_customers(status=None, visited_after=None, min_deal=None):
+    &quot;&quot;&quot;传统 +AI 方式：用户必须知道要点哪些筛选条件&quot;&quot;&quot;
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    query = &quot;SELECT * FROM customers WHERE 1=1&quot;
+    params = []
+    if status:
+        query += &quot; AND status = ?&quot;
+        params.append(status)
+    if visited_after:
+        query += &quot; AND last_visit &gt;= ?&quot;
+        params.append(visited_after)
+    if min_deal:
+        query += &quot; AND deal_size &gt;= ?&quot;
+        params.append(min_deal)
+    c.execute(query, params)
+    rows = c.fetchall()
+    conn.close()
+    return rows
+
+# ===== 3. AI Native: 意图驱动 =====
+def _local_parse_intent(text: str) -&gt; dict:
+    &quot;&quot;&quot;本地意图解析器（无需 API）&quot;&quot;&quot;
+    cond = {}
+    text = text.lower()
+
+    # 状态
+    if re.search(r&quot;未跟进|待跟进|没跟进|pending&quot;, text):
+        cond[&quot;status&quot;] = &quot;pending&quot;
+    elif re.search(r&quot;已成交|won&quot;, text):
+        cond[&quot;status&quot;] = &quot;won&quot;
+
+    # 拜访时间：上周 / 过去 N 周
+    if re.search(r&quot;上周|last week&quot;, text):
+        cond[&quot;visited_after&quot;] = (datetime.now() - timedelta(weeks=1)).date().isoformat()
+    elif m := re.search(r&quot;过去\s*(\d+)\s*周|last\s+(\d+)\s+weeks?&quot;, text):
+        weeks = int(m.group(1) or m.group(2))
+        cond[&quot;visited_after&quot;] = (datetime.now() - timedelta(weeks=weeks)).date().isoformat()
+
+    # 合同金额：大于 X 万 / 大于 X
+    if m := re.search(r&quot;大于\s*(\d+)\s*(万?)&quot;, text):
+        value = int(m.group(1))
+        if m.group(2) == &quot;万&quot;:
+            value *= 10000
+        cond[&quot;min_deal&quot;] = value
+
+    return cond
+
+def _ai_native_with_openai(text: str) -&gt; tuple:
+    &quot;&quot;&quot;使用 OpenAI Function Calling 解析自然语言&quot;&quot;&quot;
+    try:
+        from openai import OpenAI
+    except ImportError:
+        raise RuntimeError(&quot;请先安装 openai: pip install openai&quot;)
+
+    client = OpenAI()
+    tools = [{
+        &quot;type&quot;: &quot;function&quot;,
+        &quot;function&quot;: {
+            &quot;name&quot;: &quot;query_customers&quot;,
+            &quot;description&quot;: &quot;根据用户自然语言查询 CRM 客户&quot;,
+            &quot;parameters&quot;: {
+                &quot;type&quot;: &quot;object&quot;,
+                &quot;properties&quot;: {
+                    &quot;status&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;pending&quot;, &quot;won&quot;], &quot;description&quot;: &quot;客户跟进状态&quot;},
+                    &quot;visited_after&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;最早拜访日期，ISO-8601 格式&quot;},
+                    &quot;min_deal&quot;: {&quot;type&quot;: &quot;integer&quot;, &quot;description&quot;: &quot;合同金额下限&quot;},
+                },
+                &quot;required&quot;: [],
+            },
+        },
+    }]
+
+    response = client.chat.completions.create(
+        model=&quot;gpt-4o-mini&quot;,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: text}],
+        tools=tools,
+        tool_choice=&quot;auto&quot;,
+    )
+    message = response.choices[0].message
+    if message.tool_calls:
+        args = json.loads(message.tool_calls[0].function.arguments)
+        return ai_enhanced_find_customers(**args), args
+    return [], {}
+
+def ai_native_find_customers(text: str) -&gt; tuple:
+    &quot;&quot;&quot;根据环境自动选择解析方式&quot;&quot;&quot;
+    if os.getenv(&quot;OPENAI_API_KEY&quot;):
+        print(&quot;🔄 检测到 OPENAI_API_KEY，使用 LLM Function Calling 解析意图...&quot;)
+        return _ai_native_with_openai(text)
+    print(&quot;🔄 未检测到 OPENAI_API_KEY，使用本地意图解析器...&quot;)
+    cond = _local_parse_intent(text)
+    return ai_enhanced_find_customers(**cond), cond
+
+# ===== 4. 演示 =====
+if __name__ == &quot;__main__&quot;:
+    init_db()
+    query = &quot;帮我列出上周拜访过但还没跟进的客户，合同金额大于5万&quot;
+
+    print(&quot;─&quot; * 60)
+    print(&quot;🔴 AI Enhanced 方式：用户需要自己翻译成筛选条件&quot;)
+    print(&quot;─&quot; * 60)
+    enhanced_rows = ai_enhanced_find_customers(
+        status=&quot;pending&quot;,
+        visited_after=(datetime.now() - timedelta(weeks=1)).date().isoformat(),
+        min_deal=50000,
+    )
+    for r in enhanced_rows:
+        print(r)
+
+    print(&quot;\n&quot;)
+    print(&quot;─&quot; * 60)
+    print(&quot;🟢 AI Native 方式：用户只需说人话&quot;)
+    print(&quot;─&quot; * 60)
+    native_rows, conditions = ai_native_find_customers(query)
+    print(f&quot;解析出的条件: {json.dumps(conditions, ensure_ascii=False)}&quot;)
+    for r in native_rows:
+        print(r)
+</code></pre>
+<p><strong>运行效果预览</strong>：</p>
+<pre><code class="language-text">-----------------------------------------------------------
+🔴 AI Enhanced 方式：用户需要自己翻译成筛选条件
+-----------------------------------------------------------
+(1, '张三', '智云科技', '2026-06-18', 'pending', 80000)
+
+-----------------------------------------------------------
+🟢 AI Native 方式：用户只需说人话
+-----------------------------------------------------------
+🔄 未检测到 OPENAI_API_KEY，使用本地意图解析器...
+解析出的条件: {&quot;status&quot;: &quot;pending&quot;, &quot;visited_after&quot;: &quot;2026-06-16&quot;, &quot;min_deal&quot;: 50000}
+(1, '张三', '智云科技', '2026-06-18', 'pending', 80000)
+</code></pre>
+<blockquote>
+<p>关键对比：<strong>AI Enhanced 要求人学会系统的语言（状态、日期、金额）；AI Native 让系统学会人的语言。</strong></p>
+</blockquote>
+<hr />
+<h2 id="_5">✅ 最佳实践</h2>
+<p>结合 Anthropic 《The Founder’s Playbook》、Block Builderbot 实践以及 AI-native org 的组织研究，总结出 6 条可操作的指南：</p>
+<ol>
+<li>
+<p><strong>从用户任务出发，而非功能</strong>
+   先写下用户想完成的 Job-to-be-Done，再决定 AI 放在哪个环节。不要问「我能加什么 AI 功能」，而要问「如果机器理解人，这个任务可以怎么被消灭」。</p>
+</li>
+<li>
+<p><strong>把自然语言当作新的 API</strong>
+   在 AI Native 产品中，Prompt 和 Function Calling 就是接口。为 AI 定义清晰的工具边界（参数、返回值、异常处理），比写一个完美的对话更重要。</p>
+</li>
+<li>
+<p><strong>设计人机协作的连续谱</strong>
+   从 <strong>AI Enhanced → AI Native → AI First</strong> 是一个渐进过程。无论哪一层，都要有：</p>
+</li>
+<li>置信度评分</li>
+<li>人工确认/审批节点</li>
+<li>
+<p>随时人工接管机制</p>
+</li>
+<li>
+<p><strong>以数据和上下文为护城河</strong>
+   模型能力会趋同，但企业私有数据、知识库、业务流程不会。通过 RAG、长期记忆、MCP 连接企业系统，才能构建可持续的差异化。</p>
+</li>
+<li>
+<p><strong>在组织里压缩「翻译层」</strong>
+   AI 最先取代的不是某个岗位，而是「需求 → PRD → 工单 → PR → 发布说明 → 汇报」的转换工作。让人类从执行者变成 orchestrator，这也是 Block Builderbot 15% PR 由 Agent 合并背后的组织启示。</p>
+</li>
+<li>
+<p><strong>安全与信任先行</strong>
+   Block 明确约定 Builderbot 只操作源代码和系统配置，不接触用户数据、支付信息和 PII。这是 AI Native 落地时必须建立的信任基础。</p>
+</li>
+</ol>
+<hr />
+<h2 id="_6">🤔 思考题</h2>
+<ol>
+<li>
+<p>你最近使用的一款产品属于 <strong>AI Enhanced / AI Native / AI First</strong> 中的哪一层？如果将它升级到 AI Native 层，用户会用什么自然语言指令来代替点击按钮？</p>
+</li>
+<li>
+<p>你的工作中哪个环节是「人适应机器」的？请描述如何用 <strong>意图驱动 + 工具调用</strong> 重构它，并列出需要调用的至少 2 个外部工具。</p>
+</li>
+<li>
+<p>假设你的团队即将上线一个每天自动合并 15% 代码变更的 AI Native 助手。为了确保质量与安全，你会设计哪些 <strong>置信度评分、人工审批和撤回机制</strong>？</p>
+</li>
+</ol>
+<hr />
+<h2 id="_7">📚 扩展阅读</h2>
+<ul>
+<li><strong>Block Builderbot 官方博客</strong>: <em>Block rolls out Builderbot, a new suite of AI-native tools that changes the way we ship</em> (2026-06-17)</li>
+<li><strong>Anthropic The Founder’s Playbook</strong>: <em>Building an AI-Native Startup</em> (2026-05) — 从 Idea 到 Scale 的完整实战框架</li>
+<li><strong>The Anatomy of an AI-Native Org</strong> (2026-05-12) — AI 如何重塑组织结构与管理角色</li>
+<li><strong>Vessel Browser GitHub</strong>: <code>unmodeled-tyler/vessel-browser</code> — 面向 Agent 的开源 AI-native 浏览器</li>
+</ul>
+<hr />
+<p>💡 今日课程已保存至知识库：[[Day-1]]</p>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网店运营与推广综合实训平台-PRD - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: 网店运营与推广综合实训平台 PRD
+created: 2026-06-22
+updated: 2026-06-29
+type: project
+tags: [PRD, 实训平台, 网店运营, 产品需求]
+sources: [用户需求分析]
+confidence: medium</p>
+<hr />
+<h1 id="prd">网店运营与推广综合实训平台 — 产品需求文档（PRD）</h1>
+<blockquote>
+<p>版本：V1.0<br />
+日期：2026-06-22<br />
+来源：招标/采购需求分析<br />
+拟定团队：产品1人、设计2人、前端 4人、后端 4人、测试2人</p>
+</blockquote>
+<hr />
+<h2 id="1">1. 文档概述</h2>
+<h3 id="11">1.1 项目背景</h3>
+<p>本平台面向职业院校或培训机构，提供 <strong>B/S 架构</strong> 的网店运营与推广综合仿真实训环境。学生可以分别以 <strong>买家</strong> 和 <strong>卖家</strong> 两种角色，完成从账号注册、店铺装修、商品发布、营销推广、客服沟通到订单交易的全链路实训。</p>
+<h3 id="12">1.2 系统总体架构</h3>
+<pre><code>用户层（Web 浏览器）
+    │
+    ├── 教学管理系统（前台 + 后台）
+    ├── 实训系统（买家端 + 卖家端）
+    └── 技能认证考评模块
+    │
+服务层（API / 微服务）
+    │
+数据层（关系型数据库 + 文件存储 + 缓存）
+</code></pre>
+<h3 id="13">1.3 用户角色</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要职责</th>
+<th>使用的子系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统管理员</td>
+<td>权限分配、教师/班级/学生管理、资源配置</td>
+<td>教学管理后台</td>
+</tr>
+<tr>
+<td>教师</td>
+<td>课程、作业、试卷、考试、练习、学情分析</td>
+<td>教学管理前/后台</td>
+</tr>
+<tr>
+<td>学生（买家）</td>
+<td>注册、浏览商城、购买、收藏、评价</td>
+<td>实训系统-买家端</td>
+</tr>
+<tr>
+<td>学生（卖家）</td>
+<td>开店、发布商品、店铺装修、营销推广、直播、客服</td>
+<td>实训系统-卖家后台</td>
+</tr>
+<tr>
+<td>考试/练习系统</td>
+<td>自动评分、手动评分、成绩统计</td>
+<td>技能认证考评模块</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2">2. 教学管理系统</h2>
+<h3 id="21">2.1 后台管理</h3>
+<h4 id="211">2.1.1 基础管理</h4>
+<ul>
+<li><strong>后台主页面</strong>：数据概览、待办事项、快捷入口</li>
+<li><strong>教师管理</strong>：新增/编辑/删除/禁用教师账号，分配授课班级</li>
+<li><strong>班级管理</strong>：班级创建、导入学生名单、班级与课程关联</li>
+<li><strong>学生管理</strong>：学生账号生成、信息维护、密码重置</li>
+</ul>
+<h4 id="212">2.1.2 课程与资源</h4>
+<ul>
+<li><strong>课程列表</strong>：课程创建、章节管理、资源上传（PPT、视频、PDF）</li>
+<li><strong>课程知识库</strong>：知识点分类、搜索、与实训任务关联</li>
+<li><strong>资料下载</strong>：学生端下载授权资料</li>
+</ul>
+<h4 id="213">2.1.3 作业管理</h4>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作业列表</td>
+<td>按课程、发布状态、标题搜索；支持编辑、删除</td>
+</tr>
+<tr>
+<td>发布作业</td>
+<td>设置名称、课程、班级、起止时间、封面、描述、填写说明</td>
+</tr>
+<tr>
+<td>高级设置</td>
+<td>前置作业、立即发布、允许下载作业报告</td>
+</tr>
+<tr>
+<td>批改</td>
+<td>按完成状态/评语状态/时间筛选；修改填写内容；设置审核结果及评语；AI 自动生成/手动修改评语</td>
+</tr>
+<tr>
+<td>实训联动</td>
+<td>从批改页面一键跳转至学生实训平台查看操作记录</td>
+</tr>
+<tr>
+<td>审核日志</td>
+<td>批改完成后可查看操作日志</td>
+</tr>
+<tr>
+<td>批量导出</td>
+<td>按班级/作业导出，或上传 Excel 名单批量导出；支持 PNG/PDF</td>
+</tr>
+</tbody>
+</table>
+<h4 id="214">2.1.4 学情分析</h4>
+<ul>
+<li><strong>学情概览</strong>：全局数据大屏</li>
+<li><strong>班级学情分析</strong>：班级维度的完成率、活跃度、分数分布</li>
+<li><strong>实训任务学情</strong>：各实训任务的完成情况</li>
+<li><strong>课程题库学情</strong>：题库练习/考试成绩分析</li>
+<li><strong>学生行为分析</strong>：访问轨迹、操作时长、热点功能</li>
+<li><strong>学生学情报告</strong>：个人综合报告生成与导出</li>
+</ul>
+<h4 id="215">2.1.5 教学监控与交流</h4>
+<ul>
+<li><strong>教学监控</strong>：实时查看学生在线状态、当前操作</li>
+<li><strong>交流中心</strong>：公告、讨论区、私信/群发消息</li>
+</ul>
+<h3 id="22">2.2 前台（学生/教师使用）</h3>
+<ul>
+<li><strong>前台主页面</strong>：课程、作业、实训任务入口</li>
+<li><strong>实训任务</strong>：任务列表、进度、指导资料</li>
+<li><strong>课程题库</strong>：练习、考试、成绩</li>
+<li><strong>实训轨迹</strong>：个人操作历史记录</li>
+<li><strong>作业提交</strong>：在线填写、附件上传、提交状态</li>
+<li><strong>AI 助手</strong>：常见问题回答、实训指导</li>
+</ul>
+<h3 id="23">2.3 自动评分引擎</h3>
+<ul>
+<li><strong>运行报表</strong>：评分任务执行记录</li>
+<li><strong>数据源管理</strong>：连接实训系统数据库、API 接口</li>
+<li><strong>规则管理</strong>：配置评分规则和加减分逻辑</li>
+<li><strong>任务管理</strong>：定时任务、实时评分任务</li>
+<li><strong>系统管理</strong>：引擎参数、日志</li>
+<li><strong>辅助功能</strong>：规则测试、数据校验</li>
+</ul>
+<hr />
+<h2 id="3">3. 实训系统</h2>
+<h3 id="31">3.1 账号开通</h3>
+<h4 id="311">3.1.1 注册与开店</h4>
+<ul>
+<li>仿真买家注册流程：手机/邮箱验证、密码设置</li>
+<li>仿真卖家开店流程：资质认证、店铺信息填写</li>
+</ul>
+<h4 id="312">3.1.2 账号管理</h4>
+<ul>
+<li>个人资料：头像、昵称、联系方式</li>
+<li>收货地址：新增/编辑/删除/设为默认</li>
+</ul>
+<h3 id="32">3.2 平台首页（买家端）</h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商城</td>
+<td>搜索栏、主题市场、热卖推荐、在线直播、促销活动、有好货、猜你喜欢</td>
+</tr>
+<tr>
+<td>我的商城</td>
+<td>已买商品、我的足迹、消息中心</td>
+</tr>
+<tr>
+<td>购物车</td>
+<td>查看、修改数量、删除、结算</td>
+</tr>
+<tr>
+<td>收藏夹</td>
+<td>收藏的商品、收藏的店铺</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3 卖家后台</h3>
+<h4 id="331">3.3.1 首页</h4>
+<ul>
+<li>订单信息、店铺经营数据、店铺名称、店铺信用</li>
+</ul>
+<h4 id="332">3.3.2 商品</h4>
+<ul>
+<li>我的商品：上架/下架/编辑/删除</li>
+<li>发布商品：基础信息、SKU、价格、库存、详情</li>
+<li>商品分类：自定义分类</li>
+<li><strong>图片空间</strong>：图片上传、分类、批量管理</li>
+</ul>
+<h4 id="333">3.3.3 交易</h4>
+<ul>
+<li>订单管理：全部订单、待付款、待发货、已发货、已完成、售后</li>
+<li>物流管理：发货、物流单号、物流跟踪</li>
+</ul>
+<h4 id="334">3.3.4 店铺</h4>
+<h5 id="_1">店铺管理</h5>
+<ul>
+<li>设置店铺名称、店铺 ID</li>
+<li>上传店铺 LOGO、简介、主营业务</li>
+<li>效果预览：店铺卡片展示</li>
+</ul>
+<h5 id="_2">店铺装修</h5>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>详细说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>页面管理</td>
+<td>首页/自定义页的创建、编辑、预览、重命名、复制、删除</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>按页面名称搜索</td>
+</tr>
+<tr>
+<td>模板库</td>
+<td>时尚、机械、鞋类运动、3C、家具等 ≥10 个行业模板</td>
+</tr>
+<tr>
+<td>选择模板</td>
+<td>选择模板后设置页面名称，进入装修编辑</td>
+</tr>
+<tr>
+<td>拖拽装修</td>
+<td>图文类（单列图文、文本、轮播图、热区图文、双列图文、视频）<br>营销类（满件折、优惠券、折扣商品）<br>产品类（产品列表、排行榜、猜你喜欢、智能分组、新品）</td>
+</tr>
+<tr>
+<td>模块操作</td>
+<td>编辑、删除、调整位置</td>
+</tr>
+<tr>
+<td>终端切换</td>
+<td>PC 端 / 无线端一键切换</td>
+</tr>
+<tr>
+<td>预览与发布</td>
+<td>预览效果、保存草稿、正式发布</td>
+</tr>
+<tr>
+<td>样式设置</td>
+<td>页面背景颜色</td>
+</tr>
+</tbody>
+</table>
+<h5 id="_3">子账号</h5>
+<ul>
+<li>子账号管理：创建/编辑/禁用/删除</li>
+<li>角色管理：权限组配置</li>
+<li>分组管理：部门/岗位分组</li>
+</ul>
+<h4 id="335">3.3.5 营销</h4>
+<ul>
+<li><strong>平台活动</strong>：报名参加平台级促销</li>
+<li><strong>店铺活动</strong>：创建满减、满赠、优惠券、拼团等活动</li>
+</ul>
+<h4 id="336">3.3.6 推广</h4>
+<ul>
+<li><strong>直通车</strong>：关键词推广、出价、预算、数据报表</li>
+<li><strong>推广计划</strong>：多计划管理、投放策略</li>
+</ul>
+<h4 id="337">3.3.7 直播</h4>
+<h5 id="_4">直播间后台</h5>
+<ul>
+<li>首页：数据概览</li>
+<li>直播管理：创建/编辑直播间、排期</li>
+<li>货品：直播商品库管理</li>
+</ul>
+<h5 id="_5">直播间前台</h5>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商品口袋</td>
+<td>分组展示、置顶、编辑价格库存、开始讲解录制视频</td>
+</tr>
+<tr>
+<td>装修</td>
+<td>选择贴片模板、编辑图片和文案</td>
+</tr>
+<tr>
+<td>秒杀</td>
+<td>配置和查看秒杀活动</td>
+</tr>
+<tr>
+<td>抽奖</td>
+<td>设置奖品、价值、数量、开奖时间、图片；历史抽奖记录</td>
+</tr>
+<tr>
+<td>红包</td>
+<td>设置红包优惠券、领取条件（观看时长限制）</td>
+</tr>
+<tr>
+<td>添加商品</td>
+<td>直播中临时添加商品至口袋</td>
+</tr>
+</tbody>
+</table>
+<h4 id="338">3.3.8 客服</h4>
+<ul>
+<li>搜索买家用户名</li>
+<li>会话窗口、消息发送</li>
+</ul>
+<h4 id="339">3.3.9 账户</h4>
+<ul>
+<li>充值与提现</li>
+<li>账户明细查询</li>
+</ul>
+<h4 id="3310">3.3.10 数据</h4>
+<ul>
+<li>首页、流量看板、店铺来源、商品来源</li>
+<li>实时播报、商品排行、单品分析</li>
+<li>市场大盘、搜索分析、选词专家、帮助中心</li>
+</ul>
+<h4 id="3311-ai">3.3.11 智能 AI 模块</h4>
+<table>
+<thead>
+<tr>
+<th>子模块</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生意管家</td>
+<td>AI 对话、提问向导、自动巡店、数据报告总结、商品标题优化</td>
+</tr>
+<tr>
+<td>智能发品</td>
+<td>商品词发品：输入关键词自动生成类目/图片/标题/价格/详情，支持编辑优化<br>图片发品：上传图片生成商品信息</td>
+</tr>
+<tr>
+<td>智能标题优化</td>
+<td>推荐待优化标题，一键应用到商品</td>
+</tr>
+<tr>
+<td>电脑端描述 AI 智文</td>
+<td>根据商品信息生成/优化详情</td>
+</tr>
+<tr>
+<td>AI 沟通润色</td>
+<td>客服回复内容 AI 润色，支持替换或不采用</td>
+</tr>
+<tr>
+<td>AI 自动接待</td>
+<td>打开后智能回复客户问题</td>
+</tr>
+<tr>
+<td>机器人客服</td>
+<td>常见问答配置、关键词回复、商品问答</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4">4. 技能认证考评模块</h2>
+<h3 id="41">4.1 教学与题库管理</h3>
+<ul>
+<li>展示学生数量、考试数量、练习数量</li>
+</ul>
+<h3 id="42">4.2 试卷管理</h3>
+<ul>
+<li>复制组卷、取消组卷、编辑、删除</li>
+<li>设置试卷名称、题目类型（固定/随机）、题型分数</li>
+<li>出题策略：题库、题型名称、难易度、数量</li>
+<li>随机取题、自定义换题、自动换题/手工换题</li>
+</ul>
+<h3 id="43">4.3 考试管理</h3>
+<ul>
+<li>选择全班或部分学生参加</li>
+<li>设置交卷后显示得分/查看答卷</li>
+<li>考试时间、考试时长、随到随考</li>
+<li>考试过程中离开试卷提示</li>
+</ul>
+<h3 id="44">4.4 考试成绩</h3>
+<ul>
+<li>查看考试完成详情</li>
+<li>客观题自动评分</li>
+<li><strong>主观实训题</strong>支持教师后台手动评分</li>
+<li>点击直接登录考生实训平台查看实操情况</li>
+</ul>
+<h3 id="45">4.5 练习管理</h3>
+<ul>
+<li>设置练习名称、选择试卷、选择班级</li>
+<li>自定义学生参加练习</li>
+</ul>
+<h3 id="46">4.6 试题管理</h3>
+<ul>
+<li>设置题目类型、难易程度</li>
+<li>上传试题附件</li>
+<li>答题区域按钮自动配置</li>
+<li>实训题目配置实训平台链接</li>
+<li>试题解析录入</li>
+</ul>
+<hr />
+<h2 id="5">5. 资源与配套要求</h2>
+<h3 id="51">5.1 在线学习资源</h3>
+<ul>
+<li>至少 800 页 PPT 课件</li>
+<li>至少 200 分钟教学视频</li>
+<li>完整的课程体系</li>
+</ul>
+<h3 id="52">5.2 实训教程</h3>
+<ul>
+<li>至少 20 个实训任务 PPT：电子商务认知、用户注册、卖家入驻、图片管理、产品上传、智能发品、机器人客服等</li>
+<li>每个实训任务配套：</li>
+<li>实训目的</li>
+<li>实训知识准备</li>
+<li>实训内容与步骤</li>
+<li>实训要求</li>
+<li>思考题</li>
+<li>配套指导视频</li>
+<li>试题库</li>
+</ul>
+<hr />
+<h2 id="6">6. 非功能性需求</h2>
+<h3 id="61">6.1 技术架构</h3>
+<ul>
+<li><strong>B/S 架构</strong>：仅需浏览器和网络连接</li>
+<li><strong>前端</strong>：支持 PC 端和移动端适配</li>
+<li><strong>后端</strong>：RESTful API，支持高并发访问</li>
+<li><strong>数据库</strong>：关系型数据库（建议 MySQL/PostgreSQL）</li>
+<li><strong>文件存储</strong>：图片、视频、PPT 等静态资源</li>
+<li><strong>AI 能力</strong>：接入 LLM API（标题优化、智文、润色、客服等）</li>
+</ul>
+<h3 id="62">6.2 性能</h3>
+<ul>
+<li>支持 500+ 学生同时在线实训</li>
+<li>页面响应时间 &lt; 2s</li>
+<li>视频播放支持边下边播</li>
+</ul>
+<h3 id="63">6.3 安全</h3>
+<ul>
+<li>用户认证与授权（RBAC）</li>
+<li>数据加密传输（HTTPS）</li>
+<li>操作日志审计</li>
+<li>定期数据备份</li>
+</ul>
+<h3 id="64">6.4 其他</h3>
+<ul>
+<li>可扩展插件架构</li>
+<li>多租户隔离（班级/学校）</li>
+<li>完善的操作手册和管理员手册</li>
+</ul>
+<hr />
+<h2 id="7">7. 产品路标里程碑</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>目标</th>
+<th>主要交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1</td>
+<td>基础架构</td>
+<td>项目启动、技术选型、数据库设计、前端基础框架</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>教学管理系统</td>
+<td>后台管理、课程、作业、学情分析</td>
+</tr>
+<tr>
+<td>M3</td>
+<td>实训系统-基础</td>
+<td>买家端、卖家基础功能、商品、交易</td>
+</tr>
+<tr>
+<td>M4</td>
+<td>实训系统-高级</td>
+<td>店铺装修、直播、推广、AI 模块</td>
+</tr>
+<tr>
+<td>M5</td>
+<td>考评与资源</td>
+<td>技能认证考评、在线资源、实训教程</td>
+</tr>
+<tr>
+<td>M6</td>
+<td>验收上线</td>
+<td>整体测试、UAT、部署、培训</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

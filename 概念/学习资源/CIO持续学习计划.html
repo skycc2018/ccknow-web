@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIO持续学习计划 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: CIO 持续学习计划
+created: '2026-06-21'
+updated: 2026-06-29
+type: resource
+tags:
+- '#学习'
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="cio">CIO 持续学习计划</h1>
+<blockquote>
+<p>创建日期：2026-06-21<br />
+目标：构建"懂业务、懂技术、懂组织、懂风险、懂投入产出"的复合能力<br />
+学习理念：不是追热点，而是持续学习"业务如何变化、技术如何支撑、数据如何沉淀、AI如何落地、风险如何控制"</p>
+</blockquote>
+<hr />
+<h2 id="_1">一、八大核心能力模型</h2>
+<pre><code class="language-mermaid">graph TD
+    A[CIO核心能力] --&gt; B[业务战略理解]
+    A --&gt; C[技术架构判断]
+    A --&gt; D[数据驱动经营]
+    A --&gt; E[AI与数字化]
+    A --&gt; F[安全与风险]
+    A --&gt; G[项目组合管理]
+    A --&gt; H[组织协同变革]
+    A --&gt; I[财务投入产出]
+</code></pre>
+<h3 id="1">1. 业务战略理解能力</h3>
+<p><strong>核心问题：</strong>
+- 公司靠什么赚钱？
+- 增长瓶颈在哪里？
+- 哪些业务流程是核心竞争力？
+- 哪些系统能力能直接提升收入、效率、利润或风控？
+- 哪些技术投入只是"看起来先进"，但短期不产生价值？</p>
+<p><strong>学习重点：</strong>
+- [ ] 公司商业模式画布分析
+- [ ] 餐饮供应链行业价值链理解
+- [ ] 客户生命周期价值（LTV）模型
+- [ ] 销售漏斗与转化链路优化
+- [ ] 库存周转与采购决策效率</p>
+<hr />
+<h3 id="2">2. 技术架构判断能力</h3>
+<p><strong>核心要点：</strong>
+- 系统架构：微服务、单体拆分、接口治理、权限体系、主数据体系
+- 企业架构：CRM、ERP、WMS、OMS、财务、供应链、BI、AI平台协同
+- 数据架构：客户/商品/交易/行为/沟通/组织数据沉淀为可复用资产
+- AI架构：大模型、Agent、RAG、知识库、智能推荐嵌入业务流程
+- 安全架构：账号权限、数据权限、审计、脱敏、零信任</p>
+<p><strong>学习重点：</strong>
+- [ ] 企业架构框架（TOGAF/Zachman）
+- [ ] 微服务拆分与治理实践
+- [ ] 主数据管理（MDM）策略
+- [ ] API网关与服务网格
+- [ ] 云原生架构模式</p>
+<hr />
+<h3 id="3">3. 数据驱动经营能力</h3>
+<p><strong>核心目标：</strong> 从"靠经验经营"升级为"靠数据辅助决策"</p>
+<p><strong>关键能力：</strong>
+- [ ] 统一数据口径建设
+- [ ] 客户/商品/订单/区域/组织/渠道主数据
+- [ ] 经营看板与过程指标闭环
+- [ ] 数据分析结果转化为业务动作
+- [ ] 销售/BD/采购/运营/品类/财务基于同一套数据决策</p>
+<p><strong>重点场景（餐饮供应链）：</strong>
+- CRM 1500万数据 → 客户分层 → 品类匹配 → 线索评分 → 区域作战地图 → 销售策略推荐</p>
+<hr />
+<h3 id="4-ai">4. AI与数字化转型能力</h3>
+<p><strong>核心判断：</strong>
+- AI能解决什么问题，不能解决什么问题
+- 哪些场景适合大模型，哪些适合规则引擎/BI/算法模型
+- 企业知识库如何建设
+- AI如何嵌入产品、运营、客服、销售、研发、数据分析流程
+- AI结果如何评估准确率、稳定性、成本和风险</p>
+<p><strong>学习重点：</strong>
+- [ ] 大模型能力边界与适用场景
+- [ ] Agent工作流设计
+- [ ] RAG知识库构建
+- [ ] AI数据治理
+- [ ] AI产品化路径
+- [ ] AI与CRM/ERP/BI/客服/销售系统融合</p>
+<hr />
+<h3 id="5">5. 网络安全与风险治理能力</h3>
+<p><strong>核心领域：</strong>
+- [ ] 数据安全治理
+- [ ] 权限分级与最小权限原则
+- [ ] 系统审计与操作留痕
+- [ ] 备份与灾备
+- [ ] 勒索攻击防护
+- [ ] 供应商安全评估
+- [ ] AI使用中的数据泄露风险控制
+- [ ] 合规管理</p>
+<p><strong>AI时代新威胁：</strong>
+- AI Agent安全
+- 机器间交互安全
+- 异常行为检测
+- 动态治理
+- 大模型提示词注入
+- 企业知识库权限穿透</p>
+<hr />
+<h3 id="6">6. 项目组合与交付管理能力</h3>
+<p><strong>项目分类：</strong>
+| 类型 | 例子 | 优先级判断 |
+|------|------|-----------|
+| 战略级项目 | CRM重构、数据中台 | 必须做 |
+| 降本增效项目 | 自动化流程、RPA | ROI高优先 |
+| 合规安全项目 | 等保、数据合规 | 底线必须做 |
+| 技术债治理 | 系统重构、架构升级 | 分期做 |
+| 老板想要但不该做 | 追热点技术 | 说服不做 |
+| MVP验证 | 新功能试点 | 小步快跑 |</p>
+<hr />
+<h3 id="7">7. 组织协同与变革管理能力</h3>
+<p><strong>核心挑战：</strong>
+- 让业务愿意用系统
+- 让销售愿意沉淀跟进记录
+- 让管理层愿意基于数据决策
+- 让技术团队理解业务价值
+- 让各部门接受统一流程和统一口径
+- 让数字化项目从"上线"变成"真正用起来"</p>
+<p><strong>学习重点：</strong>
+- [ ] 变革管理方法论（Kotter/ADKAR）
+- [ ] 跨部门沟通与冲突处理
+- [ ] 技术团队组织设计
+- [ ] 绩效与激励机制设计</p>
+<hr />
+<h3 id="8">8. 财务与投入产出能力</h3>
+<p><strong>必须能算的账：</strong>
+- [ ] 系统建设成本
+- [ ] 人力成本
+- [ ] 云资源成本
+- [ ] 运维成本
+- [ ] AI调用成本
+- [ ] 外采系统成本
+- [ ] 项目ROI
+- [ ] 技术债成本
+- [ ] 安全事故潜在损失</p>
+<p><strong>核心公式：</strong></p>
+<pre><code>技术投资回报率 = (业务价值提升 - 技术投入成本) / 技术投入成本 × 100%
+</code></pre>
+<hr />
+<h2 id="_2">二、六大持续学习方向</h2>
+<h3 id="1_1">方向1：持续学习业务（第一优先级）</h3>
+<p><strong>不是学新技术，而是持续学习业务</strong></p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>学习内容</th>
+<th>实践方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公司战略</td>
+<td>战略变化、增长模型</td>
+<td>参与战略会议、阅读战略文档</td>
+</tr>
+<tr>
+<td>销售打法</td>
+<td>BD作战方式、转化链路</td>
+<td>跟随销售拜访、分析销售数据</td>
+</tr>
+<tr>
+<td>供应链模式</td>
+<td>采购频次、毛利模型</td>
+<td>调研供应商、分析采购数据</td>
+</tr>
+<tr>
+<td>客户结构</td>
+<td>客户分层、品类偏好</td>
+<td>CRM数据分析、客户访谈</td>
+</tr>
+<tr>
+<td>行业竞争</td>
+<td>竞品动态、行业趋势</td>
+<td>行业报告、展会、竞品分析</td>
+</tr>
+</tbody>
+</table>
+<p><strong>餐饮供应链特别关注点：</strong>
+- [ ] 客户开店周期
+- [ ] 餐饮品类结构
+- [ ] 采购频次与批量
+- [ ] 毛利模型
+- [ ] 区域BD作战方式
+- [ ] 销售转化链路
+- [ ] 商品推荐逻辑
+- [ ] 履约与库存压力</p>
+<hr />
+<h3 id="2ai">方向2：持续学习AI</h3>
+<p><strong>AI会长期改变CIO的工作边界</strong></p>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>学习重点</th>
+<th>实践场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大模型能力</td>
+<td>能力边界、适用场景</td>
+<td>评估业务场景可行性</td>
+</tr>
+<tr>
+<td>Agent工作流</td>
+<td>设计模式、编排框架</td>
+<td>自动化业务流程</td>
+</tr>
+<tr>
+<td>RAG知识库</td>
+<td>构建方法、评估优化</td>
+<td>企业知识问答</td>
+</tr>
+<tr>
+<td>AI数据治理</td>
+<td>数据质量、权限控制</td>
+<td>训练数据管理</td>
+</tr>
+<tr>
+<td>AI产品化</td>
+<td>从试点到规模化</td>
+<td>AI功能落地</td>
+</tr>
+<tr>
+<td>AI融合</td>
+<td>与CRM/ERP/BI/客服融合</td>
+<td>系统集成</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键认知：</strong></p>
+<blockquote>
+<p>CIO不需要追每一个模型参数，但必须知道哪些AI能力已经可以商业化落地，哪些还只是演示效果。</p>
+</blockquote>
+<hr />
+<h3 id="3_1">方向3：持续学习数据治理</h3>
+<p><strong>数据治理是未来CIO的底盘能力</strong></p>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>核心内容</th>
+<th>实践目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主数据管理</td>
+<td>客户/商品/供应商主数据</td>
+<td>统一数据口径</td>
+</tr>
+<tr>
+<td>指标口径治理</td>
+<td>指标定义、计算逻辑</td>
+<td>消除口径冲突</td>
+</tr>
+<tr>
+<td>数据质量管理</td>
+<td>完整性、准确性、及时性</td>
+<td>数据可信</td>
+</tr>
+<tr>
+<td>标签体系</td>
+<td>客户标签、商品标签</td>
+<td>精准营销</td>
+</tr>
+<tr>
+<td>客户画像</td>
+<td>360度客户视图</td>
+<td>个性化服务</td>
+</tr>
+<tr>
+<td>数据血缘</td>
+<td>数据来源、流转路径</td>
+<td>影响分析</td>
+</tr>
+<tr>
+<td>数据权限</td>
+<td>行级/列级权限</td>
+<td>安全合规</td>
+</tr>
+<tr>
+<td>数据资产目录</td>
+<td>资产盘点、价值评估</td>
+<td>资产化运营</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心理念：</strong></p>
+<blockquote>
+<p>没有数据治理，AI很难真正稳定落地。</p>
+</blockquote>
+<hr />
+<h3 id="4">方向4：持续学习网络安全</h3>
+<p><strong>安全是CIO的底线能力</strong></p>
+<table>
+<thead>
+<tr>
+<th>威胁类型</th>
+<th>防护措施</th>
+<th>学习资源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>勒索软件</td>
+<td>备份策略、网络隔离</td>
+<td>安全厂商报告</td>
+</tr>
+<tr>
+<td>供应链攻击</td>
+<td>供应商评估、代码审计</td>
+<td>SLSA框架</td>
+</tr>
+<tr>
+<td>账号盗用</td>
+<td>MFA、零信任</td>
+<td>NIST零信任架构</td>
+</tr>
+<tr>
+<td>API安全</td>
+<td>认证、限流、审计</td>
+<td>OWASP API安全</td>
+</tr>
+<tr>
+<td>云安全</td>
+<td>配置审计、访问控制</td>
+<td>CSA云安全指南</td>
+</tr>
+<tr>
+<td>数据泄露</td>
+<td>DLP、加密、脱敏</td>
+<td>数据安全法</td>
+</tr>
+<tr>
+<td>内部越权</td>
+<td>最小权限、行为审计</td>
+<td>UEBA</td>
+</tr>
+<tr>
+<td>AI内容泄密</td>
+<td>输出过滤、权限控制</td>
+<td>AI安全框架</td>
+</tr>
+<tr>
+<td>提示词注入</td>
+<td>输入过滤、沙箱</td>
+<td>Prompt Injection防御</td>
+</tr>
+<tr>
+<td>知识库权限穿透</td>
+<td>细粒度权限、审计</td>
+<td>企业知识库安全</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="5_1">方向5：持续学习企业架构</h3>
+<p><strong>企业越大，系统越多，越需要架构视角</strong></p>
+<table>
+<thead>
+<tr>
+<th>架构类型</th>
+<th>核心内容</th>
+<th>学习资源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务架构</td>
+<td>业务流程、价值链</td>
+<td>BPMN、价值链分析</td>
+</tr>
+<tr>
+<td>应用架构</td>
+<td>系统边界、职责划分</td>
+<td>领域驱动设计</td>
+</tr>
+<tr>
+<td>数据架构</td>
+<td>数据模型、流转路径</td>
+<td>数据建模</td>
+</tr>
+<tr>
+<td>技术架构</td>
+<td>技术选型、演进路线</td>
+<td>技术雷达</td>
+</tr>
+<tr>
+<td>集成架构</td>
+<td>接口规范、集成模式</td>
+<td>EAI模式</td>
+</tr>
+<tr>
+<td>安全架构</td>
+<td>安全域、信任边界</td>
+<td>SABSA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心目标：</strong>
+- 避免烟囱系统
+- 避免重复建设
+- 确保数据一致性
+- 流程不割裂
+- 权限不混乱</p>
+<hr />
+<h3 id="6_1">方向6：持续学习组织管理</h3>
+<p><strong>CIO还要懂人</strong></p>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>核心内容</th>
+<th>实践方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>技术团队组织</td>
+<td>产品/研发/测试/运维/数据协同</td>
+<td>组织架构设计</td>
+</tr>
+<tr>
+<td>需求管理</td>
+<td>需求收集、优先级、排期</td>
+<td>敏捷/精益方法</td>
+</tr>
+<tr>
+<td>项目管理</td>
+<td>进度、风险、质量</td>
+<td>PMP/Prince2</td>
+</tr>
+<tr>
+<td>跨部门协同</td>
+<td>沟通、冲突处理</td>
+<td>非暴力沟通</td>
+</tr>
+<tr>
+<td>绩效激励</td>
+<td>KPI/OKR设计</td>
+<td>绩效管理</td>
+</tr>
+<tr>
+<td>人才梯队</td>
+<td>招聘、培养、保留</td>
+<td>人才盘点</td>
+</tr>
+<tr>
+<td>外包边界</td>
+<td>自研vs外包决策</td>
+<td>成本效益分析</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">三、十大核心能力清单</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>能力</th>
+<th>关键成果</th>
+<th>当前自评</th>
+<th>目标水平</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>业务战略理解</td>
+<td>数字化路线图</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>2</td>
+<td>企业架构设计</td>
+<td>系统/数据/流程长期架构</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>3</td>
+<td>数据资产建设</td>
+<td>数据驱动决策体系</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>4</td>
+<td>AI落地判断</td>
+<td>AI场景设计与效果评估</td>
+<td>⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>5</td>
+<td>网络安全治理</td>
+<td>数据与业务连续性保护</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>6</td>
+<td>项目组合管理</td>
+<td>优先级判断与MVP验证</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>7</td>
+<td>组织协同</td>
+<td>业务/技术/管理层对齐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>8</td>
+<td>变革推动</td>
+<td>系统真正被用起来</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>9</td>
+<td>成本ROI意识</td>
+<td>经营语言解释技术价值</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>10</td>
+<td>持续学习</td>
+<td>跟上技术/业务/行业变化</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">四、结合当前背景的优先提升计划</h2>
+<h3 id="_5">当前工作方向</h3>
+<ul>
+<li>CRM系统建设</li>
+<li>客户资源池管理</li>
+<li>销售增长支持</li>
+<li>数据标签体系</li>
+<li>AI辅助工作台</li>
+</ul>
+<h3 id="5_2">优先提升的5类能力</h3>
+<h4 id="_6">第一：业务增长建模能力</h4>
+<p><strong>目标：</strong> 把"客户分层、线索转化、销售跟进、BD协同、品类推荐、GMV增长"抽象成一套增长模型</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>行动</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>短期</td>
+<td>梳理现有销售漏斗，定义关键转化节点</td>
+<td>1-2周</td>
+</tr>
+<tr>
+<td>中期</td>
+<td>建立客户分层模型（RFM/价值分层）</td>
+<td>1个月</td>
+</tr>
+<tr>
+<td>长期</td>
+<td>构建增长实验框架，A/B测试驱动优化</td>
+<td>持续</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_7">第二：数据治理与客户画像能力</h4>
+<p><strong>目标：</strong> 稳定抽象客户数据、标签、成交原因、跟进记录、品类偏好之间的关系</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>行动</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>短期</td>
+<td>统一客户数据口径，建立客户主数据</td>
+<td>2-4周</td>
+</tr>
+<tr>
+<td>中期</td>
+<td>构建标签体系，实现客户360视图</td>
+<td>1-2个月</td>
+</tr>
+<tr>
+<td>长期</td>
+<td>客户画像驱动个性化推荐和精准营销</td>
+<td>持续</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_8">第三：企业架构能力</h4>
+<p><strong>目标：</strong> 具备CRM与ERP/WMS/订单/财务/BI/AI助手打通的整体判断能力</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>行动</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>短期</td>
+<td>绘制现有系统架构图，识别集成点</td>
+<td>2周</td>
+</tr>
+<tr>
+<td>中期</td>
+<td>设计数据流转架构，定义接口规范</td>
+<td>1个月</td>
+</tr>
+<tr>
+<td>长期</td>
+<td>推动系统间数据打通，消除信息孤岛</td>
+<td>持续</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ai">第四：AI落地能力</h4>
+<p><strong>目标：</strong> 围绕工作场景，让AI真正产生生产力</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>应用</th>
+<th>预期效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品</td>
+<td>AI生成PRD、原型设计</td>
+<td>提升需求产出效率50%</td>
+</tr>
+<tr>
+<td>销售</td>
+<td>AI分析客户、辅助跟进</td>
+<td>提升转化率20%</td>
+</tr>
+<tr>
+<td>运营</td>
+<td>AI复盘策略、生成报告</td>
+<td>减少人工分析时间70%</td>
+</tr>
+<tr>
+<td>知识</td>
+<td>AI构建知识库、智能问答</td>
+<td>降低知识查询成本</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>AI数据分析助手</td>
+<td>让业务自助分析</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_9">第五：组织推动能力</h4>
+<p><strong>目标：</strong> 推动销售/BD/品类/数据分析/老板对"数字化增长"的认知对齐</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>行动</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>短期</td>
+<td>建立数字化增长共识会机制</td>
+<td>立即</td>
+</tr>
+<tr>
+<td>中期</td>
+<td>设计数据驱动决策的激励机制</td>
+<td>1个月</td>
+</tr>
+<tr>
+<td>长期</td>
+<td>培养业务团队的数字化思维</td>
+<td>持续</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_10">五、学习资源清单</h2>
+<h3 id="_11">书籍</h3>
+<ul>
+<li>[ ] 《企业架构标准指南》- TOGAF</li>
+<li>[ ] 《领域驱动设计》- Eric Evans</li>
+<li>[ ] 《数据治理》- DAMA-DMBOK</li>
+<li>[ ] 《精益数据分析》- Alistair Croll</li>
+<li>[ ] 《AI极简经济学》- Ajay Agrawal</li>
+<li>[ ] 《零信任网络》- Evan Gilman</li>
+<li>[ ] 《变革加速器》- John Kotter</li>
+</ul>
+<h3 id="_12">在线课程</h3>
+<ul>
+<li>[ ] Coursera: Digital Transformation</li>
+<li>[ ] MIT OpenCourseWare: System Dynamics</li>
+<li>[ ] 极客时间: 企业级架构实战</li>
+<li>[ ] 得到: AI应用实战课</li>
+</ul>
+<h3 id="_13">行业报告</h3>
+<ul>
+<li>[ ] Gartner CIO Agenda（年度）</li>
+<li>[ ] McKinsey Technology Trends</li>
+<li>[ ] 艾瑞咨询: 中国企业数字化报告</li>
+<li>[ ] 德勤: 技术趋势报告</li>
+</ul>
+<h3 id="_14">社区与会议</h3>
+<ul>
+<li>[ ] InfoQ架构师峰会</li>
+<li>[ ] QCon全球软件开发大会</li>
+<li>[ ] 云原生技术大会</li>
+<li>[ ] 行业垂直峰会（餐饮供应链）</li>
+</ul>
+<hr />
+<h2 id="_15">六、月度学习检查清单</h2>
+<h3 id="_16">每月必做</h3>
+<ul>
+<li>[ ] 阅读1本业务/技术书籍</li>
+<li>[ ] 分析1个行业案例</li>
+<li>[ ] 参加1次跨部门业务会议</li>
+<li>[ ] 复盘1个数字化项目ROI</li>
+<li>[ ] 学习1个新技术/工具</li>
+<li>[ ] 更新1次数据看板</li>
+<li>[ ] 与1位业务骨干深度交流</li>
+</ul>
+<h3 id="_17">每季度必做</h3>
+<ul>
+<li>[ ] 评估能力自评表更新</li>
+<li>[ ] 调整学习优先级</li>
+<li>[ ] 分享1次学习成果</li>
+<li>[ ] 制定下季度学习计划</li>
+</ul>
+<hr />
+<h2 id="_18">七、一句话总结</h2>
+<blockquote>
+<p><strong>CIO的核心能力不是"懂技术"，而是用技术、数据和AI重构企业经营能力；持续学习的重点也不是追热点，而是持续学习"业务如何变化、技术如何支撑、数据如何沉淀、AI如何落地、风险如何控制"。</strong></p>
+</blockquote>
+<hr />
+<h2 id="_19">关联笔记</h2>
+<ul>
+<li>[[2026-05-28 每日反思]]</li>
+<li>CRM系统建设思路</li>
+<li>数据治理实践</li>
+<li>AI应用落地案例</li>
+</ul>
+<hr />
+<p><em>本计划持续更新，每月复盘调整</em></p>
+<h2 id="_20">相关链接</h2>
+<ul>
+<li>[[多租户SaaS商城平台-产品功能文档]]</li>
+<li>[[AI Native 深度报告]]</li>
+<li>[[菜洋洋商城 AI OS 演进路线与架构方案]]</li>
+</ul>
+</body>
+</html>

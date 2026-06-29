@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI岗位培训课件 - HR：招聘JD简历分析绩效辅助 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>date: 2026-05-26
+type: concept
+tags:
+- AI培训
+- HR
+- 招聘
+- 绩效
+source: 飞书文档
+title: AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助
+created: '2026-06-21'
+updated: 2026-06-29
+sources: []
+confidence: medium</p>
+<hr />
+<h1 id="ai-hrjd">AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助</h1>
+<h2 id="_1">课程目标</h2>
+<p>让HR掌握用AI提升招聘效率、优化人才评估、辅助绩效管理的方法</p>
+<h2 id="hr-ai">一、HR AI应用场景概览</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>AI能力</th>
+<th>预期效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>智能JD生成</td>
+<td>基于岗位需求自动生成/优化招聘文案</td>
+<td>撰写时间节省70%</td>
+</tr>
+<tr>
+<td>简历智能筛选</td>
+<td>自动提取关键信息，匹配度评分</td>
+<td>筛选效率提升10倍</td>
+</tr>
+<tr>
+<td>面试辅助</td>
+<td>生成面试问题、评估候选人回答</td>
+<td>面试质量标准化</td>
+</tr>
+<tr>
+<td>薪酬分析</td>
+<td>市场薪酬数据对比，内部公平性分析</td>
+<td>薪酬决策有据可依</td>
+</tr>
+<tr>
+<td>绩效辅助</td>
+<td>绩效数据汇总，改进建议生成</td>
+<td>绩效面谈效率提升</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prompt-engineering">二、核心技能：Prompt Engineering</h2>
+<h3 id="21-prompthr">2.1 标准Prompt模板（HR专用）</h3>
+<pre><code>【背景】
+我是[公司名]的HR[职位]，负责[招聘/绩效/薪酬]模块。
+当前需要处理[具体场景]。
+
+【角色】
+请你扮演一位资深HR专家，具备10年[行业]人力资源管理经验。
+
+【输入材料】
+- 岗位信息：[职位/级别/部门]
+- 候选人资料：[简历/面试记录]
+- 公司要求：[文化/价值观/硬性条件]
+
+【任务】
+请帮我[具体需求]。
+
+【输出格式】
+1. 核心结论
+2. 详细分析
+3. 风险提示
+4. 建议行动
+
+【校验标准】
+- 符合劳动法规
+- 避免性别/年龄/地域等歧视性描述
+- 数据保密，不泄露敏感信息
+</code></pre>
+<h3 id="22">2.2 高频场景模板</h3>
+<p><strong>场景1：招聘JD生成</strong>
+- 背景：需招聘[高级产品经理]
+- 角色：资深招聘专家
+- 输入：
+  - 岗位核心职责：[列出3-5条]
+  - 必备技能：[列出关键要求]
+  - 公司文化：[团队氛围/价值观]
+  - 薪酬范围：[预算区间]
+- 任务：生成一份吸引目标候选人的JD
+- 要求：
+  1. 标题吸引力评分（1-10）
+  2. 职责描述清晰具体
+  3. 突出公司差异化优势
+  4. 避免"负责相关工作"等模糊表述
+  5. 包含候选人成长路径描述</p>
+<p><strong>场景2：简历分析与匹配</strong>
+- 背景：收到[50份]简历，需快速筛选
+- 角色：资深HR + 业务面试官
+- 输入：
+  - 岗位JD：[粘贴]
+  - 候选人简历：[粘贴]
+- 任务：评估匹配度
+- 输出：
+  1. 匹配度评分（1-100）
+  2. 核心优势（3条）
+  3. 潜在风险（2条）
+  4. 建议面试重点
+  5. 是否推荐进入下一轮</p>
+<p><strong>场景3：绩效面谈准备</strong>
+- 背景：Q2绩效面谈季
+- 角色：绩效教练
+- 输入：
+  - 员工绩效数据：[KPI完成率/360评估/项目成果]
+  - 员工特点：[职级/入职时间/发展意愿]
+- 任务：生成绩效面谈指南
+- 输出：
+  1. 面谈开场白
+  2. 亮点肯定（具体事例）
+  3. 改进建议（可执行）
+  4. 发展计划（3个月/6个月）
+  5. 资源支持需求
+  6. 常见抗性话术及应对</p>
+<h2 id="_2">三、实操案例</h2>
+<h3 id="1">案例1：批量简历筛选提效</h3>
+<p><strong>背景：</strong>
+校招季收到500+简历，3个HR手动筛选需1周，且标准不统一。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>JD结构化Prompt</strong></p>
+<pre><code>请将以下JD转化为筛选评分标准：
+[粘贴JD]
+
+要求：
+1. 提取硬性条件（必须满足，一票否决）
+2. 提取软性条件（加分项，分等级）
+3. 制定评分规则（总分100分）
+4. 标注需人工复核的模糊项
+</code></pre>
+<p><strong>批量评估Prompt</strong></p>
+<pre><code>请按以下标准评估候选人：
+[粘贴评分标准]
+
+候选人简历：
+[粘贴]
+
+输出：
+- 总分：[ ]
+- 硬性条件：[通过/不通过，原因]
+- 核心优势：[ ]
+- 风险点：[ ]
+- 建议：[推荐/待定/淘汰]
+</code></pre>
+<p><strong>效果：</strong>
+- 筛选时间：1周 → 2天
+- 初筛准确率：70% → 90%
+- 面试官满意度：60% → 95%</p>
+<h3 id="2">案例2：薪酬竞争力分析</h3>
+<p><strong>背景：</strong>
+年底调薪，需评估公司薪酬竞争力，但缺乏市场数据。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>市场数据收集Prompt</strong></p>
+<pre><code>请帮我收集[城市+行业+岗位]的薪酬市场数据：
+- 岗位：[列出5个核心岗位]
+- 城市：[目标城市]
+- 对标公司：[列出3-5家]
+
+要求：
+1. 分位值数据（25/50/75/90分位）
+2. 薪酬结构（固薪/浮动/长期激励比例）
+3. 福利对比
+4. 近3年涨幅趋势
+5. 标注数据来源及可靠性
+</code></pre>
+<p><strong>内部公平性分析Prompt</strong></p>
+<pre><code>基于以下内部薪酬数据：
+[粘贴脱敏数据]
+
+请分析：
+1. 同岗同绩薪酬差异（合理范围 vs 异常值）
+2. 新老员工倒挂情况
+3. 部门间公平性
+4. 调薪建议（重点人群/幅度/预算）
+5. 风险预警（离职高风险人群）
+</code></pre>
+<p><strong>效果：</strong>
+- 数据获取：无 → 有据可依
+- 调薪决策：拍脑袋 → 数据驱动
+- 员工满意度：65% → 85%</p>
+<h3 id="3">案例3：员工访谈辅助</h3>
+<p><strong>背景：</strong>
+离职率高，需做员工满意度访谈，但不知如何提问和分析。</p>
+<p><strong>解决方案：</strong></p>
+<p><strong>访谈提纲生成Prompt</strong></p>
+<pre><code>背景：公司[技术部门]离职率偏高，需做深度访谈
+角色：组织发展顾问
+
+请生成访谈提纲：
+1. 开场建立信任（3个问题）
+2. 工作体验（5个问题，含追问）
+3. 管理评价（4个问题）
+4. 发展诉求（3个问题）
+5. 离职原因探测（3个问题，不直接问）
+6. 建议收集（2个开放问题）
+
+要求：
+- 问题顺序符合心理安全建立逻辑
+- 避免引导性提问
+- 标注需重点关注的危险信号
+</code></pre>
+<p><strong>访谈分析Prompt</strong></p>
+<pre><code>以下是[5位]员工的访谈记录摘要：
+[粘贴]
+
+请分析：
+1. 共性痛点（Top 3）
+2. 部门差异
+3. 紧急需处理事项
+4. 中长期改进建议
+5. 可快速见效的&quot;速赢&quot;措施
+</code></pre>
+<p><strong>效果：</strong>
+- 访谈质量：随意聊天 → 结构化深度访谈
+- 问题发现率：30% → 80%
+- 改进措施落地率：20% → 70%</p>
+<h2 id="_3">四、工具推荐</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT/Claude</td>
+<td>JD生成、简历分析</td>
+<td>招聘全流程</td>
+</tr>
+<tr>
+<td>豆包/DeepSeek</td>
+<td>政策查询、模板生成</td>
+<td>日常HR事务</td>
+</tr>
+<tr>
+<td>Excel + AI插件</td>
+<td>薪酬数据分析</td>
+<td>调薪/预算</td>
+</tr>
+<tr>
+<td>飞书多维表格</td>
+<td>招聘进度管理</td>
+<td>校招/批量招聘</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">五、常见误区与避坑指南</h2>
+<p><strong>误区1：AI可以替代HR判断</strong>
+→ AI辅助筛选，但最终录用决策需人工面试确认。</p>
+<p><strong>误区2：用AI生成JD后直接发布</strong>
+→ 必须人工审核，避免歧视性描述和法律风险。</p>
+<p><strong>误区3：把员工敏感信息输入AI</strong>
+→ 薪酬/绩效等敏感数据需脱敏处理，注意数据安全。</p>
+<p><strong>误区4：完全依赖AI的匹配评分</strong>
+→ 文化匹配、潜力等软性因素AI难以评估，需人工判断。</p>
+<h2 id="_5">六、课后作业</h2>
+<ol>
+<li><strong>实操任务</strong>：用AI生成一份你正在招聘的岗位JD，对比传统方式</li>
+<li><strong>Prompt优化</strong>：针对你的常见HR场景，优化3个专属Prompt模板</li>
+<li><strong>案例沉淀</strong>：将本次实操经验整理为团队SOP</li>
+</ol>
+<hr />
+<p>课件版本：V1.0
+适用对象：HR团队
+建议时长：2小时（理论1h + 实操1h）</p>
+<h2 id="_6">相关链接</h2>
+<ul>
+<li>[[AI岗位培训课件 - 产品：PRD原型Demo]]</li>
+<li>[[AI岗位培训课件 - 销售：客户洞察跟进话术]]</li>
+<li>[[AI岗位培训课件 - 数据研发：AI Coding数据处理]]</li>
+</ul>
+</body>
+</html>

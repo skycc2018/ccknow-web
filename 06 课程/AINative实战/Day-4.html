@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-4 - ccknow</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1, h2, h3 { color: #1a1a1a; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
+        th { background: #f6f8fa; }
+        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
+    <hr />
+<p>title: "AI Native 实战课程 - Day 4: 第四章 - 上下文即状态"
+date: 2026-06-26
+type: course
+chapter: "第四章"
+tags:
+  - AI Native
+  - 上下文即状态
+  - 记忆
+  - 状态持久化
+  - Agent
+updated: 2026-06-29</p>
+<hr />
+<h1 id="ai-native-day-4-">🎓 AI Native 实战课程 - Day 4: 第四章 - 上下文即状态</h1>
+<h2 id="_1">📖 今日导读</h2>
+<p>[[《AI Native：从概念到落地》- 书籍规划]] 把第四章命名为「上下文即状态」，这是整本书承上启下的一章。第三章讲 Prompt 即接口，解决的是「AI 如何理解单次指令」；第四章要解决的是「AI 如何理解一段关系」—— 它必须记得你是谁、你们之前聊过什么、你偏好什么，否则永远只是一个用完即走的工具。</p>
+<p>今天的核心认知是：<strong>大模型本身是无状态的，每一次 API 调用都是独立的。</strong> 所谓「记忆」，不是模型学会了什么，而是我们把外部状态（用户画像、会话历史、任务进度、业务数据）注入到下一次请求的上下文里。上下文即状态，状态即服务。本章结合 2025 年 ChatGPT、Claude 等产品的最新记忆能力，以及开源社区涌现的记忆基础设施，给你一个可运行的「有状态 AI 助手」示例。</p>
+<hr />
+<h2 id="_2">🔍 核心概念</h2>
+<h3 id="1">1. 大模型是无状态的，记忆是工程问题</h3>
+<p>在 [[AI Native 深度解析：从概念到落地]] 中，「记忆与上下文」被列为五大核心原理之一。LLM 的每一次推理都只依赖当前输入的 token；它不会自动记住你三分钟前说过的话，更不会记得上周的讨论。所谓「AI 记得你」，本质上是产品层做了一件工程化的事：<strong>把需要保留的信息挑选出来，保存到某种外部存储，然后在下一次请求时重新注入上下文。</strong></p>
+<p>因此，「上下文即状态」不是修辞，而是一个架构命题：</p>
+<ul>
+<li><strong>状态 = 任何会影响下一次决策的信息</strong></li>
+<li><strong>上下文 = 当前被注入到模型输入中的那部分状态</strong></li>
+<li><strong>上下文工程 = 决定哪些状态该留、该丢、该压缩、该检索</strong></li>
+</ul>
+<h3 id="2">2. 三层上下文状态</h3>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>名称</th>
+<th>典型内容</th>
+<th>存储介质</th>
+<th>生命周期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L1</strong></td>
+<td>工作上下文</td>
+<td>当前 prompt、最近几轮对话、系统提示词</td>
+<td>内存 / 请求体</td>
+<td>单次请求</td>
+</tr>
+<tr>
+<td><strong>L2</strong></td>
+<td>会话状态</td>
+<td>多轮任务进度、工具调用结果、临时变量</td>
+<td>Redis / 内存</td>
+<td>一次会话</td>
+</tr>
+<tr>
+<td><strong>L3</strong></td>
+<td>持久记忆</td>
+<td>用户偏好、关键事实、业务知识、历史摘要</td>
+<td>数据库 / 向量库</td>
+<td>跨会话、跨设备</td>
+</tr>
+</tbody>
+</table>
+<p>大多数 AI Native 产品失败，不是因为模型不够强，而是因为 L2 和 L3 设计得太随意：会话一刷新就丢失进度，用户重复说同一句话，或者把不相关的历史全部塞进上下文导致模型「失忆」。</p>
+<h3 id="3">3. 从「记住一切」到「召回正确的」</h3>
+<p>上下文窗口虽然越来越长（Gemini 2.5 达 100 万 token，Llama 4 达 1000 万 token），但「能塞进去」不等于「能用得好」。Hazy Research 2025 年 6 月的研究指出：在单张 H100 上，如果用户上下文从 1024 token 增到 128k token，Llama 8B 的服务吞吐会从约 10,000 token/s 暴跌到约 130 token/s，下降 <strong>77 倍</strong>。这背后的核心瓶颈就是 <strong>KV Cache</strong>。</p>
+<p>所以行业趋势不是无脑堆长上下文，而是：</p>
+<ul>
+<li><strong>RAG / 语义检索</strong>：只在需要时召回相关片段</li>
+<li><strong>记忆摘要</strong>：把长对话压缩成结构化摘要</li>
+<li><strong>KV Cache 压缩</strong>：如 Hazy Research 的 <strong>Cartridges</strong> 通过「self-study」把长上下文压缩成小型 cartridge， reportedly 提升峰值吞吐 <strong>26 倍</strong></li>
+<li><strong>Prompt Caching</strong>：缓存重复的系统提示词和上下文，降低推理成本</li>
+</ul>
+<h3 id="4-ai-native">4. AI Native 的状态设计思维</h3>
+<p>把上下文当状态，意味着产品架构要从「请求-响应」升级为「状态机」：</p>
+<ul>
+<li><strong>状态要有 schema</strong>：用户画像、项目记忆、任务状态、环境变量，不能只靠一个巨大的 prompt 字符串</li>
+<li><strong>状态要可观测</strong>：用户能查看、编辑、删除 AI 记住了什么</li>
+<li><strong>状态要有边界</strong>：项目之间、租户之间、会话之间不能串味</li>
+<li><strong>状态要能迁移</strong>：用户换设备、换模型时，记忆可以导出/导入</li>
+</ul>
+<p>这也是 2025 年头部产品纷纷推出「记忆面板」「隐私聊天」「项目隔离」的原因 —— 用户开始意识到：<strong>谁控制记忆，谁就控制 AI 的「人格」。</strong></p>
+<hr />
+<h2 id="_3">💼 最新案例</h2>
+<h3 id="chatgpt-memory">案例一：ChatGPT Memory —— 从「保存的记忆」到「全聊天记录」</h3>
+<p>2025 年 4 月 10 日，OpenAI 宣布 ChatGPT 的记忆能力重大升级：Plus / Pro 用户的 AI 可以引用<strong>所有历史对话</strong>来生成更个性化的回答。这比之前的「Saved memories」走得更远 —— 后者需要用户手动告诉 AI「请记住这个」，而新版本会自动从过往聊天中推断偏好和兴趣。</p>
+<ul>
+<li><strong>数据与节奏</strong>：4 月先向 Plus / Pro 开放；6 月 3 日开始向免费用户逐步推出「Chat history」记忆</li>
+<li><strong>产品逻辑</strong>：ChatGPT 会维护一份关于用户的 detailed summary，并在每次生成时作为系统提示词的一部分注入</li>
+<li><strong>争议</strong>：Simon Willison 在 2025 年 5 月的博客 <em>I really don’t like ChatGPT’s new memory dossier</em> 中指出，这种隐性记忆会不可预测地影响输出（例如他让 ChatGPT 根据照片猜地点，结果 AI 从过往聊天中知道了他住在 Half Moon Bay）。这引出一个关键设计问题：<strong>个性化与可控性之间的张力</strong></li>
+</ul>
+<blockquote>
+<p><strong>启示</strong>：上下文即状态的设计必须回答两个问题 —— 用户是否知道 AI 记住了什么？用户是否能轻松编辑或关闭它？</p>
+</blockquote>
+<h3 id="claude-memory">案例二：Claude Memory —— 项目隔离 + 可控记忆</h3>
+<p>2025 年 10 月 23 日，Anthropic 发布 Claude Memory，面向 Team / Enterprise / Pro / Max 用户。与 ChatGPT 的「全历史记忆」不同，Claude 的设计更强调 <strong>工作场景和边界控制</strong>：</p>
+<ul>
+<li><strong>项目级记忆</strong>：每个 Project 有独立的 memory，销售线索、产品需求、客户背景不会混到个人聊天里</li>
+<li><strong>记忆摘要可编辑</strong>：用户可以在设置里看到 Claude 记住了什么，并直接修改 summary</li>
+<li><strong>隐私模式</strong>：Incognito chat 不会进入历史记录，也不会写入 memory</li>
+<li><strong>安全测试</strong>：Anthropic 明确提到在上线前针对 wellbeing、过度迎合、绕过安全护栏等场景做了大量测试</li>
+</ul>
+<blockquote>
+<p><strong>启示</strong>：AI Native 的 memory 不是「越多越好」，而是「边界越清晰越安全」。项目隔离、用户可控、隐私模式，是记忆设计的三大基准。</p>
+</blockquote>
+<h3 id="claude-code-episodic-memory">案例三：Claude Code 的「episodic memory」—— 程序员的上下文修复</h3>
+<p>2025 年 10 月，开发者 Jesse 在博客 <em>Fixing Claude Code's amnesia</em> 中分享了一个现象：Claude Code 虽然保存了每次会话日志，但默认不会主动检索。于是他给 Claude Code 写了一个 episodic memory 插件：</p>
+<ul>
+<li>自动归档历史会话到本地 SQLite + 向量索引</li>
+<li>通过 MCP 工具让 Claude 可以语义搜索「我们上次是怎么解决这个问题的」</li>
+<li>用一个单独的 compression prompt 管理上下文膨胀</li>
+</ul>
+<p>经过 3–4 周的 dogfooding，他发现 Claude 终于能记得「昨天在做什么」「上次 rejected 的方案是什么」。这验证了 AI 编程伙伴的下一个竞争点：<strong>不是代码生成速度，而是跨会话的上下文连续性。</strong></p>
+<h3 id="letta-memori-honcho">案例四（开源项目）：Letta / Memori / Honcho —— 记忆基础设施</h3>
+<p>如果说 2025 年前大家都在自己写记忆层，2025–2026 年则出现了专门的记忆基础设施：</p>
+<ul>
+<li><strong>Letta</strong> (<code>letta-ai/letta</code>, 23.5k ⭐)：定位「stateful agents」平台，强调 AI 能通过高级记忆持续学习和自我改进，最新版 v0.16.8 于 2026 年 5 月发布</li>
+<li><strong>Memori</strong> (<code>MemoriLabs/Memori</code>, 15.4k ⭐)：agent-native memory infrastructure，把 agent 执行和对话转化为结构化、持久的 state，支持 memory MCP</li>
+<li><strong>Honcho</strong> (<code>plastic-labs/honcho</code>, 5.5k ⭐)：开源 memory library，用 custom models 做长期记忆，强调 personalization 和 continual learning</li>
+</ul>
+<blockquote>
+<p><strong>启示</strong>：记忆正在从「每个产品自己造轮子」变成「可复用的基础设施层」。这和数据库当年的演进非常相似。</p>
+</blockquote>
+<hr />
+<h2 id="_4">💻 实战代码</h2>
+<p>下面的 Python 脚本演示了<strong>上下文即状态</strong>的最小可行实现：一个带「短期记忆（对话历史）」「长期记忆（用户画像）」「状态持久化（本地 JSON）」的 AI 助手。</p>
+<pre><code class="language-python">&quot;&quot;&quot;
+Day 4 实战代码：上下文即状态
+目标：演示一个带短期记忆、长期记忆和状态持久化的 AI 助手。
+
+运行方式：
+  1. 不设置 OPENAI_API_KEY：使用本地规则生成回复，可立即运行
+  2. 设置 OPENAI_API_KEY：调用 GPT-4o-mini，把记忆注入系统提示词
+
+依赖：pip install openai（可选）
+&quot;&quot;&quot;
+
+import os
+import json
+import re
+from dataclasses import dataclass, field, asdict
+from datetime import datetime
+from typing import List, Dict
+
+STATE_FILE = &quot;assistant_state.json&quot;
+MAX_WORKING_MEMORY = 6  # 保留最近 3 轮对话（每轮 user + assistant = 2 条）
+
+
+@dataclass
+class UserProfile:
+    &quot;&quot;&quot;长期记忆：用户画像。&quot;&quot;&quot;
+    preferences: Dict[str, str] = field(default_factory=dict)
+    facts: List[str] = field(default_factory=list)
+    summary: str = &quot;&quot;
+
+
+@dataclass
+class AssistantState:
+    &quot;&quot;&quot;会话状态：短期记忆 + 长期记忆。&quot;&quot;&quot;
+    user_id: str = &quot;default&quot;
+    working_memory: List[Dict[str, str]] = field(default_factory=list)
+    profile: UserProfile = field(default_factory=UserProfile)
+    updated_at: str = field(default_factory=lambda: datetime.now().isoformat())
+
+    def to_dict(self) -&gt; dict:
+        return {
+            &quot;user_id&quot;: self.user_id,
+            &quot;working_memory&quot;: self.working_memory,
+            &quot;profile&quot;: asdict(self.profile),
+            &quot;updated_at&quot;: self.updated_at,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -&gt; &quot;AssistantState&quot;:
+        profile = UserProfile(**data.get(&quot;profile&quot;, {}))
+        return cls(
+            user_id=data.get(&quot;user_id&quot;, &quot;default&quot;),
+            working_memory=data.get(&quot;working_memory&quot;, []),
+            profile=profile,
+            updated_at=data.get(&quot;updated_at&quot;, datetime.now().isoformat()),
+        )
+
+
+class StatefulAssistant:
+    &quot;&quot;&quot;
+    上下文即状态的简单实现：
+      - 把对话历史当作短期记忆
+      - 把用户画像当作长期记忆
+      - 把状态持久化到本地 JSON
+    &quot;&quot;&quot;
+
+    def __init__(self, user_id: str = &quot;default&quot;, state_file: str = STATE_FILE):
+        self.user_id = user_id
+        self.state_file = state_file
+        self.state = self._load_state()
+
+    # ------------------- 状态持久化 -------------------
+    def _load_state(self) -&gt; AssistantState:
+        if os.path.exists(self.state_file):
+            with open(self.state_file, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+                return AssistantState.from_dict(json.load(f))
+        return AssistantState(user_id=self.user_id)
+
+    def save_state(self):
+        self.state.updated_at = datetime.now().isoformat()
+        with open(self.state_file, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+            json.dump(self.state.to_dict(), f, ensure_ascii=False, indent=2)
+
+    # ------------------- 短期记忆管理 -------------------
+    def add_exchange(self, user_input: str, assistant_reply: str):
+        self.state.working_memory.append({&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: user_input})
+        self.state.working_memory.append({&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: assistant_reply})
+        # 只保留最近的 MAX_WORKING_MEMORY 条消息
+        if len(self.state.working_memory) &gt; MAX_WORKING_MEMORY:
+            self.state.working_memory = self.state.working_memory[-MAX_WORKING_MEMORY:]
+
+    # ------------------- 长期记忆更新 -------------------
+    def update_long_term_memory(self, user_input: str):
+        &quot;&quot;&quot;用简单规则从用户输入中提取偏好和事实。&quot;&quot;&quot;
+        text = user_input
+
+        # 提取偏好：&quot;我喜欢...&quot; / &quot;请用...&quot;
+        pref_patterns = [
+            r&quot;我(?:喜欢|偏好|习惯)([^。，什么谁怎么如何]+)&quot;,
+            r&quot;请用([^。，什么谁怎么如何]+?)(?:回复|回答|输出)&quot;,
+            r&quot;(?:回答|回复|输出)要([^。，什么谁怎么如何]+)&quot;,
+        ]
+        for pat in pref_patterns:
+            m = re.search(pat, text)
+            if m:
+                value = m.group(1).strip()
+                if value:
+                    self.state.profile.preferences[&quot;style&quot;] = value
+
+        # 提取事实：&quot;我在...工作&quot; / &quot;我是...&quot; / &quot;记住...&quot;
+        fact_patterns = [
+            r&quot;记住([^。，什么谁怎么如何]+)&quot;,
+            r&quot;我是([^。，什么谁怎么如何]+)&quot;,
+            r&quot;我在([^。，什么谁怎么如何]+)&quot;,
+            r&quot;我从事([^。，什么谁怎么如何]+)&quot;,
+        ]
+        for pat in fact_patterns:
+            for m in re.finditer(pat, text):
+                fact = m.group(1).strip()
+                if fact and fact not in self.state.profile.facts:
+                    self.state.profile.facts.append(fact)
+
+        # 更新摘要
+        if self.state.profile.facts or self.state.profile.preferences:
+            parts = []
+            if self.state.profile.preferences:
+                parts.append(
+                    &quot;用户偏好：&quot; + &quot;；&quot;.join(f&quot;{k}={v}&quot; for k, v in self.state.profile.preferences.items())
+                )
+            if self.state.profile.facts:
+                parts.append(&quot;已知事实：&quot; + &quot;；&quot;.join(self.state.profile.facts))
+            self.state.profile.summary = &quot;；&quot;.join(parts)
+
+    # ------------------- 记忆检索（简化版 RAG） -------------------
+    def recall_relevant_memory(self, user_input: str) -&gt; str:
+        &quot;&quot;&quot;根据关键词从长期记忆中检索相关内容。&quot;&quot;&quot;
+        keywords = set(re.findall(r&quot;\w+&quot;, user_input.lower()))
+        matches = []
+        for fact in self.state.profile.facts:
+            if keywords &amp; set(re.findall(r&quot;\w+&quot;, fact.lower())):
+                matches.append(fact)
+        if matches:
+            return &quot;相关记忆：&quot; + &quot;；&quot;.join(matches)
+        return &quot;&quot;
+
+    # ------------------- 回复生成 -------------------
+    def build_context(self, user_input: str) -&gt; str:
+        context_parts = [
+            &quot;你是一位 AI 学习助手。请根据下面的上下文状态回答用户问题。&quot;,
+            &quot;&quot;,
+        ]
+        if self.state.profile.summary:
+            context_parts.append(f&quot;【长期记忆】{self.state.profile.summary}&quot;)
+            context_parts.append(&quot;&quot;)
+
+        relevant = self.recall_relevant_memory(user_input)
+        if relevant:
+            context_parts.append(f&quot;【本次召回】{relevant}&quot;)
+            context_parts.append(&quot;&quot;)
+
+        if self.state.working_memory:
+            context_parts.append(&quot;【近期对话】&quot;)
+            for msg in self.state.working_memory:
+                role = &quot;用户&quot; if msg[&quot;role&quot;] == &quot;user&quot; else &quot;助手&quot;
+                context_parts.append(f&quot;{role}：{msg['content']}&quot;)
+            context_parts.append(&quot;&quot;)
+
+        context_parts.append(f&quot;用户当前输入：{user_input}&quot;)
+        return &quot;\n&quot;.join(context_parts)
+
+    def _reply_with_llm(self, user_input: str) -&gt; str:
+        from openai import OpenAI
+
+        client = OpenAI()
+        response = client.chat.completions.create(
+            model=&quot;gpt-4o-mini&quot;,
+            messages=[
+                {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: self.build_context(user_input)},
+                {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: user_input},
+            ],
+            temperature=0.7,
+        )
+        return response.choices[0].message.content
+
+    def _reply_local(self, user_input: str) -&gt; str:
+        &quot;&quot;&quot;无 API Key 时的本地规则回复，仅用于演示状态如何使用。&quot;&quot;&quot;
+        text = user_input.lower()
+
+        # 使用已记住的偏好
+        style = self.state.profile.preferences.get(&quot;style&quot;, &quot;&quot;)
+        style_hint = f&quot;（我会尽量{style}）&quot; if style else &quot;&quot;
+
+        # 使用已记住的事实
+        if &quot;我是谁&quot; in user_input or &quot;我叫什么&quot; in user_input:
+            if self.state.profile.facts:
+                return f&quot;根据我的记忆，{self.state.profile.facts[0]}。{style_hint}&quot;
+            return f&quot;我还不知道你的名字，可以告诉我吗？{style_hint}&quot;
+
+        if &quot;偏好&quot; in user_input or &quot;习惯&quot; in user_input:
+            if self.state.profile.preferences:
+                return f&quot;我记住了你的偏好：{self.state.profile.preferences}。{style_hint}&quot;
+            return f&quot;我还没有记录你的偏好。{style_hint}&quot;
+
+        # 简单的任务意图
+        if any(k in text for k in [&quot;你好&quot;, &quot;hi&quot;, &quot;hello&quot;]):
+            return f&quot;你好！我是你的 AI 学习助手。{style_hint}&quot;
+        if any(k in text for k in [&quot;总结&quot;, &quot;概括&quot;]):
+            return f&quot;好的，我来总结一下。{style_hint}&quot;
+
+        # 默认回复
+        return f&quot;收到。我已经把这条信息加入上下文，后续会根据它来调整回答。{style_hint}&quot;
+
+    def reply(self, user_input: str) -&gt; str:
+        self.update_long_term_memory(user_input)
+
+        if os.getenv(&quot;OPENAI_API_KEY&quot;):
+            assistant_reply = self._reply_with_llm(user_input)
+        else:
+            assistant_reply = self._reply_local(user_input)
+
+        self.add_exchange(user_input, assistant_reply)
+        self.save_state()
+        return assistant_reply
+
+    def reset_memory(self):
+        &quot;&quot;&quot;清空所有记忆（演示用户可控性）。&quot;&quot;&quot;
+        self.state = AssistantState(user_id=self.user_id)
+        self.save_state()
+
+
+# ------------------- 演示 -------------------
+if __name__ == &quot;__main__&quot;:
+    # 为了每次演示都是干净的，先删除旧状态文件
+    if os.path.exists(STATE_FILE):
+        os.remove(STATE_FILE)
+
+    assistant = StatefulAssistant(user_id=&quot;skycc&quot;)
+
+    demo_turns = [
+        &quot;你好，我是程峰，以后叫我峰哥就好。&quot;,
+        &quot;我喜欢简洁的回答，不要长篇大论。&quot;,
+        &quot;我在做 AI Native 产品的实战课程，今天是第四章。&quot;,
+        &quot;提醒我一下我是谁，以及我喜欢什么样的回答。&quot;,
+        &quot;今天我们学的主题是上下文即状态，你觉得它和 Prompt 即接口有什么关系？&quot;,
+    ]
+
+    for user_input in demo_turns:
+        print(&quot;\n&quot; + &quot;=&quot; * 60)
+        print(f&quot;🧑 用户：{user_input}&quot;)
+        reply = assistant.reply(user_input)
+        print(f&quot;🤖 助手：{reply}&quot;)
+        print(f&quot;📦 当前状态摘要：{assistant.state.profile.summary or '（无）'}&quot;)
+</code></pre>
+<p><strong>运行效果预览（无 API Key 版本）：</strong></p>
+<pre><code class="language-text">============================================================
+🧑 用户：你好，我是程峰，以后叫我峰哥就好。
+🤖 助手：你好！我是你的 AI 学习助手。
+📦 当前状态摘要：已知事实：程峰
+
+============================================================
+🧑 用户：我喜欢简洁的回答，不要长篇大论。
+🤖 助手：收到。我已经把这条信息加入上下文，后续会根据它来调整回答。（我会尽量简洁的回答）
+📦 当前状态摘要：用户偏好：style=简洁的回答；已知事实：程峰
+
+============================================================
+🧑 用户：提醒我一下我是谁，以及我喜欢什么样的回答。
+🤖 助手：根据我的记忆，程峰。（我会尽量简洁的回答）
+📦 当前状态摘要：用户偏好：style=简洁的回答；已知事实：程峰
+</code></pre>
+<blockquote>
+<p><strong>代码启示</strong>：<code>StatefulAssistant</code> 把「上下文」拆成了三层状态 —— 工作上下文（当前输入）、短期记忆（最近对话）、长期记忆（用户画像）—— 并把它们持久化到本地。无论底层用规则还是 LLM，调用方看到的都是同一个接口：<code>reply(user_input)</code>。</p>
+</blockquote>
+<hr />
+<h2 id="_5">✅ 最佳实践</h2>
+<p>结合 2025–2026 年头部产品和开源社区的实践，总结出 7 条可操作的上下文状态设计指南：</p>
+<ol>
+<li>
+<p><strong>把状态设计当作数据库 schema 来做</strong>
+   不要只用一个长字符串存「记忆」。定义清晰的结构：用户偏好、项目上下文、任务状态、环境变量。每个字段都要有类型、更新策略和过期策略。</p>
+</li>
+<li>
+<p><strong>区分短期记忆和长期记忆，不要混为一谈</strong>
+   短期记忆负责会话内的连贯性，可以塞满上下文；长期记忆负责跨会话的个性化，必须通过检索或摘要注入。混在一起会导致上下文膨胀和成本失控。</p>
+</li>
+<li>
+<p><strong>优先检索，而不是全量注入</strong>
+   即使是百万 token 上下文，也不要把整段历史都丢给模型。用向量检索、关键词匹配、时间衰减等策略，只召回与当前任务最相关的片段。</p>
+</li>
+<li>
+<p><strong>给用户记忆控制权</strong>
+   参考 Claude Memory 的做法：提供可查看、可编辑的记忆摘要；提供隐私/隐身模式；允许按项目/会话隔离记忆。用户不信任的记忆系统，用户不会持续使用。</p>
+</li>
+<li>
+<p><strong>设计状态边界，防止上下文污染</strong>
+   多租户、多项目、多会话之间必须隔离。不要把 A 项目的客户信息泄漏到 B 项目，也不要让一次实验性的对话永久污染用户画像。</p>
+</li>
+<li>
+<p><strong>利用缓存和压缩降低长上下文成本</strong>
+   生产环境中要开启 Prompt Caching；对重复使用的长上下文可以考虑 Hazy Research Cartridges 这类 KV Cache 压缩方案；对超长历史使用滚动摘要。</p>
+</li>
+<li>
+<p><strong>评估记忆是否真正帮助了任务</strong>
+   不要只测「模型记住了事实」，要测「记住这件事后，任务完成率、用户满意度、错误率有没有改善」。建立记忆质量的评估集，防止记忆变成噪声。</p>
+</li>
+</ol>
+<hr />
+<h2 id="_6">🤔 思考题</h2>
+<ol>
+<li>
+<p>如果你正在设计一个 AI 客服系统，哪些信息应该进入「长期记忆」（用户画像、历史工单），哪些应该只留在「会话状态」（当前订单号、本次投诉细节）？请画出状态流转图。</p>
+</li>
+<li>
+<p>ChatGPT 的隐性历史记忆虽然提升了个性化，但也带来了不可控性。你会如何设计一个「既懂用户、又不会擅自假设」的记忆系统？请列出至少 3 个产品层面的控制机制。</p>
+</li>
+<li>
+<p>Claude Code 的 episodic memory 通过语义搜索历史会话来解决问题。如果你要为团队里的 AI 编程助手设计记忆 schema，你会把什么信息存为「语义记忆」（可搜索的经验），什么信息存为「程序性记忆」（固定规范）？如何避免记忆过多导致的上下文膨胀？</p>
+</li>
+</ol>
+<hr />
+<h2 id="_7">📚 扩展阅读</h2>
+<ul>
+<li><strong>Simon Willison</strong>: <em>I really don’t like ChatGPT’s new memory dossier</em> (2025-05-21) — 对隐性历史记忆可控性的深度反思</li>
+<li><strong>Anthropic</strong>: <em>Bringing memory to teams</em> (2025-10-23) — Claude Memory 项目级记忆与隐私设计</li>
+<li><strong>Jesse / fsck.com</strong>: <em>Fixing Claude Code's amnesia</em> (2025-10-23) — 为 Claude Code 构建 episodic memory 的实战经验</li>
+<li><strong>Hazy Research</strong>: <em>Cartridges: Storing long contexts in tiny caches with self-study</em> (2025-06-08) — 长上下文 KV Cache 压缩新思路</li>
+<li><strong>GitHub Letta</strong>: <code>https://github.com/letta-ai/letta</code> — stateful agents 平台（23.5k ⭐）</li>
+<li><strong>GitHub Memori</strong>: <code>https://github.com/MemoriLabs/Memori</code> — agent-native memory infrastructure（15.4k ⭐）</li>
+<li><strong>GitHub Honcho</strong>: <code>https://github.com/plastic-labs/honcho</code> — 开源 memory library for stateful agents（5.5k ⭐）</li>
+</ul>
+<hr />
+<p>💡 今日课程已保存至知识库：[[Day-4]]</p>
+</body>
+</html>
