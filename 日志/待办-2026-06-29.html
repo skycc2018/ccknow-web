@@ -7,13 +7,16 @@
     <style>
         :root {
             --sidebar-width: 280px;
-            --bg: #f7f8fa;
+            --bg: #f5f7fa;
             --card: #ffffff;
-            --text: #1f2329;
-            --text-secondary: #646a73;
-            --border: #e5e6eb;
-            --primary: #3370ff;
-            --primary-light: #e8f0ff;
+            --text: #1f2937;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --primary-dark: #1d4ed8;
+            --radius: 10px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
         }
         * { box-sizing: border-box; }
         body {
@@ -23,6 +26,7 @@
             background: var(--bg);
             display: flex;
             min-height: 100vh;
+            line-height: 1.6;
         }
         .sidebar {
             width: var(--sidebar-width);
@@ -33,61 +37,151 @@
             left: 0;
             bottom: 0;
             overflow-y: auto;
-            padding: 20px 0;
+            padding: 24px 0;
+            box-shadow: var(--shadow);
         }
         .sidebar-header {
-            padding: 0 20px 16px;
+            padding: 0 20px 18px;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
         .sidebar-header a {
             color: var(--text);
             text-decoration: none;
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
-        .sidebar-header .home { font-size: 13px; color: var(--text-secondary); display: block; margin-top: 6px; }
+        .sidebar-header .home {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            padding: 4px 10px;
+            background: var(--bg);
+            border-radius: var(--radius);
+            font-weight: 500;
+        }
         .nav ul {
             list-style: none;
-            padding-left: 16px;
+            padding-left: 14px;
             margin: 0;
         }
         .nav > ul { padding-left: 0; }
-        .nav li { margin: 2px 0; }
-        .nav li span { color: var(--text-secondary); font-size: 13px; font-weight: 600; padding: 6px 20px; display: block; }
+        .nav li { margin: 1px 0; }
+        .nav li.folder > span {
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 10px 20px 4px;
+            display: block;
+        }
         .nav li a {
             display: block;
-            padding: 6px 20px;
+            padding: 6px 18px;
             color: var(--text);
             text-decoration: none;
-            font-size: 13px;
-            border-radius: 0 6px 6px 0;
-            margin-right: 8px;
+            font-size: 13.5px;
+            border-radius: 0 8px 8px 0;
+            margin-right: 10px;
+            transition: all 0.15s;
         }
-        .nav li a:hover { background: var(--bg); }
-        .nav li.active > a { background: var(--primary-light); color: var(--primary); font-weight: 600; }
+        .nav li a:hover { background: var(--bg); color: var(--primary); }
+        .nav li.active > a {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
         .content {
             margin-left: var(--sidebar-width);
             flex: 1;
-            padding: 32px 48px;
-            max-width: 960px;
+            padding: 40px 56px;
+            max-width: 1000px;
             background: var(--card);
             min-height: 100vh;
         }
-        h1, h2, h3 { color: #1a1a1a; }
-        a { color: var(--primary); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        a.wikilink { color: #7b61ff; }
-        a.missing { color: #999; text-decoration: line-through; }
-        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, monospace; }
-        pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
-        blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
-        table { border-collapse: collapse; width: 100%; margin: 16px 0; }
-        th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
-        th { background: #f6f8fa; }
+        .content h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 0 12px;
+            letter-spacing: -0.5px;
+        }
+        .content h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 36px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        .content h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 26px 0 10px;
+        }
+        .content p { margin: 12px 0; color: #374151; }
+        .content a { color: var(--primary); }
+        .content a:hover { color: var(--primary-dark); }
+        .content a.wikilink { color: #7c3aed; font-weight: 500; }
+        .content a.wikilink:hover { color: #6d28d9; }
+        .content a.missing { color: #9ca3af; text-decoration: line-through; }
+        .content code {
+            background: #f3f4f6;
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 0.9em;
+            color: #db2777;
+        }
+        .content pre {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 18px;
+            border-radius: var(--radius);
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        .content pre code { background: transparent; color: inherit; padding: 0; }
+        .content blockquote {
+            border-left: 4px solid var(--primary);
+            background: var(--primary-light);
+            padding: 14px 18px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            color: #1e40af;
+            margin: 16px 0;
+        }
+        .content table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .content th, .content td {
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            text-align: left;
+        }
+        .content th {
+            background: #f9fafb;
+            font-weight: 700;
+            font-size: 13px;
+            color: #4b5563;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .content tr:last-child td { border-bottom: none; }
+        .content tr:hover td { background: #f9fafb; }
         @media (max-width: 768px) {
             .sidebar { display: none; }
-            .content { margin-left: 0; padding: 20px; }
+            .content { margin-left: 0; padding: 24px; }
         }
     </style>
 </head>
@@ -233,211 +327,319 @@
     </aside>
     <main class="content">
 <h1 id="-2026-06-29">待办-2026-06-29</h1>
-<h2 id="_1">待办清单</h2>
-<ul>
-<li>[ ] 机会怎么出来？需要一线出经验，过程指标要求如果出不来结果怎么办</li>
-<li>owner: 程峰</li>
-<li>due: 2026-06-30</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 形成一线经验与过程指标闭环方案</li>
-<li>
-<p>priority: high</p>
-</li>
-<li>
-<p>[ ] 商品&amp;品类：商品和品类的驱动增长为什么没有形成</p>
-</li>
-<li>owner: 程峰</li>
-<li>due: 2026-06-16</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 商业决策</li>
-<li>
-<p>priority: high</p>
-</li>
-<li>
-<p>[ ] 给自己的 deadline 然后进行决策闭环</p>
-</li>
-<li>owner: 程峰</li>
-<li>due: 2026-06-16</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 决策闭环</li>
-<li>
-<p>priority: high</p>
-</li>
-<li>
-<p>[ ] 信息化的结果指标</p>
-</li>
-<li>owner: 程峰</li>
-<li>due: 2026-06-24</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 闭环</li>
-<li>
-<p>priority: medium</p>
-</li>
-<li>
-<p>[ ] @王胡健 你这边和玉雪聊完有什么结论和想法，抽时间找我闭环</p>
-</li>
-<li>owner: 王胡健</li>
-<li>due: 2026-06-25</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 结论与想法闭环</li>
-<li>
-<p>priority: medium</p>
-</li>
-<li>
-<p>[ ] @马帅 少飞的6月底工作沟通、技术负债、非后端的培训计划、智展的支付计划，需要明确时间找我闭环</p>
-</li>
-<li>owner: 马帅</li>
-<li>due: 2026-06-25</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 明确时间找我闭环</li>
-<li>
-<p>priority: medium</p>
-</li>
-<li>
-<p>[ ] @胡文倩 团建计划需要明确时间找我闭环</p>
-</li>
-<li>owner: 胡文倩</li>
-<li>due: 2026-06-25</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 明确时间找我闭环</li>
-<li>
-<p>priority: low</p>
-</li>
-<li>
-<p>[ ] @赵英男 和明宇的前端补货工具，需要找我闭环，不要叙述，要一个稍正式的分析报告</p>
-</li>
-<li>owner: 赵英男</li>
-<li>due: 2026-06-25</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 出正式分析报告</li>
-<li>
-<p>priority: high</p>
-</li>
-<li>
-<p>[ ] 测试后续方式</p>
-</li>
-<li>owner: 程峰</li>
-<li>due: 2026-06-30</li>
-<li>project: 菜洋洋</li>
-<li>source: 飞书图片-OCR</li>
-<li>closed_requirement: 闭环</li>
-<li>
-<p>priority: medium</p>
-</li>
-<li>
-<p>[ ] 研发技术资源排期，需姜云肖每周更新</p>
-</li>
-<li>owner: 姜云肖</li>
-<li>due: 每周</li>
-<li>project: —</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: 每周更新并同步</li>
-<li>
-<p>priority: medium</p>
-</li>
-<li>
-<p>[ ] 丁金周懂菜的 WBS 计划</p>
-</li>
-<li>owner: 丁金周懂菜</li>
-<li>due: 2026-07-01</li>
-<li>project: —</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: 本周三闭环</li>
-<li>
-<p>priority: high</p>
-</li>
-<li>
-<p>[ ] 产品、数据、技术的 Q2 绩效和 Q3 绩效制定</p>
-</li>
-<li>owner: 马帅、王胡建</li>
-<li>due: 2026-07-01</li>
-<li>project: —</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: 周三闭环</li>
-<li>
-<p>priority: high</p>
-</li>
-<li>
-<p>[ ] 迭代版本更新与业务部分负责人对齐；迭代发布内容与冯杰确认；发布内容确认</p>
-</li>
-<li>owner: 程峰（与冯杰确认）</li>
-<li>due: 2026-07-07</li>
-<li>project: —</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: 发布内容确认闭环</li>
-<li>
-<p>priority: medium</p>
-</li>
-<li>
-<p>[ ] 懂菜设计时融入商品主数据，启动商品主数据产品方案</p>
-</li>
-<li>owner: 丁金周、王娟、赵英男（张路遥支持把控，不过度投入）</li>
-<li>due: 2026-07-31</li>
-<li>project: 懂菜</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: 7 月份输出商品主数据产品方案</li>
-<li>
-<p>priority: medium</p>
-</li>
-<li>
-<p>[ ] 戴光辉给 7 月 10 日之后的研发人员做安排</p>
-</li>
-<li>owner: 戴光辉</li>
-<li>due: 2026-07-02</li>
-<li>project: 研发资源</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: 研发人员安排方案闭环</li>
-<li>
-<p>priority: medium</p>
-</li>
-<li>
-<p>[ ] 数据同步工具 Seatunnel 同步数据到客资池问题修复</p>
-</li>
-<li>owner: 王胡健</li>
-<li>due: 2026-07-05</li>
-<li>project: 数据平台</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: 同步报错修复并验证</li>
-<li>priority: high</li>
-<li>progress: 已与帅总、强强会议沟通；强强提供 30+ 张表，计划周三（07-01）前完成同步；后续由强强提供复杂业务 SQL 测试性能；若指标达标，研发将提供仿真环境验证，通过后可逐步推广替换列式 PolarDB</li>
-<li>
-<p>cc: 马帅</p>
-</li>
-<li>
-<p>[ ] 使用 LangGraph 自定义开发效率 Agent：Flink CDC 自动任务 DDL 及建表自动生成</p>
-</li>
-<li>owner: 王胡健</li>
-<li>due: 2026-07-05</li>
-<li>project: AI Agent</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: 完成开发并输出</li>
-<li>
-<p>priority: high</p>
-</li>
-<li>
-<p>[ ] 销售域商机过程转换数据数仓分层 DWD 层构建</p>
-</li>
-<li>owner: 王胡健</li>
-<li>due: 2026-07-05</li>
-<li>project: 数据仓库</li>
-<li>source: 飞书会话</li>
-<li>closed_requirement: DWD 层构建完成</li>
-<li>priority: high</li>
-</ul>
-<h2 id="_2">闭环小结</h2>
-<ul>
-<li>今日关键动作：</li>
-<li>明日计划：</li>
-<li>遇到的阻碍：</li>
-</ul>
+        <style>
+            .todo-intro { color: var(--text-secondary); margin-bottom: 20px; }
+            .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; margin-bottom: 24px; }
+            .stat-card { background: linear-gradient(135deg, #fff, #f8fafc); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-align: center; box-shadow: var(--shadow); }
+            .stat-card .number { font-size: 28px; font-weight: 800; color: var(--primary); }
+            .stat-card .label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; font-weight: 600; }
+            .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; align-items: center; background: var(--bg); padding: 12px; border-radius: var(--radius); }
+            .filters label { font-size: 13px; color: var(--text-secondary); font-weight: 600; }
+            .filters select, .filters button { padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px; background: #fff; font-size: 13px; color: var(--text); }
+            .filters button { background: var(--primary); color: #fff; border-color: var(--primary); cursor: pointer; font-weight: 600; }
+            .filters button.active { background: #fff; color: var(--primary); }
+            .todo-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+            .todo-table th, .todo-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); text-align: left; font-size: 13.5px; }
+            .todo-table th { background: #f9fafb; font-weight: 700; color: #4b5563; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+            .todo-table tr:last-child td { border-bottom: none; }
+            .todo-table tr:hover td { background: #f9fafb; }
+            .todo-table tr.hidden { display: none; }
+            .todo-title { font-weight: 600; color: #111827; max-width: 360px; }
+            .badge { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+            .priority-high { background: #fee2e2; color: #b91c1c; }
+            .priority-medium { background: #fef3c7; color: #b45309; }
+            .priority-low { background: #d1fae5; color: #047857; }
+            .badge-pd { background: #ede9fe; color: #6d28d9; }
+        </style>
+        <p class="todo-intro">今日共 <strong>21</strong> 项待办，产品设计相关 <strong>3</strong> 项</p>
+        <div class="stats">
+            <div class="stat-card"><div class="number">21</div><div class="label">总待办</div></div>
+            <div class="stat-card"><div class="number">12</div><div class="label">高优先级</div></div>
+            <div class="stat-card"><div class="number">8</div><div class="label">中优先级</div></div>
+            <div class="stat-card"><div class="number">1</div><div class="label">低优先级</div></div>
+            <div class="stat-card"><div class="number">3</div><div class="label">产品设计</div></div>
+        </div>
+        <div class="filters">
+            <label>筛选：</label>
+            <button id="btn-all" class="active" onclick="filter('all')">全部</button>
+            <button id="btn-pd" onclick="filter('pd')">🎨 产品设计</button>
+            <select id="filter-project" onchange="filterGroup()"><option value="">所有项目</option><option value="AI Agent">AI Agent</option><option value="—">—</option><option value="人力资源">人力资源</option><option value="大前端转型">大前端转型</option><option value="懂菜">懂菜</option><option value="技术债">技术债</option><option value="数据仓库">数据仓库</option><option value="数据平台">数据平台</option><option value="研发资源">研发资源</option><option value="菜洋洋">菜洋洋</option></select>
+            <select id="filter-owner" onchange="filterGroup()"><option value="">所有负责人</option><option value="丁金周、王娟、赵英男（张路遥支持把控，不过度投入）">丁金周、王娟、赵英男（张路遥支持把控，不过度投入）</option><option value="丁金周懂菜">丁金周懂菜</option><option value="姜云肖">姜云肖</option><option value="戴光辉">戴光辉</option><option value="王胡健">王胡健</option><option value="程峰">程峰</option><option value="程峰（与冯杰确认）">程峰（与冯杰确认）</option><option value="胡文倩">胡文倩</option><option value="赵英男">赵英男</option><option value="马帅">马帅</option><option value="马帅、王胡建">马帅、王胡建</option></select>
+            <select id="filter-priority" onchange="filterGroup()"><option value="">所有优先级</option><option value="high">高</option><option value="medium">中</option><option value="low">低</option></select>
+        </div>
+        <table class="todo-table">
+            <thead>
+                <tr>
+                    <th style="width:30px">□</th>
+                    <th style="width:60px">优先级</th>
+                    <th>待办事项</th>
+                    <th>负责人</th>
+                    <th>截止日期</th>
+                    <th>项目</th>
+                    <th>闭环要求</th>
+                    <th style="width:90px">标签</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr data-pd="false" data-project="菜洋洋" data-owner="程峰" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">机会怎么出来？需要一线出经验，过程指标要求如果出不来结果怎么办</td>
+                <td>程峰</td>
+                <td>2026-06-30</td>
+                <td>菜洋洋</td>
+                <td>形成一线经验与过程指标闭环方案</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="true" data-project="菜洋洋" data-owner="程峰" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">商品&amp;品类：商品和品类的驱动增长为什么没有形成</td>
+                <td>程峰</td>
+                <td>2026-06-16</td>
+                <td>菜洋洋</td>
+                <td>商业决策</td>
+                <td><span class="badge badge-pd">产品设计</span></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="菜洋洋" data-owner="程峰" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">给自己的 deadline 然后进行决策闭环</td>
+                <td>程峰</td>
+                <td>2026-06-16</td>
+                <td>菜洋洋</td>
+                <td>决策闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="菜洋洋" data-owner="程峰" data-priority="medium">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-medium">中</span></td>
+                <td class="todo-title">信息化的结果指标</td>
+                <td>程峰</td>
+                <td>2026-06-24</td>
+                <td>菜洋洋</td>
+                <td>闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="菜洋洋" data-owner="王胡健" data-priority="medium">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-medium">中</span></td>
+                <td class="todo-title">@王胡健 你这边和玉雪聊完有什么结论和想法，抽时间找我闭环</td>
+                <td>王胡健</td>
+                <td>2026-06-25</td>
+                <td>菜洋洋</td>
+                <td>结论与想法闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="菜洋洋" data-owner="马帅" data-priority="medium">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-medium">中</span></td>
+                <td class="todo-title">@马帅 少飞的6月底工作沟通、技术负债、非后端的培训计划、智展的支付计划，需要明确时间找我闭环</td>
+                <td>马帅</td>
+                <td>2026-06-25</td>
+                <td>菜洋洋</td>
+                <td>明确时间找我闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="菜洋洋" data-owner="胡文倩" data-priority="low">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-low">低</span></td>
+                <td class="todo-title">@胡文倩 团建计划需要明确时间找我闭环</td>
+                <td>胡文倩</td>
+                <td>2026-06-25</td>
+                <td>菜洋洋</td>
+                <td>明确时间找我闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="菜洋洋" data-owner="赵英男" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">@赵英男 和明宇的前端补货工具，需要找我闭环，不要叙述，要一个稍正式的分析报告</td>
+                <td>赵英男</td>
+                <td>2026-06-25</td>
+                <td>菜洋洋</td>
+                <td>出正式分析报告</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="菜洋洋" data-owner="程峰" data-priority="medium">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-medium">中</span></td>
+                <td class="todo-title">测试后续方式</td>
+                <td>程峰</td>
+                <td>2026-06-30</td>
+                <td>菜洋洋</td>
+                <td>闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="—" data-owner="姜云肖" data-priority="medium">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-medium">中</span></td>
+                <td class="todo-title">研发技术资源排期，需姜云肖每周更新</td>
+                <td>姜云肖</td>
+                <td>每周</td>
+                <td>—</td>
+                <td>每周更新并同步</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="—" data-owner="丁金周懂菜" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">丁金周懂菜的 WBS 计划</td>
+                <td>丁金周懂菜</td>
+                <td>2026-07-01</td>
+                <td>—</td>
+                <td>本周三闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="true" data-project="—" data-owner="马帅、王胡建" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">产品、数据、技术的 Q2 绩效和 Q3 绩效制定</td>
+                <td>马帅、王胡建</td>
+                <td>2026-07-01</td>
+                <td>—</td>
+                <td>周三闭环</td>
+                <td><span class="badge badge-pd">产品设计</span></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="—" data-owner="程峰（与冯杰确认）" data-priority="medium">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-medium">中</span></td>
+                <td class="todo-title">迭代版本更新与业务部分负责人对齐；迭代发布内容与冯杰确认；发布内容确认</td>
+                <td>程峰（与冯杰确认）</td>
+                <td>2026-07-07</td>
+                <td>—</td>
+                <td>发布内容确认闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="true" data-project="懂菜" data-owner="丁金周、王娟、赵英男（张路遥支持把控，不过度投入）" data-priority="medium">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-medium">中</span></td>
+                <td class="todo-title">懂菜设计时融入商品主数据，启动商品主数据产品方案</td>
+                <td>丁金周、王娟、赵英男（张路遥支持把控，不过度投入）</td>
+                <td>2026-07-31</td>
+                <td>懂菜</td>
+                <td>7 月份输出商品主数据产品方案</td>
+                <td><span class="badge badge-pd">产品设计</span></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="研发资源" data-owner="戴光辉" data-priority="medium">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-medium">中</span></td>
+                <td class="todo-title">戴光辉给 7 月 10 日之后的研发人员做安排</td>
+                <td>戴光辉</td>
+                <td>2026-07-02</td>
+                <td>研发资源</td>
+                <td>研发人员安排方案闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="数据平台" data-owner="王胡健" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title" title="已与帅总、强强会议沟通；强强提供 30+ 张表，计划周三（07-01）前完成同步；后续由强强提供复杂业务 SQL 测试性能；若指标达标，研发将提供仿真环境验证，通过后可逐步推广替换列式 PolarDB">数据同步工具 Seatunnel 同步数据到客资池问题修复</td>
+                <td>王胡健</td>
+                <td>2026-07-05</td>
+                <td>数据平台</td>
+                <td>同步报错修复并验证</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="AI Agent" data-owner="王胡健" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">使用 LangGraph 自定义开发效率 Agent：Flink CDC 自动任务 DDL 及建表自动生成</td>
+                <td>王胡健</td>
+                <td>2026-07-05</td>
+                <td>AI Agent</td>
+                <td>完成开发并输出</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="数据仓库" data-owner="王胡健" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">销售域商机过程转换数据数仓分层 DWD 层构建</td>
+                <td>王胡健</td>
+                <td>2026-07-05</td>
+                <td>数据仓库</td>
+                <td>DWD 层构建完成</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="大前端转型" data-owner="马帅" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">完成原大前端转型着陆计划中符合员工实际的阶段目标要求，制定可量化可跟踪目标</td>
+                <td>马帅</td>
+                <td>2026-07-05</td>
+                <td>大前端转型</td>
+                <td>转型阶段目标方案闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="人力资源" data-owner="马帅" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">完成盘点人力投入项目情况，配合转型成长计划安排人员项目落位</td>
+                <td>马帅</td>
+                <td>2026-07-05</td>
+                <td>人力资源</td>
+                <td>人力投入盘点与项目落位方案闭环</td>
+                <td></td>
+            </tr>
+            
+            <tr data-pd="false" data-project="技术债" data-owner="马帅" data-priority="high">
+                <td><input type="checkbox" disabled></td>
+                <td><span class="badge priority-high">高</span></td>
+                <td class="todo-title">完成技术债专项方案确认，进行历史债盘点，制定不同类型历史债对应跟踪修复方案</td>
+                <td>马帅</td>
+                <td>2026-07-05</td>
+                <td>技术债</td>
+                <td>技术债专项方案闭环</td>
+                <td></td>
+            </tr>
+            
+            </tbody>
+        </table>
+        <script>
+        function filter(mode) {
+            const rows = document.querySelectorAll('.todo-table tbody tr');
+            document.getElementById('btn-all').classList.toggle('active', mode === 'all');
+            document.getElementById('btn-pd').classList.toggle('active', mode === 'pd');
+            document.getElementById('filter-project').value = '';
+            document.getElementById('filter-owner').value = '';
+            document.getElementById('filter-priority').value = '';
+            rows.forEach(r => r.classList.toggle('hidden', mode === 'pd' && r.dataset.pd !== 'true'));
+        }
+        function filterGroup() {
+            const project = document.getElementById('filter-project').value;
+            const owner = document.getElementById('filter-owner').value;
+            const priority = document.getElementById('filter-priority').value;
+            document.getElementById('btn-all').classList.remove('active');
+            document.getElementById('btn-pd').classList.remove('active');
+            document.querySelectorAll('.todo-table tbody tr').forEach(r => {
+                const ok = (!project || r.dataset.project === project) &&
+                           (!owner || r.dataset.owner === owner) &&
+                           (!priority || r.dataset.priority === priority);
+                r.classList.toggle('hidden', !ok);
+            });
+        }
+        </script>
+        
     </main>
 </body>
 </html>
