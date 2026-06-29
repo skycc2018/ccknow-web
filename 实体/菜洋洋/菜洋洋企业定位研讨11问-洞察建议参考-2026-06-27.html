@@ -3,449 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>菜洋洋企业定位研讨11问（洞察+建议+参考） - ccknow</title>
+    <title>{title} - ccknow</title>
     <style>
-        :root {
-            --sidebar-width: 300px;
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --text: #0f172a;
-            --text-secondary: #64748b;
-            --border: #e2e8f0;
-            --primary: #2563eb;
-            --primary-light: #eff6ff;
-            --primary-dark: #1d4ed8;
-            --accent: #7c3aed;
-            --radius: 12px;
-            --shadow: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.02);
-        }
-        [data-theme="dark"] {
-            --bg: #0f172a;
-            --surface: #1e293b;
-            --text: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --border: #334155;
-            --primary: #60a5fa;
-            --primary-light: rgba(96,165,250,0.12);
-            --primary-dark: #93c5fd;
-            --accent: #a78bfa;
-            --shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            display: flex;
-            min-height: 100vh;
-            line-height: 1.65;
-            transition: background 0.3s, color 0.3s;
-        }
-        .topbar {
-            position: fixed;
-            top: 0;
-            left: var(--sidebar-width);
-            right: 0;
-            height: 56px;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 28px;
-            z-index: 100;
-            box-shadow: var(--shadow);
-        }
-        .breadcrumbs { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
-        .breadcrumbs a { color: var(--text-secondary); }
-        .breadcrumbs a:hover { color: var(--primary); }
-        .topbar-actions { display: flex; align-items: center; gap: 12px; }
-        .search-box {
-            position: relative;
-            width: 260px;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 8px 12px 8px 34px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            background: var(--bg);
-            color: var(--text);
-            font-size: 13px;
-            outline: none;
-        }
-        .search-box input:focus { border-color: var(--primary); }
-        .search-box::before {
-            content: "🔍";
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 12px;
-            opacity: 0.6;
-        }
-        .search-results {
-            position: absolute;
-            top: 44px;
-            right: 0;
-            width: 320px;
-            max-height: 360px;
-            overflow-y: auto;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            display: none;
-            z-index: 200;
-        }
-        .search-results.active { display: block; }
-        .search-results a {
-            display: block;
-            padding: 10px 14px;
-            color: var(--text);
-            border-bottom: 1px solid var(--border);
-            font-size: 13px;
-        }
-        .search-results a:hover { background: var(--bg); }
-        .search-results a:last-child { border-bottom: none; }
-        .icon-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--bg);
-            color: var(--text);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: all 0.15s;
-        }
-        .icon-btn:hover { background: var(--primary-light); border-color: var(--primary); }
-        .sidebar {
-            width: var(--sidebar-width);
-            background: var(--surface);
-            border-right: 1px solid var(--border);
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            overflow-y: auto;
-            padding: 20px 0 80px;
-            z-index: 90;
-            box-shadow: var(--shadow);
-        }
-        .sidebar-header {
-            padding: 0 18px 14px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 12px;
-        }
-        .sidebar-header a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .sidebar-header .home {
-            font-size: 12px;
-            color: var(--text-secondary);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-top: 8px;
-            padding: 4px 10px;
-            background: var(--bg);
-            border-radius: var(--radius);
-            font-weight: 500;
-        }
-        .nav-tools {
-            padding: 0 18px 10px;
-            display: flex;
-            gap: 8px;
-        }
-        .nav-tools button {
-            font-size: 11px;
-            padding: 4px 10px;
-            border: 1px solid var(--border);
-            background: var(--bg);
-            border-radius: 6px;
-            cursor: pointer;
-            color: var(--text-secondary);
-        }
-        .nav-tools button:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
-        .nav ul {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-        }
-        .nav li { margin: 1px 0; }
-        .nav li.folder > span.folder-toggle {
-            color: var(--text-secondary);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.4px;
-            padding: 8px 18px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            user-select: none;
-            transition: color 0.15s;
-        }
-        .nav li.folder > span.folder-toggle:hover { color: var(--primary); }
-        .nav li.folder > span .folder-icon {
-            display: inline-block;
-            width: 12px;
-            color: var(--text-secondary);
-            font-size: 10px;
-            transition: transform 0.2s;
-        }
-        .nav li.folder.collapsed > span .folder-icon { transform: rotate(-90deg); }
-        .nav li.folder.collapsed > ul { display: none; }
-        .nav li a {
-            display: block;
-            padding: 6px 18px 6px 34px;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 13.5px;
-            border-radius: 0 8px 8px 0;
-            margin-right: 10px;
-            transition: all 0.15s;
-        }
-        .nav li a:hover { background: var(--bg); color: var(--primary); }
-        .nav li.active > a {
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-        .content {
-            margin-left: var(--sidebar-width);
-            margin-top: 56px;
-            flex: 1;
-            padding: 32px 56px 80px;
-            max-width: 900px;
-            background: var(--surface);
-            min-height: calc(100vh - 56px);
-        }
-        .content h1 {
-            font-size: 34px;
-            font-weight: 800;
-            margin: 0 0 14px;
-            letter-spacing: -0.8px;
-            line-height: 1.2;
-        }
-        .content h2 {
-            font-size: 23px;
-            font-weight: 700;
-            margin: 40px 0 16px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-        }
-        .content h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 28px 0 12px;
-        }
-        .content p { margin: 14px 0; color: var(--text-secondary); }
-        .content a { color: var(--primary); }
-        .content a:hover { color: var(--primary-dark); }
-        .content a.wikilink { color: var(--accent); font-weight: 500; }
-        .content a.wikilink:hover { text-decoration: underline; }
-        .content a.missing { color: var(--text-secondary); text-decoration: line-through; opacity: 0.6; }
-        .content code {
-            background: var(--bg);
-            padding: 2px 7px;
-            border-radius: 5px;
-            font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 0.88em;
-            color: #db2777;
-        }
-        .content pre {
-            background: #1e293b;
-            color: #f8fafc;
-            padding: 20px;
-            border-radius: var(--radius);
-            overflow-x: auto;
-            font-size: 14px;
-            box-shadow: var(--shadow);
-        }
-        .content pre code { background: transparent; color: inherit; padding: 0; }
-        .content blockquote {
-            border-left: 4px solid var(--primary);
-            background: var(--primary-light);
-            padding: 16px 20px;
-            border-radius: 0 var(--radius) var(--radius) 0;
-            margin: 18px 0;
-        }
-        .content blockquote p { margin: 0; color: inherit; }
-        .content table {
-            border-collapse: separate;
-            border-spacing: 0;
-            width: 100%;
-            margin: 24px 0;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            font-size: 14px;
-        }
-        .content th, .content td {
-            border: none;
-            border-bottom: 1px solid var(--border);
-            padding: 12px 16px;
-            text-align: left;
-        }
-        .content th {
-            background: var(--bg);
-            font-weight: 700;
-            font-size: 12px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-        .content tr:last-child td { border-bottom: none; }
-        .content tr:hover td { background: var(--bg); }
-        .back-to-top {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--text-secondary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s;
-        }
-        .back-to-top.visible { opacity: 1; visibility: visible; }
-        .back-to-top:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        @media (max-width: 768px) {
-            .sidebar { display: none; }
-            .topbar { left: 0; }
-            .content { margin-left: 0; padding: 24px; }
-            .search-box { display: none; }
-        }
+        
+:root {
+    --sidebar-width: 300px;
+    --topbar-height: 56px;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface-2: #f1f5f9;
+    --text: #0f172a;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --primary-dark: #1d4ed8;
+    --accent: #7c3aed;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.02);
+    --shadow-lg: 0 10px 40px rgba(15,23,42,0.08);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+[data-theme="dark"] {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-2: #27354c;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --primary: #60a5fa;
+    --primary-light: rgba(96,165,250,0.12);
+    --primary-dark: #93c5fd;
+    --accent: #a78bfa;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.4);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--bg);
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.65;
+    transition: background 0.3s, color 0.3s;
+}
+.topbar {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    height: var(--topbar-height);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+.breadcrumbs { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.breadcrumbs a { color: var(--text-secondary); text-decoration: none; }
+.breadcrumbs a:hover { color: var(--primary); }
+.breadcrumbs .sep { opacity: 0.5; }
+.topbar-actions { display: flex; align-items: center; gap: 12px; }
+.search-box { position: relative; width: 280px; }
+.search-box input {
+    width: 100%;
+    padding: 9px 14px 9px 38px;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+    transition: all 0.15s;
+}
+.search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+.search-box::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 14px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+.search-box::after {
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: calc(50% + 5px);
+    width: 2px; height: 7px;
+    background: var(--text-secondary);
+    transform: rotate(-45deg);
+    opacity: 0.6;
+}
+.search-results {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 360px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    z-index: 200;
+    padding: 6px;
+}
+.search-results.active { display: block; }
+.search-results a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    text-decoration: none;
+}
+.search-results a:hover { background: var(--bg); }
+.search-results a .path { font-size: 11px; color: var(--text-secondary); }
+.search-results .empty { padding: 20px; text-align: center; color: var(--text-secondary); font-size: 13px; }
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.15s;
+}
+.icon-btn:hover { background: var(--primary-light); border-color: var(--primary); }
+.mobile-menu-btn { display: none; }
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 20px 0 100px;
+    z-index: 90;
+    box-shadow: var(--shadow);
+}
+.sidebar-header {
+    padding: 0 18px 14px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+}
+.sidebar-header a.brand {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.sidebar-header .brand-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+}
+.sidebar-header .home {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 5px 12px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-decoration: none;
+}
+.nav-tools {
+    padding: 0 18px 12px;
+    display: flex;
+    gap: 8px;
+}
+.nav-tools button {
+    font-size: 11px;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 600;
+    transition: all 0.15s;
+}
+.nav-tools button:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+.nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.nav li { margin: 1px 0; }
+.nav li.folder > span.folder-toggle {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 8px 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s;
+    border-radius: 0 8px 8px 0;
+    margin-right: 10px;
+}
+.nav li.folder > span.folder-toggle:hover { color: var(--primary); background: var(--bg); }
+.nav li.folder > span .folder-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; height: 16px;
+    color: var(--text-secondary);
+    font-size: 10px;
+    transition: transform 0.2s;
+}
+.nav li.folder.collapsed > span .folder-icon { transform: rotate(-90deg); }
+.nav li.folder.collapsed > ul { display: none; }
+.nav li a {
+    display: flex;
+    align-items: center;
+    padding: 7px 18px 7px 34px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13.5px;
+    border-radius: 0 8px 8px 0;
+    margin-right: 10px;
+    transition: all 0.15s;
+}
+.nav li a:hover { background: var(--bg); color: var(--primary); }
+.nav li.active > a {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+.nav li.active > a::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.content {
+    margin-left: var(--sidebar-width);
+    margin-top: var(--topbar-height);
+    flex: 1;
+    padding: 40px 64px 100px;
+    max-width: 960px;
+    background: var(--surface);
+    min-height: calc(100vh - var(--topbar-height));
+}
+.content h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 0 18px;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+.content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 44px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+.content h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 30px 0 14px;
+}
+.content p { margin: 16px 0; color: var(--text-secondary); }
+.content a { color: var(--primary); text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content a.wikilink { color: var(--accent); font-weight: 600; }
+.content a.wikilink:hover { text-decoration: underline; }
+.content a.missing { color: var(--text-secondary); text-decoration: line-through; opacity: 0.6; cursor: not-allowed; }
+.content code {
+    background: var(--surface-2);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    color: #db2777;
+}
+.content pre {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 22px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-size: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.content pre code { background: transparent; color: inherit; padding: 0; }
+.content blockquote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 18px 22px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 20px 0;
+}
+.content blockquote p { margin: 0; color: inherit; }
+.content ul, .content ol { padding-left: 24px; }
+.content li { margin: 8px 0; }
+.content table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin: 26px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    font-size: 14px;
+}
+.content th, .content td {
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    text-align: left;
+}
+.content th {
+    background: var(--bg);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+.content tr:last-child td { border-bottom: none; }
+.content tr:hover td { background: var(--bg); }
+.back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    z-index: 80;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; }
+.back-to-top:hover { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-2px); }
+@media (max-width: 768px) {
+    :root { --sidebar-width: 0; }
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+        width: 280px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .topbar { left: 0; padding: 0 16px; }
+    .content { margin-left: 0; padding: 28px 20px 80px; }
+    .search-box { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .breadcrumbs { display: none; }
+}
+
+        {extra_css}
     </style>
 </head>
 <body>
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a href="../../%E9%A6%96%E9%A1%B5.html">ccknow</a>
-            <a class="home" href="../../%E9%A6%96%E9%A1%B5.html">🏠 首页</a>
+            <a class="brand" href="{home_url}"><span class="brand-icon">C</span> ccknow</a>
+            <a class="home" href="{home_url}">🏠 返回首页</a>
         </div>
         <div class="nav-tools">
             <button onclick="expandAll()">展开全部</button>
             <button onclick="collapseAll()">折叠全部</button>
         </div>
         <nav class="nav">
-            <ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>06 课程</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AINative实战</span><ul><li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-1.html">&quot;AI Native 实战课程 - Day 1: AI Enhanced vs AI Native&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-2.html">&quot;AI Native 实战课程 - Day 2: 第二章 - 行业拐点&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-3.html">&quot;AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-4.html">&quot;AI Native 实战课程 - Day 4: 第四章 - 上下文即状态&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-5.html">&quot;AI Native 实战课程 - Day 5: 第五章 - 生成即服务&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-6.html">&quot;AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent&quot;</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>99 附件</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>模板</span><ul><li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/PRD-%E6%A8%A1%E6%9D%BF.html">PRD 文档模板</a></li>
-<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%A4%8D%E7%9B%98%E6%A8%A1%E6%9D%BF.html">&#x27;{{title}} 复盘&#x27;</a></li>
-<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AD%A6%E4%B9%A0%E6%A8%A1%E6%9D%BF.html">&#x27;{{title}}&#x27;</a></li>
-<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D%E6%97%A5%E5%BF%97%E6%A8%A1%E6%9D%BF.html">对话反思日志模板</a></li></ul></li></ul></li>
-<li class=""><a href="../../SCHEMA.html">Wiki Schema</a></li>
-<li class=""><a href="../../index.html">Wiki Index</a></li>
-<li class=""><a href="../../log.html">Wiki Log</a></li>
-<li class=""><a href="../../%E9%A6%96%E9%A1%B5.html">程峰的 Obsidian 知识库</a></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>_persons</span><ul><li class=""><a href="../../_persons/ccknow.html">ccknow</a></li>
-<li class=""><a href="../../_persons/%E5%9B%9B%E6%B4%8B.html">四洋</a></li>
-<li class=""><a href="../../_persons/%E6%83%A0%E5%BC%80%E5%8F%91.html">惠开发</a></li>
-<li class=""><a href="../../_persons/%E6%BB%A1%E6%BB%A1.html">满满</a></li>
-<li class=""><a href="../../_persons/%E9%BE%99%E9%BE%99.html">龙龙</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>原始资料</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>articles</span><ul><li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/articles/%E8%80%81openclaw20260621%E7%9A%84%E8%AE%B0%E5%BF%86%E6%96%87%E4%BB%B6.html">老OpenClaw 2026-06-21 的记忆文件</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>会议</span><ul><li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/AI%E5%90%88%E8%A7%84%E4%B8%8E%E8%A1%8C%E4%B8%9A%E7%BB%8F%E9%AA%8C-%E5%9C%86%E6%A1%8C%E5%8F%91%E8%A8%80%E7%B4%A0%E6%9D%90-2026-06-27.html">AI合规与行业经验-圆桌发言素材</a></li>
-<li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/%E4%BA%A7%E5%93%81%E5%91%A8%E4%BC%9A_%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9_%E5%BE%85%E5%8A%9E_%E6%9C%BA%E4%BC%9A%E7%82%B9_20260526.html">产品周会核心要点 / 待办 / 机会点</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>实体</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI商机雷达</span><ul><li class=""><a href="../AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-%E7%A7%BB%E5%8A%A8%E7%AB%AFFigma%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.html">AI商机雷达-移动端Figma设计规范</a></li>
-<li class=""><a href="../AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CAI%20Coding%E5%BC%80%E5%8F%91%E6%8F%90%E7%A4%BA%E8%AF%8D.html">AI商机雷达｜AI Coding开发提示词</a></li>
-<li class=""><a href="../AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CFigma%20AI%E8%AE%BE%E8%AE%A1%E6%8F%90%E7%A4%BA%E8%AF%8D.html">AI商机雷达｜Figma AI设计提示词</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>OpenClaw</span><ul><li class=""><a href="../OpenClaw/OpenClaw%20%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3.html">OpenClaw 架构设计文档</a></li></ul></li>
-<li class=""><a href="../1%E5%8F%B7%E6%A5%BC%E6%94%B9%E9%80%A0%E5%B7%A5%E7%A8%8B-%E5%B7%A5%E7%A8%8B%E9%87%8F%E6%B8%85%E5%8D%95.html">1#楼改造工程（安装）- 工程量清单</a></li>
-<li class=""><a href="../AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-PRD.html">AI商机雷达-PRD</a></li>
-<li class=""><a href="../AI%E5%BA%94%E7%94%A8%E5%8F%8A%E5%9B%A2%E9%98%9F%E7%AE%A1%E7%90%86%E6%8E%A2%E8%AE%A8%E4%BC%9A_%E7%BA%AA%E8%A6%81.html">AI应用及团队管理探讨会</a></li>
-<li class=""><a href="../AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE.html">AI能力体系建设</a></li>
-<li class=""><a href="../CIO%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87%E4%B8%93%E9%A1%B9%E8%AE%A1%E5%88%92-2026-06-21.html">CIO 技能提升专项计划</a></li>
-<li class=""><a href="../ShareLLM%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92-2026-06-21.html">ShareLLM 项目开发计划</a></li>
-<li class=""><a href="../_%E5%AE%A1%E6%9F%A5%E6%8A%A5%E5%91%8A%E7%B4%A2%E5%BC%95.html">mall-saas 代码审查报告索引</a></li>
-<li class=""><a href="../%E5%A4%9A%E7%A7%9F%E6%88%B7SaaS%E5%95%86%E5%9F%8E%E5%B9%B3%E5%8F%B0-%E4%BA%A7%E5%93%81%E5%8A%9F%E8%83%BD%E6%96%87%E6%A1%A3.html">多租户SaaS商城平台 - 产品功能文档</a></li>
-<li class=""><a href="../%E5%B2%97%E4%BD%8DJD%E8%AF%84%E5%AE%A1%E4%B8%8ESlogan%E8%AE%BE%E8%AE%A1-2026-05-29.html">岗位JD评审与Slogan设计</a></li>
-<li class=""><a href="../%E6%8A%80%E6%9C%AF%E6%B2%9F%E9%80%9A.html">技术沟通</a></li>
-<li class=""><a href="../%E7%A8%8B%E5%B7%9D%20AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88%20-%20%E5%BE%85%E5%8A%9E%E6%80%BB%E8%A1%A8%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5.html">程川 AI能力体系建设方案 - 待办总表与执行策略</a></li>
-<li class=""><a href="../%E7%AE%A1%E7%90%86%E5%B1%82%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E6%8F%90%E5%8D%87%E6%96%B9%E6%A1%88.html">管理层数字化素养提升方案（数据驱动决策专项）</a></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>研发体系</span><ul><li class=""><a href="../%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB/%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88.html">研发体系建设方案</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>网店运营实训平台</span><ul><li class=""><a href="../%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-PRD.html">网店运营与推广综合实训平台 PRD</a></li>
-<li class=""><a href="../%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-%E4%BA%BA%E5%91%98%E6%8A%95%E5%85%A5%E6%8E%92%E6%9C%9F.html">网店运营与推广综合实训平台人员投入排期</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>菜洋洋</span><ul><li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%20OS%20%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE.html">菜洋洋 AI OS 系统架构图</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%E9%80%89%E5%93%81%E5%BC%95%E6%93%8E%20PRD.html">菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E5%BE%85%E5%8A%9E-2026-06-29.html">菜洋洋-待办-2026-06-29</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-PRD.html">菜洋洋-数据驱动的餐饮供应链操作系统-PRD</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8BAIOS-%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%BB%BA%E8%AE%BE%E9%9C%80%E6%B1%82%E6%A2%B3%E7%90%86.html">菜洋洋AIOS-数据基础建设需求梳理</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8BAI%E5%8E%9F%E7%94%9F%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%92.html">菜洋洋AI原生组织架构调整规划</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8BSaaS%E5%95%86%E5%9F%8E-%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88-v1.0.html">菜洋洋 SaaS 商城 — 管理后台设计方案</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%B8%8A%E6%96%B0%E6%96%B9%E6%A1%88%E5%8C%85_PRD_V1.0.html">菜洋洋《上新方案包》产品PRD（V1.0）</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E5%88%9D%E7%89%88%E5%BE%85%E5%AE%8C%E5%96%84-2026-06-10.html">菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E8%80%81%E4%BF%A1%E8%AF%84%E5%AE%A1-2026-06-22.html">菜洋洋云星空旗舰版项目业务蓝图——老信评审</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8-%E6%80%9D%E8%B7%AF%E5%87%86%E5%A4%87-2026-06-25.html">菜洋洋企业定位研讨思路准备（Q1-Q6 重点）</a></li>
-<li class="active"><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A811%E9%97%AE-%E6%B4%9E%E5%AF%9F%E5%BB%BA%E8%AE%AE%E5%8F%82%E8%80%83-2026-06-27.html">菜洋洋企业定位研讨11问（洞察+建议+参考）</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8%E4%BC%9A%E5%8F%91%E8%A8%80%E7%A8%BF-2026-06-27.html">菜洋洋企业定位研讨会发言稿</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%20AI%20OS%20%E6%BC%94%E8%BF%9B%E8%B7%AF%E7%BA%BF%E4%B8%8E%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html">菜洋洋商城 → AI OS 演进路线与架构方案</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5PRD.html">菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5%E8%AF%84%E5%AE%A1-2026-05-29.html">菜洋洋商城战略评审与建议方案</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%B2%97%E4%BD%8D%E8%AF%B4%E6%98%8E%E4%B9%A6%E8%AF%84%E5%AE%A1%E6%8A%A5%E5%91%8A.html">菜洋洋产研团队岗位说明书评审报告</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E6%95%B0%E6%99%BA%E4%B8%AD%E5%BF%83%E7%BB%84%E7%BB%87%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90.html">菜洋洋产研团队组织架构与数智中心定位分析</a></li>
-<li class=""><a href="%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%9A%E5%8A%A1%E5%AF%B9%E6%8E%A5%E4%BA%A4%E6%B5%81%E4%BC%9A-20260526.html">餐饮供应链业务对接交流会议记录</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>对比</span><ul><li class=""><a href="../../%E5%AF%B9%E6%AF%94/AI%20Coding%20vs%20Vibe%20Coding%20%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90.html">AI Coding vs Vibe Coding 对比分析</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>日志</span><ul><li class=""><a href="../../%E6%97%A5%E5%BF%97/2026-05-28%20%E6%AF%8F%E6%97%A5%E5%8F%8D%E6%80%9D.html">2026-05-28 每日反思</a></li>
-<li class=""><a href="../../%E6%97%A5%E5%BF%97/2026-05-28-%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D.html">对话反思日志 - 2026-05-28</a></li>
-<li class=""><a href="../../%E6%97%A5%E5%BF%97/20260601%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A1%B9.html">20260601重要事项</a></li>
-<li class=""><a href="../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E-2026-06-29.html">待办-2026-06-29</a></li>
-<li class=""><a href="../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E%E7%B4%A2%E5%BC%95.html">待办索引</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>查询</span><ul><li class=""><a href="../../%E6%9F%A5%E8%AF%A2/AI%E9%80%89%E5%93%81%E6%8E%A8%E5%93%81%E4%BA%A7%E5%93%81%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A-2026-05-29.html">AI 选品推品产品分析报告 &amp; PRD</a></li>
-<li class=""><a href="../../%E6%9F%A5%E8%AF%A2/%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84%E5%93%81%E7%B1%BB%E5%93%81%E7%89%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.html">大众点评品类品牌数据分析报告</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>概念</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI Native</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E6%8A%A5%E5%91%8A.html">AI Native 深度报告</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0.html">AI Native 深度解析：从概念到落地</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E4%B9%A6%E7%B1%8D%E8%A7%84%E5%88%92.html">《AI Native：从概念到落地》</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%B8%80%E7%AB%A0.html">第一章：AI Enhanced vs AI Native</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0.html">第二章：行业拐点</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI培训</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20HR%EF%BC%9A%E6%8B%9B%E8%81%98JD%E7%AE%80%E5%8E%86%E5%88%86%E6%9E%90%E7%BB%A9%E6%95%88%E8%BE%85%E5%8A%A9.html">AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E4%BA%A7%E5%93%81%EF%BC%9APRD%E5%8E%9F%E5%9E%8BDemo.html">AI岗位培训课件 - 产品：PRD→原型→Demo</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E6%95%B0%E6%8D%AE%E7%A0%94%E5%8F%91%EF%BC%9AAI%20Coding%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.html">AI岗位培训课件 - 数据/研发：AI Coding/数据处理</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E7%AE%A1%E7%90%86%E5%B1%82%EF%BC%9A%E7%94%A8AI%E5%81%9A%E7%BB%8F%E8%90%A5%E5%86%B3%E7%AD%96.html">AI岗位培训课件 - 管理层：用AI做经营决策</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E8%BF%90%E8%90%A5%EF%BC%9A%E6%B4%BB%E5%8A%A8%E6%96%B9%E6%A1%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">AI岗位培训课件 - 运营：活动方案/数据分析</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E9%94%80%E5%94%AE%EF%BC%9A%E5%AE%A2%E6%88%B7%E6%B4%9E%E5%AF%9F%E8%B7%9F%E8%BF%9B%E8%AF%9D%E6%9C%AF.html">AI岗位培训课件 - 销售：客户洞察/跟进话术</a></li></ul></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/hermes-skills.html">Hermes Skill 索引与触发机制</a></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>协作规范</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83/AI%E5%8D%8F%E4%BD%9C%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99.html">AI协作优化规则</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>学习资源</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E5%B7%A5%E5%85%B7%E5%88%86%E5%B1%82%E8%87%AA%E5%AD%A6%E8%A7%86%E9%A2%91%E8%B5%84%E6%BA%90%E8%A1%A8.html">AI工具分层自学视频资源表</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E5%9B%BE.html">AI数字化素养学习路径图</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/CIO%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92.html">CIO 持续学习计划</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/Prompt%E6%A8%A1%E6%9D%BF%E5%BA%93.html">Prompt 模板库</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html">代码规范</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E5%B7%A5%E5%85%B7.html">工具</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>简历库</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/README.html">README</a></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>模板</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/interview-evaluation.html">面试评估表</a></li>
-<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/jd-match-matrix.html">JD 匹配矩阵</a></li>
-<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/star-answer.html">STAR 回答记录表</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>面试分析</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E4%BA%A7%E5%93%81%E5%89%AF%E6%80%BB%E7%9B%91-%E9%9D%A2%E8%AF%95%E9%A2%98.html">C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）</a></li>
-<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E6%95%B0%E5%AD%97%E5%8C%96%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86-%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90.html">C00004825-朱宇尧-数字化产品经理 — 面试分析</a></li></ul></li></ul></li></ul>
+            <ul>{nav}</ul>
         </nav>
     </aside>
     <header class="topbar">
-        <div class="breadcrumbs"><a href="../../%E9%A6%96%E9%A1%B5.html">首页</a> / <span>实体</span> / <span>菜洋洋</span> / <span>菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27</span></div>
+        <button class="icon-btn mobile-menu-btn" onclick="toggleSidebar()" title="菜单">☰</button>
+        <div class="breadcrumbs">{breadcrumbs}</div>
         <div class="topbar-actions">
             <div class="search-box">
                 <input type="text" id="search" placeholder="搜索页面..." oninput="searchPages(this.value)" onfocus="showSearch()" onblur="hideSearchDelayed()">
@@ -455,285 +437,13 @@
         </div>
     </header>
     <main class="content">
-<h1 id="11">菜洋洋企业定位研讨11问（洞察+建议+参考）</h1>
-<blockquote>
-<p><strong>来源</strong>：2026年6月内部研讨工作坊 PPT（分享版）
-<strong>核心价值</strong>：从访谈洞察到解决思路建议，系统性回答"我们是谁、为何存在、要去哪、凭什么赢、如何被信任"五个命题
-<strong>与一页版的关系</strong>：本文档是一页版的"完整版本"，补齐了 信任资产、对外口径、危机防线、雇主品牌等不可或缺的维度</p>
-</blockquote>
-<hr />
-<h2 id="_1">一、研讨总框架</h2>
-<p>11 个问题分为三大板块：</p>
-<h3 id="11_1">1.1 企业本质与核心价值</h3>
-<blockquote>
-<p>理清业务边界 / 定义不可替代性 / 锚定长期坚守 / 构建竞争壁墙</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>问题</th>
-<th>核心要义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Q1</td>
-<td>请用一句话定义菜洋洋的核心业务</td>
-</tr>
-<tr>
-<td>Q2</td>
-<td>菜洋洋的存在解决了什么行业痛点？</td>
-</tr>
-<tr>
-<td>Q3</td>
-<td>最值得长期坚守的目标和理念是什么？</td>
-</tr>
-<tr>
-<td>Q4</td>
-<td>最难以被复制的独特性优势是什么？</td>
-</tr>
-</tbody>
-</table>
-<h3 id="12">1.2 社会角色与未来愿景</h3>
-<blockquote>
-<p>描绘成功画面 / 定义成长逻辑 / 精准生态位置</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>问题</th>
-<th>核心要义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Q5</td>
-<td>描绘菜洋洋未来成功的具体样子</td>
-</tr>
-<tr>
-<td>Q6</td>
-<td>在产业生态中希望成为何种角色？</td>
-</tr>
-</tbody>
-</table>
-<h3 id="13">1.3 普遍共识与信任资产</h3>
-<blockquote>
-<p>对外口径 / 雇主品牌 / 信任资产 / 客户体验 / 危机防线</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>问题</th>
-<th>核心要义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Q7</td>
-<td>如何统一对外口径</td>
-</tr>
-<tr>
-<td>Q8</td>
-<td>如何建设雇主品牌</td>
-</tr>
-<tr>
-<td>Q9</td>
-<td>如何建设信任资产</td>
-</tr>
-<tr>
-<td>Q10</td>
-<td>如何积累客户体验</td>
-</tr>
-<tr>
-<td>Q11</td>
-<td>如何建立危机防线</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="q1-q4">二、Q1-Q4：企业本质与核心价值</h2>
-<h3 id="q1">Q1：请用一句话定义菜洋洋的核心业务</h3>
-<p><strong>访谈洞察</strong>：
-- 多种定位并存：创始人锚定"餐饮产业供应链操作系统"，战略部门说是"冻品食材B2B贸易平台"，线下部门说"本地食材供应链服务商"
-- 自主品牌制造身份待定：不做C端品牌是共识，但"有产品的平台"还是"纯平台"悬而未决
-- 能力自评与客户认知巨大偏差：创始人高度重视的数字化优势，各部门沟通中鲜有提到</p>
-<p><strong>候选方向</strong>：
-- 选择一：餐饮界的"阿里巴巴"（纯社会服务平台）
-- 选择二：餐饮供应链的"屈臣氏"（平台+自主品牌）
-- 选择三：餐饮经营能力服务商，让中小餐饮也拥有连锁品牌的经营能力
-- 选择四：中餐标准化能力运营商，像 Shopify 那样从具体问题切入，逐步成为经营基座</p>
-<p><strong>关键判断</strong>：菜洋洋的核心业务不是"卖什么"，而是"让小B餐饮怎么更好地生意"。</p>
-<hr />
-<h3 id="q2">Q2：菜洋洋的存在解决了什么行业痛点？</h3>
-<p><strong>访谈洞察</strong>：
-- 对小B餐饮客户："不懂经营者的外脑"和"供应不稳者的压舱石"
-- 对中B餐饮客户：期待成功但仍需验证的营销方案
-- 对上游工厂："把零散小B变成稳定大客户"的转换器
-- 对行业社会：餐饮连锁化的"专业能力替代者"</p>
-<p><strong>候选方向</strong>：
-- 窄而深："小餐饮生存基础设施"
-- 宽而高："餐饮标准化普惠化的推进器"</p>
-<p><strong>关键判断</strong>：菜洋洋卖的不是食材，而是"替客户分担了选品风险和供应链低效风险"。</p>
-<hr />
-<h3 id="q3">Q3：最值得长期坚守的目标和理念是什么：</h3>
-<p><strong>访谈洞察</strong>：
-- 创始人信仰"效率升级"是一切正当性的源泉
-- 团队向心力是"做难而正确之事"
-- 各部门正能量内核统一于"帮客户赢"</p>
-<p><strong>建议</strong>：
-- 把"效率提升"从创始人语录升级为公司纲领
-- 把"长期主义"从情怀变成制度底线（用"边界清单"保护信仰）</p>
-<p><strong>关键判断</strong>：菜洋洋走到今天靠的不是卷低价，而是替小B解决了一部分他们承不住的质量标准和选品能力。</p>
-<hr />
-<h3 id="q4">Q4：最难以被复制的独特性优势是什么？</h3>
-<p><strong>访谈洞察</strong>：
-1. <strong>自主品牌+全直营仓配</strong>的重资产组合
-2. <strong>解决方案</strong>停留在理念领先的组织设置
-3. <strong>品质与信任</strong>维度优势的"有实无名"
-4. <strong>数字化能力</strong>尚未被重视及存在阐释难度
-5. <strong>不赚快钱</strong>的清醒最难得</p>
-<p><strong>建议</strong>：
-- 把"直营仓配+自主品牌严选+品质标准"从成本叙事升级为壁垒叙事
-- 把"解决方案"升格为对外招牌——"爆品选品力"成为第一推力</p>
-<p><strong>关键判断</strong>：壁垒不是单点技术，而是"重资产仓配+严选能力+解决方案+品质信誉+数字化"的组合。</p>
-<hr />
-<h2 id="q5-q6">三、Q5-Q6：社会角色与未来愿景</h2>
-<h3 id="q5">Q5：描绘菜洋洋未来成功的具体样子</h3>
-<p><strong>访谈洞察</strong>：
-- 创始人心中："操作系统级的嵌入"，成功的刻度不是"我们多大"，而是"不用我们不行"
-- 合伙人/战略部："让小店享受万店连锁级供应链平台的能力"，"帮我赚了钱"
-- 多部门共识："离不开"胜过"看着很大"</p>
-<p><strong>成功画像</strong>：</p>
-<blockquote>
-<p>菜洋洋成为餐饮开店的默认动作，像水电一样的基础设施。</p>
-</blockquote>
-<p><strong>里程碑候选</strong>：
-- 规模型：XX万门店接入、X个大区次日达全覆盖
-- 心智型："餐饮老板第一推荐"</p>
-<hr />
-<h3 id="q6">Q6：在整个产业生态中，菜洋洋希望成为何种角色？</h3>
-<p><strong>访谈洞察</strong>：
-- 本质："我是来帮你做生意的"
-- 身份定位模糊可能让多方不讨好
-- 角色是被体验出来的，不是表达出来的</p>
-<p><strong>建议</strong>：
-- 明文承诺"菜洋洋永不自营餐厅"——写进品牌纲领
-- 定位为"开放但有主张的严选平台"——做标准制定者</p>
-<p><strong>关键判断</strong>：菜洋洋应该做产业生态的<strong>赋能者</strong>和<strong>严选仲裁者</strong>，而不是单纯的贸易商。</p>
-<hr />
-<h2 id="q7-q11">四、Q7-Q11：普遍共识与信任资产</h2>
-<h3 id="q7">Q7：如何统一对外口径？</h3>
-<p><strong>访谈洞察</strong>：
-- "各说各话"是发展阶段问题
-- "预制菜关联"不可避免
-- 各类复杂表述需要最朴素的一句话</p>
-<p><strong>建议</strong>：
-- 冻结一套"共识口径"，宁粗糙不分裂
-- 主动抢占"预制菜"叙事定义权</p>
-<hr />
-<h3 id="q8">Q8：如何建设雇主品牌？</h3>
-<p><strong>访谈洞察</strong>：
-- 跟大厂抢人只能拼"你在这儿参与改造多大的事+老板值不值得跟"
-- 创始人"方法论思考深度"是真资产但需要封装
-- 各部门骨干用脚投票在"事"上</p>
-<p><strong>建议</strong>：
-- 雇主品牌讲"你来负责改造万亿级落后产业的具体战役"
-- 堵"劣币驱逐良币"漏斗——把方法论翻译成明文绩效标准</p>
-<hr />
-<h3 id="q9">Q9：如何建设信任资产？</h3>
-<p><strong>访谈洞察</strong>：
-- 品质部门有标准但像"写了没人发布的白皮书"
-- B2B端信任不能靠广告砸
-- 信任建设还必须对内设客户准入红线</p>
-<p><strong>建议</strong>：
-- 启动"阳光供应链"计划——品质家底可扫码溯源
-- 主动结盟——联合餐饮协会发布团体标准
-- 设"客户准入红线"与公开召回机制</p>
-<hr />
-<h3 id="q10">Q10：如何通过员工日常工作积累客户体验？</h3>
-<p><strong>访谈洞察</strong>：
-- 一线销售行为与品牌承诺有些脱节
-- 送货是最高频物理触点，但目前只是"送货工"而非"品牌大使"
-- 解决方案方向正确，但影响力和能力还没跟上</p>
-<p><strong>建议</strong>：
-- 把"诚信"从道德要求变成销售动作标准——改推"菜单诊断"脚本
-- 把物流骑手从"送货工"升格为"品牌触点"</p>
-<hr />
-<h3 id="q11">Q11：如何建立危机防线？</h3>
-<p><strong>访谈洞察</strong>：
-- "小B道德事件"可能会连坐品牌
-- 品质刚性只有危机时能"调取证据"才最有用
-- 经营者/前台员工"硬刚/推诱"冲动需要制度对冲</p>
-<p><strong>建议</strong>：
-- 建立"黄金2小时"舆情响应 SOP
-- 预设"客户连坐隔离墙"——供货协议补危机条款</p>
-<hr />
-<h2 id="_2">五、研讨总结与下一步</h2>
-<h3 id="51">5.1 核心结论</h3>
-<p>11 个问题构成菜洋洋企业定位的完整思考框架：
-- 从"我是谁"到"客户为什么离不开我"——理清业务本质，定义不可替代性
-- 从"对内凝聚共识"到"对外建立信任"——统一口径表达，积累信任资产
-- 从"老板的理念"到"全员的宪章"——制度化的长期主义，可执行的操作标准</p>
-<h3 id="52">5.2 与一页版的差异</h3>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>一页版</th>
-<th>11问完整版</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>产业边界</td>
-<td>"预制食品产业"</td>
-<td>更倾向"餐饮产业"或"小B餐饮"</td>
-</tr>
-<tr>
-<td>竞争壁垒</td>
-<td>强调数据/AI</td>
-<td>强调直营仓配+自主品牌+品质+解决方案+数字化</td>
-</tr>
-<tr>
-<td>信任资产</td>
-<td>未涉及</td>
-<td>Q7-Q11 系统性覆盖</td>
-</tr>
-<tr>
-<td>平台vs品牌</td>
-<td>"不是卖预制菜"</td>
-<td>自主品牌身份待定，建议保持弹性</td>
-</tr>
-</tbody>
-</table>
-<h3 id="53">5.3 下一步行动</h3>
-<ol>
-<li>将11个问题的回答共识写入品牌纲领</li>
-<li>明确"一句话介绍"、"三个核心价值"、"差异化定位"</li>
-<li>制定对外口径手册与FAQ</li>
-<li>设计信任资产建设路线图（溯源、协会、品质、客户准入等）</li>
-<li>建立危机防线 SOP（黄金2小时响应、连坐隔离墙等）</li>
-</ol>
-<hr />
-<h2 id="_3">六、相关链接</h2>
-<ul>
-<li><a class="wikilink" href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8-%E6%80%9D%E8%B7%AF%E5%87%86%E5%A4%87-2026-06-25.html">菜洋洋企业定位研讨-思路准备-2026-06-25</a></li>
-<li><a class="wikilink" href="%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-PRD.html">菜洋洋-数据驱动的餐饮供应链操作系统-PRD</a></li>
-<li><a class="wikilink" href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5PRD.html">菜洋洋商城战略PRD</a></li>
-<li><a class="wikilink" href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5%E8%AF%84%E5%AE%A1-2026-05-29.html">菜洋洋商城战略评审-2026-05-29</a></li>
-<li><a class="wikilink" href="%E8%8F%9C%E6%B4%8B%E6%B4%8BAIOS-%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%BB%BA%E8%AE%BE%E9%9C%80%E6%B1%82%E6%A2%B3%E7%90%86.html">菜洋洋AIOS-数据基础建设需求梳理</a></li>
-<li><a class="wikilink" href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E6%95%B0%E6%99%BA%E4%B8%AD%E5%BF%83%E7%BB%84%E7%BB%87%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90.html">菜洋洋数智中心组织定位分析</a></li>
-<li><a class="wikilink" href="%E8%8F%9C%E6%B4%8B%E6%B4%8BAI%E5%8E%9F%E7%94%9F%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%92.html">菜洋洋AI原生组织架构调整规划</a></li>
-<li><a class="wikilink" href="%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%9A%E5%8A%A1%E5%AF%B9%E6%8E%A5%E4%BA%A4%E6%B5%81%E4%BC%9A-20260526.html">餐饮供应链业务对接交流会-20260526</a></li>
-<li><a class="wikilink" href="../%E5%B2%97%E4%BD%8DJD%E8%AF%84%E5%AE%A1%E4%B8%8ESlogan%E8%AE%BE%E8%AE%A1-2026-05-29.html">岗位JD评审与Slogan设计-2026-05-29</a></li>
-</ul>
-<hr />
-<p><em>整理时间：2026-06-27</em>
-<em>用途：菜洋洋企业定位战略研讨输出物</em></p>
+{body}
     </main>
     <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" id="back-to-top">↑</button>
     <script>
-        const searchIndex = [{"title": "Wiki Schema", "path": "SCHEMA.html"}, {"title": "程峰的 Obsidian 知识库", "path": "首页.html"}, {"title": "Wiki Log", "path": "log.html"}, {"title": "Wiki Index", "path": "index.html"}, {"title": "README", "path": "简历库/README.html"}, {"title": "面试评估表", "path": "简历库/模板/interview-evaluation.html"}, {"title": "STAR 回答记录表", "path": "简历库/模板/star-answer.html"}, {"title": "JD 匹配矩阵", "path": "简历库/模板/jd-match-matrix.html"}, {"title": "C00004825-朱宇尧-数字化产品经理 — 面试分析", "path": "简历库/面试分析/C00004825-朱宇尧-数字化产品经理-面试分析.html"}, {"title": "C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）", "path": "简历库/面试分析/C00004825-朱宇尧-产品副总监-面试题.html"}, {"title": "产品周会核心要点 / 待办 / 机会点", "path": "原始资料/会议/产品周会_核心要点_待办_机会点_20260526.html"}, {"title": "AI合规与行业经验-圆桌发言素材", "path": "原始资料/会议/AI合规与行业经验-圆桌发言素材-2026-06-27.html"}, {"title": "老OpenClaw 2026-06-21 的记忆文件", "path": "原始资料/articles/老openclaw20260621的记忆文件.html"}, {"title": "'{{title}}'", "path": "99 附件/模板/学习模板.html"}, {"title": "PRD 文档模板", "path": "99 附件/模板/PRD-模板.html"}, {"title": "'{{title}} 复盘'", "path": "99 附件/模板/复盘模板.html"}, {"title": "对话反思日志模板", "path": "99 附件/模板/对话反思日志模板.html"}, {"title": "\"AI Native 实战课程 - Day 4: 第四章 - 上下文即状态\"", "path": "06 课程/AINative实战/Day-4.html"}, {"title": "\"AI Native 实战课程 - Day 5: 第五章 - 生成即服务\"", "path": "06 课程/AINative实战/Day-5.html"}, {"title": "\"AI Native 实战课程 - Day 1: AI Enhanced vs AI Native\"", "path": "06 课程/AINative实战/Day-1.html"}, {"title": "\"AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent\"", "path": "06 课程/AINative实战/Day-6.html"}, {"title": "\"AI Native 实战课程 - Day 2: 第二章 - 行业拐点\"", "path": "06 课程/AINative实战/Day-2.html"}, {"title": "\"AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口\"", "path": "06 课程/AINative实战/Day-3.html"}, {"title": "AI能力体系建设", "path": "实体/AI能力体系建设.html"}, {"title": "1#楼改造工程（安装）- 工程量清单", "path": "实体/1号楼改造工程-工程量清单.html"}, {"title": "AI商机雷达-PRD", "path": "实体/AI商机雷达-PRD.html"}, {"title": "CIO 技能提升专项计划", "path": "实体/CIO技能提升专项计划-2026-06-21.html"}, {"title": "ShareLLM 项目开发计划", "path": "实体/ShareLLM项目开发计划-2026-06-21.html"}, {"title": "岗位JD评审与Slogan设计", "path": "实体/岗位JD评审与Slogan设计-2026-05-29.html"}, {"title": "技术沟通", "path": "实体/技术沟通.html"}, {"title": "程川 AI能力体系建设方案 - 待办总表与执行策略", "path": "实体/程川 AI能力体系建设方案 - 待办总表与执行策略.html"}, {"title": "管理层数字化素养提升方案（数据驱动决策专项）", "path": "实体/管理层数字化素养提升方案.html"}, {"title": "多租户SaaS商城平台 - 产品功能文档", "path": "实体/多租户SaaS商城平台-产品功能文档.html"}, {"title": "mall-saas 代码审查报告索引", "path": "实体/_审查报告索引.html"}, {"title": "AI应用及团队管理探讨会", "path": "实体/AI应用及团队管理探讨会_纪要.html"}, {"title": "研发体系建设方案", "path": "实体/研发体系/研发体系建设方案.html"}, {"title": "OpenClaw 架构设计文档", "path": "实体/OpenClaw/OpenClaw 架构设计文档.html"}, {"title": "菜洋洋AI原生组织架构调整规划", "path": "实体/菜洋洋/菜洋洋AI原生组织架构调整规划.html"}, {"title": "餐饮供应链业务对接交流会议记录", "path": "实体/菜洋洋/餐饮供应链业务对接交流会-20260526.html"}, {"title": "菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10", "path": "实体/菜洋洋/菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10.html"}, {"title": "菜洋洋产研团队组织架构与数智中心定位分析", "path": "实体/菜洋洋/菜洋洋数智中心组织定位分析.html"}, {"title": "菜洋洋云星空旗舰版项目业务蓝图——老信评审", "path": "实体/菜洋洋/菜洋洋云星空旗舰版项目业务蓝图-老信评审-2026-06-22.html"}, {"title": "菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS", "path": "实体/菜洋洋/菜洋洋商城战略PRD.html"}, {"title": "菜洋洋企业定位研讨会发言稿", "path": "实体/菜洋洋/菜洋洋企业定位研讨会发言稿-2026-06-27.html"}, {"title": "菜洋洋企业定位研讨11问（洞察+建议+参考）", "path": "实体/菜洋洋/菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27.html"}, {"title": "菜洋洋AIOS-数据基础建设需求梳理", "path": "实体/菜洋洋/菜洋洋AIOS-数据基础建设需求梳理.html"}, {"title": "菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD", "path": "实体/菜洋洋/菜洋洋 AI选品引擎 PRD.html"}, {"title": "菜洋洋-待办-2026-06-29", "path": "实体/菜洋洋/菜洋洋-待办-2026-06-29.html"}, {"title": "菜洋洋商城战略评审与建议方案", "path": "实体/菜洋洋/菜洋洋商城战略评审-2026-05-29.html"}, {"title": "菜洋洋《上新方案包》产品PRD（V1.0）", "path": "实体/菜洋洋/菜洋洋上新方案包_PRD_V1.0.html"}, {"title": "菜洋洋 AI OS 系统架构图", "path": "实体/菜洋洋/菜洋洋 AI OS 系统架构图.html"}, {"title": "菜洋洋产研团队岗位说明书评审报告", "path": "实体/菜洋洋/菜洋洋岗位说明书评审报告.html"}, {"title": "菜洋洋 SaaS 商城 — 管理后台设计方案", "path": "实体/菜洋洋/菜洋洋SaaS商城-管理后台设计方案-v1.0.html"}, {"title": "菜洋洋商城 → AI OS 演进路线与架构方案", "path": "实体/菜洋洋/菜洋洋商城 AI OS 演进路线与架构方案.html"}, {"title": "菜洋洋-数据驱动的餐饮供应链操作系统-PRD", "path": "实体/菜洋洋/菜洋洋-数据驱动的餐饮供应链操作系统-PRD.html"}, {"title": "菜洋洋企业定位研讨思路准备（Q1-Q6 重点）", "path": "实体/菜洋洋/菜洋洋企业定位研讨-思路准备-2026-06-25.html"}, {"title": "网店运营与推广综合实训平台人员投入排期", "path": "实体/网店运营实训平台/网店运营与推广综合实训平台-人员投入排期.html"}, {"title": "网店运营与推广综合实训平台 PRD", "path": "实体/网店运营实训平台/网店运营与推广综合实训平台-PRD.html"}, {"title": "AI商机雷达-移动端Figma设计规范", "path": "实体/AI商机雷达/AI商机雷达-移动端Figma设计规范.html"}, {"title": "AI商机雷达｜AI Coding开发提示词", "path": "实体/AI商机雷达/AI商机雷达｜AI Coding开发提示词.html"}, {"title": "AI商机雷达｜Figma AI设计提示词", "path": "实体/AI商机雷达/AI商机雷达｜Figma AI设计提示词.html"}, {"title": "AI 选品推品产品分析报告 & PRD", "path": "查询/AI选品推品产品分析报告-2026-05-29.html"}, {"title": "大众点评品类品牌数据分析报告", "path": "查询/大众点评品类品牌数据分析报告.html"}, {"title": "Hermes Skill 索引与触发机制", "path": "概念/hermes-skills.html"}, {"title": "AI协作优化规则", "path": "概念/协作规范/AI协作优化规则.html"}, {"title": "AI数字化素养学习路径图", "path": "概念/学习资源/AI数字化素养学习路径图.html"}, {"title": "Prompt 模板库", "path": "概念/学习资源/Prompt模板库.html"}, {"title": "CIO 持续学习计划", "path": "概念/学习资源/CIO持续学习计划.html"}, {"title": "代码规范", "path": "概念/学习资源/代码规范.html"}, {"title": "AI工具分层自学视频资源表", "path": "概念/学习资源/AI工具分层自学视频资源表.html"}, {"title": "工具", "path": "概念/学习资源/工具.html"}, {"title": "《AI Native：从概念到落地》", "path": "概念/AI Native/《AI Native：从概念到落地》- 书籍规划.html"}, {"title": "第二章：行业拐点", "path": "概念/AI Native/《AI Native：从概念到落地》- 第二章.html"}, {"title": "AI Native 深度报告", "path": "概念/AI Native/AI Native 深度报告.html"}, {"title": "第一章：AI Enhanced vs AI Native", "path": "概念/AI Native/《AI Native：从概念到落地》- 第一章.html"}, {"title": "AI Native 深度解析：从概念到落地", "path": "概念/AI Native/AI Native 深度解析：从概念到落地.html"}, {"title": "AI岗位培训课件 - 管理层：用AI做经营决策", "path": "概念/AI培训/AI岗位培训课件 - 管理层：用AI做经营决策.html"}, {"title": "AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助", "path": "概念/AI培训/AI岗位培训课件 - HR：招聘JD简历分析绩效辅助.html"}, {"title": "AI岗位培训课件 - 数据/研发：AI Coding/数据处理", "path": "概念/AI培训/AI岗位培训课件 - 数据研发：AI Coding数据处理.html"}, {"title": "AI岗位培训课件 - 销售：客户洞察/跟进话术", "path": "概念/AI培训/AI岗位培训课件 - 销售：客户洞察跟进话术.html"}, {"title": "AI岗位培训课件 - 产品：PRD→原型→Demo", "path": "概念/AI培训/AI岗位培训课件 - 产品：PRD原型Demo.html"}, {"title": "AI岗位培训课件 - 运营：活动方案/数据分析", "path": "概念/AI培训/AI岗位培训课件 - 运营：活动方案数据分析.html"}, {"title": "待办索引", "path": "日志/待办索引.html"}, {"title": "对话反思日志 - 2026-05-28", "path": "日志/2026-05-28-对话反思.html"}, {"title": "20260601重要事项", "path": "日志/20260601重要事项.html"}, {"title": "2026-05-28 每日反思", "path": "日志/2026-05-28 每日反思.html"}, {"title": "待办-2026-06-29", "path": "日志/待办-2026-06-29.html"}, {"title": "AI Coding vs Vibe Coding 对比分析", "path": "对比/AI Coding vs Vibe Coding 对比分析.html"}, {"title": "四洋", "path": "_persons/四洋.html"}, {"title": "满满", "path": "_persons/满满.html"}, {"title": "惠开发", "path": "_persons/惠开发.html"}, {"title": "龙龙", "path": "_persons/龙龙.html"}, {"title": "ccknow", "path": "_persons/ccknow.html"}];
+        const searchIndex = {search_index};
+        const pathMatrix = {path_matrix};
+        const currentTitle = {current_title_json};
         function toggleFolder(el) {
             const li = el.parentElement;
             li.classList.toggle('collapsed');
@@ -762,35 +472,32 @@
             if (!query) { results.innerHTML = ''; results.classList.remove('active'); return; }
             const q = query.toLowerCase();
             const matched = searchIndex.filter(p => p.title.toLowerCase().includes(q) || p.path.toLowerCase().includes(q)).slice(0, 10);
-            if (matched.length === 0) { results.innerHTML = '<a href="#">未找到结果</a>'; }
+            if (matched.length === 0) { results.innerHTML = '<div class="empty">未找到结果</div>'; }
             else {
-                results.innerHTML = matched.map(p => `<a href="${relUrl(p.path)}">${p.title}</a>`).join('');
+                const matrix = pathMatrix[currentTitle] || {};
+                results.innerHTML = matched.map(p => {
+                    const url = matrix[p.title] || p.path;
+                    return `<a href="${url}"><span>${p.title}</span><span class="path">${p.path}</span></a>`;
+                }).join('');
             }
             results.classList.add('active');
         }
-        function relUrl(targetPath) {
-            const current = window.location.pathname.replace(/^.*\/ccknow-web\//, '').replace(/\/$/, '');
-            const currentParts = current ? current.split('/') : [];
-            const targetParts = targetPath.split('/');
-            let common = 0;
-            for (let i = 0; i < Math.min(currentParts.length, targetParts.length); i++) {
-                if (currentParts[i] === targetParts[i]) common++; else break;
-            }
-            const up = currentParts.length - common - (current.endsWith('.html') ? 1 : 0);
-            const rel = [];
-            for (let i = 0; i < Math.max(0, up); i++) rel.push('..');
-            rel.push(...targetParts.slice(common));
-            return rel.join('/') || './';
-        }
         function showSearch() { if (document.getElementById('search').value) document.getElementById('search-results').classList.add('active'); }
         function hideSearchDelayed() { setTimeout(() => document.getElementById('search-results').classList.remove('active'), 200); }
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
         document.addEventListener('DOMContentLoaded', () => {
             const saved = localStorage.getItem('theme');
-            if (saved) document.documentElement.setAttribute('data-theme', saved);
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+            }
             window.addEventListener('scroll', () => {
                 document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
             });
         });
+        {extra_script}
     </script>
 </body>
 </html>

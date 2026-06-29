@@ -3,449 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>菜洋洋 SaaS 商城 — 管理后台设计方案 - ccknow</title>
+    <title>{title} - ccknow</title>
     <style>
-        :root {
-            --sidebar-width: 300px;
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --text: #0f172a;
-            --text-secondary: #64748b;
-            --border: #e2e8f0;
-            --primary: #2563eb;
-            --primary-light: #eff6ff;
-            --primary-dark: #1d4ed8;
-            --accent: #7c3aed;
-            --radius: 12px;
-            --shadow: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.02);
-        }
-        [data-theme="dark"] {
-            --bg: #0f172a;
-            --surface: #1e293b;
-            --text: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --border: #334155;
-            --primary: #60a5fa;
-            --primary-light: rgba(96,165,250,0.12);
-            --primary-dark: #93c5fd;
-            --accent: #a78bfa;
-            --shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            display: flex;
-            min-height: 100vh;
-            line-height: 1.65;
-            transition: background 0.3s, color 0.3s;
-        }
-        .topbar {
-            position: fixed;
-            top: 0;
-            left: var(--sidebar-width);
-            right: 0;
-            height: 56px;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 28px;
-            z-index: 100;
-            box-shadow: var(--shadow);
-        }
-        .breadcrumbs { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
-        .breadcrumbs a { color: var(--text-secondary); }
-        .breadcrumbs a:hover { color: var(--primary); }
-        .topbar-actions { display: flex; align-items: center; gap: 12px; }
-        .search-box {
-            position: relative;
-            width: 260px;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 8px 12px 8px 34px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            background: var(--bg);
-            color: var(--text);
-            font-size: 13px;
-            outline: none;
-        }
-        .search-box input:focus { border-color: var(--primary); }
-        .search-box::before {
-            content: "🔍";
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 12px;
-            opacity: 0.6;
-        }
-        .search-results {
-            position: absolute;
-            top: 44px;
-            right: 0;
-            width: 320px;
-            max-height: 360px;
-            overflow-y: auto;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            display: none;
-            z-index: 200;
-        }
-        .search-results.active { display: block; }
-        .search-results a {
-            display: block;
-            padding: 10px 14px;
-            color: var(--text);
-            border-bottom: 1px solid var(--border);
-            font-size: 13px;
-        }
-        .search-results a:hover { background: var(--bg); }
-        .search-results a:last-child { border-bottom: none; }
-        .icon-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--bg);
-            color: var(--text);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: all 0.15s;
-        }
-        .icon-btn:hover { background: var(--primary-light); border-color: var(--primary); }
-        .sidebar {
-            width: var(--sidebar-width);
-            background: var(--surface);
-            border-right: 1px solid var(--border);
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            overflow-y: auto;
-            padding: 20px 0 80px;
-            z-index: 90;
-            box-shadow: var(--shadow);
-        }
-        .sidebar-header {
-            padding: 0 18px 14px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 12px;
-        }
-        .sidebar-header a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .sidebar-header .home {
-            font-size: 12px;
-            color: var(--text-secondary);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-top: 8px;
-            padding: 4px 10px;
-            background: var(--bg);
-            border-radius: var(--radius);
-            font-weight: 500;
-        }
-        .nav-tools {
-            padding: 0 18px 10px;
-            display: flex;
-            gap: 8px;
-        }
-        .nav-tools button {
-            font-size: 11px;
-            padding: 4px 10px;
-            border: 1px solid var(--border);
-            background: var(--bg);
-            border-radius: 6px;
-            cursor: pointer;
-            color: var(--text-secondary);
-        }
-        .nav-tools button:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
-        .nav ul {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-        }
-        .nav li { margin: 1px 0; }
-        .nav li.folder > span.folder-toggle {
-            color: var(--text-secondary);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.4px;
-            padding: 8px 18px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            user-select: none;
-            transition: color 0.15s;
-        }
-        .nav li.folder > span.folder-toggle:hover { color: var(--primary); }
-        .nav li.folder > span .folder-icon {
-            display: inline-block;
-            width: 12px;
-            color: var(--text-secondary);
-            font-size: 10px;
-            transition: transform 0.2s;
-        }
-        .nav li.folder.collapsed > span .folder-icon { transform: rotate(-90deg); }
-        .nav li.folder.collapsed > ul { display: none; }
-        .nav li a {
-            display: block;
-            padding: 6px 18px 6px 34px;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 13.5px;
-            border-radius: 0 8px 8px 0;
-            margin-right: 10px;
-            transition: all 0.15s;
-        }
-        .nav li a:hover { background: var(--bg); color: var(--primary); }
-        .nav li.active > a {
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-        .content {
-            margin-left: var(--sidebar-width);
-            margin-top: 56px;
-            flex: 1;
-            padding: 32px 56px 80px;
-            max-width: 900px;
-            background: var(--surface);
-            min-height: calc(100vh - 56px);
-        }
-        .content h1 {
-            font-size: 34px;
-            font-weight: 800;
-            margin: 0 0 14px;
-            letter-spacing: -0.8px;
-            line-height: 1.2;
-        }
-        .content h2 {
-            font-size: 23px;
-            font-weight: 700;
-            margin: 40px 0 16px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-        }
-        .content h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 28px 0 12px;
-        }
-        .content p { margin: 14px 0; color: var(--text-secondary); }
-        .content a { color: var(--primary); }
-        .content a:hover { color: var(--primary-dark); }
-        .content a.wikilink { color: var(--accent); font-weight: 500; }
-        .content a.wikilink:hover { text-decoration: underline; }
-        .content a.missing { color: var(--text-secondary); text-decoration: line-through; opacity: 0.6; }
-        .content code {
-            background: var(--bg);
-            padding: 2px 7px;
-            border-radius: 5px;
-            font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 0.88em;
-            color: #db2777;
-        }
-        .content pre {
-            background: #1e293b;
-            color: #f8fafc;
-            padding: 20px;
-            border-radius: var(--radius);
-            overflow-x: auto;
-            font-size: 14px;
-            box-shadow: var(--shadow);
-        }
-        .content pre code { background: transparent; color: inherit; padding: 0; }
-        .content blockquote {
-            border-left: 4px solid var(--primary);
-            background: var(--primary-light);
-            padding: 16px 20px;
-            border-radius: 0 var(--radius) var(--radius) 0;
-            margin: 18px 0;
-        }
-        .content blockquote p { margin: 0; color: inherit; }
-        .content table {
-            border-collapse: separate;
-            border-spacing: 0;
-            width: 100%;
-            margin: 24px 0;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            font-size: 14px;
-        }
-        .content th, .content td {
-            border: none;
-            border-bottom: 1px solid var(--border);
-            padding: 12px 16px;
-            text-align: left;
-        }
-        .content th {
-            background: var(--bg);
-            font-weight: 700;
-            font-size: 12px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-        .content tr:last-child td { border-bottom: none; }
-        .content tr:hover td { background: var(--bg); }
-        .back-to-top {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--text-secondary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s;
-        }
-        .back-to-top.visible { opacity: 1; visibility: visible; }
-        .back-to-top:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        @media (max-width: 768px) {
-            .sidebar { display: none; }
-            .topbar { left: 0; }
-            .content { margin-left: 0; padding: 24px; }
-            .search-box { display: none; }
-        }
+        
+:root {
+    --sidebar-width: 300px;
+    --topbar-height: 56px;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface-2: #f1f5f9;
+    --text: #0f172a;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --primary-dark: #1d4ed8;
+    --accent: #7c3aed;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.02);
+    --shadow-lg: 0 10px 40px rgba(15,23,42,0.08);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+[data-theme="dark"] {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-2: #27354c;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --primary: #60a5fa;
+    --primary-light: rgba(96,165,250,0.12);
+    --primary-dark: #93c5fd;
+    --accent: #a78bfa;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.4);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--bg);
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.65;
+    transition: background 0.3s, color 0.3s;
+}
+.topbar {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    height: var(--topbar-height);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+.breadcrumbs { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.breadcrumbs a { color: var(--text-secondary); text-decoration: none; }
+.breadcrumbs a:hover { color: var(--primary); }
+.breadcrumbs .sep { opacity: 0.5; }
+.topbar-actions { display: flex; align-items: center; gap: 12px; }
+.search-box { position: relative; width: 280px; }
+.search-box input {
+    width: 100%;
+    padding: 9px 14px 9px 38px;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+    transition: all 0.15s;
+}
+.search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+.search-box::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 14px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+.search-box::after {
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: calc(50% + 5px);
+    width: 2px; height: 7px;
+    background: var(--text-secondary);
+    transform: rotate(-45deg);
+    opacity: 0.6;
+}
+.search-results {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 360px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    z-index: 200;
+    padding: 6px;
+}
+.search-results.active { display: block; }
+.search-results a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    color: var(--text);
+    border-radius: var(--radius-sm);
+    font-size: 13.5px;
+    text-decoration: none;
+}
+.search-results a:hover { background: var(--bg); }
+.search-results a .path { font-size: 11px; color: var(--text-secondary); }
+.search-results .empty { padding: 20px; text-align: center; color: var(--text-secondary); font-size: 13px; }
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.15s;
+}
+.icon-btn:hover { background: var(--primary-light); border-color: var(--primary); }
+.mobile-menu-btn { display: none; }
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 20px 0 100px;
+    z-index: 90;
+    box-shadow: var(--shadow);
+}
+.sidebar-header {
+    padding: 0 18px 14px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+}
+.sidebar-header a.brand {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.sidebar-header .brand-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+}
+.sidebar-header .home {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 5px 12px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-decoration: none;
+}
+.nav-tools {
+    padding: 0 18px 12px;
+    display: flex;
+    gap: 8px;
+}
+.nav-tools button {
+    font-size: 11px;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 600;
+    transition: all 0.15s;
+}
+.nav-tools button:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+.nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.nav li { margin: 1px 0; }
+.nav li.folder > span.folder-toggle {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 8px 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s;
+    border-radius: 0 8px 8px 0;
+    margin-right: 10px;
+}
+.nav li.folder > span.folder-toggle:hover { color: var(--primary); background: var(--bg); }
+.nav li.folder > span .folder-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; height: 16px;
+    color: var(--text-secondary);
+    font-size: 10px;
+    transition: transform 0.2s;
+}
+.nav li.folder.collapsed > span .folder-icon { transform: rotate(-90deg); }
+.nav li.folder.collapsed > ul { display: none; }
+.nav li a {
+    display: flex;
+    align-items: center;
+    padding: 7px 18px 7px 34px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13.5px;
+    border-radius: 0 8px 8px 0;
+    margin-right: 10px;
+    transition: all 0.15s;
+}
+.nav li a:hover { background: var(--bg); color: var(--primary); }
+.nav li.active > a {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+.nav li.active > a::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.content {
+    margin-left: var(--sidebar-width);
+    margin-top: var(--topbar-height);
+    flex: 1;
+    padding: 40px 64px 100px;
+    max-width: 960px;
+    background: var(--surface);
+    min-height: calc(100vh - var(--topbar-height));
+}
+.content h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 0 18px;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+.content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 44px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+.content h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 30px 0 14px;
+}
+.content p { margin: 16px 0; color: var(--text-secondary); }
+.content a { color: var(--primary); text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content a.wikilink { color: var(--accent); font-weight: 600; }
+.content a.wikilink:hover { text-decoration: underline; }
+.content a.missing { color: var(--text-secondary); text-decoration: line-through; opacity: 0.6; cursor: not-allowed; }
+.content code {
+    background: var(--surface-2);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    color: #db2777;
+}
+.content pre {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 22px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-size: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.content pre code { background: transparent; color: inherit; padding: 0; }
+.content blockquote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 18px 22px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 20px 0;
+}
+.content blockquote p { margin: 0; color: inherit; }
+.content ul, .content ol { padding-left: 24px; }
+.content li { margin: 8px 0; }
+.content table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin: 26px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    font-size: 14px;
+}
+.content th, .content td {
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    text-align: left;
+}
+.content th {
+    background: var(--bg);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+.content tr:last-child td { border-bottom: none; }
+.content tr:hover td { background: var(--bg); }
+.back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s;
+    z-index: 80;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; }
+.back-to-top:hover { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-2px); }
+@media (max-width: 768px) {
+    :root { --sidebar-width: 0; }
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+        width: 280px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .topbar { left: 0; padding: 0 16px; }
+    .content { margin-left: 0; padding: 28px 20px 80px; }
+    .search-box { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .breadcrumbs { display: none; }
+}
+
+        {extra_css}
     </style>
 </head>
 <body>
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a href="../../%E9%A6%96%E9%A1%B5.html">ccknow</a>
-            <a class="home" href="../../%E9%A6%96%E9%A1%B5.html">🏠 首页</a>
+            <a class="brand" href="{home_url}"><span class="brand-icon">C</span> ccknow</a>
+            <a class="home" href="{home_url}">🏠 返回首页</a>
         </div>
         <div class="nav-tools">
             <button onclick="expandAll()">展开全部</button>
             <button onclick="collapseAll()">折叠全部</button>
         </div>
         <nav class="nav">
-            <ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>06 课程</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AINative实战</span><ul><li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-1.html">&quot;AI Native 实战课程 - Day 1: AI Enhanced vs AI Native&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-2.html">&quot;AI Native 实战课程 - Day 2: 第二章 - 行业拐点&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-3.html">&quot;AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-4.html">&quot;AI Native 实战课程 - Day 4: 第四章 - 上下文即状态&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-5.html">&quot;AI Native 实战课程 - Day 5: 第五章 - 生成即服务&quot;</a></li>
-<li class=""><a href="../../06%20%E8%AF%BE%E7%A8%8B/AINative%E5%AE%9E%E6%88%98/Day-6.html">&quot;AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent&quot;</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>99 附件</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>模板</span><ul><li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/PRD-%E6%A8%A1%E6%9D%BF.html">PRD 文档模板</a></li>
-<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%A4%8D%E7%9B%98%E6%A8%A1%E6%9D%BF.html">&#x27;{{title}} 复盘&#x27;</a></li>
-<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AD%A6%E4%B9%A0%E6%A8%A1%E6%9D%BF.html">&#x27;{{title}}&#x27;</a></li>
-<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D%E6%97%A5%E5%BF%97%E6%A8%A1%E6%9D%BF.html">对话反思日志模板</a></li></ul></li></ul></li>
-<li class=""><a href="../../SCHEMA.html">Wiki Schema</a></li>
-<li class=""><a href="../../index.html">Wiki Index</a></li>
-<li class=""><a href="../../log.html">Wiki Log</a></li>
-<li class=""><a href="../../%E9%A6%96%E9%A1%B5.html">程峰的 Obsidian 知识库</a></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>_persons</span><ul><li class=""><a href="../../_persons/ccknow.html">ccknow</a></li>
-<li class=""><a href="../../_persons/%E5%9B%9B%E6%B4%8B.html">四洋</a></li>
-<li class=""><a href="../../_persons/%E6%83%A0%E5%BC%80%E5%8F%91.html">惠开发</a></li>
-<li class=""><a href="../../_persons/%E6%BB%A1%E6%BB%A1.html">满满</a></li>
-<li class=""><a href="../../_persons/%E9%BE%99%E9%BE%99.html">龙龙</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>原始资料</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>articles</span><ul><li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/articles/%E8%80%81openclaw20260621%E7%9A%84%E8%AE%B0%E5%BF%86%E6%96%87%E4%BB%B6.html">老OpenClaw 2026-06-21 的记忆文件</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>会议</span><ul><li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/AI%E5%90%88%E8%A7%84%E4%B8%8E%E8%A1%8C%E4%B8%9A%E7%BB%8F%E9%AA%8C-%E5%9C%86%E6%A1%8C%E5%8F%91%E8%A8%80%E7%B4%A0%E6%9D%90-2026-06-27.html">AI合规与行业经验-圆桌发言素材</a></li>
-<li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/%E4%BA%A7%E5%93%81%E5%91%A8%E4%BC%9A_%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9_%E5%BE%85%E5%8A%9E_%E6%9C%BA%E4%BC%9A%E7%82%B9_20260526.html">产品周会核心要点 / 待办 / 机会点</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>实体</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI商机雷达</span><ul><li class=""><a href="../AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-%E7%A7%BB%E5%8A%A8%E7%AB%AFFigma%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.html">AI商机雷达-移动端Figma设计规范</a></li>
-<li class=""><a href="../AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CAI%20Coding%E5%BC%80%E5%8F%91%E6%8F%90%E7%A4%BA%E8%AF%8D.html">AI商机雷达｜AI Coding开发提示词</a></li>
-<li class=""><a href="../AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CFigma%20AI%E8%AE%BE%E8%AE%A1%E6%8F%90%E7%A4%BA%E8%AF%8D.html">AI商机雷达｜Figma AI设计提示词</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>OpenClaw</span><ul><li class=""><a href="../OpenClaw/OpenClaw%20%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3.html">OpenClaw 架构设计文档</a></li></ul></li>
-<li class=""><a href="../1%E5%8F%B7%E6%A5%BC%E6%94%B9%E9%80%A0%E5%B7%A5%E7%A8%8B-%E5%B7%A5%E7%A8%8B%E9%87%8F%E6%B8%85%E5%8D%95.html">1#楼改造工程（安装）- 工程量清单</a></li>
-<li class=""><a href="../AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-PRD.html">AI商机雷达-PRD</a></li>
-<li class=""><a href="../AI%E5%BA%94%E7%94%A8%E5%8F%8A%E5%9B%A2%E9%98%9F%E7%AE%A1%E7%90%86%E6%8E%A2%E8%AE%A8%E4%BC%9A_%E7%BA%AA%E8%A6%81.html">AI应用及团队管理探讨会</a></li>
-<li class=""><a href="../AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE.html">AI能力体系建设</a></li>
-<li class=""><a href="../CIO%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87%E4%B8%93%E9%A1%B9%E8%AE%A1%E5%88%92-2026-06-21.html">CIO 技能提升专项计划</a></li>
-<li class=""><a href="../ShareLLM%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92-2026-06-21.html">ShareLLM 项目开发计划</a></li>
-<li class=""><a href="../_%E5%AE%A1%E6%9F%A5%E6%8A%A5%E5%91%8A%E7%B4%A2%E5%BC%95.html">mall-saas 代码审查报告索引</a></li>
-<li class=""><a href="../%E5%A4%9A%E7%A7%9F%E6%88%B7SaaS%E5%95%86%E5%9F%8E%E5%B9%B3%E5%8F%B0-%E4%BA%A7%E5%93%81%E5%8A%9F%E8%83%BD%E6%96%87%E6%A1%A3.html">多租户SaaS商城平台 - 产品功能文档</a></li>
-<li class=""><a href="../%E5%B2%97%E4%BD%8DJD%E8%AF%84%E5%AE%A1%E4%B8%8ESlogan%E8%AE%BE%E8%AE%A1-2026-05-29.html">岗位JD评审与Slogan设计</a></li>
-<li class=""><a href="../%E6%8A%80%E6%9C%AF%E6%B2%9F%E9%80%9A.html">技术沟通</a></li>
-<li class=""><a href="../%E7%A8%8B%E5%B7%9D%20AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88%20-%20%E5%BE%85%E5%8A%9E%E6%80%BB%E8%A1%A8%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5.html">程川 AI能力体系建设方案 - 待办总表与执行策略</a></li>
-<li class=""><a href="../%E7%AE%A1%E7%90%86%E5%B1%82%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E6%8F%90%E5%8D%87%E6%96%B9%E6%A1%88.html">管理层数字化素养提升方案（数据驱动决策专项）</a></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>研发体系</span><ul><li class=""><a href="../%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB/%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88.html">研发体系建设方案</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>网店运营实训平台</span><ul><li class=""><a href="../%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-PRD.html">网店运营与推广综合实训平台 PRD</a></li>
-<li class=""><a href="../%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-%E4%BA%BA%E5%91%98%E6%8A%95%E5%85%A5%E6%8E%92%E6%9C%9F.html">网店运营与推广综合实训平台人员投入排期</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>菜洋洋</span><ul><li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%20OS%20%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE.html">菜洋洋 AI OS 系统架构图</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%E9%80%89%E5%93%81%E5%BC%95%E6%93%8E%20PRD.html">菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E5%BE%85%E5%8A%9E-2026-06-29.html">菜洋洋-待办-2026-06-29</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-PRD.html">菜洋洋-数据驱动的餐饮供应链操作系统-PRD</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8BAIOS-%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%BB%BA%E8%AE%BE%E9%9C%80%E6%B1%82%E6%A2%B3%E7%90%86.html">菜洋洋AIOS-数据基础建设需求梳理</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8BAI%E5%8E%9F%E7%94%9F%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%92.html">菜洋洋AI原生组织架构调整规划</a></li>
-<li class="active"><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8BSaaS%E5%95%86%E5%9F%8E-%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88-v1.0.html">菜洋洋 SaaS 商城 — 管理后台设计方案</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%B8%8A%E6%96%B0%E6%96%B9%E6%A1%88%E5%8C%85_PRD_V1.0.html">菜洋洋《上新方案包》产品PRD（V1.0）</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E5%88%9D%E7%89%88%E5%BE%85%E5%AE%8C%E5%96%84-2026-06-10.html">菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E8%80%81%E4%BF%A1%E8%AF%84%E5%AE%A1-2026-06-22.html">菜洋洋云星空旗舰版项目业务蓝图——老信评审</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8-%E6%80%9D%E8%B7%AF%E5%87%86%E5%A4%87-2026-06-25.html">菜洋洋企业定位研讨思路准备（Q1-Q6 重点）</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A811%E9%97%AE-%E6%B4%9E%E5%AF%9F%E5%BB%BA%E8%AE%AE%E5%8F%82%E8%80%83-2026-06-27.html">菜洋洋企业定位研讨11问（洞察+建议+参考）</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8%E4%BC%9A%E5%8F%91%E8%A8%80%E7%A8%BF-2026-06-27.html">菜洋洋企业定位研讨会发言稿</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%20AI%20OS%20%E6%BC%94%E8%BF%9B%E8%B7%AF%E7%BA%BF%E4%B8%8E%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html">菜洋洋商城 → AI OS 演进路线与架构方案</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5PRD.html">菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5%E8%AF%84%E5%AE%A1-2026-05-29.html">菜洋洋商城战略评审与建议方案</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%B2%97%E4%BD%8D%E8%AF%B4%E6%98%8E%E4%B9%A6%E8%AF%84%E5%AE%A1%E6%8A%A5%E5%91%8A.html">菜洋洋产研团队岗位说明书评审报告</a></li>
-<li class=""><a href="%E8%8F%9C%E6%B4%8B%E6%B4%8B%E6%95%B0%E6%99%BA%E4%B8%AD%E5%BF%83%E7%BB%84%E7%BB%87%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90.html">菜洋洋产研团队组织架构与数智中心定位分析</a></li>
-<li class=""><a href="%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%9A%E5%8A%A1%E5%AF%B9%E6%8E%A5%E4%BA%A4%E6%B5%81%E4%BC%9A-20260526.html">餐饮供应链业务对接交流会议记录</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>对比</span><ul><li class=""><a href="../../%E5%AF%B9%E6%AF%94/AI%20Coding%20vs%20Vibe%20Coding%20%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90.html">AI Coding vs Vibe Coding 对比分析</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>日志</span><ul><li class=""><a href="../../%E6%97%A5%E5%BF%97/2026-05-28%20%E6%AF%8F%E6%97%A5%E5%8F%8D%E6%80%9D.html">2026-05-28 每日反思</a></li>
-<li class=""><a href="../../%E6%97%A5%E5%BF%97/2026-05-28-%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D.html">对话反思日志 - 2026-05-28</a></li>
-<li class=""><a href="../../%E6%97%A5%E5%BF%97/20260601%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A1%B9.html">20260601重要事项</a></li>
-<li class=""><a href="../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E-2026-06-29.html">待办-2026-06-29</a></li>
-<li class=""><a href="../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E%E7%B4%A2%E5%BC%95.html">待办索引</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>查询</span><ul><li class=""><a href="../../%E6%9F%A5%E8%AF%A2/AI%E9%80%89%E5%93%81%E6%8E%A8%E5%93%81%E4%BA%A7%E5%93%81%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A-2026-05-29.html">AI 选品推品产品分析报告 &amp; PRD</a></li>
-<li class=""><a href="../../%E6%9F%A5%E8%AF%A2/%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84%E5%93%81%E7%B1%BB%E5%93%81%E7%89%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.html">大众点评品类品牌数据分析报告</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>概念</span><ul><li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI Native</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E6%8A%A5%E5%91%8A.html">AI Native 深度报告</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0.html">AI Native 深度解析：从概念到落地</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E4%B9%A6%E7%B1%8D%E8%A7%84%E5%88%92.html">《AI Native：从概念到落地》</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%B8%80%E7%AB%A0.html">第一章：AI Enhanced vs AI Native</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0.html">第二章：行业拐点</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>AI培训</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20HR%EF%BC%9A%E6%8B%9B%E8%81%98JD%E7%AE%80%E5%8E%86%E5%88%86%E6%9E%90%E7%BB%A9%E6%95%88%E8%BE%85%E5%8A%A9.html">AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E4%BA%A7%E5%93%81%EF%BC%9APRD%E5%8E%9F%E5%9E%8BDemo.html">AI岗位培训课件 - 产品：PRD→原型→Demo</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E6%95%B0%E6%8D%AE%E7%A0%94%E5%8F%91%EF%BC%9AAI%20Coding%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.html">AI岗位培训课件 - 数据/研发：AI Coding/数据处理</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E7%AE%A1%E7%90%86%E5%B1%82%EF%BC%9A%E7%94%A8AI%E5%81%9A%E7%BB%8F%E8%90%A5%E5%86%B3%E7%AD%96.html">AI岗位培训课件 - 管理层：用AI做经营决策</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E8%BF%90%E8%90%A5%EF%BC%9A%E6%B4%BB%E5%8A%A8%E6%96%B9%E6%A1%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">AI岗位培训课件 - 运营：活动方案/数据分析</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E9%94%80%E5%94%AE%EF%BC%9A%E5%AE%A2%E6%88%B7%E6%B4%9E%E5%AF%9F%E8%B7%9F%E8%BF%9B%E8%AF%9D%E6%9C%AF.html">AI岗位培训课件 - 销售：客户洞察/跟进话术</a></li></ul></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/hermes-skills.html">Hermes Skill 索引与触发机制</a></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>协作规范</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83/AI%E5%8D%8F%E4%BD%9C%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99.html">AI协作优化规则</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>学习资源</span><ul><li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E5%B7%A5%E5%85%B7%E5%88%86%E5%B1%82%E8%87%AA%E5%AD%A6%E8%A7%86%E9%A2%91%E8%B5%84%E6%BA%90%E8%A1%A8.html">AI工具分层自学视频资源表</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E5%9B%BE.html">AI数字化素养学习路径图</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/CIO%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92.html">CIO 持续学习计划</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/Prompt%E6%A8%A1%E6%9D%BF%E5%BA%93.html">Prompt 模板库</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html">代码规范</a></li>
-<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E5%B7%A5%E5%85%B7.html">工具</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>简历库</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/README.html">README</a></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>模板</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/interview-evaluation.html">面试评估表</a></li>
-<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/jd-match-matrix.html">JD 匹配矩阵</a></li>
-<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/star-answer.html">STAR 回答记录表</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>面试分析</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E4%BA%A7%E5%93%81%E5%89%AF%E6%80%BB%E7%9B%91-%E9%9D%A2%E8%AF%95%E9%A2%98.html">C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）</a></li>
-<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E6%95%B0%E5%AD%97%E5%8C%96%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86-%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90.html">C00004825-朱宇尧-数字化产品经理 — 面试分析</a></li></ul></li></ul></li></ul>
+            <ul>{nav}</ul>
         </nav>
     </aside>
     <header class="topbar">
-        <div class="breadcrumbs"><a href="../../%E9%A6%96%E9%A1%B5.html">首页</a> / <span>实体</span> / <span>菜洋洋</span> / <span>菜洋洋SaaS商城-管理后台设计方案-v1.0</span></div>
+        <button class="icon-btn mobile-menu-btn" onclick="toggleSidebar()" title="菜单">☰</button>
+        <div class="breadcrumbs">{breadcrumbs}</div>
         <div class="topbar-actions">
             <div class="search-box">
                 <input type="text" id="search" placeholder="搜索页面..." oninput="searchPages(this.value)" onfocus="showSearch()" onblur="hideSearchDelayed()">
@@ -455,1338 +437,13 @@
         </div>
     </header>
     <main class="content">
-<h1 id="saas">菜洋洋 SaaS 商城 — 管理后台设计方案</h1>
-<blockquote>
-<p>版本：v1.0
-日期：2026-06-08
-定位：基于"供应链中台 + 多前台"架构的 B2B 餐饮供应链采购 SaaS 平台
-核心原则：<strong>底座是供应链中台，不是 SaaS 商城；自营和 SaaS 长期都做中台上的前台应用</strong></p>
-</blockquote>
-<hr />
-<h2 id="_1">目录</h2>
-<ol>
-<li><a href="#1-架构总览">架构总览</a></li>
-<li><a href="#2-平台运营后台mall-platform">平台运营后台（mall-platform）</a></li>
-<li><a href="#3-租户管理后台mall-tenant-admin">租户管理后台（mall-tenant-admin）</a></li>
-<li><a href="#4-门店采购端mall-buyer-api">门店采购端（mall-buyer-api）</a></li>
-<li><a href="#5-供应链中台设计">供应链中台设计</a></li>
-<li><a href="#6-供应商模型与多源策略">供应商模型与多源策略</a></li>
-<li><a href="#7-数据流转与集成">数据流转与集成</a></li>
-<li><a href="#8-权限与安全设计">权限与安全设计</a></li>
-</ol>
-<hr />
-<h2 id="1">1. 架构总览</h2>
-<h3 id="11">1.1 三层架构模型</h3>
-<pre><code>┌─────────────────────────────────────────────────────────────┐
-│                        前台应用层                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │  自营商城前台  │  │  SaaS商城前台  │  │  租户管理后台  │      │
-│  │  (开放市场)    │  │  (封闭加盟)    │  │  (连锁总部)    │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
-│  ┌──────────────┐  ┌──────────────┐                          │
-│  │  门店采购端   │  │  平台运营后台  │                          │
-│  │  (小程序/H5)  │  │  (菜洋洋运营)  │                          │
-│  └──────────────┘  └──────────────┘                          │
-├─────────────────────────────────────────────────────────────┤
-│                      供应链中台层                              │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐     │
-│  │ 商品中心  │ │ 库存中心  │ │ 价格引擎  │ │ 订单中心  │     │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘     │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐     │
-│  │ 履约中心  │ │ 结算中心  │ │ 供应商中心│ │ 租户中心  │     │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘     │
-├─────────────────────────────────────────────────────────────┤
-│                        基础设施层                              │
-│  MySQL  │  Redis  │  ES  │  RocketMQ  │  Canal  │  MinIO   │
-└─────────────────────────────────────────────────────────────┘
-</code></pre>
-<h3 id="12">1.2 核心设计原则</h3>
-<table>
-<thead>
-<tr>
-<th>原则</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>中台唯一</strong></td>
-<td>供应链中台必须收敛为一套，商品/库存/价格/履约逻辑不 fork</td>
-</tr>
-<tr>
-<td><strong>前台多样</strong></td>
-<td>自营商城、SaaS 商城、租户后台都是中台上的不同前台应用</td>
-</tr>
-<tr>
-<td><strong>租户隔离</strong></td>
-<td>买方侧数据按 <code>tenant_id</code> 隔离，平台级资源共享</td>
-</tr>
-<tr>
-<td><strong>供应商开放</strong></td>
-<td>支持多供应商接入，菜洋洋是默认深度集成供应商</td>
-</tr>
-<tr>
-<td><strong>渐进收敛</strong></td>
-<td>设计上为自营收敛预留，实际迁移待 SaaS 验证稳定后执行</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="2-mall-platform">2. 平台运营后台（mall-platform）</h2>
-<h3 id="21">2.1 页面清单与功能模块</h3>
-<pre><code>平台运营后台
-├── 工作台
-│   ├── 数据概览（订单/租户/GMV/供应商）
-│   ├── 待办事项（开户审核/建档审核/售后仲裁）
-│   └── 快捷入口
-├── 供应商管理
-│   ├── 供应商列表（公共/私有）
-│   ├── 供应商详情（基础信息/ERP绑定/商品目录）
-│   └── 供应商启停
-├── 站点管理
-│   ├── 站点列表
-│   ├── 站点详情（配送区域/ERP配置/配送方式）
-│   └── 站点启停
-├── 租户管理
-│   ├── 租户列表
-│   ├── 开户向导（创建/套餐/绑站/选品/定价）
-│   ├── 租户详情（套餐/站点/供应商/门店）
-│   └── 租户生命周期（续期/停用/过期）
-├── 平台商品目录
-│   ├── 类目管理（平台类目树）
-│   ├── 品牌管理
-│   ├── SPU管理
-│   ├── SKU管理（规格/单位/图片）
-│   ├── L1/L2价格管理
-│   └── 平台站点价（L3）
-├── 仓配代发建档审核
-│   ├── 待审核列表
-│   ├── 审核详情（商品信息/ERP建档/回填out_code）
-│   └── 审核记录
-├── 订单管理
-│   ├── 订单查询（跨租户只读）
-│   ├── 订单详情
-│   └── 订单异常处理
-├── ERP配置
-│   ├── Provider配置（吉客云/其他）
-│   ├── 站点ERP绑定
-│   ├── 调用日志
-│   └── 重试管理
-├── 财务管理
-│   ├── 支付订单查询
-│   ├── 退款管理
-│   └── 对账导出
-├── 系统设置
-│   ├── 字典管理
-│   ├── 物流公司
-│   ├── 系统参数
-│   └── 操作日志
-└── AI Copilot控制台
-    ├── 问答配置
-    ├── 执行权限
-    └── 使用统计
-</code></pre>
-<h3 id="22">2.2 关键页面详细设计</h3>
-<h4 id="221">2.2.1 开户向导（核心流程）</h4>
-<p><strong>页面流程</strong>：</p>
-<pre><code>Step 1: 创建租户
-  ├── 租户名称
-  ├── 企业信息（营业执照/联系人）
-  ├── 分配套餐（门店数/站点数/供应商数/选品数）
-  └── 有效期设置
-
-Step 2: 绑定站点
-  ├── 选择可用站点（多选）
-  ├── 设置默认站点
-  └── 校验站点绑定数上限
-
-Step 3: 订阅供应商
-  ├── 自动订阅公共供应商（菜洋洋）
-  ├── 自动创建租户私有供应商
-  └── 可选订阅其他公共供应商
-
-Step 4: 平台代选品
-  ├── 从平台商品库批量选品
-  ├── 按类目/品牌筛选
-  └── 生成租户选品记录
-
-Step 5: 直设租户站点价（L4）
-  ├── 批量设置站点价
-  ├── 应用默认价格模板
-  └── 生成L4价格快照
-
-Step 6: 配置默认价格模板
-  ├── 加价策略类型（固定加价/百分比/公式）
-  ├── 策略参数
-  └── 生效范围
-
-Step 7: 创建租户管理员账号
-  ├── 管理员姓名/手机
-  ├── 初始密码
-  └── 发送通知
-</code></pre>
-<p><strong>业务规则</strong>：
-- 开户完成后租户状态 = 正常(1)，可立即采购
-- 平台代选品经 <code>@CrossTenantAccess</code> 标记，留审计日志
-- 私有供应商自动创建，supplier_type = 'PRIVATE', tenant_id = 当前租户</p>
-<h4 id="222-sku">2.2.2 平台商品目录 — SKU管理</h4>
-<p><strong>字段清单</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>sku_id</td>
-<td>Long</td>
-<td>主键</td>
-</tr>
-<tr>
-<td>spu_id</td>
-<td>Long</td>
-<td>SPU关联</td>
-</tr>
-<tr>
-<td>supplier_id</td>
-<td>Long</td>
-<td>供应商（平台级）</td>
-</tr>
-<tr>
-<td>out_code</td>
-<td>String</td>
-<td>外部编码（ERP映射键）</td>
-</tr>
-<tr>
-<td>sku_name</td>
-<td>String</td>
-<td>SKU名称</td>
-</tr>
-<tr>
-<td>sku_code</td>
-<td>String</td>
-<td>编码</td>
-</tr>
-<tr>
-<td>category_id</td>
-<td>Long</td>
-<td>类目</td>
-</tr>
-<tr>
-<td>brand_id</td>
-<td>Long</td>
-<td>品牌</td>
-</tr>
-<tr>
-<td>unit</td>
-<td>String</td>
-<td>单位</td>
-</tr>
-<tr>
-<td>spec</td>
-<td>String</td>
-<td>规格</td>
-</tr>
-<tr>
-<td>weight</td>
-<td>Decimal</td>
-<td>重量</td>
-</tr>
-<tr>
-<td>main_image</td>
-<td>String</td>
-<td>主图</td>
-</tr>
-<tr>
-<td>album</td>
-<td>JSON</td>
-<td>相册</td>
-</tr>
-<tr>
-<td>status</td>
-<td>Int</td>
-<td>状态（0停用/1启用）</td>
-</tr>
-<tr>
-<td>l1_cost_price</td>
-<td>Decimal</td>
-<td>L1成本价（敏感）</td>
-</tr>
-<tr>
-<td>l2_reference_price</td>
-<td>Decimal</td>
-<td>L2平台参考价</td>
-</tr>
-<tr>
-<td>platform_price</td>
-<td>Decimal</td>
-<td>平台站点价（L3）</td>
-</tr>
-<tr>
-<td>create_time</td>
-<td>DateTime</td>
-<td>创建时间</td>
-</tr>
-<tr>
-<td>update_time</td>
-<td>DateTime</td>
-<td>更新时间</td>
-</tr>
-</tbody>
-</table>
-<p><strong>关键规则</strong>：
-- <code>supplier_id + out_code</code> 唯一映射到 ERP 商品
-- L1 成本价仅平台运营可见，不暴露给租户/门店
-- 商品状态变更触发 Canal → ES 同步</p>
-<h3 id="23">2.3 权限矩阵</h3>
-<table>
-<thead>
-<tr>
-<th>功能模块</th>
-<th>平台运营</th>
-<th>系统管理员</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>供应商管理</td>
-<td>✓</td>
-<td>✓</td>
-</tr>
-<tr>
-<td>站点管理</td>
-<td>✓</td>
-<td>✓</td>
-</tr>
-<tr>
-<td>租户开户向导</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>平台商品目录</td>
-<td>✓</td>
-<td>✓</td>
-</tr>
-<tr>
-<td>价格管理（L1/L2/L3）</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>订单查询（跨租户）</td>
-<td>✓</td>
-<td>✓</td>
-</tr>
-<tr>
-<td>ERP配置</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>财务管理</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>系统设置</td>
-<td>✓</td>
-<td>✓</td>
-</tr>
-<tr>
-<td>AI Copilot</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="3-mall-tenant-admin">3. 租户管理后台（mall-tenant-admin）</h2>
-<h3 id="31">3.1 页面清单与功能模块</h3>
-<pre><code>租户管理后台
-├── 工作台
-│   ├── 采购数据概览
-│   ├── 待审批订单
-│   └── 库存预警
-├── 门店管理
-│   ├── 门店列表
-│   ├── 门店详情（地址/采购员/站点）
-│   ├── 创建门店
-│   └── 门店启停
-├── 采购员管理
-│   ├── 采购员列表
-│   ├── 采购员详情
-│   ├── 创建/编辑采购员
-│   └── 角色分配
-├── 收货地址管理
-│   ├── 地址列表
-│   ├── 默认地址设置
-│   └── 地址标签
-├── 供应商订阅
-│   ├── 已订阅供应商
-│   ├── 可订阅供应商
-│   ├── 订阅/取消订阅
-│   └── 供应商详情查看
-├── 站点绑定查看
-│   ├── 已绑定站点
-│   └── 站点配送信息
-├── 选品管理
-│   ├── 已选品列表
-│   ├── 从平台选品
-│   ├── 选品上下架
-│   └── 批量操作
-├── 加价策略
-│   ├── 默认价格模板
-│   ├── 站点级策略
-│   ├── SKU级策略
-│   └── 策略优先级查看
-├── 门店价管理
-│   ├── 门店价列表
-│   ├── 批量调价
-│   ├── 跟随站点价/独立定价
-│   └── 价格变更记录
-├── 自建商品管理
-│   ├── 自建商品列表
-│   ├── 创建自建商品
-│   ├── 履约方式选择（平台配送/自配送）
-│   ├── 仓配代发建档申请
-│   └── 自建商品上下架
-├── 采购单管理
-│   ├── 采购单列表
-│   ├── 采购单详情
-│   ├── 订单状态跟踪
-│   └── 物流跟踪
-├── 审批配置
-│   ├── 审批规则列表
-│   ├── 创建审批规则（金额/门店/供应商/类目）
-│   └── 审批人设置
-├── 审批处理
-│   ├── 待审批列表
-│   ├── 审批通过/驳回
-│   └── 审批记录
-├── 售后处理
-│   ├── 售后申请列表
-│   ├── 售后详情
-│   ├── 审核通过/驳回
-│   └── 退款跟踪
-├── 自配送发货
-│   ├── 待发货列表
-│   ├── 发货操作（快递/同城/自提）
-│   ├── 物流单号录入
-│   └── 发货记录
-└── 对账导出（P2）
-    ├── 采购对账单
-    ├── 导出Excel
-    └── 对账周期设置
-</code></pre>
-<h3 id="32">3.2 关键页面详细设计</h3>
-<h4 id="321">3.2.1 自建商品管理</h4>
-<p><strong>创建流程</strong>：</p>
-<pre><code>Step 1: 基础信息
-  ├── 商品名称
-  ├── 商品编码（自动生成/自定义）
-  ├── 类目（复用平台类目或自定义）
-  ├── 品牌
-  ├── 单位/规格/重量
-  └── 图片
-
-Step 2: 履约方式选择
-  ├── 平台配送（仓配代发）
-  │   └── 需要平台ERP建档 → 提交审核
-  └── 自配送
-      └── 免审，直接上架
-
-Step 3: 价格设置
-  ├── L1成本价（可选填）
-  ├── L4租户站点价（必填）
-  └── L5门店价（必填/跟随站点价）
-
-Step 4: 库存设置
-  ├── 初始库存（自配送需手工维护）
-  └── 库存预警阈值
-
-Step 5: 站点分配
-  ├── 选择已绑定站点
-  ├── 设置站点价
-  └── 上架状态
-</code></pre>
-<p><strong>业务规则</strong>：
-- 自建商品挂本租户私有供应商下（<code>supplier_id = 私有供应商ID</code>）
-- 仅本租户可见，他租户任何接口不可见
-- 仓配代发商品建档启用前不可上架（<code>status = 待建档</code>）
-- 创建后自动生成选品记录</p>
-<h4 id="322">3.2.2 加价策略管理</h4>
-<p><strong>策略优先级</strong>：</p>
-<pre><code>SKU级策略 &gt; 站点级策略 &gt; 租户默认模板
-</code></pre>
-<p><strong>策略类型</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>说明</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>固定加价</td>
-<td>在基准价上加固定金额</td>
-<td>L2 + 5元</td>
-</tr>
-<tr>
-<td>百分比加价</td>
-<td>在基准价上加百分比</td>
-<td>L2 * 1.15</td>
-</tr>
-<tr>
-<td>公式定价</td>
-<td>自定义公式</td>
-<td>max(L2 * 1.1, L2 + 3)</td>
-</tr>
-<tr>
-<td>指定价</td>
-<td>直接指定价格</td>
-<td>不跟随基准</td>
-</tr>
-</tbody>
-</table>
-<p><strong>计算流程</strong>：</p>
-<pre><code>输入: SKU + Site + Tenant
-  ↓
-查找 SKU级策略?
-  → 有: 应用SKU策略 → 输出 L4
-  → 无: 继续
-  ↓
-查找 站点级策略?
-  → 有: 应用站点策略 → 输出 L4
-  → 无: 继续
-  ↓
-应用 租户默认模板 → 输出 L4
-  ↓
-门店价 L5 = L4 + 门店微调（可选）
-</code></pre>
-<h3 id="33">3.3 权限矩阵</h3>
-<table>
-<thead>
-<tr>
-<th>功能模块</th>
-<th>租户管理员</th>
-<th>租户运营</th>
-<th>审批人</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>门店管理</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr>
-<td>采购员管理</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr>
-<td>供应商订阅</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr>
-<td>选品/上下架</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>加价策略</td>
-<td>✓</td>
-<td>✓（微调）</td>
-<td>—</td>
-</tr>
-<tr>
-<td>门店价管理</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>自建商品</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>审批规则配置</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr>
-<td>审批处理</td>
-<td>—</td>
-<td>—</td>
-<td>✓</td>
-</tr>
-<tr>
-<td>采购单查看</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>售后处理</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>自配送发货</td>
-<td>✓</td>
-<td>✓</td>
-<td>—</td>
-</tr>
-<tr>
-<td>对账导出</td>
-<td>✓</td>
-<td>—</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="4-mall-buyer-api">4. 门店采购端（mall-buyer-api）</h2>
-<h3 id="41">4.1 页面清单与流程</h3>
-<pre><code>门店采购端（小程序/H5）
-├── 登录页
-│   └── 手机号+验证码 / 账号密码
-├── 首页
-│   ├── 搜索栏
-│   ├── 商品分类导航
-│   ├──  banner/公告
-│   └── 常购商品/推荐商品
-├── 商品搜索列表
-│   ├── 关键词搜索
-│   ├── 筛选（类目/品牌/价格区间）
-│   ├── 排序（价格/销量/新品）
-│   └── 商品卡片（图/名/规格/门店价）
-├── 商品详情
-│   ├── 商品信息（图/名/规格/详情）
-│   ├── 门店价展示
-│   ├── 库存状态
-│   ├── 数量选择
-│   └── 加入采购车/立即采购
-├── 采购车
-│   ├── 商品列表（图/名/规格/单价/数量）
-│   ├── 数量调整
-│   ├── 删除商品
-│   ├── 合计金额
-│   └── 提交订单
-├── 订单确认
-│   ├── 收货地址选择
-│   ├── 商品清单确认
-│   ├── 履约方式选择（同城/快递/自提）
-│   ├── 订单金额汇总
-│   └── 提交订单
-├── 订单列表
-│   ├── 全部/待付款/待发货/已发货/已完成
-│   ├── 订单卡片（单号/状态/金额/商品数）
-│   └── 订单详情入口
-├── 订单详情
-│   ├── 订单信息（单号/状态/时间）
-│   ├── 商品清单
-│   ├── 物流跟踪
-│   ├── 支付按钮（待付款）
-│   ├── 确认收货按钮（已发货）
-│   └── 申请售后入口
-├── 合并收银支付
-│   ├── 支付金额汇总（按root_id）
-│   ├── 微信支付（wx.b2b）
-│   └── 支付结果
-├── 售后申请
-│   ├── 选择订单/商品
-│   ├── 售后类型（仅退款/退货退款）
-│   ├── 申请原因
-│   ├── 退款金额（自动计算）
-│   └── 提交申请
-├── 售后列表
-│   ├── 申请中/审核中/退款中/已完成/已关闭
-│   └── 售后详情
-├── 收货地址
-│   ├── 地址列表
-│   ├── 新增/编辑地址
-│   └── 默认地址设置
-└── 个人中心
-    ├── 采购员信息
-    ├── 门店信息
-    ├── 订单统计
-    └── 退出登录
-</code></pre>
-<h3 id="42">4.2 核心流程设计</h3>
-<h4 id="421">4.2.1 采购下单流程</h4>
-<pre><code>[采购员] 登录 → 搜索商品 → 加入采购车 → 提交订单
-  ↓
-[系统] 校验：
-  - 门店归属 tenant_id
-  - 站点绑定 site_id
-  - 供应商订阅
-  - 选品状态
-  - 商品上下架
-  - 门店价有效性
-  - 站点库存充足
-  ↓
-[系统] 锁定库存（available - qty, locked + qty）
-  ↓
-[系统] 命中审批规则?
-  → 是: 创建审批实例，订单展示&quot;待审批&quot;
-  → 否: 进入待付款
-  ↓
-[审批人] 审批通过 → 解锁支付
-  ↓
-[采购员] 发起微信支付（wx.b2b）
-  ↓
-[系统] 支付回调 → 标记已支付
-  - 扣减锁定库存（locked - qty）
-  - 发送 OrderPaidEvent
-  - 推单到 ERP（fulfillment_type=1）
-</code></pre>
-<h4 id="422">4.2.2 混合履约拆单流程</h4>
-<pre><code>采购车商品：
-├── 商品A（平台商品）→ 平台配送
-├── 商品B（已建档自建商品）→ 平台配送
-└── 商品C（自配送自建商品）→ 自配送
-
-提交订单 → 按履约方式拆单：
-├── 子单1（root_id=X, fulfillment_type=1）
-│   ├── 商品A + 商品B
-│   └── 推ERP
-└── 子单2（root_id=X, fulfillment_type=2）
-    ├── 商品C
-    └── 租户自配送
-
-合并收银：
-├── 支付单金额 = 子单1金额 + 子单2金额
-├── 支付回调 → 逐子单标记已支付
-└── 仅子单1推ERP
-</code></pre>
-<h3 id="43">4.3 数据范围约束</h3>
-<table>
-<thead>
-<tr>
-<th>约束项</th>
-<th>规则</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>商品可见</td>
-<td>仅本租户 + 本门店所属站点 + 已上架</td>
-</tr>
-<tr>
-<td>价格展示</td>
-<td>仅 L5 门店价，不暴露 L1-L4</td>
-</tr>
-<tr>
-<td>订单范围</td>
-<td>仅本门店采购的订单</td>
-</tr>
-<tr>
-<td>售后范围</td>
-<td>仅本门店发起的售后</td>
-</tr>
-<tr>
-<td>地址范围</td>
-<td>仅本门店收货地址</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="5">5. 供应链中台设计</h2>
-<h3 id="51">5.1 中台核心能力</h3>
-<pre><code>供应链中台
-├── 商品中心（Product Center）
-│   ├── SPU/SKU主数据
-│   ├── 类目/品牌管理
-│   ├── 多单位/规格体系
-│   └── 商品图片/详情
-├── 库存中心（Inventory Center）
-│   ├── 供应商库存账本
-│   ├── 站点可售库存
-│   ├── 库存锁定/释放
-│   └── 库存预警
-├── 价格引擎（Pricing Engine）
-│   ├── 五级价格链计算
-│   ├── 加价策略管理
-│   ├── 价格快照
-│   └── 价格变更审计
-├── 订单中心（Order Center）
-│   ├── 订单创建/拆单
-│   ├── 状态机管理
-│   ├── 审批流集成
-│   └── 订单快照
-├── 履约中心（Fulfillment Center）
-│   ├── ERP推单路由
-│   ├── 发货管理
-│   ├── 物流跟踪
-│   └── 自配送支持
-├── 结算中心（Settlement Center）
-│   ├── 支付单管理
-│   ├── 退款处理
-│   ├── 对账
-│   └── 账期预留（v2）
-├── 供应商中心（Supplier Center）
-│   ├── 供应商主数据
-│   ├── ERP Provider配置
-│   ├── 供应商订阅
-│   └── 供应商评级（v2）
-└── 租户中心（Tenant Center）
-    ├── 租户生命周期
-    ├── 套餐配额
-    ├── 多租户隔离
-    └── 开户向导
-</code></pre>
-<h3 id="52">5.2 关键数据模型</h3>
-<h4 id="521">5.2.1 商品主数据</h4>
-<pre><code class="language-sql">-- 平台级共享，不按租户隔离
-CREATE TABLE t_sku (
-    sku_id BIGINT PRIMARY KEY,
-    spu_id BIGINT NOT NULL,
-    supplier_id BIGINT NOT NULL,  -- 平台级供应商
-    out_code VARCHAR(64),         -- ERP映射键
-    sku_name VARCHAR(255) NOT NULL,
-    sku_code VARCHAR(64),
-    category_id BIGINT,
-    brand_id BIGINT,
-    unit VARCHAR(32),
-    spec VARCHAR(255),
-    weight DECIMAL(10,3),
-    main_image VARCHAR(500),
-    album JSON,
-    status TINYINT DEFAULT 1,     -- 0停用 1启用
-    -- 价格字段（平台维护）
-    l1_cost_price DECIMAL(12,2),  -- 敏感，仅平台可见
-    l2_reference_price DECIMAL(12,2),
-    platform_price DECIMAL(12,2), -- L3平台站点价
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_supplier_out_code (supplier_id, out_code)
-);
-</code></pre>
-<h4 id="522">5.2.2 租户选品与站点关联</h4>
-<pre><code class="language-sql">-- 租户级隔离
-CREATE TABLE t_tenant_selection (
-    id BIGINT PRIMARY KEY,
-    tenant_id BIGINT NOT NULL,
-    sku_id BIGINT NOT NULL,
-    supplier_id BIGINT NOT NULL,
-    status TINYINT DEFAULT 1,     -- 0下架 1上架
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_tenant_sku (tenant_id, sku_id)
-);
-
--- 站点级关联（控制上下架）
-CREATE TABLE t_sku_site (
-    id BIGINT PRIMARY KEY,
-    tenant_id BIGINT NOT NULL,
-    site_id BIGINT NOT NULL,
-    sku_id BIGINT NOT NULL,
-    status TINYINT DEFAULT 1,     -- 0下架 1上架
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_tenant_site_sku (tenant_id, site_id, sku_id)
-);
-</code></pre>
-<h4 id="523">5.2.3 五级价格链</h4>
-<pre><code class="language-sql">-- L4租户站点价（租户维护）
-CREATE TABLE t_tenant_site_price (
-    id BIGINT PRIMARY KEY,
-    tenant_id BIGINT NOT NULL,
-    site_id BIGINT NOT NULL,
-    sku_id BIGINT NOT NULL,
-    l4_price DECIMAL(12,2) NOT NULL,
-    strategy_type VARCHAR(32),    -- 策略类型
-    strategy_params JSON,          -- 策略参数
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_tenant_site_sku (tenant_id, site_id, sku_id)
-);
-
--- L5门店价（租户维护）
-CREATE TABLE t_shop_price (
-    id BIGINT PRIMARY KEY,
-    tenant_id BIGINT NOT NULL,
-    shop_id BIGINT NOT NULL,
-    sku_id BIGINT NOT NULL,
-    l5_price DECIMAL(12,2) NOT NULL,
-    price_source TINYINT DEFAULT 1, -- 1跟随站点价 2独立定价
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_tenant_shop_sku (tenant_id, shop_id, sku_id)
-);
-</code></pre>
-<h4 id="524">5.2.4 订单主表</h4>
-<pre><code class="language-sql">CREATE TABLE t_order (
-    order_id BIGINT PRIMARY KEY,
-    root_id BIGINT,               -- 拆单共享root_id
-    tenant_id BIGINT NOT NULL,
-    shop_id BIGINT NOT NULL,
-    site_id BIGINT NOT NULL,      -- 履约路由键
-    -- 订单状态
-    order_status TINYINT NOT NULL, -- 1待付款 2待发货 3已发货 4已完成 5已关闭
-    approval_status TINYINT DEFAULT 0, -- 0NONE 1PENDING 2APPROVED 3REJECTED 4CANCELED
-    -- 金额
-    total_amount DECIMAL(12,2) NOT NULL,
-    pay_amount DECIMAL(12,2),
-    -- 履约
-    fulfillment_type TINYINT DEFAULT 1, -- 1平台配送 2自配送
-    delivery_type TINYINT,        -- 1同城 2快递 3自提
-    -- ERP同步
-    erp_sync_status TINYINT DEFAULT 0, -- 0未同步 1已同步
-    erp_sync_time DATETIME,
-    -- 时间戳
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    pay_time DATETIME,
-    delivery_time DATETIME,
-    receive_time DATETIME,
-    close_time DATETIME,
-    -- 索引
-    KEY idx_tenant_shop (tenant_id, shop_id),
-    KEY idx_site_status (site_id, order_status),
-    KEY idx_root_id (root_id)
-);
-</code></pre>
-<h4 id="525">5.2.5 订单明细（价格快照）</h4>
-<pre><code class="language-sql">CREATE TABLE t_order_item (
-    item_id BIGINT PRIMARY KEY,
-    order_id BIGINT NOT NULL,
-    sku_id BIGINT NOT NULL,
-    supplier_id BIGINT NOT NULL,  -- 货源标注
-    sku_name VARCHAR(255),
-    sku_image VARCHAR(500),
-    unit VARCHAR(32),
-    spec VARCHAR(255),
-    quantity INT NOT NULL,
-    -- 五级价格全量快照
-    l1_cost_price DECIMAL(12,2),  -- 内部审计，不暴露
-    l2_reference_price DECIMAL(12,2),
-    l3_platform_price DECIMAL(12,2),
-    l4_tenant_site_price DECIMAL(12,2),
-    l5_shop_price DECIMAL(12,2) NOT NULL, -- 门店成交价
-    -- 成交价
-    unit_price DECIMAL(12,2) NOT NULL, -- 最终成交价（=L5或调整）
-    total_price DECIMAL(12,2) NOT NULL,
-    -- 售后相关
-    refundable_quantity INT,      -- 剩余可退数量
-    refunded_amount DECIMAL(12,2), -- 已退金额
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-</code></pre>
-<h3 id="53">5.3 库存模型</h3>
-<pre><code class="language-sql">-- 供应商库存账本（ERP回写）
-CREATE TABLE t_sku_stock (
-    id BIGINT PRIMARY KEY,
-    supplier_id BIGINT NOT NULL,
-    sku_id BIGINT NOT NULL,
-    warehouse_code VARCHAR(64),   -- 仓库编码
-    stock_quantity INT DEFAULT 0, -- 库存数量
-    available_stock INT DEFAULT 0, -- 可用库存
-    locked_stock INT DEFAULT 0,   -- 锁定库存
-    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_supplier_sku_warehouse (supplier_id, sku_id, warehouse_code)
-);
-
--- 站点可售库存（下单锁定）
-CREATE TABLE t_site_stock (
-    id BIGINT PRIMARY KEY,
-    tenant_id BIGINT NOT NULL,
-    site_id BIGINT NOT NULL,
-    sku_id BIGINT NOT NULL,
-    available_stock INT DEFAULT 0, -- 可售库存
-    locked_stock INT DEFAULT 0,    -- 锁定库存
-    warning_threshold INT DEFAULT 0, -- 预警阈值
-    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_tenant_site_sku (tenant_id, site_id, sku_id)
-);
-</code></pre>
-<p><strong>库存操作流程</strong>：</p>
-<pre><code>1. 下单/提交审批: 
-   available_stock -= qty
-   locked_stock += qty
-
-2. 审批驳回/取消/支付超时:
-   available_stock += qty
-   locked_stock -= qty
-
-3. 支付成功:
-   locked_stock -= qty (转已售/出库)
-   -- available_stock 不变（已在步骤1扣减）
-
-4. ERP SyncStock回写:
-   更新供应商库存账本 → 触发站点库存对账/刷新
-</code></pre>
-<hr />
-<h2 id="6">6. 供应商模型与多源策略</h2>
-<h3 id="61">6.1 供应商类型定义</h3>
-<pre><code class="language-sql">CREATE TABLE t_supplier (
-    supplier_id BIGINT PRIMARY KEY,
-    supplier_name VARCHAR(255) NOT NULL,
-    supplier_type VARCHAR(32) NOT NULL, -- PUBLIC / PRIVATE
-    tenant_id BIGINT,              -- PRIVATE类型时必填
-    status TINYINT DEFAULT 1,     -- 0停用 1启用
-    -- ERP配置
-    default_provider_code VARCHAR(64), -- 默认Provider
-    -- 联系信息
-    contact_name VARCHAR(64),
-    contact_phone VARCHAR(32),
-    -- 时间戳
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>说明</th>
-<th>可见性</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>PUBLIC</strong></td>
-<td>平台公共供应商</td>
-<td>跨租户共享，需订阅</td>
-<td>菜洋洋（默认）</td>
-</tr>
-<tr>
-<td><strong>PRIVATE</strong></td>
-<td>租户私有供应商</td>
-<td>仅归属租户可见</td>
-<td>租户自建商品载体</td>
-</tr>
-</tbody>
-</table>
-<h3 id="62">6.2 多供应商策略</h3>
-<p><strong>核心决策</strong>：支持多供应商接入，菜洋洋作为默认深度集成供应商。</p>
-<pre><code>供应商生态：
-├── 平台公共供应商
-│   ├── 菜洋洋（默认，深度集成）
-│   ├── 第三方供应商A（未来接入）
-│   └── 第三方供应商B（未来接入）
-└── 租户私有供应商
-    ├── 租户1私有（自建商品载体）
-    └── 租户2私有（自建商品载体）
-</code></pre>
-<p><strong>接入策略</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>菜洋洋</th>
-<th>第三方供应商</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>接入方式</td>
-<td>原生深度集成</td>
-<td>Provider SPI 扩展</td>
-</tr>
-<tr>
-<td>商品同步</td>
-<td>ERP双向同步</td>
-<td>按需接入</td>
-</tr>
-<tr>
-<td>库存同步</td>
-<td>实时同步</td>
-<td>按需接入</td>
-</tr>
-<tr>
-<td>订单推单</td>
-<td>自动路由</td>
-<td>配置路由</td>
-</tr>
-<tr>
-<td>售后同步</td>
-<td>完整闭环</td>
-<td>按需接入</td>
-</tr>
-<tr>
-<td>差异化</td>
-<td>出品包/独家SKU</td>
-<td>通用商品</td>
-</tr>
-</tbody>
-</table>
-<p><strong>竞争优势设计</strong>：
-- 菜洋洋不靠"排他锁定"占份额，靠<strong>出品包和差异化 SKU</strong>
-- 优质连锁可接入自有中央厨房、自有供应商
-- 多供应商同 SKU 比价（v3）</p>
-<h3 id="63">6.3 租户供应商订阅</h3>
-<pre><code class="language-sql">CREATE TABLE t_tenant_supplier (
-    id BIGINT PRIMARY KEY,
-    tenant_id BIGINT NOT NULL,
-    supplier_id BIGINT NOT NULL,
-    subscribe_status TINYINT DEFAULT 1, -- 0取消 1订阅
-    subscribe_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY uk_tenant_supplier (tenant_id, supplier_id)
-);
-</code></pre>
-<p><strong>业务规则</strong>：
-- 未订阅供应商不可选品、不可采购
-- 开户时自动订阅公共供应商 + 自动创建私有供应商并订阅
-- 订阅数受套餐配额限制</p>
-<hr />
-<h2 id="7">7. 数据流转与集成</h2>
-<h3 id="71">7.1 核心数据流</h3>
-<pre><code>┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  供应商ERP   │ ←→ │  供应链中台  │ ←→ │  前台应用   │
-│  (吉客云)   │     │             │     │             │
-└─────────────┘     └─────────────┘     └─────────────┘
-       ↑                   ↑                 ↑
-       │                   │                 │
-   菠萝派协议          领域事件           API调用
-   DownloadProduct     OrderPaidEvent     /buyer/v1
-   SyncStock           StockChangeEvent   /tenant/v1
-   GetOrder/Send                         /platform/v1
-   CheckRefundStatus
-</code></pre>
-<h3 id="72-erp">7.2 ERP 集成架构</h3>
-<pre><code>mall-erp 防腐层
-├── Provider SPI
-│   ├── 推单接口
-│   ├── 库存同步接口
-│   ├── 商品同步接口
-│   ├── 发货回告接口
-│   └── 退款核对接口
-├── Provider实现
-│   ├── jackyun-provider（吉客云）
-│   │   ├── 菠萝派协议封装
-│   │   ├── MD5签名
-│   │   ├── Token管理
-│   │   └── 5个method实现
-│   └── future-provider（预留）
-├── 路由层
-│   └── site_id → out_code → provider
-└── 重试补偿
-    └── t_retry + XXL-Job
-</code></pre>
-<h3 id="73">7.3 搜索同步流</h3>
-<pre><code>MySQL → Canal → MQ → ES
-├── 商品变更 → 同步商品索引
-├── 站点关联变更 → 同步站点索引
-├── 站点库存变更 → 同步库存索引
-└── 价格变更 → 同步价格索引
-
-ES索引结构：
-├── 主键: tenant_id + site_id + sku_id
-├── 字段: sku信息 + 门店价 + 库存状态 + 上下架状态
-└── 查询: 关键词 + 筛选 + 排序（按tenant_id+site_id强制过滤）
-</code></pre>
-<hr />
-<h2 id="8">8. 权限与安全设计</h2>
-<h3 id="81-token">8.1 三层 Token 体系</h3>
-<table>
-<thead>
-<tr>
-<th>Token类型</th>
-<th>使用方</th>
-<th>携带信息</th>
-<th>隔离级别</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Platform JWT</strong></td>
-<td>平台运营</td>
-<td>用户ID + 角色</td>
-<td>无租户隔离</td>
-</tr>
-<tr>
-<td><strong>Tenant JWT</strong></td>
-<td>租户管理员/运营</td>
-<td>用户ID + tenantId + 角色</td>
-<td>租户级隔离</td>
-</tr>
-<tr>
-<td><strong>Store JWT</strong></td>
-<td>门店采购员</td>
-<td>用户ID + tenantId + shopId + shopAccountId</td>
-<td>门店级隔离</td>
-</tr>
-</tbody>
-</table>
-<h3 id="82">8.2 数据范围控制</h3>
-<pre><code class="language-java">// 租户级隔离示例
-@TenantIsolation
-public List&lt;Order&gt; queryOrders(OrderQueryParam param) {
-    // 自动注入当前租户ID
-    Long tenantId = TenantContext.getCurrentTenantId();
-    param.setTenantId(tenantId);
-    return orderMapper.selectList(param);
-}
-
-// 平台跨租户访问（需审计）
-@CrossTenantAccess(reason = &quot;开户向导代选品&quot;)
-public void batchSelectProducts(Long targetTenantId, List&lt;Long&gt; skuIds) {
-    // 记录审计日志
-    auditLog.record(&quot;BATCH_SELECT&quot;, targetTenantId, skuIds);
-    // 执行跨租户写操作
-    selectionService.batchSelect(targetTenantId, skuIds);
-}
-</code></pre>
-<h3 id="83">8.3 敏感字段控制</h3>
-<table>
-<thead>
-<tr>
-<th>敏感字段</th>
-<th>可见角色</th>
-<th>控制方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>L1成本价</td>
-<td>仅平台运营</td>
-<td>VO层过滤，接口不返回</td>
-</tr>
-<tr>
-<td>ERP凭据</td>
-<td>仅平台运营</td>
-<td>加密存储，接口不返回</td>
-</tr>
-<tr>
-<td>Provider协议字段</td>
-<td>仅mall-erp</td>
-<td>业务服务不可见</td>
-</tr>
-<tr>
-<td>租户交易数据</td>
-<td>仅本租户</td>
-<td>租户ID强制过滤</td>
-</tr>
-</tbody>
-</table>
-<h3 id="84">8.4 安全红线</h3>
-<ol>
-<li><strong>L1成本价不得经买方端VO/接口返回给门店</strong></li>
-<li><strong>跨租户数据读取必须经 <code>@CrossTenantAccess</code> + 审计日志</strong></li>
-<li><strong>ES查询必须强制 <code>tenant_id + site_id</code> 过滤</strong></li>
-<li><strong>定时任务和MQ消费必须手动设置并清理租户上下文</strong></li>
-<li><strong>支付回调、ERP入站、AI执行必须有审计日志</strong></li>
-</ol>
-<hr />
-<h2 id="a">附录 A：关键决策汇总</h2>
-<table>
-<thead>
-<tr>
-<th>决策点</th>
-<th>决策内容</th>
-<th>日期</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>底座定位</td>
-<td>供应链中台是底座，不是SaaS商城</td>
-<td>2026-06-08</td>
-</tr>
-<tr>
-<td>自营策略</td>
-<td>设计上预留收敛位，近期不迁移，待SaaS验证稳定后绞杀式迁移</td>
-<td>2026-06-08</td>
-</tr>
-<tr>
-<td>供应商模型</td>
-<td>支持多供应商，菜洋洋默认深度集成，靠出品包和差异化SKU占份额</td>
-<td>2026-06-08</td>
-</tr>
-<tr>
-<td>订单明细快照</td>
-<td>五级价格全量快照（L1-L5）落库</td>
-<td>2026-06-05</td>
-</tr>
-<tr>
-<td>L4初始来源</td>
-<td>平台代选品时直设L4，租户自行选品时按策略自动生成</td>
-<td>2026-06-05</td>
-</tr>
-<tr>
-<td>拆单策略</td>
-<td>按履约方式拆单+合并收银</td>
-<td>2026-06-05</td>
-</tr>
-<tr>
-<td>多供应商订单</td>
-<td>允许单订单多供应商，supplier_id下沉到明细，推单按site_id路由</td>
-<td>2026-06-05</td>
-</tr>
-<tr>
-<td>库存扣减</td>
-<td>支付成功后扣减锁定库存，available_stock不变</td>
-<td>2026-06-05</td>
-</tr>
-<tr>
-<td>合并支付</td>
-<td>剔除已关闭子单，按剩余子单余额合并支付</td>
-<td>2026-06-06</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="b">附录 B：接口命名规范</h2>
-<pre><code>{end}:{module}:{action}
-
-示例：
-- tenant:selection:create    租户选品创建
-- tenant:shop:list           租户门店列表
-- buyer:order:submit         采购员提交订单
-- buyer:cart:add             采购车添加商品
-- platform:tenant:create     平台创建租户
-- platform:product:sync      平台同步商品
-</code></pre>
-<hr />
-<h2 id="c">附录 C：演进路线</h2>
-<table>
-<thead>
-<tr>
-<th>阶段</th>
-<th>能力</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>MVP（当前）</strong></td>
-<td>B2B采购闭环、站点模型、选品、五级价格、租户自建商品、开户向导、按履约方式拆单、微信B2B、吉客云Provider全保留、多租户(共享库)、搜索、基础审批、AI Copilot</td>
-</tr>
-<tr>
-<td>v2</td>
-<td>供应商门户、账期/月结、对账结算单、发票、预算控制、多级审批、常购清单、同义词/热词、商城装修、小程序管理</td>
-</tr>
-<tr>
-<td>v3</td>
-<td>多供应商同SKU比价、智能补货、供应商绩效、独立schema隔离选项、智能推荐</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><em>文档结束</em></p>
-<h2 id="_2">相关链接</h2>
-<ul>
-<li><a class="wikilink" href="../%E5%A4%9A%E7%A7%9F%E6%88%B7SaaS%E5%95%86%E5%9F%8E%E5%B9%B3%E5%8F%B0-%E4%BA%A7%E5%93%81%E5%8A%9F%E8%83%BD%E6%96%87%E6%A1%A3.html">多租户SaaS商城平台-产品功能文档</a></li>
-<li><a class="wikilink" href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E6%8A%A5%E5%91%8A.html">AI Native 深度报告</a></li>
-</ul>
+{body}
     </main>
     <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" id="back-to-top">↑</button>
     <script>
-        const searchIndex = [{"title": "Wiki Schema", "path": "SCHEMA.html"}, {"title": "程峰的 Obsidian 知识库", "path": "首页.html"}, {"title": "Wiki Log", "path": "log.html"}, {"title": "Wiki Index", "path": "index.html"}, {"title": "README", "path": "简历库/README.html"}, {"title": "面试评估表", "path": "简历库/模板/interview-evaluation.html"}, {"title": "STAR 回答记录表", "path": "简历库/模板/star-answer.html"}, {"title": "JD 匹配矩阵", "path": "简历库/模板/jd-match-matrix.html"}, {"title": "C00004825-朱宇尧-数字化产品经理 — 面试分析", "path": "简历库/面试分析/C00004825-朱宇尧-数字化产品经理-面试分析.html"}, {"title": "C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）", "path": "简历库/面试分析/C00004825-朱宇尧-产品副总监-面试题.html"}, {"title": "产品周会核心要点 / 待办 / 机会点", "path": "原始资料/会议/产品周会_核心要点_待办_机会点_20260526.html"}, {"title": "AI合规与行业经验-圆桌发言素材", "path": "原始资料/会议/AI合规与行业经验-圆桌发言素材-2026-06-27.html"}, {"title": "老OpenClaw 2026-06-21 的记忆文件", "path": "原始资料/articles/老openclaw20260621的记忆文件.html"}, {"title": "'{{title}}'", "path": "99 附件/模板/学习模板.html"}, {"title": "PRD 文档模板", "path": "99 附件/模板/PRD-模板.html"}, {"title": "'{{title}} 复盘'", "path": "99 附件/模板/复盘模板.html"}, {"title": "对话反思日志模板", "path": "99 附件/模板/对话反思日志模板.html"}, {"title": "\"AI Native 实战课程 - Day 4: 第四章 - 上下文即状态\"", "path": "06 课程/AINative实战/Day-4.html"}, {"title": "\"AI Native 实战课程 - Day 5: 第五章 - 生成即服务\"", "path": "06 课程/AINative实战/Day-5.html"}, {"title": "\"AI Native 实战课程 - Day 1: AI Enhanced vs AI Native\"", "path": "06 课程/AINative实战/Day-1.html"}, {"title": "\"AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent\"", "path": "06 课程/AINative实战/Day-6.html"}, {"title": "\"AI Native 实战课程 - Day 2: 第二章 - 行业拐点\"", "path": "06 课程/AINative实战/Day-2.html"}, {"title": "\"AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口\"", "path": "06 课程/AINative实战/Day-3.html"}, {"title": "AI能力体系建设", "path": "实体/AI能力体系建设.html"}, {"title": "1#楼改造工程（安装）- 工程量清单", "path": "实体/1号楼改造工程-工程量清单.html"}, {"title": "AI商机雷达-PRD", "path": "实体/AI商机雷达-PRD.html"}, {"title": "CIO 技能提升专项计划", "path": "实体/CIO技能提升专项计划-2026-06-21.html"}, {"title": "ShareLLM 项目开发计划", "path": "实体/ShareLLM项目开发计划-2026-06-21.html"}, {"title": "岗位JD评审与Slogan设计", "path": "实体/岗位JD评审与Slogan设计-2026-05-29.html"}, {"title": "技术沟通", "path": "实体/技术沟通.html"}, {"title": "程川 AI能力体系建设方案 - 待办总表与执行策略", "path": "实体/程川 AI能力体系建设方案 - 待办总表与执行策略.html"}, {"title": "管理层数字化素养提升方案（数据驱动决策专项）", "path": "实体/管理层数字化素养提升方案.html"}, {"title": "多租户SaaS商城平台 - 产品功能文档", "path": "实体/多租户SaaS商城平台-产品功能文档.html"}, {"title": "mall-saas 代码审查报告索引", "path": "实体/_审查报告索引.html"}, {"title": "AI应用及团队管理探讨会", "path": "实体/AI应用及团队管理探讨会_纪要.html"}, {"title": "研发体系建设方案", "path": "实体/研发体系/研发体系建设方案.html"}, {"title": "OpenClaw 架构设计文档", "path": "实体/OpenClaw/OpenClaw 架构设计文档.html"}, {"title": "菜洋洋AI原生组织架构调整规划", "path": "实体/菜洋洋/菜洋洋AI原生组织架构调整规划.html"}, {"title": "餐饮供应链业务对接交流会议记录", "path": "实体/菜洋洋/餐饮供应链业务对接交流会-20260526.html"}, {"title": "菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10", "path": "实体/菜洋洋/菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10.html"}, {"title": "菜洋洋产研团队组织架构与数智中心定位分析", "path": "实体/菜洋洋/菜洋洋数智中心组织定位分析.html"}, {"title": "菜洋洋云星空旗舰版项目业务蓝图——老信评审", "path": "实体/菜洋洋/菜洋洋云星空旗舰版项目业务蓝图-老信评审-2026-06-22.html"}, {"title": "菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS", "path": "实体/菜洋洋/菜洋洋商城战略PRD.html"}, {"title": "菜洋洋企业定位研讨会发言稿", "path": "实体/菜洋洋/菜洋洋企业定位研讨会发言稿-2026-06-27.html"}, {"title": "菜洋洋企业定位研讨11问（洞察+建议+参考）", "path": "实体/菜洋洋/菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27.html"}, {"title": "菜洋洋AIOS-数据基础建设需求梳理", "path": "实体/菜洋洋/菜洋洋AIOS-数据基础建设需求梳理.html"}, {"title": "菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD", "path": "实体/菜洋洋/菜洋洋 AI选品引擎 PRD.html"}, {"title": "菜洋洋-待办-2026-06-29", "path": "实体/菜洋洋/菜洋洋-待办-2026-06-29.html"}, {"title": "菜洋洋商城战略评审与建议方案", "path": "实体/菜洋洋/菜洋洋商城战略评审-2026-05-29.html"}, {"title": "菜洋洋《上新方案包》产品PRD（V1.0）", "path": "实体/菜洋洋/菜洋洋上新方案包_PRD_V1.0.html"}, {"title": "菜洋洋 AI OS 系统架构图", "path": "实体/菜洋洋/菜洋洋 AI OS 系统架构图.html"}, {"title": "菜洋洋产研团队岗位说明书评审报告", "path": "实体/菜洋洋/菜洋洋岗位说明书评审报告.html"}, {"title": "菜洋洋 SaaS 商城 — 管理后台设计方案", "path": "实体/菜洋洋/菜洋洋SaaS商城-管理后台设计方案-v1.0.html"}, {"title": "菜洋洋商城 → AI OS 演进路线与架构方案", "path": "实体/菜洋洋/菜洋洋商城 AI OS 演进路线与架构方案.html"}, {"title": "菜洋洋-数据驱动的餐饮供应链操作系统-PRD", "path": "实体/菜洋洋/菜洋洋-数据驱动的餐饮供应链操作系统-PRD.html"}, {"title": "菜洋洋企业定位研讨思路准备（Q1-Q6 重点）", "path": "实体/菜洋洋/菜洋洋企业定位研讨-思路准备-2026-06-25.html"}, {"title": "网店运营与推广综合实训平台人员投入排期", "path": "实体/网店运营实训平台/网店运营与推广综合实训平台-人员投入排期.html"}, {"title": "网店运营与推广综合实训平台 PRD", "path": "实体/网店运营实训平台/网店运营与推广综合实训平台-PRD.html"}, {"title": "AI商机雷达-移动端Figma设计规范", "path": "实体/AI商机雷达/AI商机雷达-移动端Figma设计规范.html"}, {"title": "AI商机雷达｜AI Coding开发提示词", "path": "实体/AI商机雷达/AI商机雷达｜AI Coding开发提示词.html"}, {"title": "AI商机雷达｜Figma AI设计提示词", "path": "实体/AI商机雷达/AI商机雷达｜Figma AI设计提示词.html"}, {"title": "AI 选品推品产品分析报告 & PRD", "path": "查询/AI选品推品产品分析报告-2026-05-29.html"}, {"title": "大众点评品类品牌数据分析报告", "path": "查询/大众点评品类品牌数据分析报告.html"}, {"title": "Hermes Skill 索引与触发机制", "path": "概念/hermes-skills.html"}, {"title": "AI协作优化规则", "path": "概念/协作规范/AI协作优化规则.html"}, {"title": "AI数字化素养学习路径图", "path": "概念/学习资源/AI数字化素养学习路径图.html"}, {"title": "Prompt 模板库", "path": "概念/学习资源/Prompt模板库.html"}, {"title": "CIO 持续学习计划", "path": "概念/学习资源/CIO持续学习计划.html"}, {"title": "代码规范", "path": "概念/学习资源/代码规范.html"}, {"title": "AI工具分层自学视频资源表", "path": "概念/学习资源/AI工具分层自学视频资源表.html"}, {"title": "工具", "path": "概念/学习资源/工具.html"}, {"title": "《AI Native：从概念到落地》", "path": "概念/AI Native/《AI Native：从概念到落地》- 书籍规划.html"}, {"title": "第二章：行业拐点", "path": "概念/AI Native/《AI Native：从概念到落地》- 第二章.html"}, {"title": "AI Native 深度报告", "path": "概念/AI Native/AI Native 深度报告.html"}, {"title": "第一章：AI Enhanced vs AI Native", "path": "概念/AI Native/《AI Native：从概念到落地》- 第一章.html"}, {"title": "AI Native 深度解析：从概念到落地", "path": "概念/AI Native/AI Native 深度解析：从概念到落地.html"}, {"title": "AI岗位培训课件 - 管理层：用AI做经营决策", "path": "概念/AI培训/AI岗位培训课件 - 管理层：用AI做经营决策.html"}, {"title": "AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助", "path": "概念/AI培训/AI岗位培训课件 - HR：招聘JD简历分析绩效辅助.html"}, {"title": "AI岗位培训课件 - 数据/研发：AI Coding/数据处理", "path": "概念/AI培训/AI岗位培训课件 - 数据研发：AI Coding数据处理.html"}, {"title": "AI岗位培训课件 - 销售：客户洞察/跟进话术", "path": "概念/AI培训/AI岗位培训课件 - 销售：客户洞察跟进话术.html"}, {"title": "AI岗位培训课件 - 产品：PRD→原型→Demo", "path": "概念/AI培训/AI岗位培训课件 - 产品：PRD原型Demo.html"}, {"title": "AI岗位培训课件 - 运营：活动方案/数据分析", "path": "概念/AI培训/AI岗位培训课件 - 运营：活动方案数据分析.html"}, {"title": "待办索引", "path": "日志/待办索引.html"}, {"title": "对话反思日志 - 2026-05-28", "path": "日志/2026-05-28-对话反思.html"}, {"title": "20260601重要事项", "path": "日志/20260601重要事项.html"}, {"title": "2026-05-28 每日反思", "path": "日志/2026-05-28 每日反思.html"}, {"title": "待办-2026-06-29", "path": "日志/待办-2026-06-29.html"}, {"title": "AI Coding vs Vibe Coding 对比分析", "path": "对比/AI Coding vs Vibe Coding 对比分析.html"}, {"title": "四洋", "path": "_persons/四洋.html"}, {"title": "满满", "path": "_persons/满满.html"}, {"title": "惠开发", "path": "_persons/惠开发.html"}, {"title": "龙龙", "path": "_persons/龙龙.html"}, {"title": "ccknow", "path": "_persons/ccknow.html"}];
+        const searchIndex = {search_index};
+        const pathMatrix = {path_matrix};
+        const currentTitle = {current_title_json};
         function toggleFolder(el) {
             const li = el.parentElement;
             li.classList.toggle('collapsed');
@@ -1815,35 +472,32 @@ public void batchSelectProducts(Long targetTenantId, List&lt;Long&gt; skuIds) {
             if (!query) { results.innerHTML = ''; results.classList.remove('active'); return; }
             const q = query.toLowerCase();
             const matched = searchIndex.filter(p => p.title.toLowerCase().includes(q) || p.path.toLowerCase().includes(q)).slice(0, 10);
-            if (matched.length === 0) { results.innerHTML = '<a href="#">未找到结果</a>'; }
+            if (matched.length === 0) { results.innerHTML = '<div class="empty">未找到结果</div>'; }
             else {
-                results.innerHTML = matched.map(p => `<a href="${relUrl(p.path)}">${p.title}</a>`).join('');
+                const matrix = pathMatrix[currentTitle] || {};
+                results.innerHTML = matched.map(p => {
+                    const url = matrix[p.title] || p.path;
+                    return `<a href="${url}"><span>${p.title}</span><span class="path">${p.path}</span></a>`;
+                }).join('');
             }
             results.classList.add('active');
         }
-        function relUrl(targetPath) {
-            const current = window.location.pathname.replace(/^.*\/ccknow-web\//, '').replace(/\/$/, '');
-            const currentParts = current ? current.split('/') : [];
-            const targetParts = targetPath.split('/');
-            let common = 0;
-            for (let i = 0; i < Math.min(currentParts.length, targetParts.length); i++) {
-                if (currentParts[i] === targetParts[i]) common++; else break;
-            }
-            const up = currentParts.length - common - (current.endsWith('.html') ? 1 : 0);
-            const rel = [];
-            for (let i = 0; i < Math.max(0, up); i++) rel.push('..');
-            rel.push(...targetParts.slice(common));
-            return rel.join('/') || './';
-        }
         function showSearch() { if (document.getElementById('search').value) document.getElementById('search-results').classList.add('active'); }
         function hideSearchDelayed() { setTimeout(() => document.getElementById('search-results').classList.remove('active'), 200); }
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
         document.addEventListener('DOMContentLoaded', () => {
             const saved = localStorage.getItem('theme');
-            if (saved) document.documentElement.setAttribute('data-theme', saved);
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+            }
             window.addEventListener('scroll', () => {
                 document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
             });
         });
+        {extra_script}
     </script>
 </body>
 </html>
