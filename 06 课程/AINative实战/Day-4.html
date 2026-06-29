@@ -3,44 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day-4 - ccknow</title>
+    <title>&quot;AI Native 实战课程 - Day 4: 第四章 - 上下文即状态&quot; - ccknow</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        :root {
+            --sidebar-width: 280px;
+            --bg: #f7f8fa;
+            --card: #ffffff;
+            --text: #1f2329;
+            --text-secondary: #646a73;
+            --border: #e5e6eb;
+            --primary: #3370ff;
+            --primary-light: #e8f0ff;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        .sidebar-header {
+            padding: 0 20px 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+        .sidebar-header a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .sidebar-header .home { font-size: 13px; color: var(--text-secondary); display: block; margin-top: 6px; }
+        .nav ul {
+            list-style: none;
+            padding-left: 16px;
+            margin: 0;
+        }
+        .nav > ul { padding-left: 0; }
+        .nav li { margin: 2px 0; }
+        .nav li span { color: var(--text-secondary); font-size: 13px; font-weight: 600; padding: 6px 20px; display: block; }
+        .nav li a {
+            display: block;
+            padding: 6px 20px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 0 6px 6px 0;
+            margin-right: 8px;
+        }
+        .nav li a:hover { background: var(--bg); }
+        .nav li.active > a { background: var(--primary-light); color: var(--primary); font-weight: 600; }
+        .content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 32px 48px;
+            max-width: 960px;
+            background: var(--card);
+            min-height: 100vh;
+        }
         h1, h2, h3 { color: #1a1a1a; }
-        a { color: #0366d6; text-decoration: none; }
+        a { color: var(--primary); text-decoration: none; }
         a:hover { text-decoration: underline; }
-        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+        a.wikilink { color: #7b61ff; }
+        a.missing { color: #999; text-decoration: line-through; }
+        code { background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, monospace; }
         pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
         blockquote { border-left: 4px solid #dfe2e5; padding-left: 16px; color: #6a737d; margin: 0; }
-        table { border-collapse: collapse; width: 100%; }
+        table { border-collapse: collapse; width: 100%; margin: 16px 0; }
         th, td { border: 1px solid #dfe2e5; padding: 8px; text-align: left; }
         th { background: #f6f8fa; }
-        .nav { margin-bottom: 20px; padding: 10px; background: #f6f8fa; border-radius: 6px; }
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .content { margin-left: 0; padding: 20px; }
+        }
     </style>
 </head>
 <body>
-    <div class="nav"><a href="index.html">🏠 首页</a> | <a href="index.html">返回知识库索引</a></div>
-    <hr />
-<p>title: "AI Native 实战课程 - Day 4: 第四章 - 上下文即状态"
-date: 2026-06-26
-type: course
-chapter: "第四章"
-tags:
-  - AI Native
-  - 上下文即状态
-  - 记忆
-  - 状态持久化
-  - Agent
-updated: 2026-06-29</p>
-<hr />
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../../%E9%A6%96%E9%A1%B5.html">ccknow</a>
+            <a class="home" href="../../%E9%A6%96%E9%A1%B5.html">🏠 首页</a>
+        </div>
+        <nav class="nav">
+            <ul><li class="folder"><span>06 课程</span><ul>
+<li class="folder"><span>AINative实战</span><ul>
+<li class=""><a href="Day-1.html">&quot;AI Native 实战课程 - Day 1: AI Enhanced vs AI Native&quot;</a></li>
+<li class=""><a href="Day-2.html">&quot;AI Native 实战课程 - Day 2: 第二章 - 行业拐点&quot;</a></li>
+<li class=""><a href="Day-3.html">&quot;AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口&quot;</a></li>
+<li class="active"><a href="Day-4.html">&quot;AI Native 实战课程 - Day 4: 第四章 - 上下文即状态&quot;</a></li>
+<li class=""><a href="Day-5.html">&quot;AI Native 实战课程 - Day 5: 第五章 - 生成即服务&quot;</a></li>
+<li class=""><a href="Day-6.html">&quot;AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent&quot;</a></li>
+</ul></li>
+</ul></li>
+<li class="folder"><span>99 附件</span><ul>
+<li class="folder"><span>模板</span><ul>
+<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/PRD-%E6%A8%A1%E6%9D%BF.html">PRD 文档模板</a></li>
+<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%A4%8D%E7%9B%98%E6%A8%A1%E6%9D%BF.html">&#x27;{{title}} 复盘&#x27;</a></li>
+<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AD%A6%E4%B9%A0%E6%A8%A1%E6%9D%BF.html">&#x27;{{title}}&#x27;</a></li>
+<li class=""><a href="../../99%20%E9%99%84%E4%BB%B6/%E6%A8%A1%E6%9D%BF/%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D%E6%97%A5%E5%BF%97%E6%A8%A1%E6%9D%BF.html">对话反思日志模板</a></li>
+</ul></li>
+</ul></li>
+<li class=""><a href="../../SCHEMA.html">Wiki Schema</a></li>
+<li class=""><a href="../../index.html">Wiki Index</a></li>
+<li class=""><a href="../../log.html">Wiki Log</a></li>
+<li class=""><a href="../../%E9%A6%96%E9%A1%B5.html">程峰的 Obsidian 知识库</a></li>
+<li class="folder"><span>_persons</span><ul>
+<li class=""><a href="../../_persons/ccknow.html">ccknow</a></li>
+<li class=""><a href="../../_persons/%E5%9B%9B%E6%B4%8B.html">四洋</a></li>
+<li class=""><a href="../../_persons/%E6%83%A0%E5%BC%80%E5%8F%91.html">惠开发</a></li>
+<li class=""><a href="../../_persons/%E6%BB%A1%E6%BB%A1.html">满满</a></li>
+<li class=""><a href="../../_persons/%E9%BE%99%E9%BE%99.html">龙龙</a></li>
+</ul></li>
+<li class="folder"><span>原始资料</span><ul>
+<li class="folder"><span>articles</span><ul>
+<li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/articles/%E8%80%81openclaw20260621%E7%9A%84%E8%AE%B0%E5%BF%86%E6%96%87%E4%BB%B6.html">老OpenClaw 2026-06-21 的记忆文件</a></li>
+</ul></li>
+<li class="folder"><span>会议</span><ul>
+<li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/AI%E5%90%88%E8%A7%84%E4%B8%8E%E8%A1%8C%E4%B8%9A%E7%BB%8F%E9%AA%8C-%E5%9C%86%E6%A1%8C%E5%8F%91%E8%A8%80%E7%B4%A0%E6%9D%90-2026-06-27.html">AI合规与行业经验-圆桌发言素材</a></li>
+<li class=""><a href="../../%E5%8E%9F%E5%A7%8B%E8%B5%84%E6%96%99/%E4%BC%9A%E8%AE%AE/%E4%BA%A7%E5%93%81%E5%91%A8%E4%BC%9A_%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9_%E5%BE%85%E5%8A%9E_%E6%9C%BA%E4%BC%9A%E7%82%B9_20260526.html">产品周会核心要点 / 待办 / 机会点</a></li>
+</ul></li>
+</ul></li>
+<li class="folder"><span>实体</span><ul>
+<li class="folder"><span>AI商机雷达</span><ul>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-%E7%A7%BB%E5%8A%A8%E7%AB%AFFigma%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.html">AI商机雷达-移动端Figma设计规范</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CAI%20Coding%E5%BC%80%E5%8F%91%E6%8F%90%E7%A4%BA%E8%AF%8D.html">AI商机雷达｜AI Coding开发提示词</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE%EF%BD%9CFigma%20AI%E8%AE%BE%E8%AE%A1%E6%8F%90%E7%A4%BA%E8%AF%8D.html">AI商机雷达｜Figma AI设计提示词</a></li>
+</ul></li>
+<li class="folder"><span>OpenClaw</span><ul>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/OpenClaw/OpenClaw%20%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3.html">OpenClaw 架构设计文档</a></li>
+</ul></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/1%E5%8F%B7%E6%A5%BC%E6%94%B9%E9%80%A0%E5%B7%A5%E7%A8%8B-%E5%B7%A5%E7%A8%8B%E9%87%8F%E6%B8%85%E5%8D%95.html">1#楼改造工程（安装）- 工程量清单</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%95%86%E6%9C%BA%E9%9B%B7%E8%BE%BE-PRD.html">AI商机雷达-PRD</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E5%BA%94%E7%94%A8%E5%8F%8A%E5%9B%A2%E9%98%9F%E7%AE%A1%E7%90%86%E6%8E%A2%E8%AE%A8%E4%BC%9A_%E7%BA%AA%E8%A6%81.html">AI应用及团队管理探讨会</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE.html">AI能力体系建设</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/CIO%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87%E4%B8%93%E9%A1%B9%E8%AE%A1%E5%88%92-2026-06-21.html">CIO 技能提升专项计划</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/ShareLLM%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92-2026-06-21.html">ShareLLM 项目开发计划</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/_%E5%AE%A1%E6%9F%A5%E6%8A%A5%E5%91%8A%E7%B4%A2%E5%BC%95.html">mall-saas 代码审查报告索引</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E5%A4%9A%E7%A7%9F%E6%88%B7SaaS%E5%95%86%E5%9F%8E%E5%B9%B3%E5%8F%B0-%E4%BA%A7%E5%93%81%E5%8A%9F%E8%83%BD%E6%96%87%E6%A1%A3.html">多租户SaaS商城平台 - 产品功能文档</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E5%B2%97%E4%BD%8DJD%E8%AF%84%E5%AE%A1%E4%B8%8ESlogan%E8%AE%BE%E8%AE%A1-2026-05-29.html">岗位JD评审与Slogan设计</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E6%8A%80%E6%9C%AF%E6%B2%9F%E9%80%9A.html">技术沟通</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%A8%8B%E5%B7%9D%20AI%E8%83%BD%E5%8A%9B%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88%20-%20%E5%BE%85%E5%8A%9E%E6%80%BB%E8%A1%A8%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5.html">程川 AI能力体系建设方案 - 待办总表与执行策略</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%AE%A1%E7%90%86%E5%B1%82%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E6%8F%90%E5%8D%87%E6%96%B9%E6%A1%88.html">管理层数字化素养提升方案（数据驱动决策专项）</a></li>
+<li class="folder"><span>研发体系</span><ul>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB/%E7%A0%94%E5%8F%91%E4%BD%93%E7%B3%BB%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88.html">研发体系建设方案</a></li>
+</ul></li>
+<li class="folder"><span>网店运营实训平台</span><ul>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-PRD.html">网店运营与推广综合实训平台 PRD</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0/%E7%BD%91%E5%BA%97%E8%BF%90%E8%90%A5%E4%B8%8E%E6%8E%A8%E5%B9%BF%E7%BB%BC%E5%90%88%E5%AE%9E%E8%AE%AD%E5%B9%B3%E5%8F%B0-%E4%BA%BA%E5%91%98%E6%8A%95%E5%85%A5%E6%8E%92%E6%9C%9F.html">网店运营与推广综合实训平台人员投入排期</a></li>
+</ul></li>
+<li class="folder"><span>菜洋洋</span><ul>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%20OS%20%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE.html">菜洋洋 AI OS 系统架构图</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%20AI%E9%80%89%E5%93%81%E5%BC%95%E6%93%8E%20PRD.html">菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E5%BE%85%E5%8A%9E-2026-06-29.html">菜洋洋-待办-2026-06-29</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-PRD.html">菜洋洋-数据驱动的餐饮供应链操作系统-PRD</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BAIOS-%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%BB%BA%E8%AE%BE%E9%9C%80%E6%B1%82%E6%A2%B3%E7%90%86.html">菜洋洋AIOS-数据基础建设需求梳理</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BAI%E5%8E%9F%E7%94%9F%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%92.html">菜洋洋AI原生组织架构调整规划</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8BSaaS%E5%95%86%E5%9F%8E-%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88-v1.0.html">菜洋洋 SaaS 商城 — 管理后台设计方案</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%B8%8A%E6%96%B0%E6%96%B9%E6%A1%88%E5%8C%85_PRD_V1.0.html">菜洋洋《上新方案包》产品PRD（V1.0）</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E5%88%9D%E7%89%88%E5%BE%85%E5%AE%8C%E5%96%84-2026-06-10.html">菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BA%91%E6%98%9F%E7%A9%BA%E6%97%97%E8%88%B0%E7%89%88%E9%A1%B9%E7%9B%AE%E4%B8%9A%E5%8A%A1%E8%93%9D%E5%9B%BE-%E8%80%81%E4%BF%A1%E8%AF%84%E5%AE%A1-2026-06-22.html">菜洋洋云星空旗舰版项目业务蓝图——老信评审</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8-%E6%80%9D%E8%B7%AF%E5%87%86%E5%A4%87-2026-06-25.html">菜洋洋企业定位研讨思路准备（Q1-Q6 重点）</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A811%E9%97%AE-%E6%B4%9E%E5%AF%9F%E5%BB%BA%E8%AE%AE%E5%8F%82%E8%80%83-2026-06-27.html">菜洋洋企业定位研讨11问（洞察+建议+参考）</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E4%BC%81%E4%B8%9A%E5%AE%9A%E4%BD%8D%E7%A0%94%E8%AE%A8%E4%BC%9A%E5%8F%91%E8%A8%80%E7%A8%BF-2026-06-27.html">菜洋洋企业定位研讨会发言稿</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%20AI%20OS%20%E6%BC%94%E8%BF%9B%E8%B7%AF%E7%BA%BF%E4%B8%8E%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html">菜洋洋商城 → AI OS 演进路线与架构方案</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5PRD.html">菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%95%86%E5%9F%8E%E6%88%98%E7%95%A5%E8%AF%84%E5%AE%A1-2026-05-29.html">菜洋洋商城战略评审与建议方案</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E5%B2%97%E4%BD%8D%E8%AF%B4%E6%98%8E%E4%B9%A6%E8%AF%84%E5%AE%A1%E6%8A%A5%E5%91%8A.html">菜洋洋产研团队岗位说明书评审报告</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E8%8F%9C%E6%B4%8B%E6%B4%8B%E6%95%B0%E6%99%BA%E4%B8%AD%E5%BF%83%E7%BB%84%E7%BB%87%E5%AE%9A%E4%BD%8D%E5%88%86%E6%9E%90.html">菜洋洋产研团队组织架构与数智中心定位分析</a></li>
+<li class=""><a href="../../%E5%AE%9E%E4%BD%93/%E8%8F%9C%E6%B4%8B%E6%B4%8B/%E9%A4%90%E9%A5%AE%E4%BE%9B%E5%BA%94%E9%93%BE%E4%B8%9A%E5%8A%A1%E5%AF%B9%E6%8E%A5%E4%BA%A4%E6%B5%81%E4%BC%9A-20260526.html">餐饮供应链业务对接交流会议记录</a></li>
+</ul></li>
+</ul></li>
+<li class="folder"><span>对比</span><ul>
+<li class=""><a href="../../%E5%AF%B9%E6%AF%94/AI%20Coding%20vs%20Vibe%20Coding%20%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90.html">AI Coding vs Vibe Coding 对比分析</a></li>
+</ul></li>
+<li class="folder"><span>日志</span><ul>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/2026-05-28%20%E6%AF%8F%E6%97%A5%E5%8F%8D%E6%80%9D.html">2026-05-28 每日反思</a></li>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/2026-05-28-%E5%AF%B9%E8%AF%9D%E5%8F%8D%E6%80%9D.html">对话反思日志 - 2026-05-28</a></li>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/20260601%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A1%B9.html">20260601重要事项</a></li>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E-2026-06-29.html">待办-2026-06-29</a></li>
+<li class=""><a href="../../%E6%97%A5%E5%BF%97/%E5%BE%85%E5%8A%9E%E7%B4%A2%E5%BC%95.html">待办索引</a></li>
+</ul></li>
+<li class="folder"><span>查询</span><ul>
+<li class=""><a href="../../%E6%9F%A5%E8%AF%A2/AI%E9%80%89%E5%93%81%E6%8E%A8%E5%93%81%E4%BA%A7%E5%93%81%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A-2026-05-29.html">AI 选品推品产品分析报告 &amp; PRD</a></li>
+<li class=""><a href="../../%E6%9F%A5%E8%AF%A2/%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84%E5%93%81%E7%B1%BB%E5%93%81%E7%89%8C%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.html">大众点评品类品牌数据分析报告</a></li>
+</ul></li>
+<li class="folder"><span>概念</span><ul>
+<li class="folder"><span>AI Native</span><ul>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E6%8A%A5%E5%91%8A.html">AI Native 深度报告</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0.html">AI Native 深度解析：从概念到落地</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E4%B9%A6%E7%B1%8D%E8%A7%84%E5%88%92.html">《AI Native：从概念到落地》</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%B8%80%E7%AB%A0.html">第一章：AI Enhanced vs AI Native</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E7%AC%AC%E4%BA%8C%E7%AB%A0.html">第二章：行业拐点</a></li>
+</ul></li>
+<li class="folder"><span>AI培训</span><ul>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20HR%EF%BC%9A%E6%8B%9B%E8%81%98JD%E7%AE%80%E5%8E%86%E5%88%86%E6%9E%90%E7%BB%A9%E6%95%88%E8%BE%85%E5%8A%A9.html">AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E4%BA%A7%E5%93%81%EF%BC%9APRD%E5%8E%9F%E5%9E%8BDemo.html">AI岗位培训课件 - 产品：PRD→原型→Demo</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E6%95%B0%E6%8D%AE%E7%A0%94%E5%8F%91%EF%BC%9AAI%20Coding%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.html">AI岗位培训课件 - 数据/研发：AI Coding/数据处理</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E7%AE%A1%E7%90%86%E5%B1%82%EF%BC%9A%E7%94%A8AI%E5%81%9A%E7%BB%8F%E8%90%A5%E5%86%B3%E7%AD%96.html">AI岗位培训课件 - 管理层：用AI做经营决策</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E8%BF%90%E8%90%A5%EF%BC%9A%E6%B4%BB%E5%8A%A8%E6%96%B9%E6%A1%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">AI岗位培训课件 - 运营：活动方案/数据分析</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/AI%E5%9F%B9%E8%AE%AD/AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E9%94%80%E5%94%AE%EF%BC%9A%E5%AE%A2%E6%88%B7%E6%B4%9E%E5%AF%9F%E8%B7%9F%E8%BF%9B%E8%AF%9D%E6%9C%AF.html">AI岗位培训课件 - 销售：客户洞察/跟进话术</a></li>
+</ul></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/hermes-skills.html">Hermes Skill 索引与触发机制</a></li>
+<li class="folder"><span>协作规范</span><ul>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%8D%8F%E4%BD%9C%E8%A7%84%E8%8C%83/AI%E5%8D%8F%E4%BD%9C%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99.html">AI协作优化规则</a></li>
+</ul></li>
+<li class="folder"><span>学习资源</span><ul>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E5%B7%A5%E5%85%B7%E5%88%86%E5%B1%82%E8%87%AA%E5%AD%A6%E8%A7%86%E9%A2%91%E8%B5%84%E6%BA%90%E8%A1%A8.html">AI工具分层自学视频资源表</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/AI%E6%95%B0%E5%AD%97%E5%8C%96%E7%B4%A0%E5%85%BB%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%E5%9B%BE.html">AI数字化素养学习路径图</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/CIO%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92.html">CIO 持续学习计划</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/Prompt%E6%A8%A1%E6%9D%BF%E5%BA%93.html">Prompt 模板库</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html">代码规范</a></li>
+<li class=""><a href="../../%E6%A6%82%E5%BF%B5/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E5%B7%A5%E5%85%B7.html">工具</a></li>
+</ul></li>
+</ul></li></ul>
+        </nav>
+    </aside>
+    <main class="content">
 <h1 id="ai-native-day-4-">🎓 AI Native 实战课程 - Day 4: 第四章 - 上下文即状态</h1>
 <h2 id="_1">📖 今日导读</h2>
-<p>[[《AI Native：从概念到落地》- 书籍规划]] 把第四章命名为「上下文即状态」，这是整本书承上启下的一章。第三章讲 Prompt 即接口，解决的是「AI 如何理解单次指令」；第四章要解决的是「AI 如何理解一段关系」—— 它必须记得你是谁、你们之前聊过什么、你偏好什么，否则永远只是一个用完即走的工具。</p>
+<p><a class="wikilink" href="../../%E6%A6%82%E5%BF%B5/AI%20Native/%E3%80%8AAI%20Native%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0%E3%80%8B-%20%E4%B9%A6%E7%B1%8D%E8%A7%84%E5%88%92.html">《AI Native：从概念到落地》- 书籍规划</a> 把第四章命名为「上下文即状态」，这是整本书承上启下的一章。第三章讲 Prompt 即接口，解决的是「AI 如何理解单次指令」；第四章要解决的是「AI 如何理解一段关系」—— 它必须记得你是谁、你们之前聊过什么、你偏好什么，否则永远只是一个用完即走的工具。</p>
 <p>今天的核心认知是：<strong>大模型本身是无状态的，每一次 API 调用都是独立的。</strong> 所谓「记忆」，不是模型学会了什么，而是我们把外部状态（用户画像、会话历史、任务进度、业务数据）注入到下一次请求的上下文里。上下文即状态，状态即服务。本章结合 2025 年 ChatGPT、Claude 等产品的最新记忆能力，以及开源社区涌现的记忆基础设施，给你一个可运行的「有状态 AI 助手」示例。</p>
 <hr />
 <h2 id="_2">🔍 核心概念</h2>
 <h3 id="1">1. 大模型是无状态的，记忆是工程问题</h3>
-<p>在 [[AI Native 深度解析：从概念到落地]] 中，「记忆与上下文」被列为五大核心原理之一。LLM 的每一次推理都只依赖当前输入的 token；它不会自动记住你三分钟前说过的话，更不会记得上周的讨论。所谓「AI 记得你」，本质上是产品层做了一件工程化的事：<strong>把需要保留的信息挑选出来，保存到某种外部存储，然后在下一次请求时重新注入上下文。</strong></p>
+<p>在 <a class="wikilink" href="../../%E6%A6%82%E5%BF%B5/AI%20Native/AI%20Native%20%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E6%A6%82%E5%BF%B5%E5%88%B0%E8%90%BD%E5%9C%B0.html">AI Native 深度解析：从概念到落地</a> 中，「记忆与上下文」被列为五大核心原理之一。LLM 的每一次推理都只依赖当前输入的 token；它不会自动记住你三分钟前说过的话，更不会记得上周的讨论。所谓「AI 记得你」，本质上是产品层做了一件工程化的事：<strong>把需要保留的信息挑选出来，保存到某种外部存储，然后在下一次请求时重新注入上下文。</strong></p>
 <p>因此，「上下文即状态」不是修辞，而是一个架构命题：</p>
 <ul>
 <li><strong>状态 = 任何会影响下一次决策的信息</strong></li>
@@ -474,6 +673,7 @@ if __name__ == &quot;__main__&quot;:
 <li><strong>GitHub Honcho</strong>: <code>https://github.com/plastic-labs/honcho</code> — 开源 memory library for stateful agents（5.5k ⭐）</li>
 </ul>
 <hr />
-<p>💡 今日课程已保存至知识库：[[Day-4]]</p>
+<p>💡 今日课程已保存至知识库：<a class="wikilink" href="Day-4.html">Day-4</a></p>
+    </main>
 </body>
 </html>
