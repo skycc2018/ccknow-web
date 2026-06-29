@@ -7,16 +7,29 @@
     <style>
         :root {
             --sidebar-width: 300px;
-            --bg: #f5f7fa;
-            --card: #ffffff;
-            --text: #1f2937;
-            --text-secondary: #6b7280;
-            --border: #e5e7eb;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
             --primary: #2563eb;
             --primary-light: #eff6ff;
             --primary-dark: #1d4ed8;
-            --radius: 10px;
-            --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+            --accent: #7c3aed;
+            --radius: 12px;
+            --shadow: 0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.02);
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --primary: #60a5fa;
+            --primary-light: rgba(96,165,250,0.12);
+            --primary-dark: #93c5fd;
+            --accent: #a78bfa;
+            --shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
         * { box-sizing: border-box; }
         body {
@@ -26,27 +39,108 @@
             background: var(--bg);
             display: flex;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.65;
+            transition: background 0.3s, color 0.3s;
         }
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            height: 56px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        .breadcrumbs { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+        .breadcrumbs a { color: var(--text-secondary); }
+        .breadcrumbs a:hover { color: var(--primary); }
+        .topbar-actions { display: flex; align-items: center; gap: 12px; }
+        .search-box {
+            position: relative;
+            width: 260px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px 8px 34px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 13px;
+            outline: none;
+        }
+        .search-box input:focus { border-color: var(--primary); }
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        .search-results {
+            position: absolute;
+            top: 44px;
+            right: 0;
+            width: 320px;
+            max-height: 360px;
+            overflow-y: auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 200;
+        }
+        .search-results.active { display: block; }
+        .search-results a {
+            display: block;
+            padding: 10px 14px;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+        .search-results a:hover { background: var(--bg); }
+        .search-results a:last-child { border-bottom: none; }
+        .icon-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.15s;
+        }
+        .icon-btn:hover { background: var(--primary-light); border-color: var(--primary); }
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--card);
+            background: var(--surface);
             border-right: 1px solid var(--border);
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
             overflow-y: auto;
-            padding: 20px 0;
+            padding: 20px 0 80px;
+            z-index: 90;
             box-shadow: var(--shadow);
         }
         .sidebar-header {
             padding: 0 18px 14px;
             border-bottom: 1px solid var(--border);
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
         .sidebar-header a {
             color: var(--text);
@@ -61,6 +155,7 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
+            margin-top: 8px;
             padding: 4px 10px;
             background: var(--bg);
             border-radius: var(--radius);
@@ -75,12 +170,12 @@
             font-size: 11px;
             padding: 4px 10px;
             border: 1px solid var(--border);
-            background: #fff;
+            background: var(--bg);
             border-radius: 6px;
             cursor: pointer;
             color: var(--text-secondary);
         }
-        .nav-tools button:hover { background: var(--bg); color: var(--primary); }
+        .nav-tools button:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
         .nav ul {
             list-style: none;
             padding-left: 0;
@@ -91,7 +186,6 @@
             color: var(--text-secondary);
             font-size: 12px;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 0.4px;
             padding: 8px 18px;
             display: flex;
@@ -129,70 +223,74 @@
         }
         .content {
             margin-left: var(--sidebar-width);
+            margin-top: 56px;
             flex: 1;
-            padding: 40px 56px;
-            max-width: 1000px;
-            background: var(--card);
-            min-height: 100vh;
+            padding: 32px 56px 80px;
+            max-width: 900px;
+            background: var(--surface);
+            min-height: calc(100vh - 56px);
         }
         .content h1 {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 800;
-            margin: 0 0 12px;
-            letter-spacing: -0.5px;
+            margin: 0 0 14px;
+            letter-spacing: -0.8px;
+            line-height: 1.2;
         }
         .content h2 {
-            font-size: 22px;
+            font-size: 23px;
             font-weight: 700;
-            margin: 36px 0 14px;
-            padding-bottom: 8px;
+            margin: 40px 0 16px;
+            padding-bottom: 10px;
             border-bottom: 1px solid var(--border);
         }
         .content h3 {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 700;
-            margin: 26px 0 10px;
+            margin: 28px 0 12px;
         }
-        .content p { margin: 12px 0; color: #374151; }
+        .content p { margin: 14px 0; color: var(--text-secondary); }
         .content a { color: var(--primary); }
         .content a:hover { color: var(--primary-dark); }
-        .content a.wikilink { color: #7c3aed; font-weight: 500; }
-        .content a.wikilink:hover { color: #6d28d9; }
-        .content a.missing { color: #9ca3af; text-decoration: line-through; }
+        .content a.wikilink { color: var(--accent); font-weight: 500; }
+        .content a.wikilink:hover { text-decoration: underline; }
+        .content a.missing { color: var(--text-secondary); text-decoration: line-through; opacity: 0.6; }
         .content code {
-            background: #f3f4f6;
+            background: var(--bg);
             padding: 2px 7px;
             border-radius: 5px;
             font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 0.9em;
+            font-size: 0.88em;
             color: #db2777;
         }
         .content pre {
-            background: #1f2937;
-            color: #f9fafb;
-            padding: 18px;
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 20px;
             border-radius: var(--radius);
             overflow-x: auto;
             font-size: 14px;
+            box-shadow: var(--shadow);
         }
         .content pre code { background: transparent; color: inherit; padding: 0; }
         .content blockquote {
             border-left: 4px solid var(--primary);
             background: var(--primary-light);
-            padding: 14px 18px;
+            padding: 16px 20px;
             border-radius: 0 var(--radius) var(--radius) 0;
-            color: #1e40af;
-            margin: 16px 0;
+            margin: 18px 0;
         }
+        .content blockquote p { margin: 0; color: inherit; }
         .content table {
             border-collapse: separate;
             border-spacing: 0;
             width: 100%;
-            margin: 20px 0;
+            margin: 24px 0;
             border: 1px solid var(--border);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
+            font-size: 14px;
         }
         .content th, .content td {
             border: none;
@@ -201,18 +299,42 @@
             text-align: left;
         }
         .content th {
-            background: #f9fafb;
+            background: var(--bg);
             font-weight: 700;
-            font-size: 13px;
-            color: #4b5563;
+            font-size: 12px;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.4px;
         }
         .content tr:last-child td { border-bottom: none; }
-        .content tr:hover td { background: #f9fafb; }
+        .content tr:hover td { background: var(--bg); }
+        .back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
         @media (max-width: 768px) {
             .sidebar { display: none; }
+            .topbar { left: 0; }
             .content { margin-left: 0; padding: 24px; }
+            .search-box { display: none; }
         }
     </style>
 </head>
@@ -314,13 +436,24 @@
 <li class=""><a href="../%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/Prompt%E6%A8%A1%E6%9D%BF%E5%BA%93.html">Prompt 模板库</a></li>
 <li class=""><a href="../%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html">代码规范</a></li>
 <li class=""><a href="../%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/%E5%B7%A5%E5%85%B7.html">工具</a></li></ul></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>简历库</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/README.html">简历库</a></li>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>简历库</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/README.html">README</a></li>
 <li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>模板</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/interview-evaluation.html">面试评估表</a></li>
 <li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/jd-match-matrix.html">JD 匹配矩阵</a></li>
 <li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E6%A8%A1%E6%9D%BF/star-answer.html">STAR 回答记录表</a></li></ul></li>
-<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>面试分析</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E6%95%B0%E5%AD%97%E5%8C%96%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86-%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90.html">C00004825-朱宇尧-数字化产品经理 — 面试分析</a></li></ul></li></ul></li></ul>
+<li class="folder "><span class="folder-toggle" onclick="toggleFolder(this)"><span class="folder-icon">&#9656;</span>面试分析</span><ul><li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E4%BA%A7%E5%93%81%E5%89%AF%E6%80%BB%E7%9B%91-%E9%9D%A2%E8%AF%95%E9%A2%98.html">C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）</a></li>
+<li class=""><a href="../../%E7%AE%80%E5%8E%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90/C00004825-%E6%9C%B1%E5%AE%87%E5%B0%A7-%E6%95%B0%E5%AD%97%E5%8C%96%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86-%E9%9D%A2%E8%AF%95%E5%88%86%E6%9E%90.html">C00004825-朱宇尧-数字化产品经理 — 面试分析</a></li></ul></li></ul></li></ul>
         </nav>
     </aside>
+    <header class="topbar">
+        <div class="breadcrumbs"><a href="../../%E9%A6%96%E9%A1%B5.html">首页</a> / <span>概念</span> / <span>AI培训</span> / <span>AI岗位培训课件 - 管理层：用AI做经营决策</span></div>
+        <div class="topbar-actions">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="搜索页面..." oninput="searchPages(this.value)" onfocus="showSearch()" onblur="hideSearchDelayed()">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <button class="icon-btn" onclick="toggleTheme()" title="切换主题">🌙</button>
+        </div>
+    </header>
     <main class="content">
 <h1 id="ai-ai">AI岗位培训课件 - 管理层：用AI做经营决策</h1>
 <h2 id="_1">课程目标</h2>
@@ -544,7 +677,9 @@
 <li><a class="wikilink" href="AI%E5%B2%97%E4%BD%8D%E5%9F%B9%E8%AE%AD%E8%AF%BE%E4%BB%B6%20-%20%E6%95%B0%E6%8D%AE%E7%A0%94%E5%8F%91%EF%BC%9AAI%20Coding%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.html">AI岗位培训课件 - 数据研发：AI Coding数据处理</a></li>
 </ul>
     </main>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" id="back-to-top">↑</button>
     <script>
+        const searchIndex = [{"title": "Wiki Schema", "path": "SCHEMA.html"}, {"title": "程峰的 Obsidian 知识库", "path": "首页.html"}, {"title": "Wiki Log", "path": "log.html"}, {"title": "Wiki Index", "path": "index.html"}, {"title": "README", "path": "简历库/README.html"}, {"title": "面试评估表", "path": "简历库/模板/interview-evaluation.html"}, {"title": "STAR 回答记录表", "path": "简历库/模板/star-answer.html"}, {"title": "JD 匹配矩阵", "path": "简历库/模板/jd-match-matrix.html"}, {"title": "C00004825-朱宇尧-数字化产品经理 — 面试分析", "path": "简历库/面试分析/C00004825-朱宇尧-数字化产品经理-面试分析.html"}, {"title": "C00004825-朱宇尧-产品副总监 — 面试题（产品副总监岗位定向）", "path": "简历库/面试分析/C00004825-朱宇尧-产品副总监-面试题.html"}, {"title": "产品周会核心要点 / 待办 / 机会点", "path": "原始资料/会议/产品周会_核心要点_待办_机会点_20260526.html"}, {"title": "AI合规与行业经验-圆桌发言素材", "path": "原始资料/会议/AI合规与行业经验-圆桌发言素材-2026-06-27.html"}, {"title": "老OpenClaw 2026-06-21 的记忆文件", "path": "原始资料/articles/老openclaw20260621的记忆文件.html"}, {"title": "'{{title}}'", "path": "99 附件/模板/学习模板.html"}, {"title": "PRD 文档模板", "path": "99 附件/模板/PRD-模板.html"}, {"title": "'{{title}} 复盘'", "path": "99 附件/模板/复盘模板.html"}, {"title": "对话反思日志模板", "path": "99 附件/模板/对话反思日志模板.html"}, {"title": "\"AI Native 实战课程 - Day 4: 第四章 - 上下文即状态\"", "path": "06 课程/AINative实战/Day-4.html"}, {"title": "\"AI Native 实战课程 - Day 5: 第五章 - 生成即服务\"", "path": "06 课程/AINative实战/Day-5.html"}, {"title": "\"AI Native 实战课程 - Day 1: AI Enhanced vs AI Native\"", "path": "06 课程/AINative实战/Day-1.html"}, {"title": "\"AI Native 实战课程 - Day 6: 第六章 - 工具调用与 Agent\"", "path": "06 课程/AINative实战/Day-6.html"}, {"title": "\"AI Native 实战课程 - Day 2: 第二章 - 行业拐点\"", "path": "06 课程/AINative实战/Day-2.html"}, {"title": "\"AI Native 实战课程 - Day 3: 第三章 - Prompt 即接口\"", "path": "06 课程/AINative实战/Day-3.html"}, {"title": "AI能力体系建设", "path": "实体/AI能力体系建设.html"}, {"title": "1#楼改造工程（安装）- 工程量清单", "path": "实体/1号楼改造工程-工程量清单.html"}, {"title": "AI商机雷达-PRD", "path": "实体/AI商机雷达-PRD.html"}, {"title": "CIO 技能提升专项计划", "path": "实体/CIO技能提升专项计划-2026-06-21.html"}, {"title": "ShareLLM 项目开发计划", "path": "实体/ShareLLM项目开发计划-2026-06-21.html"}, {"title": "岗位JD评审与Slogan设计", "path": "实体/岗位JD评审与Slogan设计-2026-05-29.html"}, {"title": "技术沟通", "path": "实体/技术沟通.html"}, {"title": "程川 AI能力体系建设方案 - 待办总表与执行策略", "path": "实体/程川 AI能力体系建设方案 - 待办总表与执行策略.html"}, {"title": "管理层数字化素养提升方案（数据驱动决策专项）", "path": "实体/管理层数字化素养提升方案.html"}, {"title": "多租户SaaS商城平台 - 产品功能文档", "path": "实体/多租户SaaS商城平台-产品功能文档.html"}, {"title": "mall-saas 代码审查报告索引", "path": "实体/_审查报告索引.html"}, {"title": "AI应用及团队管理探讨会", "path": "实体/AI应用及团队管理探讨会_纪要.html"}, {"title": "研发体系建设方案", "path": "实体/研发体系/研发体系建设方案.html"}, {"title": "OpenClaw 架构设计文档", "path": "实体/OpenClaw/OpenClaw 架构设计文档.html"}, {"title": "菜洋洋AI原生组织架构调整规划", "path": "实体/菜洋洋/菜洋洋AI原生组织架构调整规划.html"}, {"title": "餐饮供应链业务对接交流会议记录", "path": "实体/菜洋洋/餐饮供应链业务对接交流会-20260526.html"}, {"title": "菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10", "path": "实体/菜洋洋/菜洋洋云星空旗舰版项目业务蓝图-初版待完善-2026-06-10.html"}, {"title": "菜洋洋产研团队组织架构与数智中心定位分析", "path": "实体/菜洋洋/菜洋洋数智中心组织定位分析.html"}, {"title": "菜洋洋云星空旗舰版项目业务蓝图——老信评审", "path": "实体/菜洋洋/菜洋洋云星空旗舰版项目业务蓝图-老信评审-2026-06-22.html"}, {"title": "菜洋洋商城战略PRD：从B2B订货系统到AI Commerce OS", "path": "实体/菜洋洋/菜洋洋商城战略PRD.html"}, {"title": "菜洋洋企业定位研讨会发言稿", "path": "实体/菜洋洋/菜洋洋企业定位研讨会发言稿-2026-06-27.html"}, {"title": "菜洋洋企业定位研讨11问（洞察+建议+参考）", "path": "实体/菜洋洋/菜洋洋企业定位研讨11问-洞察建议参考-2026-06-27.html"}, {"title": "菜洋洋AIOS-数据基础建设需求梳理", "path": "实体/菜洋洋/菜洋洋AIOS-数据基础建设需求梳理.html"}, {"title": "菜洋洋 AI选品引擎（知识图谱 + ML Hybrid）产品级 PRD", "path": "实体/菜洋洋/菜洋洋 AI选品引擎 PRD.html"}, {"title": "菜洋洋-待办-2026-06-29", "path": "实体/菜洋洋/菜洋洋-待办-2026-06-29.html"}, {"title": "菜洋洋商城战略评审与建议方案", "path": "实体/菜洋洋/菜洋洋商城战略评审-2026-05-29.html"}, {"title": "菜洋洋《上新方案包》产品PRD（V1.0）", "path": "实体/菜洋洋/菜洋洋上新方案包_PRD_V1.0.html"}, {"title": "菜洋洋 AI OS 系统架构图", "path": "实体/菜洋洋/菜洋洋 AI OS 系统架构图.html"}, {"title": "菜洋洋产研团队岗位说明书评审报告", "path": "实体/菜洋洋/菜洋洋岗位说明书评审报告.html"}, {"title": "菜洋洋 SaaS 商城 — 管理后台设计方案", "path": "实体/菜洋洋/菜洋洋SaaS商城-管理后台设计方案-v1.0.html"}, {"title": "菜洋洋商城 → AI OS 演进路线与架构方案", "path": "实体/菜洋洋/菜洋洋商城 AI OS 演进路线与架构方案.html"}, {"title": "菜洋洋-数据驱动的餐饮供应链操作系统-PRD", "path": "实体/菜洋洋/菜洋洋-数据驱动的餐饮供应链操作系统-PRD.html"}, {"title": "菜洋洋企业定位研讨思路准备（Q1-Q6 重点）", "path": "实体/菜洋洋/菜洋洋企业定位研讨-思路准备-2026-06-25.html"}, {"title": "网店运营与推广综合实训平台人员投入排期", "path": "实体/网店运营实训平台/网店运营与推广综合实训平台-人员投入排期.html"}, {"title": "网店运营与推广综合实训平台 PRD", "path": "实体/网店运营实训平台/网店运营与推广综合实训平台-PRD.html"}, {"title": "AI商机雷达-移动端Figma设计规范", "path": "实体/AI商机雷达/AI商机雷达-移动端Figma设计规范.html"}, {"title": "AI商机雷达｜AI Coding开发提示词", "path": "实体/AI商机雷达/AI商机雷达｜AI Coding开发提示词.html"}, {"title": "AI商机雷达｜Figma AI设计提示词", "path": "实体/AI商机雷达/AI商机雷达｜Figma AI设计提示词.html"}, {"title": "AI 选品推品产品分析报告 & PRD", "path": "查询/AI选品推品产品分析报告-2026-05-29.html"}, {"title": "大众点评品类品牌数据分析报告", "path": "查询/大众点评品类品牌数据分析报告.html"}, {"title": "Hermes Skill 索引与触发机制", "path": "概念/hermes-skills.html"}, {"title": "AI协作优化规则", "path": "概念/协作规范/AI协作优化规则.html"}, {"title": "AI数字化素养学习路径图", "path": "概念/学习资源/AI数字化素养学习路径图.html"}, {"title": "Prompt 模板库", "path": "概念/学习资源/Prompt模板库.html"}, {"title": "CIO 持续学习计划", "path": "概念/学习资源/CIO持续学习计划.html"}, {"title": "代码规范", "path": "概念/学习资源/代码规范.html"}, {"title": "AI工具分层自学视频资源表", "path": "概念/学习资源/AI工具分层自学视频资源表.html"}, {"title": "工具", "path": "概念/学习资源/工具.html"}, {"title": "《AI Native：从概念到落地》", "path": "概念/AI Native/《AI Native：从概念到落地》- 书籍规划.html"}, {"title": "第二章：行业拐点", "path": "概念/AI Native/《AI Native：从概念到落地》- 第二章.html"}, {"title": "AI Native 深度报告", "path": "概念/AI Native/AI Native 深度报告.html"}, {"title": "第一章：AI Enhanced vs AI Native", "path": "概念/AI Native/《AI Native：从概念到落地》- 第一章.html"}, {"title": "AI Native 深度解析：从概念到落地", "path": "概念/AI Native/AI Native 深度解析：从概念到落地.html"}, {"title": "AI岗位培训课件 - 管理层：用AI做经营决策", "path": "概念/AI培训/AI岗位培训课件 - 管理层：用AI做经营决策.html"}, {"title": "AI岗位培训课件 - HR：招聘JD/简历分析/绩效辅助", "path": "概念/AI培训/AI岗位培训课件 - HR：招聘JD简历分析绩效辅助.html"}, {"title": "AI岗位培训课件 - 数据/研发：AI Coding/数据处理", "path": "概念/AI培训/AI岗位培训课件 - 数据研发：AI Coding数据处理.html"}, {"title": "AI岗位培训课件 - 销售：客户洞察/跟进话术", "path": "概念/AI培训/AI岗位培训课件 - 销售：客户洞察跟进话术.html"}, {"title": "AI岗位培训课件 - 产品：PRD→原型→Demo", "path": "概念/AI培训/AI岗位培训课件 - 产品：PRD原型Demo.html"}, {"title": "AI岗位培训课件 - 运营：活动方案/数据分析", "path": "概念/AI培训/AI岗位培训课件 - 运营：活动方案数据分析.html"}, {"title": "待办索引", "path": "日志/待办索引.html"}, {"title": "对话反思日志 - 2026-05-28", "path": "日志/2026-05-28-对话反思.html"}, {"title": "20260601重要事项", "path": "日志/20260601重要事项.html"}, {"title": "2026-05-28 每日反思", "path": "日志/2026-05-28 每日反思.html"}, {"title": "待办-2026-06-29", "path": "日志/待办-2026-06-29.html"}, {"title": "AI Coding vs Vibe Coding 对比分析", "path": "对比/AI Coding vs Vibe Coding 对比分析.html"}, {"title": "四洋", "path": "_persons/四洋.html"}, {"title": "满满", "path": "_persons/满满.html"}, {"title": "惠开发", "path": "_persons/惠开发.html"}, {"title": "龙龙", "path": "_persons/龙龙.html"}, {"title": "ccknow", "path": "_persons/ccknow.html"}];
         function toggleFolder(el) {
             const li = el.parentElement;
             li.classList.toggle('collapsed');
@@ -563,6 +698,45 @@
                 li.querySelector('.folder-icon').innerHTML = '&#9656;';
             });
         }
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            localStorage.setItem('theme', html.getAttribute('data-theme'));
+        }
+        function searchPages(query) {
+            const results = document.getElementById('search-results');
+            if (!query) { results.innerHTML = ''; results.classList.remove('active'); return; }
+            const q = query.toLowerCase();
+            const matched = searchIndex.filter(p => p.title.toLowerCase().includes(q) || p.path.toLowerCase().includes(q)).slice(0, 10);
+            if (matched.length === 0) { results.innerHTML = '<a href="#">未找到结果</a>'; }
+            else {
+                results.innerHTML = matched.map(p => `<a href="${relUrl(p.path)}">${p.title}</a>`).join('');
+            }
+            results.classList.add('active');
+        }
+        function relUrl(targetPath) {
+            const current = window.location.pathname.replace(/^.*\/ccknow-web\//, '').replace(/\/$/, '');
+            const currentParts = current ? current.split('/') : [];
+            const targetParts = targetPath.split('/');
+            let common = 0;
+            for (let i = 0; i < Math.min(currentParts.length, targetParts.length); i++) {
+                if (currentParts[i] === targetParts[i]) common++; else break;
+            }
+            const up = currentParts.length - common - (current.endsWith('.html') ? 1 : 0);
+            const rel = [];
+            for (let i = 0; i < Math.max(0, up); i++) rel.push('..');
+            rel.push(...targetParts.slice(common));
+            return rel.join('/') || './';
+        }
+        function showSearch() { if (document.getElementById('search').value) document.getElementById('search-results').classList.add('active'); }
+        function hideSearchDelayed() { setTimeout(() => document.getElementById('search-results').classList.remove('active'), 200); }
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('theme');
+            if (saved) document.documentElement.setAttribute('data-theme', saved);
+            window.addEventListener('scroll', () => {
+                document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
+            });
+        });
     </script>
 </body>
 </html>
